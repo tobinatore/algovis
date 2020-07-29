@@ -51,24 +51,24 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 hr.hr-text {
     position: relative;
-      border: none;
-      height: 1px;
-      background: #272F32;
+    border: none;
+    height: 1px;
+    background: #272F32;
   }
   
   hr.hr-text::before {
-      content: attr(data-content);
-      display: inline-block;
-      background: #fff;
-      font-weight: bold;
-      font-size: 0.85rem;
-      color: #FF3D2E;
-      border-radius: 30rem;
-      padding: 0.2rem 2rem;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    content: attr(data-content);
+    display: inline-block;
+    background: #fff;
+    font-weight: bold;
+    font-size: 1.15rem;
+    color: #FF3D2E;
+    border-radius: 30rem;
+    padding: 0.2rem 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
 /* VISUALIZATION CONTAINER & BLOCKS
@@ -277,4 +277,19 @@ hr.hr-text {
     opacity: 0;
     transform: translateY(46px);
   }
+}
+
+
+.form-control-borderless {
+  border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.newline{
+  display: block;
 }

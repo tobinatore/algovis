@@ -10,6 +10,8 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
 
@@ -46,10 +48,26 @@
     <section id="intro">
         <div class="container-fluid w-100" style="margin-top: 72px;">
             <div class="mb-4">
-                <h3 class=" text-uppercase text-center">Sorting Algorithms</h3>
-                <p class="text-center">Sorting Algorithms can roughly be categorized into 3 categories, which are <span class="text-uppercase highlighted-text">Comparison sorts</span>, <span class="text-uppercase highlighted-text">Non-Comparison sorts</span> and <span class="text-uppercase highlighted-text">Others</span>.
-                    </ul>
+                <h3 class="text-center subtitle-font highlighted-text">Sorting Algorithms</h3>
             </div>  
+            <div class="row justify-content-center mt-2">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <form class="card card-sm">
+                        <div class="card-body row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <i class="fa fa-search h4 text-body"></i>
+                            </div>
+                            <!--end of col-->
+                            <div class="col">
+                                <input id="search" class="form-control form-control-borderless" type="search" placeholder="Search names or keywords">
+                            </div>
+                            <!--end of col-->
+                            <!--end of col-->
+                        </div>
+                    </form>
+                </div>
+                <!--end of col-->
+            </div>
         </div>
         
     </section>
@@ -62,9 +80,9 @@
             <div class=" w-50 p-2 rounded border-red row ml-auto mr-auto mt-2 mb-3">
                 A comparison sort is a type of sorting algorithm that only reads the list elements through a single abstract comparison operation (often a "less than or equal to" operator or a three-way comparison) that determines which of two elements should occur first in the final sorted list.
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2 w-100">
+            <div id="bubblesort" class="row algorithm ml-auto mr-auto mt-3 mb-2 w-100">
                 <a href="bubblesort.html" class="unstyled-link w-100"><div class="media link-bg w-100">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Bubblesort</h5>
                       Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
@@ -75,9 +93,9 @@
                     </div>
                 </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
+            <div id="quicksort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
                 <a href="quicksort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Quicksort</h5>
                       Quicksort is a divide-and-conquer algorithm. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively. This can be done in-place, requiring small additional amounts of memory to perform the sorting.
@@ -88,185 +106,185 @@
                     </div>
                 </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="mergesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="mergesort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Merge sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="introsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="introsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Introsort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
                 </div>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="heapsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="heapsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Heapsort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="insertionsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="insertionsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Insertion sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="blocksort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="blocksort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Block sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="timsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="timsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Timsort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="selectionsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="selectionsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Selection sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="cubesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="cubesort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Cubesort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="shellsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="shellsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Shellsort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="treesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="treesort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Tree sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="cyclesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="cyclesort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Cycle sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="librarysort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="librarysort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Library sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="patiencesorting" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="patiencesorting.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Patience sorting</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="smoothsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="smoothsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Smoothsort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="strandsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="strandsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Strandsort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="tournamentsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="tournamentsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Tournamentsort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="cocktailshakersort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="cocktailshakersort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Cocktail shaker sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="combsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="combsort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Comb sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="gnomesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="gnomesort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Gnome sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
-            <div class="row ml-auto mr-auto mt-3 mb-2">
-                <div class="media">
-                    <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
+            <div id="odd-evensort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
+                <a href="oddevensort.html" class="unstyled-link w-100"><div class="media link-bg">
+                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
                     <div class="media-body">
                       <h5 class="mt-0">Odd-even sort</h5>
                       Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                     </div>
-                </div>
+                </div></a>
             </div>
         </div>
     </section>
@@ -297,6 +315,20 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        function showRelevant(name=""){
+            if (name == "") {
+                $(".algorithm").show()
+            }else{
+                $('.algorithm').hide();
+                $('.algorithm[id*="' + name.toLowerCase() + '"]').show();
+            }
+
+        }
+
+        $('#search').on('input',function(e){
+            showRelevant(this.value);
         });
     </script>
 </body>

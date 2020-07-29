@@ -186,7 +186,7 @@ hr.hr-text {
   .hero {
     background-attachment: fixed;
     transition: transform 0.5s ease-in-out;
-    background-image: url("../img/code.jpg");
+    background-image: url("../img/code-min.jpg");
   }
   
   .hero::after {

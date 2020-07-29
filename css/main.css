@@ -53,7 +53,7 @@ hr.hr-text {
     position: relative;
       border: none;
       height: 1px;
-      background: #999;
+      background: #272F32;
   }
   
   hr.hr-text::before {
@@ -62,7 +62,7 @@ hr.hr-text {
       background: #fff;
       font-weight: bold;
       font-size: 0.85rem;
-      color: #999;
+      color: #FF3D2E;
       border-radius: 30rem;
       padding: 0.2rem 2rem;
       position: absolute;

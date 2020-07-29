@@ -1,0 +1,414 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>AlgoVis - Online Algorithm Visualization</title>
+  <meta name="description" content="AlgoVis - Online Algorithm Visualization">
+  <meta name="author" content="Tobias Nöthlich">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav class="navbar navbar-expand-lg navbar-light dark-bg">
+        <a class="navbar-brand" href="index.html"><span class="white-text">AlgoVis - Online <span class="highlighted-text">Sorting</span> Algorithm Visualization</span></a>
+    </nav>
+
+    <!-- SEARCH + TAG CLOUD -->
+    <div class="container-fluid w-100">
+        <h1>Bubblesort Visualization</h1>
+        <div class="data-container border-red p-1 mb-4 mt-3">
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <form>
+              <h2>Settings</h2>
+              <div class="form-group row">
+                  <div class="col-sm-2">Number of integers in list: </div>
+                  <div class="col-sm-10">
+                      <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="30" data-slider-step="1" data-slider-value="15"/>
+                      <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <div class="col-sm-2">Data Generation</div>
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input id="own-data" class="form-check-input" type="checkbox" id="gridCheck1">
+                      <label class="form-check-label" for="gridCheck1">
+                        Use own data
+                      </label>
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label for="data-input" class="col-sm-2 col-form-label">Your data (max. 30 elements):</label>
+                  <div class="col-sm-10">
+                    <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
+                  </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-2">Speed: </div>
+                <div class="col-sm-10">
+                  <span>Slow&emsp;</span>
+                  <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="100" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
+                  <span>&emsp;Fast</span>
+                </div>
+            </div>
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <button id="sort-button" type="button" onclick="quickSort()" class="btn btn-primary">Sort</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-4">
+            <span class="row ml-auto"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of omparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
+            <div class="ide w-100">
+              <div class="row ml-auto mr-auto 1">
+                <span><span class="op">while</span>(swapped)</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 2 ">
+                <span>&emsp;&emsp;swapped = <span class="var">false</span></span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 3">
+                <span>&emsp;&emsp;<span class="op">for</span> x = 0 to length(list)-1</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 4">
+                <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> list[x] > list[x+1]</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 5">
+                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[x], list[x+1])</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 6">
+                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;swapped = <span class="var">true</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+
+
+<script>
+  $(document).ready(function() {
+    $(".valueSpan").text(`Expected number of operations: 
+      ~${Math.round(0.5*((15**2)-(15*Math.log(15))-((0.57721566490153286060+Math.log(2)-1)*15)+Math.sqrt(15)))} comparisons, 
+      ~${Math.round(0.25*(15**2-15))} swaps.`);
+     
+    var slider = new Slider("#slider",{
+      handle : "square"
+    });
+    slider.on("slide", function(slideEvt) {
+      newSet(slideEvt);
+      $(".valueSpan").text(`Expected number of operations: 
+        ~${Math.round(0.5*((slideEvt**2)-(slideEvt*Math.log(slideEvt))-((0.57721566490153286060+Math.log(2)-1)*slideEvt)+Math.sqrt(slideEvt)))} comparisons, 
+        ~${Math.round(0.25*(slideEvt**2-slideEvt))} swaps.`);
+    });
+
+    $('#data-input').on('input',function(e){
+      ownData(this.value);
+    });
+
+    $('#own-data').change(function() {
+      if (this.checked) {
+        slider.disable();
+        $("#data-input").prop('disabled', false);
+        $(".valueSpan").addClass("text-muted");
+      } else {
+        slider.enable();
+        $("#data-input").prop('disabled', true);
+        $(".valueSpan").removeClass("text-muted");
+      }
+    });
+
+    var speedSlider = new Slider("#speedslider",{
+	    reversed : true,
+      tooltip : "none",
+      handle : "square"
+    });
+
+    speedSlider.on("slide", function(slideEvt) {
+      setDelay(slideEvt);
+    });
+  });
+   
+</script>
+
+<script>
+    const container = document.querySelector(".data-container");
+    var FLAG = false;
+    var DELAY = 2000;
+
+    function setDelay(delay){
+      DELAY = delay;
+    }
+
+    function clamp(number, min, max) {
+      return Math.max(min, Math.min(number, max));
+    }
+
+    function newSet(num=20){
+      $(".highlighted-bg").removeClass("highlighted-bg");
+      FLAG=true;
+      let blocks = document.querySelectorAll(".block");
+      if (blocks !== null) {
+        for (let i = 0; i < blocks.length; i += 1) {
+          blocks[i].parentNode.removeChild(blocks[i]);
+
+        }
+      $("#sort-button").prop('disabled', false);
+      }
+      FLAG=false;
+      generateBlocks(num);
+      
+    }   
+
+    function ownData(data = "1,2,3,4,5,6"){
+      $(".highlighted-bg").removeClass("highlighted-bg");
+      FLAG=true;
+      let blocks = document.querySelectorAll(".block");
+      if (blocks !== null) {
+            for (let i = 0; i < blocks.length; i += 1) {
+                blocks[i].parentNode.removeChild(blocks[i]);
+
+            }
+      }
+      FLAG=false;
+      $("#sort-button").prop('disabled', false);
+      var vals = data.split(",");
+      for (let i = 0; i < clamp(vals.length,0,30); i += 1) {
+        const value = clamp(vals[i], 0, 120);
+
+        const block = document.createElement("div");
+        block.classList.add("block");
+        block.style.height = `${value * 3}px`;
+        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / clamp(vals.length,0,30)-2)}px)`;
+        block.style.width = `${document.documentElement.clientWidth / (clamp(vals.length,0,30)+5)}px`;
+
+        const blockLabel = document.createElement("label");
+        blockLabel.classList.add("block_id");
+        blockLabel.innerHTML = value;
+
+        block.appendChild(blockLabel);
+        container.appendChild(block);
+      }
+    }
+
+    function generateBlocks(num = 20) {
+      if (num && typeof num !== "number") {
+        alert("First argument must be a typeof Number");
+        return;
+      }
+      for (let i = 0; i < num; i += 1) {
+        const value = Math.floor(Math.random() * 100);
+
+        const block = document.createElement("div");
+        block.classList.add("block");
+        block.style.height = `${value * 3}px`;
+        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / num-2)}px)`;
+        block.style.width = `${document.documentElement.clientWidth / (num+5)}px`;
+
+        const blockLabel = document.createElement("label");
+        blockLabel.classList.add("block_id");
+        blockLabel.innerHTML = value;
+
+        block.appendChild(blockLabel);
+        container.appendChild(block);
+      }
+    }
+
+    function swapNodes(a, b) {
+      var aparent = a.parentNode;
+      var asibling = a.nextSibling === b ? a : a.nextSibling;
+      b.parentNode.insertBefore(a, b);
+      aparent.insertBefore(b, asibling);
+    } 
+
+    function swap(el1, el2) {
+      return new Promise(resolve => {
+        const style1 = window.getComputedStyle(el1);
+        const style2 = window.getComputedStyle(el2);
+
+        const transform1 = style1.getPropertyValue("transform");
+        const transform2 = style2.getPropertyValue("transform");
+
+        el1.style.transform = transform2;
+        el2.style.transform = transform1;
+
+        // Wait for the transition to end!
+        window.requestAnimationFrame(function() {
+          setTimeout(() => {
+            //container.insertBefore(el2, el1);
+            swapNodes(el1,el2)
+            resolve();
+          }, 250);
+        });
+      });
+    }
+
+    function highlightBg(elementClass){
+      $(".highlighted-bg").removeClass("highlighted-bg");
+      $(`.${elementClass}`).addClass("highlighted-bg");
+    }
+    
+    //////////////////////////////////
+    // await new Promise(resolve => //
+    //      setTimeout(() => {  	  //
+    //        resolve();            //
+    //      }, delay)               //
+    //   );                         //
+    //////////////////////////////////
+    
+    async function partition(left, right){
+      let blocks = document.querySelectorAll(".block");
+      let pivot = Number(blocks[right].childNodes[0].innerHTML);
+      blocks[right].style.backgroundColor = "#FACF5A";
+      let i = left;
+      let j = right -1 ;
+
+      await new Promise(resolve =>
+        setTimeout(() => {
+          resolve();
+        }, DELAY)
+      );
+
+     while(i < j){ 
+        
+      while(i < right && Number(blocks[i].childNodes[0].innerHTML) < pivot){
+        i = i + 1;
+        blocks[i].style.backgroundColor = "#FF3D2E";
+        blocks[i-1].style.backgroundColor = "#9DBDC6";        
+        await new Promise(resolve =>
+          setTimeout(() => {
+            resolve();
+          }, DELAY)
+        );
+      }
+          
+      while(j > left && Number(blocks[j].childNodes[0].innerHTML) >= pivot){
+        j = j - 1;
+        blocks[j].style.backgroundColor = "#1764B3";
+        blocks[j+1].style.backgroundColor = "#9DBDC6";
+        
+        await new Promise(resolve =>
+          setTimeout(() => {
+            resolve();
+          }, DELAY)
+        );
+      }
+
+      if(i < j){
+        await swap(blocks[i], blocks[j]);
+        blocks = document.querySelectorAll(".block");
+        blocks[i].style.backgroundColor = "#9DBDC6";
+        blocks[j].style.backgroundColor = "#9DBDC6";
+      }  
+    }
+
+    if(Number(blocks[i].childNodes[0].innerHTML) > pivot){
+      await swap(blocks[i], blocks[right]);
+      blocks =  document.querySelectorAll(".block");
+      blocks[i].style.backgroundColor = "#272F32";
+    }else{
+      blocks[right].style.backgroundColor = "#272F32";
+    }
+
+    return i;
+
+
+      /*while(true){
+        do {
+          i += 1;
+          blocks[i].style.backgroundColor = "#FF3D2E";
+          if(i>1)
+            blocks[i-1].style.backgroundColor = "#9DBDC6";
+          await new Promise(resolve =>
+            setTimeout(() => {
+              resolve();
+            }, DELAY)
+          );
+        } while (Number(blocks[i].childNodes[0].innerHTML) < pivot);
+        
+        do {
+          j -= 1;
+          blocks[j].style.backgroundColor = "#FF3D2E";
+          if (j<right) {
+            blocks[j+1].style.backgroundColor = "#9DBDC6";
+          }
+          
+          await new Promise(resolve =>
+            setTimeout(() => {
+              resolve();
+            }, DELAY)
+          );
+        } while (Number(blocks[j].childNodes[0].innerHTML) > pivot);
+
+        if (i >= j) {
+          blocks[i].style.backgroundColor = "#9DBDC6";
+          blocks[j].style.backgroundColor = "#9DBDC6";
+          return j;
+        }
+        
+        await swap(blocks[i], blocks[j]);
+        blocks = document.querySelectorAll(".block");
+        blocks[i].style.backgroundColor = "#9DBDC6";
+        blocks[j].style.backgroundColor = "#9DBDC6";
+      }*/      
+    }
+
+    async function quickSort(delay = DELAY, left = 0, right = -10) {
+      $("#sort-button").prop('disabled', true);
+      if (right == -10) {
+        right = document.querySelectorAll(".block").length - 1;
+      }
+      var swaps = 0;
+      var comparisons = 0;
+      
+      if (delay && typeof delay !== "number") {
+        alert("sort: First argument must be a typeof Number");
+        return;
+      }
+
+      
+      var swapped = false;
+      
+      if (left < right) {
+        var p = await partition(left, right);
+        await quickSort(DELAY, left, p-1);
+        let blocks =  document.querySelectorAll(".block");
+        for(let i = 0; i < p; i++){  
+          blocks[i].style.backgroundColor = "#272F32";
+        }
+        
+        await quickSort(DELAY, p + 1, right);  
+
+        for(let i = 0; i <= right; i++){  
+          blocks[i].style.backgroundColor = "#272F32";
+        }    
+      }
+      $("#sort-button").prop('disabled', false);
+    }
+
+    generateBlocks(15);
+
+</script>
+</body>
+</html>

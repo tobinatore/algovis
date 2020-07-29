@@ -1,0 +1,280 @@
+.body {
+    background: #DAEAEF;
+    color:#272F32;
+}
+
+  
+/* TEXT & BG COLOR DEFINITIONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.dark-text {
+    color:#272F32;
+}
+
+.highlighted-text {
+    color: #FF3D2E;
+}
+
+.white-text {
+    color: #FFFFFF;
+}
+
+.light-bg {
+    background-color: #DAEAEF;
+}
+
+.blue-text{
+    color: #9DBDC6;
+}
+
+.light-text {
+    color: #DAEAEF;
+}
+
+.blueish-bg {
+    background-color: #9DBDC6;
+}
+
+.dark-bg {
+    background-color: #272F32;
+}
+
+.highlighted-bg{
+    background-color: #FF3D2E;
+}
+
+.border-red {
+    border: 3px solid #FF3D2E;
+}
+
+
+/* HORIZONTAL RULE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+hr.hr-text {
+    position: relative;
+      border: none;
+      height: 1px;
+      background: #999;
+  }
+  
+  hr.hr-text::before {
+      content: attr(data-content);
+      display: inline-block;
+      background: #fff;
+      font-weight: bold;
+      font-size: 0.85rem;
+      color: #999;
+      border-radius: 30rem;
+      padding: 0.2rem 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+
+/* VISUALIZATION CONTAINER & BLOCKS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.data-container {
+    width: 100%;
+    height: 384px;
+    position: relative;
+    margin: 0 auto;
+  }
+  
+  .block {
+    width: 28px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #9DBDC6;
+    transition: 0.2s all ease;
+  }
+  
+  .block_id {
+    position: absolute;
+    top: -24px;
+    width: 100%;
+    text-align: center;
+  }
+  
+/* SLIDERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.slider-selection {
+    background: #DAEAEF;
+}
+
+.slider-handle{
+    background: #9DBDC6;
+}
+
+.slider-track-high{
+    background: #999;
+}
+
+/* LINKS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.unstyled-link{
+    color: #272F32;
+    text-decoration: none;
+}
+
+.unstyled-link:hover,.unstyled-link:focus{
+    color: #272F32;
+    text-decoration: none;
+}
+
+.link-bg:hover, .link-bg:focus{
+    background-color: #9DBDC6;
+}
+
+/* SIMULATED IDE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.ide{
+    background-color: #272F32;
+    color: #fff;
+    font-family: monospace;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.op {
+    color:#71D1E3 ;
+}
+
+.var {
+    color:#FACF5A;
+}
+
+
+/* COVER   
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.cover {
+    background: no-repeat center/cover;
+  }
+  
+  .p-15 {
+    padding: 15px;
+  }
+  
+  /* SCROLL ANIMATIONS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .scroll .page-header {
+    background: #FF3D2E;
+  }
+  
+  .scroll .hero {
+    transform: scale(0.98);
+  }
+  
+  /* HEADER
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .page-header {
+    transition: background 0.5s ease-in-out;
+  }
+  
+  .page-header .navbar {
+    padding: 1rem 0;
+  }
+  
+  .page-header .navbar-toggler {
+    /* the variable is inherited from BS4 built-in variables */
+    border-color: var(--white); 
+  }
+  
+  /* BANNER SECTION
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .hero {
+    background-attachment: fixed;
+    transition: transform 0.5s ease-in-out;
+    background-image: url("../img/code.jpg");
+  }
+  
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.7) 0,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+  
+  .hero .container-fluid {
+    z-index: 10;
+  }
+
+  /* PAGE FOOTER
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .page-footer .footer-links {
+    text-align: right;
+  }
+  
+  /* MEDIA QUERIES
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  /* MEDIUM SCREENS */
+  @media screen and (max-width: 991px) {
+    .page-header {
+      background: var(--red);
+    }
+  }
+  
+  /* SMALL SCREENS */
+  @media screen and (max-width: 767px) {
+    .page-footer .footer-child {
+      text-align: center;
+    }
+  }
+
+
+/* FONTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.logo-font{
+      font-family: 'Roboto Mono';
+}
+
+.subtitle-font{
+    font-family: 'Permanent Marker';
+}
+
+/* SCROLL ICON
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.icon-scroll,
+.icon-scroll:before{
+  position: absolute;
+  left: 50%;
+}
+
+.icon-scroll{
+  width: 40px;
+  height: 70px;
+  margin-left: -20px;
+  top: 90%;
+  margin-top: -35px;
+  box-shadow: inset 0 0 0 1px #fff;
+  border-radius: 25px;
+}
+.icon-scroll:before{
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  margin-left: -4px;
+  top: 8px;
+  border-radius: 4px;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-name: scroll;
+}
+@keyframes scroll{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(46px);
+  }
+}

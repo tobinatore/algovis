@@ -1,11 +1,11 @@
 .body {
-    background: #DAEAEF;
+    background: #FFF;
     color:#272F32;
 }
 
   
 /* TEXT & BG COLOR DEFINITIONS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+––––––––––––––––––––––––––––-------–––––––––––––––––––––– */
 .dark-text {
     color:#272F32;
 }
@@ -48,7 +48,7 @@
 
 
 /* HORIZONTAL RULE
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+–––––––––––––––––––-------––––––––––––––––––––––––––––––– */
 hr.hr-text {
     position: relative;
     border: none;
@@ -72,7 +72,7 @@ hr.hr-text {
   }
 
 /* VISUALIZATION CONTAINER & BLOCKS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+–––––––––––––––––––––––-------––––––––––––––––––––––––––– */
 .data-container {
     width: 100%;
     height: 384px;
@@ -97,7 +97,7 @@ hr.hr-text {
   }
   
 /* SLIDERS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+––––––––––––––––––––––––-------–––––––––––––––––––––––––– */
 .slider-selection {
     background: #DAEAEF;
 }
@@ -111,7 +111,7 @@ hr.hr-text {
 }
 
 /* LINKS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+––––––––––––––––––––––––––––-------–––––––––––––––––––––– */
 .unstyled-link{
     color: #272F32;
     text-decoration: none;
@@ -123,11 +123,11 @@ hr.hr-text {
 }
 
 .link-bg:hover, .link-bg:focus{
-    background-color: #9DBDC6;
+    background-color: #FEF0F0;
 }
 
 /* SIMULATED IDE
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+–––––––––––––––––––––––––––––––-------––––––––––––––––––– */
 .ide{
     background-color: #272F32;
     color: #fff;
@@ -147,7 +147,7 @@ hr.hr-text {
 
 
 /* COVER   
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+–––––––––––––––––––––––––––––––––––––-------––––––––––––– */
 .cover {
     background: no-repeat center/cover;
   }
@@ -157,7 +157,7 @@ hr.hr-text {
   }
   
   /* SCROLL ANIMATIONS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  ––––––––––––––––––––––––––––––––––––-------–––––––––––––– */
   .scroll .page-header {
     background: #FF3D2E;
   }
@@ -167,7 +167,7 @@ hr.hr-text {
   }
   
   /* HEADER
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  ––––––––––––––––––––––––––––––––––––-------–––––––––––––– */
   .page-header {
     transition: background 0.5s ease-in-out;
   }
@@ -182,7 +182,7 @@ hr.hr-text {
   }
   
   /* BANNER SECTION
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––-------––––––––––––––––––––––––– */
   .hero {
     background-attachment: fixed;
     transition: transform 0.5s ease-in-out;
@@ -208,13 +208,13 @@ hr.hr-text {
   }
 
   /* PAGE FOOTER
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––-------––––––––––––––––– */
   .page-footer .footer-links {
     text-align: right;
   }
   
   /* MEDIA QUERIES
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  ––––––––––––––––––––––––––––––––-------–––––––––––––––––– */
   /* MEDIUM SCREENS */
   @media screen and (max-width: 991px) {
     .page-header {
@@ -231,7 +231,7 @@ hr.hr-text {
 
 
 /* FONTS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+–––––––––––––––––––––––––––––––––-------––––––––––––––––– */
 .logo-font{
       font-family: 'Roboto Mono';
 }
@@ -240,8 +240,16 @@ hr.hr-text {
     font-family: 'Permanent Marker';
 }
 
+.sans-serif-font{
+  font-family: "Kanit";
+}
+
+.chalk-font{
+  font-family: 'Walter Turncoat';
+}
+
 /* SCROLL ICON
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+–––––––––––––––––––––––––––––-------––––––––––––––––––––– */
 .icon-scroll,
 .icon-scroll:before{
   position: absolute;
@@ -279,7 +287,8 @@ hr.hr-text {
   }
 }
 
-
+/* BORDERLESS FORMS
+––––––––––––––––––––––––––––––––––––––––––––-------–––––– */
 .form-control-borderless {
   border: none;
 }
@@ -290,6 +299,57 @@ hr.hr-text {
   box-shadow: none;
 }
 
-.newline{
-  display: block;
+/* HEADER FOR EVERY CATEGORY
+––––––––––––––––––––––––––––––––––––––––––––-------–––––– */
+.algo-header{
+  height: 322px;
+  padding-top: 72px;
+  color:#FFF;
+  background-image: url("../img/blackboard-min.jpg");
+  background-size: cover;
+  font-family: 'Walter Turncoat';
+}
+
+/* HIDING 'X' FOR CLEARING SEARCH BAR IN WEBKIT BROWSERS
+–––––––––––––––––––––––––––––––––––––––––––––-------––––– */
+input[type="search"]::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+}
+
+
+/* EXPLANATION BOX
+–––––––––––––––––––––––––––––-------––––––––––––––––––––– */
+.explanation {
+  padding: 30px 50px 30px 30px;
+  background: #FEF0F0;
+  border-left: 2px solid #FF3D2E;
+}
+
+
+
+/* SHADOW ON HOVER FOR ALGORITHMS
+–––––––––––––––––––––––––––––-------––––––––––––––––––––– */
+.shadow-highlight {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.shadow-highlight::after{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.shadow-highlight:hover {
+  transform: scale(1.05, 1.05);
+}
+
+.shadow-highlight:hover::after {
+  opacity: 1;
 }

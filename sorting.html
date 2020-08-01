@@ -10,15 +10,15 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Walter+Turncoat&family=Roboto+Mono:wght@600&family=Kanit&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
 
 
     <!-- NAV -->
-    <body data-spy="scroll" data-target="#navbar" data-offset="72" class="scroll">
-    <header class="fixed-top page-header">
+<body data-spy="scroll" data-target="#navbar" data-offset="72" class="">
+    <header class="fixed-top page-header w-100">
       <div class="container-fluid">
         <nav id="navbar" class="navbar navbar-expand-lg navbar-dark scroll">
           <a class="navbar-brand" href="#home">AlgoVis</a>
@@ -44,12 +44,38 @@
         </nav>
       </div>
     </header>
+    <main>
+        <section id="home" class="d-flex align-items-center position-relative cover algo-header">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <h1 class="text-white " style="font-size: 60pt;">Sorting algorithms</h1>
+            </div>
+          </div>
+        </section>
 
-    <section id="intro">
-        <div class="container-fluid w-100" style="margin-top: 72px;">
-            <div class="mb-4">
-                <h3 class="text-center subtitle-font highlighted-text">Sorting Algorithms</h3>
+    <section id="intro" class="pb-5 mt-3">
+        <div class="container-fluid">
+        <h3 class="highlighted-text">Overview</h3>
+            <div class="mb-4 explanation ml-2 mr-2" style="font-size: large;">
+                <p > A sorting algorithm is an algorithm that puts elements of a list in a certain order (thus sorting the list). The most frequently used orders are numerical order for lists of numbers and lexicographical order for lists of strings.<br><br>
+                    To put it more formally, the output generally has to fulfill two conditions:
+                    <ul>
+                        <li>The output is in nondecreasing order</li>
+                        <li>The output is a permutation of the input</li>
+                    </ul>
+                    Or, to put it simply, when running a sorting algorithm we expect an output that contains all the elements originally present in the input arranged in such a way that the smallest element (according to the operation used to sort the list) is in the leftmost place, with every element following being either bigger or equal to its predecessor.<br><br>
+                    Sorting algorithms can generally be classified into three distinct categories:
+                    <ul>
+                        <li>Comparison sorts</li>
+                        <li>Non-comparison sorts</li>
+                        <li>Others</li>
+                    </ul>
+                    On this page you can find many implementations for every category. If you need a visualization for a certain algorithm, just use the search function to find it quickly.
+                    </p>
             </div>  
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center mt-5 highlighted-text"><h2>Search</h2></div>
             <div class="row justify-content-center mt-2">
                 <div class="col-12 col-md-10 col-lg-8">
                     <form class="card card-sm">
@@ -61,6 +87,7 @@
                             <div class="col">
                                 <input id="search" class="form-control form-control-borderless" type="search" placeholder="Search names or keywords">
                             </div>
+                            <div class="anchor" id="comparison"></div>
                             <!--end of col-->
                             <!--end of col-->
                         </div>
@@ -69,234 +96,305 @@
                 <!--end of col-->
             </div>
         </div>
-        
+    </div>
     </section>
-    <!-- SEARCH + TAG CLOUD -->
-    <section id="comparison">
-        <div class="row w-100">&emsp;</div>
-        <div class="container-fluid w-100" style="margin-top: 72px;">
+
+    <!-- COMPARISON SORTS -->
+    <section id="comparison-sorts">
+        <div class="container-fluid w-100" >
             <!-- Gradient divider -->
-            <hr data-content="Comparison Sorts" class="hr-text">
+            <hr data-content="Comparison Sorts" class="hr-text mb-2">
             <div class=" w-50 p-2 rounded border-red row ml-auto mr-auto mt-2 mb-3">
                 A comparison sort is a type of sorting algorithm that only reads the list elements through a single abstract comparison operation (often a "less than or equal to" operator or a three-way comparison) that determines which of two elements should occur first in the final sorted list.
             </div>
-            <div id="bubblesort" class="row algorithm ml-auto mr-auto mt-3 mb-2 w-100">
-                <a href="bubblesort.html" class="unstyled-link w-100"><div class="media link-bg w-100">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Bubblesort</h5>
-                      Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
-                      <br><br>
-                      <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                      <b>Average-case:</b> <i>O(n²)</i> <br>
-                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br>
-                    </div>
-                </div></a>
-            </div>
-            <div id="quicksort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="quicksort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Quicksort</h5>
-                      Quicksort is a divide-and-conquer algorithm. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively. This can be done in-place, requiring small additional amounts of memory to perform the sorting.
-                      <br>
-                      <b>Best-case:</b>&emsp;&emsp;<i> O(n log n)</i><br>
-                      <b>Average-case:</b> <i>O(n log n)</i> <br>
-                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br>
-                    </div>
-                </div></a>
-            </div>
-            <div id="mergesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="mergesort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Merge sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="introsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="introsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Introsort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
+            <div class="card-deck mb-4 cd-hide">
+                <div id="blocksort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="blocksort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Block sort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="bubblesort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="bubblesort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Bubblesort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="cocktailshakersort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="cocktailshakersort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Cocktail shaker sort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="combsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="combsort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Combsort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
                 </div>
             </div>
-            <div id="heapsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="heapsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Heapsort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
+            <div class="card-deck mb-4 cd-hide">
+                <div id="cubesort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="cubesort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Cubesort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="cyclesort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="cyclesort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Cyclesort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="gnomesort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="gnomesort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Gnomesort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="heapsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="heapsort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Heapsort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
             </div>
-            <div id="insertionsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="insertionsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Insertion sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
+            <div class="card-deck mb-4 cd-hide">
+                <div id="insertionsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="insertionsort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Insertionsort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="introsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="introsort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Introsort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="librarysort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="librarysort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Librarysort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="mergesort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="mergesort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Mergesort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
             </div>
-            <div id="blocksort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="blocksort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Block sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
+            <div class="card-deck mb-4 cd-hide">
+                <div id="odd-evensort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="oddevensort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Odd-even sort</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="patiencesorting" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="patiencesorting.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Patience sorting</h5>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="quicksort" class="algorithm shadow-highlight card" style="width: 25%;">
+                    <a href="quicksort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Quicksort</h5>
+                            <p class="card-text">Quicksort is a divide-and-conquer algorithm. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively. This can be done in-place, requiring small additional amounts of memory to perform the sorting.
+                                <br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n log n)</i><br>
+                                <b>Average-case:</b> <i>O(n log n)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br>
+                            </div>
+                    </a>
+                </div>
+              <div id="selectionsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                <a href="selectionsort.html" class="unstyled-link ">
+                        <div class="card-body">
+                        <h5 class="card-title">Selectionsort</h5>
+                        <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                            <br><br>
+                            <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                            <b>Average-case:</b> <i>O(n²)</i> <br>
+                            <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                        </div>
+                </a>
+              </div>
             </div>
-            <div id="timsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="timsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Timsort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
+            <div class="card-deck mb-4 cd-hide">
+              <div id="shellsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                <a href="shellsort.html" class="unstyled-link ">
+                        <div class="card-body">
+                        <h5 class="card-title">Shellsort</h5>
+                        <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                            <br><br>
+                            <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                            <b>Average-case:</b> <i>O(n²)</i> <br>
+                            <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                        </div>
+                </a>
+              </div>
+              <div id="smoothsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                <a href="smoothsort.html" class="unstyled-link ">
+                        <div class="card-body">
+                        <h5 class="card-title">Smoothsort</h5>
+                        <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                            <br><br>
+                            <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                            <b>Average-case:</b> <i>O(n²)</i> <br>
+                            <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                        </div>
+                </a>
+              </div>
+              <div id="strandsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                <a href="strandsort.html" class="unstyled-link ">
+                        <div class="card-body">
+                        <h5 class="card-title">Strandsort</h5>
+                        <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                            <br><br>
+                            <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                            <b>Average-case:</b> <i>O(n²)</i> <br>
+                            <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                        </div>
+                </a>
+              </div>
+              <div id="timsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                <a href="timsort.html" class="unstyled-link ">
+                        <div class="card-body">
+                        <h5 class="card-title">Timsort</h5>
+                        <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                            <br><br>
+                            <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                            <b>Average-case:</b> <i>O(n²)</i> <br>
+                            <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                        </div>
+                </a>
+              </div>
             </div>
-            <div id="selectionsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="selectionsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Selection sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
+            <div class="card-deck mb-4 cd-hide">
+              <div id="tournamentsort" class="algorithm shadow-highlight card" style="width: 25%;">
+                <a href="tournamentsort.html" class="unstyled-link ">
+                        <div class="card-body">
+                        <h5 class="card-title">Tournamentsort</h5>
+                        <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                            <br><br>
+                            <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                            <b>Average-case:</b> <i>O(n²)</i> <br>
+                            <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                        </div>
+                </a>
+              </div>
+              <div id="treesort" class="algorithm shadow-highlight card" style="width: 25%;">
+                <a href="treesort.html" class="unstyled-link ">
+                        <div class="card-body">
+                        <h5 class="card-title">Treesort</h5>
+                        <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                            <br><br>
+                            <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                            <b>Average-case:</b> <i>O(n²)</i> <br>
+                            <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                        </div>
+                </a>
+              </div>
             </div>
-            <div id="cubesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="cubesort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Cubesort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="shellsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="shellsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Shellsort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="treesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="treesort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Tree sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="cyclesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="cyclesort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Cycle sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="librarysort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="librarysort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Library sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="patiencesorting" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="patiencesorting.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Patience sorting</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="smoothsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="smoothsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Smoothsort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="strandsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="strandsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Strandsort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="tournamentsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="tournamentsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Tournamentsort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="cocktailshakersort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="cocktailshakersort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Cocktail shaker sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="combsort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="combsort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Comb sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="gnomesort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="gnomesort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Gnome sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-            <div id="odd-evensort" class="row algorithm ml-auto mr-auto mt-3 mb-2">
-                <a href="oddevensort.html" class="unstyled-link w-100"><div class="media link-bg">
-                    <img src="https://via.placeholder.com/200" class="mr-3" alt="...">
-                    <div class="media-body">
-                      <h5 class="mt-0">Odd-even sort</h5>
-                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div></a>
-            </div>
-        </div>
+            <div id="results-comparison"></div>
     </section>
+    <section id="non-comparison">
+        <div class="row w-100">&emsp;</div>
         <div class="mb-4">
-            <h6 class=" text-uppercase">Text content</h6>
             <!-- Gradient divider -->
             <hr data-content="Non-Comparison Sorts" class="hr-text">
         </div>
-    </div>
+    </section>
     
 
-
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -307,8 +405,21 @@
         const $header = $(".page-header");
         const $navCollapse = $(".navbar-collapse");
         const scrollClass = "scroll";
+        
+        $(window).on("scroll", () => {
+            // Color background of navbar a solid red on scroll
+            if (this.matchMedia("(min-width: 992px)").matches) {
+                const scrollY = $(this).scrollTop();
+                scrollY > 0
+                    ? $body.addClass(scrollClass)
+                    : $body.removeClass(scrollClass);
+            } else {
+                $body.removeClass(scrollClass);
+            }
+        });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // when clicking a link in the navbar scroll smoothly to the anchor
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -318,18 +429,71 @@
         });
 
         function showRelevant(name=""){
+        /*************************************************************/
+        /* This function selects the algorithms fitting to the users */
+        /* search terms and displays them.                           */
+        /*                                                           */
+        /* Input: name (string) - the input of the search field      */
+        /*************************************************************/    
+            
             if (name == "") {
-                $(".algorithm").show()
+                // search bar is empty -> show every algorithm and clear results div
+                $(".cd-hide").show();
+                $("#results-comparison").empty();
             }else{
-                $('.algorithm').hide();
-                $('.algorithm[id*="' + name.toLowerCase() + '"]').show();
+                // Since I'm updating the results on every letter the user enters,
+                // it's important to clear the results <div>, so therea are no duplicates
+                // or no longer relevant algorithms displayed.
+                $("#results-comparison").empty();
+                
+                $('.cd-hide').hide();
+                let algoList = $('.algorithm[id*="' + name.toLowerCase() + '"]');
+                let deckString = "<div class=\"card-deck mb-4\">";
+                let lastFilled = algoList.length % 4;
+                
+                // Due to each card-deck being a different a different entity I can't
+                // simply hide the algorithms which aren't needed, as this causes
+                // a linebreak betwenn algorithms with different parent elements.
+                // ------------------------------------------------------------------
+                // A solution for this is to grab the algorithms needed and append 
+                // them all to a new div.
+
+                // Loop over the list of elements and build the content of the new div
+                for (let i = 0; i < algoList.length; i++) {
+                    // 4 algorithms on every row --> close the current card-deck after
+                    // 4 algorithms are processed and open a new one.
+                    if ((i+1) % 4 == 0) {
+                        deckString += algoList[i].outerHTML + "</div><div class=\"card-deck mb-4\">";
+                    } else {
+                        deckString += algoList[i].outerHTML;
+                    }
+                    
+                }
+
+                // if the last row is not completely filled, 
+                // fill it with hidden elements so the visible
+                // cards are the right size
+                if(lastFilled != 0){
+                    for (let j = 0; j < 4-lastFilled; j++) {
+                        element = algoList[0].cloneNode(true);
+                        element.style.visibility = "hidden";
+                        deckString += element.outerHTML;                
+                    }
+                }
+                // Closing the las card-deck and filling the div with the results
+                // of the users search term.
+                deckString += "</div>";
+                $("#results-comparison").append(deckString);
             }
+            
+
 
         }
 
         $('#search').on('input',function(e){
             showRelevant(this.value);
         });
+
     </script>
 </body>
 </html>

@@ -3,6 +3,9 @@
     color:#272F32;
 }
 
+@-ms-viewport{
+  width: device-width;
+}
   
 /* TEXT & BG COLOR DEFINITIONS
 ––––––––––––––––––––––––––––-------–––––––––––––––––––––– */
@@ -43,7 +46,16 @@
 }
 
 .border-red {
-    border: 3px solid #FF3D2E;
+  border: 3px solid #FF3D2E;
+}
+
+.border-red-nb{
+  border: 3px solid #FF3D2E;
+  border-bottom: none;
+}
+
+.border-dark{
+  border: 3px solid #272F32;
 }
 
 
@@ -61,10 +73,10 @@ hr.hr-text {
     display: inline-block;
     background: #fff;
     font-weight: bold;
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: #FF3D2E;
     border-radius: 30rem;
-    padding: 0.2rem 2rem;
+    padding: 0.2rem 0.2rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -85,7 +97,7 @@ hr.hr-text {
     position: absolute;
     left: 0;
     bottom: 0;
-    background-color: #9DBDC6;
+    background-color: #FF3D2E;
     transition: 0.2s all ease;
   }
   
@@ -95,15 +107,19 @@ hr.hr-text {
     width: 100%;
     text-align: center;
   }
+
+  .block-selected{
+    background-color: #9DBDC6;
+  }
   
 /* SLIDERS
 ––––––––––––––––––––––––-------–––––––––––––––––––––––––– */
 .slider-selection {
-    background: #DAEAEF;
+    background: #FF3D2E;
 }
 
 .slider-handle{
-    background: #9DBDC6;
+    background: #e42619;
 }
 
 .slider-track-high{
@@ -143,6 +159,14 @@ hr.hr-text {
 
 .var {
     color:#FACF5A;
+}
+
+.code-highlight{
+  background-color: #FF3D2E;
+}
+
+.comment{
+  color: #34e000;
 }
 
 
@@ -218,7 +242,7 @@ hr.hr-text {
   /* MEDIUM SCREENS */
   @media screen and (max-width: 991px) {
     .page-header {
-      background: var(--red);
+      background: #FF3D2E;
     }
   }
   
@@ -260,7 +284,7 @@ hr.hr-text {
   width: 40px;
   height: 70px;
   margin-left: -20px;
-  top: 90%;
+  top: 90vh;
   margin-top: -35px;
   box-shadow: inset 0 0 0 1px #fff;
   border-radius: 25px;
@@ -342,7 +366,7 @@ input[type="search"]::-webkit-search-cancel-button{
     height: 100%;
     opacity: 0;
     border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     transition: opacity 0.3s ease-in-out;
 }
 
@@ -352,4 +376,10 @@ input[type="search"]::-webkit-search-cancel-button{
 
 .shadow-highlight:hover::after {
   opacity: 1;
+}
+
+.back-button {
+  border: 1px solid #FFF ;
+  border-radius: 7%;
+  color: white;
 }

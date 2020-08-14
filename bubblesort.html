@@ -3,42 +3,103 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <title>AlgoVis - Online Algorithm Visualization</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="AlgoVis - Online Algorithm Visualization">
   <meta name="author" content="Tobias Nöthlich">
+  <title>AlgoVis - Online Algorithm Visualization</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
 
-<body>
-    <!-- NAV -->
-    <nav class="navbar navbar-expand-lg navbar-light dark-bg">
-        <a class="navbar-brand" href="index.html"><span class="white-text">AlgoVis - Online <span class="highlighted-text">Sorting</span> Algorithm Visualization</span></a>
-    </nav>
-
-    <div class="container-fluid w-100">
-        <h1>Bubblesort Visualization</h1>
-        <div class="data-container border-red p-1 mb-4 mt-3">
+<body class="scroll">
+  <header class="page-header w-100" >
+    <div class="container-fluid">
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+        <a class="btn back-button navbar-brand" href="sorting.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
+          <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
+            Bubblesort Visualization
+          </span>
         </div>
-        <div class="row">
-          <div class="col-8">
+        
+      </nav>
+    </div>
+  </header>
+
+    <div class="container-fluid px-0 mt-2" >
+        <div class="">
+        <span class="row mx-auto px-0 w-100"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of comparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
+        <div class="data-container p-1 mb-0 mt-0 w-100">
+        </div>
+        </div>
+        <div class="row mx-auto">
+          <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+            <div class="ide w-100">
+            <div class="row ml-auto mr-auto 1">
+              <span><span class="op">while</span>(swapped)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 2 ">
+              <span>&emsp;&emsp;swapped = <span class="var">false</span></span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 3">
+              <span>&emsp;&emsp;<span class="op">for</span> x = 0 to length(list)-1</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 4">
+              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> list[x] > list[x+1]</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 5">
+              <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[x], list[x+1])</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 6">
+              <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;swapped = <span class="var">true</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+          <div class="ide w-100 pl-0">
+            <div class="row ml-auto mr-auto 1">
+              <span class="comment">// if there hasn't been a swap the whole run the list is sorted</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 2 ">
+              <span class="comment">// no swaps yet</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 3">
+              <span class="comment">// loop over the whole list</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 4">
+              <span class="comment">// check if the current number is bigger than the next one</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 5">
+              <span class="comment">// swap the numbers if that applies</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 6">
+              <span class="comment">// indicate that there has been a swap in this run</span>
+            </div>
+          </div>
+        </div>
+      </div>
+        <hr data-content="Settings" class="hr-text mb-3 mt-4">
+        <div class="row mx-auto">
+          <div class="col-sm-12 col-md-12 col-lg-6">
             <form>
-              <h2>Settings</h2>
               <div class="form-group row">
-                  <div class="col-sm-2">Number of integers in list: </div>
-                  <div class="col-sm-10">
-                      <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="30" data-slider-step="1" data-slider-value="15"/>
-                      <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
+                  <div class="col-sm-3">Elements: </div>
+                  <div class="col-sm-9">
+                    <span>5&emsp;</span>  
+                    <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="30" data-slider-step="1" data-slider-value="15"/>
+                    <span id="max">&emsp;30</span>
+                    <br>
+                    <span class="font-weight-bold highlighted-text ml-2 mt-1 valueSpan"></span>
                   </div>
               </div>
               <div class="form-group row">
-                  <div class="col-sm-2">Data Generation</div>
-                  <div class="col-sm-10">
+                  <div class="col-sm-3">Data Generation</div>
+                  <div class="col-sm-9">
                     <div class="form-check">
                       <input id="own-data" class="form-check-input" type="checkbox" id="gridCheck1">
                       <label class="form-check-label" for="gridCheck1">
@@ -47,55 +108,55 @@
                     </div>
                   </div>
               </div>
+            </form>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <form>
               <div class="form-group row">
-                  <label for="data-input" class="col-sm-2 col-form-label">Your data (max. 30 elements):</label>
-                  <div class="col-sm-10">
-                    <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
-                  </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-2">Speed: </div>
-                <div class="col-sm-10">
+                <div class="col-sm-5">Speed: </div>
+                <div class="col-sm-7">
                   <span>Slow&emsp;</span>
                   <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="100" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
                   <span>&emsp;Fast</span>
+                  <br>
+                  <span class="white-text hidden-sm hidden-md">empty line</span>
                 </div>
-            </div>
+              </div>
               <div class="form-group row">
-                <div class="col-sm-10">
-                  <button id="sort-button" type="button" onclick="bubbleSort()" class="btn btn-primary">Sort</button>
+                <label for="data-input" class="col-sm-5 col-form-label">Your data (max. 30 elements):</label>
+                <div class="col-sm-7">
+                  <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
                 </div>
               </div>
             </form>
           </div>
+        </div>
+        <div class="row mx-auto">
+          <div class="col-4"></div>
           <div class="col-4">
-            <span class="row ml-auto"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of omparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
-            <div class="ide w-100">
-              <div class="row ml-auto mr-auto 1">
-                <span><span class="op">while</span>(swapped)</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 2 ">
-                <span>&emsp;&emsp;swapped = <span class="var">false</span></span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 3">
-                <span>&emsp;&emsp;<span class="op">for</span> x = 0 to length(list)-1</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 4">
-                <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> list[x] > list[x+1]</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 5">
-                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[x], list[x+1])</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 6">
-                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;swapped = <span class="var">true</span></span>
-              </div>
+            <button id="sort-button" type="button" onclick="bubbleSort()" class="btn btn-danger highlighted-bg w-100">Sort</button>
+          </div>
+          <div class="col-4"></div>
+        </div>
+    </div>
+
+    <footer class="pt-5 page-footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-6 footer-child copyright">
+            AlgoVis © 2020 All Rights Reserved
+          </div>
+          <div class="col-12 col-md-6 footer-child footer-links">
+            <a href="" class="mr-3">Privacy Policy</a>
+            <a href="">FAQ</a>
+            <div>
+              <small>Made with <i class="fa fa-heart highlighted-text"></i> by <a href="http://tobinatore.github.io/" target="_blank">Tobias Nöthlich</a>
+              </small>
             </div>
           </div>
         </div>
-        
-    </div>
-
-
+      </div>
+    </footer>
 
 
 
@@ -115,6 +176,7 @@
     var slider = new Slider("#slider",{
       handle : "square"
     });
+
     slider.on("slide", function(slideEvt) {
       newSet(slideEvt);
       $(".valueSpan").text(`Expected number of operations: 
@@ -147,6 +209,13 @@
     speedSlider.on("slide", function(slideEvt) {
       setDelay(slideEvt);
     });
+
+    if (globalThis.screen.availWidth <= 360) {
+      slider.setAttribute("max", "20");
+      slider.setAttribute("value", "15");
+      $('#max').html("&emsp;20")
+
+    }
   });
    
 </script>
@@ -165,7 +234,7 @@
     }
 
     function newSet(num=20){
-      $(".highlighted-bg").removeClass("highlighted-bg");
+      $(".block-selected").removeClass("block-selected");
       FLAG=true;
       let blocks = document.querySelectorAll(".block");
       if (blocks !== null) {
@@ -180,8 +249,12 @@
       
     }   
 
+    function stop(){
+      FLAG = true;
+    }
+
     function ownData(data = "1,2,3,4,5,6"){
-      $(".highlighted-bg").removeClass("highlighted-bg");
+      $(".block-selected").removeClass("block-selected");
       FLAG=true;
       let blocks = document.querySelectorAll(".block");
       if (blocks !== null) {
@@ -199,8 +272,8 @@
         const block = document.createElement("div");
         block.classList.add("block");
         block.style.height = `${value * 3}px`;
-        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / clamp(vals.length,0,30)-2)}px)`;
-        block.style.width = `${document.documentElement.clientWidth / (clamp(vals.length,0,30)+5)}px`;
+        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / clamp(vals.length,0,30))}px)`;
+        block.style.width = `${document.documentElement.clientWidth / (clamp(vals.length,0,30)+1)}px`;
 
         const blockLabel = document.createElement("label");
         blockLabel.classList.add("block_id");
@@ -222,8 +295,8 @@
         const block = document.createElement("div");
         block.classList.add("block");
         block.style.height = `${value * 3}px`;
-        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / num-2)}px)`;
-        block.style.width = `${document.documentElement.clientWidth / (num+5)}px`;
+        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / num)}px)`;
+        block.style.width = `${document.documentElement.clientWidth / (num+2)}px`;
 
         const blockLabel = document.createElement("label");
         blockLabel.classList.add("block_id");
@@ -255,17 +328,17 @@
       });
     }
 
-    function highlightBg(elementClass){
-      $(".highlighted-bg").removeClass("highlighted-bg");
-      $(`.${elementClass}`).addClass("highlighted-bg");
+    function highlightCode(elementClass){
+      $(".code-highlight").removeClass("code-highlight");
+      $(`.${elementClass}`).addClass("code-highlight");
     }
     
-    async function bubbleSort(delay = DELAY) {
-      $("#sort-button").prop('disabled', true);;
+    async function bubbleSort() {
+      $("#sort-button").prop('disabled', true);
       var swaps = 0;
       var comparisons = 0;
       
-      if (delay && typeof delay !== "number") {
+      if (DELAY && typeof DELAY !== "number") {
         alert("sort: First argument must be a typeof Number");
         return;
       }
@@ -275,54 +348,54 @@
       
       for (let i = 0; i < blocks.length - 1; i += 1) {
         swapped = false;
-        highlightBg("2");
+        highlightCode("2");
         
         await new Promise(resolve =>
           setTimeout(() => {
             resolve();
-          }, delay)
+          }, DELAY)
         );
 
         for (let j = 0; j < blocks.length - i - 1; j += 1) {
-          highlightBg("3");
+          highlightCode("3");
           
           await new Promise(resolve =>
                 setTimeout(() => {
                 resolve();
-                }, delay)
+                }, DELAY)
             );
 
-            highlightBg("4");
+            highlightCode("4");
             
             if(FLAG){
               break;
             }
 
-            blocks[j].style.backgroundColor = "#FF3D2E";
-            blocks[j + 1].style.backgroundColor = "#FF3D2E";
+            blocks[j].style.backgroundColor = "#9DBDC6";
+            blocks[j + 1].style.backgroundColor = "#9DBDC6";
 
             await new Promise(resolve =>
                 setTimeout(() => {
                 resolve();
-                }, delay)
+                }, DELAY)
             );
 
             const value1 = Number(blocks[j].childNodes[0].innerHTML);
             const value2 = Number(blocks[j + 1].childNodes[0].innerHTML);
            
             if (value1 > value2) {
-                highlightBg("5");
+                highlightCode("5");
                 
                 await swap(blocks[j], blocks[j + 1]);
                 
                 blocks = document.querySelectorAll(".block");
                 swapped = true;
-                highlightBg("6");
+                highlightCode("6");
                 
                 await new Promise(resolve =>
                   setTimeout(() => {
                   resolve();
-                  }, delay)
+                  }, DELAY)
                 );
 
                 comparisons +=1;
@@ -333,8 +406,8 @@
 
             $(".compSpan").text(`No. of comparisons: ${comparisons}`);
             $(".swapSpan").text(`No. of swaps: ${swaps}`);
-            blocks[j].style.backgroundColor = "#9DBDC6";
-            blocks[j + 1].style.backgroundColor = "#9DBDC6";
+            blocks[j].style.backgroundColor = "#FF3D2E";
+            //blocks[j + 1].style.backgroundColor = "#FF3D2E";
         }
         
         if(FLAG){
@@ -353,7 +426,8 @@
 
       blocks[0].style.backgroundColor="#272F32";
       $("#sort-button").prop('disabled', false);
-      $(".highlighted-bg").removeClass("highlighted-bg");
+      $(".block-selected").removeClass("block-selected");
+      $(".code-highlight").removeClass("code-highlight");
     
     }
     generateBlocks(15);

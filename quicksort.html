@@ -3,11 +3,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <title>AlgoVis - Online Algorithm Visualization</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="AlgoVis - Online Algorithm Visualization">
   <meta name="author" content="Tobias Nöthlich">
-
+  <title>AlgoVis - Online Algorithm Visualization</title>
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
@@ -15,26 +16,165 @@
 
 </head>
 
-<body>
-    <!-- NAV -->
-    <nav class="navbar navbar-expand-lg navbar-light dark-bg">
-        <a class="navbar-brand" href="index.html"><span class="white-text">AlgoVis - Online <span class="highlighted-text">Sorting</span> Algorithm Visualization</span></a>
-    </nav>
+<body class="scroll">
+  <header class="page-header w-100" >
+    <div class="container-fluid">
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+        <a class="btn back-button navbar-brand" href="sorting.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
+          <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
+            Bubblesort Visualization
+          </span>
+        </div>
+        
+      </nav>
+    </div>
+  </header>
 
-    <!-- SEARCH + TAG CLOUD -->
-    <div class="container-fluid w-100">
-        <h1>Bubblesort Visualization</h1>
-        <div class="data-container border-red p-1 mb-4 mt-3">
+    <div class="container-fluid w-100 mt-2" >
+        <div class="border-red-nb">
+        <span class="row ml-auto"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of comparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
+        <div class="data-container p-1 mb-0 mt-0">
+        </div>
         </div>
         <div class="row">
-          <div class="col-8">
+          <div class="col-6 mr-0 pr-0">
+            <div class="ide w-100">
+            <div class="row ml-auto mr-auto 1">
+              <span><span class="op">function</span> partition(left, right)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 2 ">
+              <span>&emsp;&emsp;pivot = right</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 3">
+              <span>&emsp;&emsp;i = left</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 4">
+              <span>&emsp;&emsp;j = right - 1</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 5">
+              <span>&emsp;&emsp;<span class="op">while</span>(i < j)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 6">
+              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">while</span>(i < right && list[i] < pivot)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 7">
+              <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;i += 1</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 8">
+              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">while</span>(j > left && list[j] > pivot)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 9">
+              <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;j -= 1</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 10">
+              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(i < j)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 11">
+              <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[i], list[j])</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 12">
+              <span>&emsp;&emsp;<span class="op">if</span>(list[i] > list[pivot])</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 13">
+              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[i], list[pivot])</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 14">
+              <span>&emsp;&emsp;<span class="op">return</span> i</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span>&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto 15">
+              <span><span class="op">function</span> quicksort(left, right)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 16">
+              <span>&emsp;&emsp;<span class="op">if</span>(left < right)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 17">
+              <span>&emsp;&emsp;&emsp;&emsp;p = <span class="op">partition</span>(left, right)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 18">
+              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">quicksort</span>(left, p - 1)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 19">
+              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">quicksort</span>(p + 1, right)</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 ml-0 pl-0">
+          <div class="ide w-100 pl-5">
+            <div class="row ml-auto mr-auto">
+              <span><span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment text-center">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment text-center w-100">---------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment text-center w-100">| SHORT EXPLANATION |</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment text-center w-100">---------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">1. Pick the last element as pivot </span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">2. Reorder the array in the following way:</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment"> - All elements less than the pivot come before the pivot</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment"> - All elements greater than the pivot come after the pivot</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">3. Recursively apply the above steps to each sublist</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span>&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto">
+              <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment text-center w-100">Detailed explanation below!</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment text-center w-100">↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+        <hr data-content="Settings" class="hr-text mb-3 mt-4">
+        <div class="row">
+          <div class="col-6">
             <form>
-              <h2>Settings</h2>
               <div class="form-group row">
-                  <div class="col-sm-2">Number of integers in list: </div>
+                  <div class="col-sm-2">Elements: </div>
                   <div class="col-sm-10">
                       <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="30" data-slider-step="1" data-slider-value="15"/>
-                      <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
+                      <span class="font-weight-bold highlighted-text ml-2 mt-1 valueSpan"></span>
                   </div>
               </div>
               <div class="form-group row">
@@ -48,12 +188,10 @@
                     </div>
                   </div>
               </div>
-              <div class="form-group row">
-                  <label for="data-input" class="col-sm-2 col-form-label">Your data (max. 30 elements):</label>
-                  <div class="col-sm-10">
-                    <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
-                  </div>
-              </div>
+            </form>
+          </div>
+          <div class="col-6">
+            <form>
               <div class="form-group row">
                 <div class="col-sm-2">Speed: </div>
                 <div class="col-sm-10">
@@ -61,44 +199,42 @@
                   <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="100" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
                   <span>&emsp;Fast</span>
                 </div>
-            </div>
+              </div>
               <div class="form-group row">
+                <label for="data-input" class="col-sm-2 col-form-label">Your data (max. 30 elements):</label>
                 <div class="col-sm-10">
-                  <button id="sort-button" type="button" onclick="quickSort()" class="btn btn-primary">Sort</button>
+                  <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
                 </div>
               </div>
             </form>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-4"></div>
           <div class="col-4">
-            <span class="row ml-auto"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of omparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
-            <div class="ide w-100">
-              <div class="row ml-auto mr-auto 1">
-                <span><span class="op">while</span>(swapped)</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 2 ">
-                <span>&emsp;&emsp;swapped = <span class="var">false</span></span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 3">
-                <span>&emsp;&emsp;<span class="op">for</span> x = 0 to length(list)-1</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 4">
-                <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> list[x] > list[x+1]</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 5">
-                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[x], list[x+1])</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 6">
-                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;swapped = <span class="var">true</span></span>
-              </div>
+            <button id="sort-button" type="button" onclick="quickSort()" class="btn btn-danger highlighted-bg w-100">Sort</button>
+          </div>
+          <div class="col-4"></div>
+        </div>
+    </div>
+
+    <footer class="pt-5 page-footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-6 footer-child copyright">
+            AlgoVis © 2020 All Rights Reserved
+          </div>
+          <div class="col-12 col-md-6 footer-child footer-links">
+            <a href="" class="mr-3">Privacy Policy</a>
+            <a href="">FAQ</a>
+            <div>
+              <small>Made with <i class="fa fa-heart highlighted-text"></i> by <a href="http://tobinatore.github.io/" target="_blank">Tobias Nöthlich</a>
+              </small>
             </div>
           </div>
         </div>
-        
-    </div>
-
-
-
-
+      </div>
+    </footer>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -110,7 +246,7 @@
 <script>
   $(document).ready(function() {
     $(".valueSpan").text(`Expected number of operations: 
-      ~${Math.round(0.5*((15**2)-(15*Math.log(15))-((0.57721566490153286060+Math.log(2)-1)*15)+Math.sqrt(15)))} comparisons, 
+      ~${Math.round(2*Math.log10(2)*(16)*Math.log2(15))} comparisons, 
       ~${Math.round(0.25*(15**2-15))} swaps.`);
      
     var slider = new Slider("#slider",{
@@ -119,8 +255,8 @@
     slider.on("slide", function(slideEvt) {
       newSet(slideEvt);
       $(".valueSpan").text(`Expected number of operations: 
-        ~${Math.round(0.5*((slideEvt**2)-(slideEvt*Math.log(slideEvt))-((0.57721566490153286060+Math.log(2)-1)*slideEvt)+Math.sqrt(slideEvt)))} comparisons, 
-        ~${Math.round(0.25*(slideEvt**2-slideEvt))} swaps.`);
+        ~${Math.ceil(2*Math.log10(2)*(slideEvt+1)*Math.log2(slideEvt))} comparisons, 
+        ~${Math.ceil(0.25*(slideEvt**2-slideEvt))} swaps.`);
     });
 
     $('#data-input').on('input',function(e){
@@ -156,7 +292,10 @@
     const container = document.querySelector(".data-container");
     var FLAG = false;
     var DELAY = 200;
+    var comparisons = 0;
+    var swaps = 0;
 
+    
     function setDelay(delay){
       DELAY = delay;
     }
@@ -166,7 +305,7 @@
     }
 
     function newSet(num=20){
-      $(".highlighted-bg").removeClass("highlighted-bg");
+      $(".block-selected").removeClass("block-selected");
       FLAG=true;
       let blocks = document.querySelectorAll(".block");
       if (blocks !== null) {
@@ -182,7 +321,7 @@
     }   
 
     function ownData(data = "1,2,3,4,5,6"){
-      $(".highlighted-bg").removeClass("highlighted-bg");
+      $(".block-selected").removeClass("block-selected");
       FLAG=true;
       let blocks = document.querySelectorAll(".block");
       if (blocks !== null) {
@@ -236,6 +375,8 @@
     }
 
     function swapNodes(a, b) {
+      swaps += 1;
+      $(".swapSpan").text(`No. of swaps: ${swaps}`);
       var aparent = a.parentNode;
       var asibling = a.nextSibling === b ? a : a.nextSibling;
       b.parentNode.insertBefore(a, b);
@@ -264,9 +405,9 @@
       });
     }
 
-    function highlightBg(elementClass){
-      $(".highlighted-bg").removeClass("highlighted-bg");
-      $(`.${elementClass}`).addClass("highlighted-bg");
+    function highlightCode(elementClass){
+      $(".code-highlight").removeClass("code-highlight");
+      $(`.${elementClass}`).addClass("code-highlight");
     }
     
     //////////////////////////////////
@@ -279,9 +420,12 @@
     
     async function partition(left, right){
       let blocks = document.querySelectorAll(".block");
+      highlightCode("2");
       let pivot = Number(blocks[right].childNodes[0].innerHTML);
       blocks[right].style.backgroundColor = "#FACF5A";
+      highlightCode("3");
       let i = left;
+      highlightCode("4");
       let j = right -1 ;
 
       await new Promise(resolve =>
@@ -289,13 +433,16 @@
           resolve();
         }, DELAY)
       );
-
+      highlightCode("5");
      while(i < j){ 
-        
+      highlightCode("6");
       while(i < right && Number(blocks[i].childNodes[0].innerHTML) < pivot){
+        comparisons += 1;
+        $(".compSpan").text(`No. of comparisons: ${comparisons}`);
+        highlightCode("7");
         i = i + 1;
-        blocks[i].style.backgroundColor = "#FF3D2E";
-        blocks[i-1].style.backgroundColor = "#9DBDC6";        
+        blocks[i].style.backgroundColor = "#9DBDC6";
+        blocks[i-1].style.backgroundColor = "#FF3D2E";        
         await new Promise(resolve =>
           setTimeout(() => {
             resolve();
@@ -304,9 +451,13 @@
       }
           
       while(j > left && Number(blocks[j].childNodes[0].innerHTML) >= pivot){
+        highlightCode("8");
+        comparisons += 1;
+        $(".compSpan").text(`No. of comparisons: ${comparisons}`);
         j = j - 1;
+        highlightCode("9");
         blocks[j].style.backgroundColor = "#1764B3";
-        blocks[j+1].style.backgroundColor = "#9DBDC6";
+        blocks[j+1].style.backgroundColor = "#FF3D2E";
         
         await new Promise(resolve =>
           setTimeout(() => {
@@ -314,64 +465,33 @@
           }, DELAY)
         );
       }
-
+      highlightCode("10");
       if(i < j){
+        highlightCode("11");
         await swap(blocks[i], blocks[j]);
         blocks = document.querySelectorAll(".block");
-        blocks[i].style.backgroundColor = "#9DBDC6";
-        blocks[j].style.backgroundColor = "#9DBDC6";
+        blocks[i].style.backgroundColor = "#FF3D2E";
+        blocks[j].style.backgroundColor = "#FF3D2E";
       }  
     }
-
+    highlightCode("12");
     if(Number(blocks[i].childNodes[0].innerHTML) > pivot){
+      highlightCode("13");
       await swap(blocks[i], blocks[right]);
       blocks =  document.querySelectorAll(".block");
       blocks[i].style.backgroundColor = "#272F32";
     }else{
       blocks[right].style.backgroundColor = "#272F32";
     }
-
+    highlightCode("14");
     return i;
+    }
 
-
-      /*while(true){
-        do {
-          i += 1;
-          blocks[i].style.backgroundColor = "#FF3D2E";
-          if(i>1)
-            blocks[i-1].style.backgroundColor = "#9DBDC6";
-          await new Promise(resolve =>
-            setTimeout(() => {
-              resolve();
-            }, DELAY)
-          );
-        } while (Number(blocks[i].childNodes[0].innerHTML) < pivot);
-        
-        do {
-          j -= 1;
-          blocks[j].style.backgroundColor = "#FF3D2E";
-          if (j<right) {
-            blocks[j+1].style.backgroundColor = "#9DBDC6";
-          }
-          
-          await new Promise(resolve =>
-            setTimeout(() => {
-              resolve();
-            }, DELAY)
-          );
-        } while (Number(blocks[j].childNodes[0].innerHTML) > pivot);
-
-        if (i >= j) {
-          blocks[i].style.backgroundColor = "#9DBDC6";
-          blocks[j].style.backgroundColor = "#9DBDC6";
-          return j;
-        }
-        
-        await swap(blocks[i], blocks[j]);
-        blocks = document.querySelectorAll(".block");
-        blocks[i].style.backgroundColor = "#9DBDC6";
-        blocks[j].style.backgroundColor = "#9DBDC6";
-      }*/      
+    async function runQuicksort(){
+      await quickSort(DELAY, 0, -10);
+      comparisons = 0; 
+      swaps = 0;
+      $("#sort-button").prop('disabled', false);
     }
 
     async function quickSort(delay = DELAY, left = 0, right = -10) {
@@ -386,25 +506,48 @@
         alert("sort: First argument must be a typeof Number");
         return;
       }
-
-      
-      var swapped = false;
-      
+      highlightCode("15");
+      await new Promise(resolve =>
+        setTimeout(() => {
+          resolve();
+        }, 100)
+      );
       if (left < right) {
+        highlightCode("16");
+        await new Promise(resolve =>
+        setTimeout(() => {
+          resolve();
+        }, 100)
+      );
+        highlightCode("1");
         var p = await partition(left, right);
+        highlightCode("17");
+        await new Promise(resolve =>
+        setTimeout(() => {
+          resolve();
+        }, 100)
+      );
         await quickSort(DELAY, left, p-1);
         let blocks =  document.querySelectorAll(".block");
         for(let i = 0; i < p; i++){  
           blocks[i].style.backgroundColor = "#272F32";
         }
-        
+        highlightCode("18");
+        await new Promise(resolve =>
+        setTimeout(() => {
+          resolve();
+        }, 100)
+      );
         await quickSort(DELAY, p + 1, right);  
 
         for(let i = 0; i <= right; i++){  
           blocks[i].style.backgroundColor = "#272F32";
         }    
+        highlightCode("20");
+        
       }
-      $("#sort-button").prop('disabled', false);
+     
+      
     }
 
     generateBlocks(15);

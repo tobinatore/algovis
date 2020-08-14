@@ -1,0 +1,496 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AlgoVis - Online Algorithm Visualization">
+  <meta name="author" content="Tobias Nöthlich">
+  <title>AlgoVis - Online Algorithm Visualization</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+
+<body class="scroll">
+  <header class="page-header w-100" >
+    <div class="container-fluid">
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+        <a class="btn back-button navbar-brand" href="sorting.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
+          <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
+            Cocktail Shaker Sort Visualization
+          </span>
+        </div>
+        
+      </nav>
+    </div>
+  </header>
+
+    <div class="container-fluid px-0 mt-2" >
+        <div class="">
+        <span class="row mx-auto px-0 w-100"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of comparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
+        <div class="data-container p-1 mb-0 mt-0 w-100">
+        </div>
+        </div>
+        <div class="row mx-auto">
+          <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+            <div class="ide w-100">
+            <div class="row ml-auto mr-auto 1">
+              <span><span class="op">while</span>(swapped)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 2 ">
+              <span>&emsp;&emsp;swapped = <span class="var">false</span></span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 3">
+              <span>&emsp;&emsp;<span class="op">for</span> x = 0 to length(list)-1</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 4">
+              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> list[x] > list[x+1]</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 5">
+              <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[x], list[x+1])</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 6">
+              <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;swapped = <span class="var">true</span></span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 7 ">
+                <span>&emsp;&emsp;<span class="op">if</span>(swapped == <span class="var">false</span>)</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 8 ">
+                <span>&emsp;&emsp;&emsp;&emsp;<span class="op">break</span></span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 9">
+                <span>&emsp;&emsp;<span class="op">for</span> x = length(list)-2 to 0</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 10">
+                <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> list[x] > list[x+1]</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 11">
+                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[x], list[x+1])</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 12">
+                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;swapped = <span class="var">true</span></span>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+          <div class="ide w-100 pl-0">
+            <div class="row ml-auto mr-auto">
+              <span class="comment">SHORT EXPLANATION</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">1. Starting at index 0, compare the current element with the next element</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment"> - If the current element is greater than the next element, swap them</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment"> - If the current element is less than the next element, move to the next element</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">2. Repeat Step 1 until at the last index</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">3. Starting at index length(list)-2, compare the current element with the next element</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1">
+                <span class="comment"> - If the current element is greater than the next element, swap them</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1">
+                <span class="comment"> - If the current element is less than the next element, move to the prev. element</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">4. Repeat Step 3 until at the first index</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">5. Start over from 1. until the list is sorted</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">&emsp;</span>
+              </div>
+          </div>
+        </div>
+      </div>
+        <hr data-content="Settings" class="hr-text mb-3 mt-4">
+        <div class="row mx-auto">
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <form>
+              <div class="form-group row">
+                  <div class="col-sm-3">Elements: </div>
+                  <div class="col-sm-9">
+                    <span>5&emsp;</span>  
+                    <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="30" data-slider-step="1" data-slider-value="15"/>
+                    <span id="max">&emsp;30</span>
+                    <br>
+                    <span class="font-weight-bold highlighted-text ml-2 mt-1 valueSpan"></span>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <div class="col-sm-3">Data Generation</div>
+                  <div class="col-sm-9">
+                    <div class="form-check">
+                      <input id="own-data" class="form-check-input" type="checkbox" id="gridCheck1">
+                      <label class="form-check-label" for="gridCheck1">
+                        Use own data
+                      </label>
+                    </div>
+                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <form>
+              <div class="form-group row">
+                <div class="col-sm-5">Speed: </div>
+                <div class="col-sm-7">
+                  <span>Slow&emsp;</span>
+                  <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="100" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
+                  <span>&emsp;Fast</span>
+                  <br>
+                  <span class="white-text hidden-sm hidden-md">empty line</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="data-input" class="col-sm-5 col-form-label">Your data (max. 30 elements):</label>
+                <div class="col-sm-7">
+                  <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row mx-auto">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <button id="sort-button" type="button" onclick="cssort()" class="btn btn-danger highlighted-bg w-100">Sort</button>
+          </div>
+          <div class="col-4"></div>
+        </div>
+    </div>
+
+    <footer class="pt-5 page-footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-6 footer-child copyright">
+            AlgoVis © 2020 All Rights Reserved
+          </div>
+          <div class="col-12 col-md-6 footer-child footer-links">
+            <a href="" class="mr-3">Privacy Policy</a>
+            <a href="">FAQ</a>
+            <div>
+              <small>Made with <i class="fa fa-heart highlighted-text"></i> by <a href="http://tobinatore.github.io/" target="_blank">Tobias Nöthlich</a>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+
+
+<script>
+  $(document).ready(function() {
+    $(".valueSpan").text(`Expected number of operations: 
+      ~${Math.round(0.5*((15**2)-(15*Math.log(15))-((0.57721566490153286060+Math.log(2)-1)*15)+Math.sqrt(15)))} comparisons, 
+      ~${Math.round(0.25*(15**2-15))} swaps.`);
+     
+    var slider = new Slider("#slider",{
+      handle : "square"
+    });
+
+    slider.on("slide", function(slideEvt) {
+      newSet(slideEvt);
+      $(".valueSpan").text(`Expected number of operations: 
+        ~${Math.round(0.5*((slideEvt**2)-(slideEvt*Math.log(slideEvt))-((0.57721566490153286060+Math.log(2)-1)*slideEvt)+Math.sqrt(slideEvt)))} comparisons, 
+        ~${Math.round(0.25*(slideEvt**2-slideEvt))} swaps.`);
+    });
+
+    $('#data-input').on('input',function(e){
+      ownData(this.value);
+    });
+
+    $('#own-data').change(function() {
+      if (this.checked) {
+        slider.disable();
+        $("#data-input").prop('disabled', false);
+        $(".valueSpan").addClass("text-muted");
+      } else {
+        slider.enable();
+        $("#data-input").prop('disabled', true);
+        $(".valueSpan").removeClass("text-muted");
+      }
+    });
+
+    var speedSlider = new Slider("#speedslider",{
+	    reversed : true,
+      tooltip : "none",
+      handle : "square"
+    });
+
+    speedSlider.on("slide", function(slideEvt) {
+      setDelay(slideEvt);
+    });
+
+    if (globalThis.screen.availWidth <= 360) {
+      slider.setAttribute("max", "20");
+      slider.setAttribute("value", "15");
+      $('#max').html("&emsp;20")
+
+    }
+  });
+   
+</script>
+
+<script>
+    const container = document.querySelector(".data-container");
+    var FLAG = false;
+    var DELAY = 200;
+
+    function setDelay(delay){
+      DELAY = delay;
+    }
+
+    function clamp(number, min, max) {
+      return Math.max(min, Math.min(number, max));
+    }
+
+    function newSet(num=20){
+      $(".block-selected").removeClass("block-selected");
+      FLAG=true;
+      let blocks = document.querySelectorAll(".block");
+      if (blocks !== null) {
+        for (let i = 0; i < blocks.length; i += 1) {
+          blocks[i].parentNode.removeChild(blocks[i]);
+
+        }
+      $("#sort-button").prop('disabled', false);
+      }
+      FLAG=false;
+      generateBlocks(num);
+      
+    }   
+
+    function stop(){
+      FLAG = true;
+    }
+
+    function ownData(data = "1,2,3,4,5,6"){
+      $(".block-selected").removeClass("block-selected");
+      FLAG=true;
+      let blocks = document.querySelectorAll(".block");
+      if (blocks !== null) {
+            for (let i = 0; i < blocks.length; i += 1) {
+                blocks[i].parentNode.removeChild(blocks[i]);
+
+            }
+      }
+      FLAG=false;
+      $("#sort-button").prop('disabled', false);
+      var vals = data.split(",");
+      for (let i = 0; i < clamp(vals.length,0,30); i += 1) {
+        const value = clamp(vals[i], 0, 120);
+
+        const block = document.createElement("div");
+        block.classList.add("block");
+        block.style.height = `${value * 3}px`;
+        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / clamp(vals.length,0,30))}px)`;
+        block.style.width = `${document.documentElement.clientWidth / (clamp(vals.length,0,30)+2)}px`;
+
+        const blockLabel = document.createElement("label");
+        blockLabel.classList.add("block_id");
+        blockLabel.innerHTML = value;
+
+        block.appendChild(blockLabel);
+        container.appendChild(block);
+      }
+    }
+
+    function generateBlocks(num = 20) {
+      if (num && typeof num !== "number") {
+        alert("First argument must be a typeof Number");
+        return;
+      }
+      for (let i = 0; i < num; i += 1) {
+        const value = Math.floor(Math.random() * 100);
+
+        const block = document.createElement("div");
+        block.classList.add("block");
+        block.style.height = `${value * 3}px`;
+        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / num)}px)`;
+        block.style.width = `${document.documentElement.clientWidth / (num+2)}px`;
+
+        const blockLabel = document.createElement("label");
+        blockLabel.classList.add("block_id");
+        blockLabel.innerHTML = value;
+
+        block.appendChild(blockLabel);
+        container.appendChild(block);
+      }
+    }
+
+    function swap(el1, el2) {
+      return new Promise(resolve => {
+        const style1 = window.getComputedStyle(el1);
+        const style2 = window.getComputedStyle(el2);
+
+        const transform1 = style1.getPropertyValue("transform");
+        const transform2 = style2.getPropertyValue("transform");
+
+        el1.style.transform = transform2;
+        el2.style.transform = transform1;
+
+        // Wait for the transition to end!
+        window.requestAnimationFrame(function() {
+          setTimeout(() => {
+            container.insertBefore(el2, el1);
+            resolve();
+          }, 250);
+        });
+      });
+    }
+
+    function highlightCode(elementClass){
+      $(".code-highlight").removeClass("code-highlight");
+      $(`.${elementClass}`).addClass("code-highlight");
+    }
+    
+    async function cssort() {
+        $("#sort-button").prop('disabled', true);
+        var swaps = 0;
+        var comparisons = 0;
+      
+        if (DELAY && typeof DELAY !== "number") {
+            alert("sort: First argument must be a typeof Number");
+            return;
+        }
+
+        let blocks = document.querySelectorAll(".block");
+        var swapped = true;
+        let x = 0;
+        highlightCode("1");
+        do {
+            swapped = false;
+            highlightCode("2");
+            highlightCode("3");
+                await new Promise(resolve =>
+                    setTimeout(() => {
+                        resolve();
+                    }, DELAY/2)
+                );
+            for (let i = x; i < blocks.length - x - 1; i++) {
+                const value1 = Number(blocks[i].childNodes[0].innerHTML);
+                const value2 = Number(blocks[i + 1].childNodes[0].innerHTML);
+                blocks[i].style.backgroundColor = "#9DBDC6";
+                blocks[i + 1].style.backgroundColor = "#9DBDC6";
+                
+                highlightCode("4");
+                await new Promise(resolve =>
+                    setTimeout(() => {
+                        resolve();
+                    }, DELAY)
+                );
+                comparisons++;
+                if (value1 > value2) {
+                    highlightCode("5");
+                    await swap(blocks[i], blocks[i+1]);
+                    swaps++;
+                    highlightCode("6");
+                    await new Promise(resolve =>
+                        setTimeout(() => {
+                            resolve();
+                        }, DELAY/2)
+                    );
+                    blocks = document.querySelectorAll(".block");
+                    swapped = true;
+                }
+                $(".compSpan").text(`No. of comparisons: ${comparisons}`);
+                $(".swapSpan").text(`No. of swaps: ${swaps}`);
+                blocks[i].style.backgroundColor = "#FF3D2E";
+                
+            }
+            x++;
+            blocks[blocks.length-x].style.backgroundColor="#272F32";
+            highlightCode("7");
+            await new Promise(resolve =>
+                        setTimeout(() => {
+                            resolve();
+                        }, DELAY/2)
+                    );
+            if (!swapped) {
+                highlightCode("8");
+                await new Promise(resolve =>
+                        setTimeout(() => {
+                            resolve();
+                        }, DELAY/2)
+                    );
+                break;
+            }
+
+            swapped = false;
+            highlightCode("9");
+            await new Promise(resolve =>
+                        setTimeout(() => {
+                            resolve();
+                        }, DELAY/2)
+                    );
+            for (let i = blocks.length-2-x; i >= x-1; i--) {
+                const value1 = Number(blocks[i].childNodes[0].innerHTML);
+                const value2 = Number(blocks[i + 1].childNodes[0].innerHTML);
+                blocks[i].style.backgroundColor = "#9DBDC6";
+                blocks[i + 1].style.backgroundColor = "#9DBDC6";
+                comparisons++;
+                highlightCode("10");
+                await new Promise(resolve =>
+                    setTimeout(() => {
+                        resolve();
+                    }, DELAY)
+                );
+                if (value1 > value2) {
+                    highlightCode("11");
+                    await swap(blocks[i], blocks[i+1]);
+                    swaps++;
+                    blocks = document.querySelectorAll(".block");
+                    highlightCode("12");
+                    await new Promise(resolve =>
+                        setTimeout(() => {
+                            resolve();
+                        }, DELAY/2)
+                    );
+                    swapped = true;
+                }     
+                blocks[i+1].style.backgroundColor = "#FF3D2E";    
+                $(".compSpan").text(`No. of comparisons: ${comparisons}`);
+            $(".swapSpan").text(`No. of swaps: ${swaps}`);       
+            }
+            blocks[x-1].style.backgroundColor = "#272F32";
+        } while (swapped);
+
+        for (let i = 0; i < blocks.length; i++) {
+            blocks[i].style.backgroundColor="#272F32";   
+        }
+        highlightCode("0");
+        $("#sort-button").prop('disabled', false);
+        $(".block-selected").removeClass("block-selected");
+        $(".code-highlight").removeClass("code-highlight");
+    
+    }
+    generateBlocks(15);
+
+</script>
+</body>
+</html>

@@ -129,8 +129,6 @@
                     <span>5&emsp;</span>  
                     <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="30" data-slider-step="1" data-slider-value="15"/>
                     <span id="max">&emsp;30</span>
-                    <br>
-                    <span class="font-weight-bold highlighted-text ml-2 mt-1 valueSpan"></span>
                   </div>
               </div>
               <div class="form-group row">
@@ -154,8 +152,6 @@
                   <span>Slow&emsp;</span>
                   <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="100" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
                   <span>&emsp;Fast</span>
-                  <br>
-                  <span class="white-text hidden-sm hidden-md">empty line</span>
                 </div>
               </div>
               <div class="form-group row">
@@ -205,9 +201,6 @@
 
 <script>
   $(document).ready(function() {
-    $(".valueSpan").text(`Expected number of operations: 
-      ~${Math.round(0.5*((15**2)-(15*Math.log(15))-((0.57721566490153286060+Math.log(2)-1)*15)+Math.sqrt(15)))} comparisons, 
-      ~${Math.round(0.25*(15**2-15))} swaps.`);
      
     var slider = new Slider("#slider",{
       handle : "square"
@@ -215,9 +208,6 @@
 
     slider.on("slide", function(slideEvt) {
       newSet(slideEvt);
-      $(".valueSpan").text(`Expected number of operations: 
-        ~${Math.round(0.5*((slideEvt**2)-(slideEvt*Math.log(slideEvt))-((0.57721566490153286060+Math.log(2)-1)*slideEvt)+Math.sqrt(slideEvt)))} comparisons, 
-        ~${Math.round(0.25*(slideEvt**2-slideEvt))} swaps.`);
     });
 
     $('#data-input').on('input',function(e){
@@ -228,11 +218,9 @@
       if (this.checked) {
         slider.disable();
         $("#data-input").prop('disabled', false);
-        $(".valueSpan").addClass("text-muted");
       } else {
         slider.enable();
         $("#data-input").prop('disabled', true);
-        $(".valueSpan").removeClass("text-muted");
       }
     });
 

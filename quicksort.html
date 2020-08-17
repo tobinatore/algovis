@@ -34,6 +34,7 @@
     <div class="">
     <span class="row mx-auto px-0 w-100"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of comparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
     <div class="data-container p-1 mb-0 mt-0 w-100">
+      <svg id="visu"></svg>
     </div>
     </div>
     <div class="row mx-auto">
@@ -174,8 +175,8 @@
               <div class="col-sm-3">Elements: </div>
               <div class="col-sm-9">
                 <span>5&emsp;</span>  
-                <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="30" data-slider-step="1" data-slider-value="15"/>
-                <span id="max">&emsp;30</span>
+                <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="50" data-slider-step="1" data-slider-value="15"/>
+                <span id="max">&emsp;50</span>
               </div>
           </div>
           <div class="form-group row">
@@ -197,12 +198,12 @@
             <div class="col-sm-5">Speed: </div>
             <div class="col-sm-7">
               <span>Slow&emsp;</span>
-              <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="100" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
+              <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="10" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
               <span>&emsp;Fast</span>
             </div>
           </div>
           <div class="form-group row">
-            <label for="data-input" class="col-sm-5 col-form-label">Your data (max. 30 elements):</label>
+            <label for="data-input" class="col-sm-5 col-form-label">Your data (max. 50 elements):</label>
             <div class="col-sm-7">
               <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
             </div>
@@ -242,14 +243,15 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
-
+<script src="https://d3js.org/d3.v5.js"></script>
 
 <script>
   $(document).ready(function() {
-    
+    d3.select("#visu").attr("width", "100%").attr("height", "370").attr("viewBox", "0 0 "+ globalThis.screen.availWidth + " 370");
     var slider = new Slider("#slider",{
       handle : "square"
     });
+
     slider.on("slide", function(slideEvt) {
       newSet(slideEvt);
     });
@@ -285,144 +287,162 @@
 
     }
   });
-   
 </script>
 
 <script>
     const container = document.querySelector(".data-container");
     var FLAG = false;
     var DELAY = 200;
+    var w = globalThis.screen.availWidth;
+    var h = 370;
+    var barPadding = 5;
+    var data = [];
+    var x;
+    var svg = d3.select("#visu");
     var comparisons = 0;
     var swaps = 0;
 
-    
     function setDelay(delay){
       DELAY = delay;
     }
+
 
     function clamp(number, min, max) {
       return Math.max(min, Math.min(number, max));
     }
 
-    function newSet(num=20){
-      $(".block-selected").removeClass("block-selected");
-      FLAG=true;
-      let blocks = document.querySelectorAll(".block");
-      if (blocks !== null) {
-        for (let i = 0; i < blocks.length; i += 1) {
-          blocks[i].parentNode.removeChild(blocks[i]);
 
-        }
-      $("#sort-button").prop('disabled', false);
-      }
-      FLAG=false;
-      generateBlocks(num);
+    function newSet(num=20){
+      data  = [];
       
+      for(let i = 0; i<num; i++) {
+        data.push(Math.floor(Math.random()*119)+1);
+      }
+
+      clearBlocks();
+      generateBlocks(data);
     }   
 
-    function ownData(data = "1,2,3,4,5,6"){
-      $(".block-selected").removeClass("block-selected");
-      FLAG=true;
-      let blocks = document.querySelectorAll(".block");
-      if (blocks !== null) {
-            for (let i = 0; i < blocks.length; i += 1) {
-                blocks[i].parentNode.removeChild(blocks[i]);
 
-            }
-      }
-      FLAG=false;
-      $("#sort-button").prop('disabled', false);
-      var vals = data.split(",");
-      for (let i = 0; i < clamp(vals.length,0,30); i += 1) {
-        const value = clamp(vals[i], 0, 120);
-
-        const block = document.createElement("div");
-        block.classList.add("block");
-        block.style.height = `${value * 3}px`;
-        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / clamp(vals.length,0,30))}px)`;
-        block.style.width = `${document.documentElement.clientWidth / (clamp(vals.length,0,30)+2)}px`;
-
-        const blockLabel = document.createElement("label");
-        blockLabel.classList.add("block_id");
-        blockLabel.innerHTML = value;
-
-        block.appendChild(blockLabel);
-        container.appendChild(block);
-      }
+    function stop(){
+      FLAG = true;
     }
 
-    function generateBlocks(num = 20) {
-      if (num && typeof num !== "number") {
-        alert("First argument must be a typeof Number");
-        return;
+
+    function ownData(d = "1,2,3,4,5,6"){
+      data = d.split(",");
+      if (data.length > 50) {
+        data = data.slice(0, 50);
       }
-      for (let i = 0; i < num; i += 1) {
-        const value = Math.floor(Math.random() * 100);
-
-        const block = document.createElement("div");
-        block.classList.add("block");
-        block.style.height = `${value * 3}px`;
-        block.style.transform = `translateX(${i * (document.documentElement.clientWidth / num)}px)`;
-        block.style.width = `${document.documentElement.clientWidth / (num+2)}px`;
-
-        const blockLabel = document.createElement("label");
-        blockLabel.classList.add("block_id");
-        blockLabel.innerHTML = value;
-
-        block.appendChild(blockLabel);
-        container.appendChild(block);
+      for (let i = 0; i < data.length; i++) {
+        data[i] = clamp(data[i],0,119);
+        
       }
+      clearBlocks();
+      generateBlocks(data);
     }
 
-    function swapNodes(a, b) {
-      swaps += 1;
-      $(".swapSpan").text(`No. of swaps: ${swaps}`);
-      var aparent = a.parentNode;
-      var asibling = a.nextSibling === b ? a : a.nextSibling;
-      b.parentNode.insertBefore(a, b);
-      aparent.insertBefore(b, asibling);
-    } 
 
-    function swap(el1, el2) {
+    async function slide(i,j) {
       return new Promise(resolve => {
-        const style1 = window.getComputedStyle(el1);
-        const style2 = window.getComputedStyle(el2);
+        var calcTransl2 = (x(i));
+        var calcTransl1 = (x(j));  
+        
 
-        const transform1 = style1.getPropertyValue("transform");
-        const transform2 = style2.getPropertyValue("transform");
-
-        el1.style.transform = transform2;
-        el2.style.transform = transform1;
-
-        // Wait for the transition to end!
-        window.requestAnimationFrame(function() {
-          setTimeout(() => {
-            //container.insertBefore(el2, el1);
-            swapNodes(el1,el2)
-            resolve();
-          }, 250);
-        });
-      });
+        var text1 = d3.select("#text" + i)
+            .transition("text1").duration(DELAY)
+            .attr("transform", function(d) {return "translate(" + (calcTransl1+((w/data.length)/2)) + ", 0)";});
+            
+        var rect1 = d3.select("#rect" + i)
+            .transition("rect1").duration(DELAY)
+            .attr("transform", function(d) {return "translate(" + calcTransl1 + ", 0)";});
+        
+        var text2 = d3.select("#text" + j)
+            .transition("text2").duration(DELAY)
+            .attr("transform", function(d) {return "translate(" + (calcTransl2+((w/data.length)/2)) + ", 0)";});
+            
+        var rect2 = d3.select("#rect" + j)
+            .transition("rect2").duration(DELAY)
+            .attr("transform", function(d) {return "translate(" + calcTransl2 + ", 0)";});
+        
+        text1.attr("id", "text"+j);
+        rect1.attr("id", "rect"+j);
+        text2.attr("id", "text"+i);
+        rect2.attr("id", "rect"+i);
+        
+        setTimeout(() => {
+          resolve();
+        },(DELAY < 100) ? DELAY*5 : DELAY*2);
+      }, 600);
     }
+
+
+    function clearBlocks(){
+      svg.selectAll("rect")
+          .data([])
+          .exit()
+          .remove();
+      svg.selectAll("text")
+          .data([])
+          .exit()
+          .remove();
+    }
+
+
+    function generateBlocks(data) {
+      x = d3.scaleLinear()
+        .domain([0,data.length])
+        .range([0, w]);
+      var bars =
+        svg.selectAll("rect")
+          .data(data)
+          .enter()
+          .append("rect")
+          .attr("transform", function(d, i) {return "translate(" + (x(i)) + ",0)"})
+          .attr("y", function(d) {
+            return h - d*3;
+          })
+          .attr("width", w / data.length - barPadding)
+          .attr("height", function(d) {
+            return d*3;
+          })
+          .attr("fill", "#FF3D2E")
+          .attr("id", function(d,i){return "rect"+i;});
+
+      var labels =
+        svg.selectAll("text")
+          .data(data)
+          .enter()
+          .append("text")
+          .text(function(d) {
+            return d;
+          })
+          .attr("transform", function(d, i) {return "translate(" + (x(i)+((w/data.length)/2)) + ",0)"})
+          .attr("y", function(d) {
+            return h - (d * 3) - 5;
+          })
+          .attr("font-family", "sans-serif")
+          .attr("font-size", "14px")
+          .attr("fill", "black").attr("text-anchor", "middle")
+          .attr("id", function(d,i){return "text"+i;});
+    }
+
 
     function highlightCode(elementClass){
       $(".code-highlight").removeClass("code-highlight");
       $(`.${elementClass}`).addClass("code-highlight");
     }
-    
-    //////////////////////////////////
-    // await new Promise(resolve => //
-    //      setTimeout(() => {  	  //
-    //        resolve();            //
-    //      }, delay)               //
-    //   );                         //
-    //////////////////////////////////
-    
+
+    async function runQuicksort(){
+      $("#sort-button").prop("disabled", true);
+      await quicksort();
+      $("#sort-button").prop("disabled", false);
+    }    
+
     async function partition(left, right){
-      let blocks = document.querySelectorAll(".block");
       highlightCode("2");
-      let pivot = Number(blocks[right].childNodes[0].innerHTML);
-      blocks[right].style.backgroundColor = "#FACF5A";
+      let pivot = data[right];
+      d3.select("#rect"+right).attr("fill","#FACF5A");
       highlightCode("3");
       let i = left;
       highlightCode("4");
@@ -434,90 +454,83 @@
         }, DELAY)
       );
       highlightCode("5");
-     while(i < j){ 
-      highlightCode("6");
-      while(i < right && Number(blocks[i].childNodes[0].innerHTML) < pivot){
-        comparisons += 1;
-        $(".compSpan").text(`No. of comparisons: ${comparisons}`);
-        highlightCode("7");
-        i = i + 1;
-        blocks[i].style.backgroundColor = "#9DBDC6";
-        blocks[i-1].style.backgroundColor = "#FF3D2E";        
-        await new Promise(resolve =>
-          setTimeout(() => {
-            resolve();
-          }, DELAY)
-        );
-      }
+      
+      while(i < j){ 
+        highlightCode("6");
+        while(i < right && data[i] < pivot){
+          comparisons += 1;
+          $(".compSpan").text(`No. of comparisons: ${comparisons}`);
+          highlightCode("7");
+          i = i + 1;
+          d3.select("#rect"+i).attr("fill","#9DBDC6");
+          d3.select("#rect"+(i-1)).attr("fill","#FF3D2E");        
+          await new Promise(resolve =>
+            setTimeout(() => {
+              resolve();
+            }, DELAY)
+          );
+        }
           
-      while(j > left && Number(blocks[j].childNodes[0].innerHTML) >= pivot){
-        highlightCode("8");
-        comparisons += 1;
-        $(".compSpan").text(`No. of comparisons: ${comparisons}`);
-        j = j - 1;
-        highlightCode("9");
-        blocks[j].style.backgroundColor = "#1764B3";
-        blocks[j+1].style.backgroundColor = "#FF3D2E";
-        
-        await new Promise(resolve =>
-          setTimeout(() => {
-            resolve();
-          }, DELAY)
-        );
+        while(j > left && data[j] >= pivot){
+          highlightCode("8");
+          comparisons += 1;
+          $(".compSpan").text(`No. of comparisons: ${comparisons}`);
+          j = j - 1;
+          highlightCode("9");
+          d3.select("#rect"+j).attr("fill","#1764B3");
+          d3.select("#rect"+(j+1)).attr("fill","#FF3D2E");
+          
+          await new Promise(resolve =>
+            setTimeout(() => {
+              resolve();
+            }, DELAY)
+          );
+        }
+        highlightCode("10");
+        if(i < j){
+          highlightCode("11");
+          await slide(i, j);
+          var temp = data[i];
+          data[i] = data[j];
+          data[j] = temp;
+          d3.select("#rect"+i).attr("fill","#FF3D2E");
+          d3.select("#rect"+j).attr("fill","#FF3D2E");
+        }  
       }
-      highlightCode("10");
-      if(i < j){
-        highlightCode("11");
-        await swap(blocks[i], blocks[j]);
-        blocks = document.querySelectorAll(".block");
-        blocks[i].style.backgroundColor = "#FF3D2E";
-        blocks[j].style.backgroundColor = "#FF3D2E";
-      }  
-    }
-    highlightCode("12");
-    if(Number(blocks[i].childNodes[0].innerHTML) > pivot){
-      highlightCode("13");
-      await swap(blocks[i], blocks[right]);
-      blocks =  document.querySelectorAll(".block");
-      blocks[i].style.backgroundColor = "#272F32";
-    }else{
-      blocks[right].style.backgroundColor = "#272F32";
-    }
-    highlightCode("14");
-    return i;
+      highlightCode("12");
+      if(data[i] > pivot){
+        highlightCode("13");
+        await slide(i, right);
+        var temp = data[i];
+        data[i] = data[right];
+        data[right] = temp;
+        d3.select("#rect"+i).attr("fill","#272F32");
+      }else{
+        d3.select("#rect"+right).attr("fill","#272F32");
+      }
+      highlightCode("14");
+      return i;
     }
 
-    async function runQuicksort(){
-      await quickSort(DELAY, 0, -10);
-      comparisons = 0; 
-      swaps = 0;
-      $("#sort-button").prop('disabled', false);
-    }
-
-    async function quickSort(delay = DELAY, left = 0, right = -10) {
-      $("#sort-button").prop('disabled', true);
+    async function quicksort(delay = DELAY, left = 0, right = -10) {
       if (right == -10) {
-        right = document.querySelectorAll(".block").length - 1;
+        right = data.length - 1;
       }
       var swaps = 0;
       var comparisons = 0;
       
-      if (delay && typeof delay !== "number") {
-        alert("sort: First argument must be a typeof Number");
-        return;
-      }
       highlightCode("15");
       await new Promise(resolve =>
         setTimeout(() => {
           resolve();
-        }, 100)
+        }, DELAY)
       );
       if (left < right) {
         highlightCode("16");
         await new Promise(resolve =>
         setTimeout(() => {
           resolve();
-        }, 100)
+        }, DELAY)
       );
         highlightCode("1");
         var p = await partition(left, right);
@@ -525,32 +538,29 @@
         await new Promise(resolve =>
         setTimeout(() => {
           resolve();
-        }, 100)
+        }, DELAY)
       );
-        await quickSort(DELAY, left, p-1);
-        let blocks =  document.querySelectorAll(".block");
+        await quicksort(DELAY, left, p-1);
+
         for(let i = 0; i < p; i++){  
-          blocks[i].style.backgroundColor = "#272F32";
+          d3.select("#rect" + i).attr("fill","#272F32");
         }
+
         highlightCode("18");
         await new Promise(resolve =>
         setTimeout(() => {
           resolve();
-        }, 100)
+        }, DELAY)
       );
-        await quickSort(DELAY, p + 1, right);  
+        await quicksort(DELAY, p + 1, right);  
 
         for(let i = 0; i <= right; i++){  
-          blocks[i].style.backgroundColor = "#272F32";
+          d3.select("#rect" + i).attr("fill","#272F32");
         }    
-        highlightCode("20");
-        
+        highlightCode("20");   
       }
-     
-      
     }
-
-    generateBlocks(15);
+    newSet(15);
 
 </script>
 </body>

@@ -22,7 +22,7 @@
       <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
         <a class="btn back-button navbar-brand" href="sorting.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
           <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
-            Quicksort Visualization
+            Combsort Visualization
           </span>
         </div>
         
@@ -41,87 +41,51 @@
       <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
         <div class="ide w-100">
           <div class="row ml-auto mr-auto 1">
-            <span><span class="op">function</span> partition(left, right)</span>
+            <span>gap = length(list)</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 2 ">
-            <span>&emsp;&emsp;pivot = right</span>
+            <span>sorted = <span class="var">false</span></span>
           </div>
           <div class="row ml-auto mr-auto mt-1 3">
-            <span>&emsp;&emsp;i = left</span>
+            <span>shrink = 1.3</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 4">
-            <span>&emsp;&emsp;j = right - 1</span>
+            <span><span class="op">while</span>(sorted == <span class="var">false</span>)</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 5">
-            <span>&emsp;&emsp;<span class="op">while</span>(i < j)</span>
+            <span>&emsp;&emsp;gap =  floor(gap/shrink)</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 6">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">while</span>(i < right && list[i] < pivot)</span>
+            <span>&emsp;&emsp;<span class="op">if</span>(gap <= 1)</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 7">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;i += 1</span>
+            <span>&emsp;&emsp;&emsp;&emsp;gap = 1</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 8">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">while</span>(j > left && list[j] > pivot)</span>
+            <span>&emsp;&emsp;&emsp;&emsp;sorted = <span class="var">true</span></span>
           </div>
           <div class="row ml-auto mr-auto mt-1 9">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;j -= 1</span>
+            <span>&emsp;&emsp;i = 0</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 10">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(i < j)</span>
+            <span>&emsp;&emsp;<span class="op">while</span>(i + gap < length(list))</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 11">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[i], list[j])</span>
+            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(list[i] > list[i + gap])</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 12">
-            <span>&emsp;&emsp;<span class="op">if</span>(list[i] > list[pivot])</span>
+            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[i] > list[i+gap])</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 13">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[i], list[pivot])</span>
+            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;sorted = <span class="var">false</span></span>
           </div>
           <div class="row ml-auto mr-auto mt-1 14">
-            <span>&emsp;&emsp;<span class="op">return</span> i</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1">
-            <span>&emsp;</span>
-          </div>
-          <div class="row ml-auto mr-auto 15">
-            <span><span class="op">function</span> quicksort(left, right)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 16">
-            <span>&emsp;&emsp;<span class="op">if</span>(left < right)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 17">
-            <span>&emsp;&emsp;&emsp;&emsp;p = <span class="op">partition</span>(left, right)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 18">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">quicksort</span>(left, p - 1)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 19">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">quicksort</span>(p + 1, right)</span>
+            <span>&emsp;&emsp;&emsp;&emsp;i += 1</span>
           </div>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
       <div class="ide w-100 pl-0">
-        <div class="row ml-auto mr-auto">
-          <span><span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment text-center">&emsp;</span>
-        </div>
         <div class="row ml-auto mr-auto mt-1">
           <span class="comment w-100">---------------------</span>
         </div>
@@ -132,19 +96,19 @@
           <span class="comment w-100">---------------------</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">1. Pick the last element as pivot </span>
+          <span class="comment">1. Set gap to the length of the list, the shrink factor to 1.3 and sorted to false </span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">2. Reorder the array in the following way:</span>
+          <span class="comment">2. Calculate the new gap (-> gap = floor(gap/shrink))</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment"> - All elements less than the pivot come before the pivot</span>
+          <span class="comment">3. Iterate over the list and compare list[i] and list[i+gap]</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment"> - All elements greater than the pivot come after the pivot</span>
+          <span class="comment"> - If list[i] is bigger than list[i+gap] swap the elements</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">3. Recursively apply the above steps to each sublist</span>
+          <span class="comment">4. Repeat 2 - 4 until the list is sorted</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
           <span>&emsp;</span>
@@ -176,7 +140,7 @@
               <div class="col-sm-9">
                 <span>5&emsp;</span>  
                 <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="50" data-slider-step="1" data-slider-value="15"/>
-                <span id="max">&emsp;50</span>
+                <span id="max">&emsp;30</span>
               </div>
           </div>
           <div class="form-group row">
@@ -214,7 +178,7 @@
     <div class="row mx-auto">
       <div class="col-4"></div>
       <div class="col-4">
-        <button id="sort-button" type="button" onclick="runQuicksort()" class="btn btn-danger highlighted-bg w-100">Sort</button>
+        <button id="sort-button" type="button" onclick="combsort()" class="btn btn-danger highlighted-bg w-100">Sort</button>
       </div>
       <div class="col-4"></div>
     </div>
@@ -251,7 +215,6 @@
     var slider = new Slider("#slider",{
       handle : "square"
     });
-
     slider.on("slide", function(slideEvt) {
       newSet(slideEvt);
     });
@@ -287,6 +250,7 @@
 
     }
   });
+   
 </script>
 
 <script>
@@ -347,8 +311,7 @@
       return new Promise(resolve => {
         var calcTransl2 = (x(i));
         var calcTransl1 = (x(j));  
-        swaps++;
-        $(".swapSpan").html(`No. of swaps: ${swaps}`)
+        
 
         var text1 = d3.select("#text" + i)
             .transition("text1").duration(DELAY)
@@ -433,136 +396,95 @@
       $(".code-highlight").removeClass("code-highlight");
       $(`.${elementClass}`).addClass("code-highlight");
     }
-
-    async function runQuicksort(){
-      $("#sort-button").prop("disabled", true);
+    
+    async function combsort(){
       comparisons = 0;
       swaps = 0;
-      await quicksort();
-      $("#sort-button").prop("disabled", false);
-    }    
-
-    async function partition(left, right){
+      highlightCode("1");
+      await new Promise(resolve =>
+          setTimeout(() => {  	
+            resolve();            
+          }, 20)               
+        );
+      let gap = data.length;
       highlightCode("2");
-      let pivot = data[right];
-      d3.select("#rect"+right).attr("fill","#FACF5A");
+      await new Promise(resolve =>
+          setTimeout(() => {  	
+            resolve();            
+          }, 20)               
+        );
+      let shrink = 1.3;
       highlightCode("3");
-      let i = left;
+      await new Promise(resolve =>
+          setTimeout(() => {  	
+            resolve();            
+          }, 20)               
+        );
+      let sorted = false;
+
       highlightCode("4");
-      let j = right -1 ;
-
       await new Promise(resolve =>
-        setTimeout(() => {
-          resolve();
-        }, DELAY)
-      );
-      highlightCode("5");
-      
-      while(i < j){ 
+          setTimeout(() => {  	
+            resolve();            
+          }, 20)               
+        );
+      while (!sorted) {
+        highlightCode("5");
+        await new Promise(resolve =>
+          setTimeout(() => {  	
+            resolve();            
+          }, 20)               
+        );
+        gap = Math.floor(gap/shrink);
+        
         highlightCode("6");
-        while(i < right && data[i] < pivot){
-          comparisons += 1;
-          $(".compSpan").text(`No. of comparisons: ${comparisons}`);
-          highlightCode("7");
-          i = i + 1;
+        await new Promise(resolve =>
+          setTimeout(() => {  	
+            resolve();            
+          }, 20)               
+        );
+        if (gap <= 1) {
+          gap = 1;
+          sorted = true;
+        }
+
+        let i = 0;
+        while (i + gap < data.length) {
           d3.select("#rect"+i).attr("fill","#9DBDC6");
-          d3.select("#rect"+(i-1)).attr("fill","#FF3D2E");        
+          d3.select("#rect"+(i+gap)).attr("fill","#9DBDC6");
           await new Promise(resolve =>
-            setTimeout(() => {
-              resolve();
-            }, DELAY)
+            setTimeout(() => {  	
+              resolve();            
+            }, DELAY)               
           );
-        }
-          
-        while(j > left && data[j] >= pivot){
-          highlightCode("8");
-          comparisons += 1;
+
+          comparisons++;
           $(".compSpan").text(`No. of comparisons: ${comparisons}`);
-          j = j - 1;
-          highlightCode("9");
-          d3.select("#rect"+j).attr("fill","#1764B3");
-          d3.select("#rect"+(j+1)).attr("fill","#FF3D2E");
-          
-          await new Promise(resolve =>
-            setTimeout(() => {
-              resolve();
-            }, DELAY)
-          );
-        }
-        highlightCode("10");
-        if(i < j){
-          highlightCode("11");
-          await slide(i, j);
-          var temp = data[i];
-          data[i] = data[j];
-          data[j] = temp;
+          if (data[i] > data[i+gap]) {
+            await slide(i, i+gap);
+            var temp = data[i];
+            data[i] = data[i+gap];
+            data[i+gap]=temp;
+            swaps++;
+            $(".swapSpan").text(`No. of swaps: ${swaps}`);
+            sorted = false;
+          }
           d3.select("#rect"+i).attr("fill","#FF3D2E");
-          d3.select("#rect"+j).attr("fill","#FF3D2E");
-        }  
-      }
-      highlightCode("12");
-      if(data[i] > pivot){
-        highlightCode("13");
-        await slide(i, right);
-        var temp = data[i];
-        data[i] = data[right];
-        data[right] = temp;
-        d3.select("#rect"+i).attr("fill","#272F32");
-      }else{
-        d3.select("#rect"+right).attr("fill","#272F32");
-      }
-      highlightCode("14");
-      return i;
-    }
-
-    async function quicksort(delay = DELAY, left = 0, right = -10) {
-      if (right == -10) {
-        right = data.length - 1;
-      }
-      var swaps = 0;
-      var comparisons = 0;
-      
-      highlightCode("15");
-      await new Promise(resolve =>
-        setTimeout(() => {
-          resolve();
-        }, DELAY)
-      );
-      if (left < right) {
-        highlightCode("16");
-        await new Promise(resolve =>
-        setTimeout(() => {
-          resolve();
-        }, DELAY)
-      );
-        highlightCode("1");
-        var p = await partition(left, right);
-        highlightCode("17");
-        await new Promise(resolve =>
-        setTimeout(() => {
-          resolve();
-        }, DELAY)
-      );
-        await quicksort(DELAY, left, p-1);
-
-        for(let i = 0; i < p; i++){  
-          d3.select("#rect" + i).attr("fill","#272F32");
+          d3.select("#rect"+(i+gap)).attr("fill","#FF3D2E");
+          i++;
         }
+      }
 
-        highlightCode("18");
+      for (let i = 0; i < data.length; i++) {
         await new Promise(resolve =>
-        setTimeout(() => {
-          resolve();
-        }, DELAY)
-      );
-        await quicksort(DELAY, p + 1, right);  
-
-        for(let i = 0; i <= right; i++){  
-          d3.select("#rect" + i).attr("fill","#272F32");
-        }    
-        highlightCode("20");   
+          setTimeout(() => {  	
+            resolve();            
+          }, 20)               
+        );
+        d3.select("#rect"+i).attr("fill","#272F32");            
       }
     }
+
     newSet(15);
 
 </script>

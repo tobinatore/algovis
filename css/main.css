@@ -57,7 +57,20 @@
 .border-dark{
   border: 3px solid #272F32;
 }
+.border-dark-nb{
+  border: 3px solid #272F32;
+  border-bottom: none;
+}
 
+.border-dark-nt{
+  border: 3px solid #272F32;
+  border-top: none;
+}
+
+.large-text{
+  font-size: large;
+  font-weight: bold;
+}
 
 /* HORIZONTAL RULE
 –––––––––––––––––––-------––––––––––––––––––––––––––––––– */
@@ -382,4 +395,18 @@ input[type="search"]::-webkit-search-cancel-button{
   border: 1px solid #FFF ;
   border-radius: 7%;
   color: white;
+}
+
+.button-top{
+  border: 0px;
+  background-color: #FFF;
+}
+
+.button-top:hover{
+  background-color: rgb(201, 201, 201);
+}
+
+#nodes{
+  font-size: 20px;
+  font-weight: bold;
 }

@@ -1,4 +1,4 @@
-class UndirectedGraph{
+class UnweightedUndirectedGraph{
     constructor(){
         this.adjList = new Map();
     }
@@ -27,7 +27,7 @@ class UndirectedGraph{
     }
 };
 
-class DirectedGraph{
+class UnweightedDirectedGraph{
     constructor(){
         this.adjList = new Map();
     }

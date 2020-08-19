@@ -169,7 +169,7 @@
     var drawing = false;
     var xy0;
     var xy1;
-    var g = new UndirectedGraph();
+    var g = new UnweightedUndirectedGraph();
     var vertexCount = 0;
     var firstVert;
     var secVert;
@@ -454,7 +454,7 @@
         data_edges = [];
         data_nodes = [];
         vertexCount = 0;
-        g = new UndirectedGraph();
+        g = new UnweightedUndirectedGraph();
         drawing = false;
 
         svg.selectAll("*").remove();

@@ -22,7 +22,7 @@
       <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
         <a class="btn back-button navbar-brand" href="sorting.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
           <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
-            Breadth-First-Search Visualization
+            Depth-First-Search Visualization
           </span>
         </div>
         
@@ -45,68 +45,29 @@
       <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
         <div class="ide w-100">
           <div class="row ml-auto mr-auto 1">
-            <span>start = <span class="op">input</span>(start)</span>
+            <span><span class="op">function</span> dfs(graph, v)</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 2 ">
-            <span>visited = []</span>
+            <span>&emsp;&emsp;visited[v] = <span class="var">true</span></span>
           </div>
           <div class="row ml-auto mr-auto mt-1 3 ">
-            <span><span class="op">for</span>(i = 0 to Graph.numVertices)</span>
+            <span>&emsp;&emsp;neighbours = graph.getNeighboursOf(v)</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 4">
-            <span>&emsp;&emsp;visited[i] = <span class="var">false</span></span>
+            <span>&emsp;&emsp;<span class="op">for</span>(i in neighbours)</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 5">
-            <span>visited[start] = <span class="var">true</span></span>
+            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!visited[i])</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 6">
-            <span>q = []</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 7">
-            <span>q.push(start)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 8">
-            <span><span class="op">while</span>(length(q) != 0)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 9">
-            <span>&emsp;&emsp;queueElement = q.shift()</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 10">
-            <span>&emsp;&emsp;neighbours = Graph.getNeighboursOf(queueElement)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 11">
-            <span>&emsp;&emsp;<span class="op">for</span>(x = 0 to length(neighbours))</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 12">
-            <span>&emsp;&emsp;&emsp;&emsp;nb = neighbours[x]</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 13">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!visited[nb])</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 14">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;visited[nb] = <span class="var">true</span></span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 15">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;q.push(nb)</span>
+            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;dfs(graph, i)</span>
           </div>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
       <div class="ide w-100 pl-0">
         <div class="row ml-auto mr-auto">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment w-100">---------------------</span>
-          </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">| SHORT EXPLANATION |</span>
+          <span class="comment w-100">SHORT EXPLANATION</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
           <span class="comment w-100">---------------------</span>
@@ -115,28 +76,13 @@
           <span class="comment">1. Visit the first vertex</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">2. Find all vertices this vertex has a connection to</span>
+          <span class="comment">2. Find the first unvisited vertex this vertex has a connection to.</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">3. Visit each of those vertices and push them onto the queue</span>
+          <span class="comment">3. Recursively visit this vertex and repeat step 2 until there are no more unvisited vertices.</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">4. Take the next vertex from the queue</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">5. Repeat steps 2 - 4 until the queue is empty</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
+          <span class="comment">4. Repeat steps 2 and 3 for each step of the recurison.</span>
         </div>
       </div>
     </div>
@@ -178,7 +124,7 @@
     <div class="row mx-auto">
       <div class="col-lg-6"></div>
       <div class="col-sm-12 col-md-12 col-lg-6">
-        <button id="start-button" type="button" onclick="bfs()" class="btn btn-danger highlighted-bg w-100">Start</button>
+        <button id="start-button" type="button" onclick="runDfs()" class="btn btn-danger highlighted-bg w-100">Start</button>
       </div>
       <div class="col-4"></div>
     </div>
@@ -227,6 +173,7 @@
     var vertexCount = 0;
     var firstVert;
     var secVert;
+    var visited = [];
   
     function setDelay(delay){
         DELAY = delay;
@@ -401,13 +348,13 @@
                     || (data_edges[i].v1 == nb && data_edges[i].v2 == qe) ){
                     d3.select("#path"+data_edges[i].id)
                     .transition()
-                    .duration(500)
+                    .duration(DELAY)
                     .attr("stroke", "#FF3D2E")
                     .attr("stroke-width", 15);                            
                     setTimeout(() => {  	
                         d3.select("#path"+data_edges[i].id)
                             .transition()
-                            .duration(500)
+                            .duration(DELAY)
                             .attr("stroke", "#272F32")
                             .attr("stroke-width", 10);
                         }, DELAY);                                           
@@ -421,8 +368,20 @@
     }
 
     function highlightCode(elementClass){
-      $(".code-highlight").removeClass("code-highlight");
-      $(`.${elementClass}`).addClass("code-highlight");
+        $(".code-highlight").removeClass("code-highlight");
+        $(`.${elementClass}`).addClass("code-highlight");
+    }
+
+    async function runDfs(){
+        $("#nodes").html("()");
+        var v = (!$("#start-node").val() || Number($("#start-node").val() > data_nodes.length-1)) ? 0 : Number($("#start-node").val());
+        $("#start-button").prop("disabled", true);
+        visited = []
+        for(var x = 0; x < data_nodes.length; x++){
+            visited[x] = false;
+        }
+        await dfs(g, v)
+        $("#start-button").prop("disabled", false);
     }
 
     async function timeout(delay){
@@ -433,99 +392,62 @@
         );
     }
 
-    async function bfs(){
-        $("#start-button").prop("disabled", true);
-        $("#nodes").html("()");
-        
-        highlightCode("1");
-        await timeout(DELAY/10);
-
-        var startingNode = (!$("#start-node").val() || Number($("#start-node").val() > data_nodes.length-1)) ? 0 : Number($("#start-node").val());
-        
+    async function dfs(graph, v){
         highlightCode("2");
         await timeout(DELAY/10);
-        
-        var visited = [];
-        var graph = g;
+
+        visited[v] = true;
+        d3.select("#circle"+v)
+            .transition()
+            .duration(DELAY)
+            .attr("stroke", "#FF3D2E")
+            .attr("stroke-width", "10px"); 
         
         highlightCode("3");
         await timeout(DELAY/10);
         
-        for (let i = 0; i < graph.getNoOfVertices(); i++) {
-            visited[i] = false; 
-        }
-        
+        var neighbours = graph.adjList.get(v);
+        var currText = Array.from($("#nodes").text());
+        currText.splice(currText.length-1, 0, v.toString()+" ");
+        currText= currText.join('');
+
+        $("#nodes").html(currText);
         highlightCode("4");
-        await timeout(75);             
-        highlightCode("5");
         await timeout(DELAY/10);
-        
-        var q = [];
-        
-        highlightCode("6");
-        await timeout(DELAY/10);
-        
-        visited[startingNode] = true;
-        
-        highlightCode("7");
-        await timeout(DELAY/10);
-        
-        q.push(startingNode);
-        
-        highlightCode("8");
-        await timeout(DELAY/10);
-        
-        while(q.length != 0) {
-            highlightCode("9");
-            var queueElement = q.shift();
-            d3.select("#circle"+queueElement)
+
+        for (var i in neighbours) {
+          highlightCode("5");
+          await findEdgeForAnim(v, neighbours[i]);
+          if(!visited[neighbours[i]]){
+          
+            d3.select("#circle"+v)
                 .transition()
-                .duration(500)
-                .attr("stroke", "#FF3D2E")
-                .attr("stroke-width", "10px"); 
-            await timeout(DELAY)
-
-            highlightCode("10");
-            await timeout(DELAY/10);
-
-            var neighbours = graph.adjList.get(queueElement);
-            
-            highlightCode("11");
-            await timeout(DELAY/10);
-            
-            for (var i in neighbours) {
-                highlightCode("12");
-                await timeout(DELAY/10);
-
-                var nb = neighbours[i];
-                
-                highlightCode("13");
-                await findEdgeForAnim(queueElement, nb);
-                
-                if(!visited[nb]){
-                    highlightCode("14");
-                    await timeout(DELAY/10);
-
-                    visited[nb] = true;
-                    highlightCode("15");
-                    await timeout(DELAY/10);
-
-                    q.push(nb);
-                }
-            }
-            d3.select("#circle"+queueElement)
-                .transition()
-                .duration(500)
+                .duration(DELAY)
                 .attr("stroke", "black")
-                .attr("stroke-width", "5px");
-            var currText = Array.from($("#nodes").text());
-            currText.splice(currText.length-1, 0, queueElement.toString()+" ");
-            currText= currText.join('');
-
-            $("#nodes").html(currText);
+                .attr("stroke-width", "5px"); 
+            
+            highlightCode("6");
+            await timeout(DELAY/10);
+            
+            await dfs(graph, neighbours[i]);
+            d3.select("#circle"+v)
+                .transition()
+                .duration(DELAY)
+                .attr("stroke", "#FF3D2E")
+                .attr("stroke-width", "10px");
+          }    
+          d3.select("#circle"+neighbours[i])
+              .transition()
+              .duration(DELAY)
+              .attr("stroke", "black")
+              .attr("stroke-width", "5px");
         }
-        $("#start-button").prop("disabled", false);
-        
+        d3.select("#circle"+v)
+              .transition()
+              .duration(DELAY)
+              .attr("stroke", "black")
+              .attr("stroke-width", "5px");    
+        highlightCode("0");    
     }
 
     function clearCanvas(){

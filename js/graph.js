@@ -77,7 +77,7 @@ class WeightedUndirectedGraph{
     }
 
     getNoOfVertices(){
-        return this.adjList.length;
+        return this.adjList.size;
     }
 
     getSecondVertex(vertex){

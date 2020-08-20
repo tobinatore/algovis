@@ -227,6 +227,7 @@
     var vertexCount = 0;
     var firstVert;
     var secVert;
+    var running = false;
   
     function setDelay(delay){
         DELAY = delay;
@@ -245,9 +246,11 @@
         svg.append("g").attr("id", "g-paths");
 
     svg.on("click", async function() {
+        if(!running){
         var coords = d3.mouse(this);
         drawing = false;
-        await newVertex(coords);                    
+        await newVertex(coords);
+        }                    
     });
 
     async function newVertex(coords){
@@ -289,6 +292,7 @@
                 var e = d3.event;
                 e.cancelBubble = true;
                 if (e.stopPropagation) e.stopPropagation();
+                if(!running){
                 if(!drawing){
                     drawing = true;
                     var choords = d3.mouse(this);
@@ -329,29 +333,35 @@
                     }
                     drawing = false;
                     svg.select("#circle"+firstVert).attr("stroke", "black");
+                    svg.select("#circle"+secVert).attr("stroke", "black");
                 }
+            }
             });
             setTimeout(() => {
                 groups.on("mouseover", function(d,i){
-                svg.select("#circle"+i)
-                .transition()
-                .duration(250)
-                .attr("stroke", "#FF3D2E")
-                .attr("stroke-width", "10px"); 
+                    if(!running){
+                        svg.select("#circle"+i)
+                            .transition()
+                            .duration(250)
+                            .attr("stroke", "#FF3D2E")
+                            .attr("stroke-width", "10px");
+                    } 
             });
             groups.on("mouseout", function(d,i){
-                if(!drawing){
-                    svg.select("#circle"+i)
-                    .transition()
-                    .duration(250)
-                    .attr("stroke", "black")
-                    .attr("stroke-width", "5px"); 
-                }
-                else{
-                    svg.select("#circle"+i)
-                    .transition()
-                    .duration(250)
-                    .attr("stroke-width", "5px"); 
+                if(!running){
+                    if(!drawing){
+                        svg.select("#circle"+i)
+                        .transition()
+                        .duration(250)
+                        .attr("stroke", "black")
+                        .attr("stroke-width", "5px"); 
+                    }
+                    else{
+                        svg.select("#circle"+i)
+                        .transition()
+                        .duration(250)
+                        .attr("stroke-width", "5px"); 
+                    }
                 }
             });
             }, 510);
@@ -434,7 +444,9 @@
     }
 
     async function bfs(){
+        running = true;
         $("#start-button").prop("disabled", true);
+        $(".button-top").prop("disabled",true);
         $("#nodes").html("()");
         
         highlightCode("1");
@@ -525,7 +537,8 @@
             $("#nodes").html(currText);
         }
         $("#start-button").prop("disabled", false);
-        
+        $(".button-top").prop("disabled",false);
+        running = false;
     }
 
     function clearCanvas(){

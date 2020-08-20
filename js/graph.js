@@ -80,6 +80,16 @@ class WeightedUndirectedGraph{
         return this.adjList.length;
     }
 
+    getSecondVertex(vertex){
+        for(let i = 0; i < this.adjList.size; i++){
+            for (let j = 0; j < this.adjList.get(i).length; j++) {
+                if(this.adjList.get(i)[j] == vertex){
+                    return i;
+                }
+            }
+        }
+    }
+
     getEdgeLength(v1,v2){
         var array = this.adjList.get(v1);        
         for (let i=0; i<array.length; i++) {

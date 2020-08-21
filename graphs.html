@@ -1,56 +1,300 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-
-  <title>AlgoVis - Online Algorithm Visualization</title>
-  <meta name="description" content="AlgoVis - Online Algorithm Visualization">
-  <meta name="author" content="Tobias Nöthlich">
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AlgoVis - Online Algorithm Visualization">
+    <meta name="author" content="Tobias Nöthlich">
+    <title>AlgoVis - Online Algorithm Visualization</title>
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Walter+Turncoat&family=Roboto+Mono:wght@600&family=Kanit&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
 
-<body>
-    <!-- NAV -->
-    <nav class="navbar navbar-expand-lg navbar-light dark-bg">
-        <a class="navbar-brand" href="#"><span class="white-text">AlgoVis - Online <span class="highlighted-text">Graph</span> Algorithm Visualization</span></a>
-    </nav>
 
-    <!-- SEARCH + TAG CLOUD -->
-    <div class="container-fluid w-100">
+<!-- NAV -->
+<body data-spy="scroll" data-target="#navbar" data-offset="72" class="">
+    <header class="fixed-top page-header w-100">
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+          <a class="navbar-brand ml-2" href="index.html">AlgoVis</a>
+          <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-lg-between w-100" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#traversal">Graph traversal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#mst">Minimum spanning tree</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#others">Others</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+        </nav>
+        
+    </header>
+    <main>
+        <section id="home" class="d-flex align-items-center position-relative cover algo-header">
+            <div class="container-fluid">
+                <div class="row ">
+                    <div class="col-sm-12 text-center">
+                        <h1 class="text-white " style="font-size: 3.5rem;">Graph algorithms</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="row ml-auto mr-auto mt-2 mb-2">
-            <a href="#" class="ml-auto mr-auto"><img src="img/sorting.gif" id="sort"></a>
-            <a href="#"class="ml-auto mr-auto"><img src="img/graphs.gif" id="graphs"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
+    <section class="pb-5 mt-3">
+        <div class="container-fluid">
+        <h3 class="highlighted-text">Overview</h3>
+            <div class="mb-4 explanation ml-2 mr-2" style="font-size: large;">
+                <p > A graph is a structure amounting to a set of objects in which some pairs of the objects are in some sense "related". 
+                    <br><br>
+                    They consist of a fixed number of vertices (or nodes), which represent the data points and edges, which show the relation between vertices.
+                    These edges can be directed or undirected. 
+                    <br><br>For example, if the vertices represent people at a party, and there is an edge between two people if they shake hands, then this graph is undirected because any person A can shake hands with a person B only if B also shakes hands with A. In contrast, if any edge from a person A to a person B corresponds to A owes money to B, then this graph is directed, because owing money is not necessarily reciprocated. The former type of graph is called an undirected graph while the latter type of graph is called a directed graph.
+                    <br><br>Typically, a graph is depicted in diagrammatic form as a set of dots or circles for the vertices, joined by lines or curves for the edges.
+                    </p>
+            </div>  
         </div>
-        <div class="row ml-auto mr-auto mt-2 mb-2">
-            <a href="https://placeholder.com" class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-        </div>
-        <div class="row ml-auto mr-auto mt-2 mb-2">
-            <a href="https://placeholder.com" class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
-            <a href="https://placeholder.com"class="ml-auto mr-auto"><img src="https://via.placeholder.com/300"></a>
+        <div class="container-fluid">
+            <div class="row mt-5 highlighted-text"><div class="col-sm-12 text-center"><h2>Search</h2></div></div>
+            <div class="row justify-content-center mt-2">
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    <form class="card card-sm border-red">
+                        <div class="card-body row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <i class="fa fa-search h4 text-body"></i>
+                            </div>
+                            <!--end of col-->
+                            <div class="col">
+                                <input id="search" class="form-control form-control-borderless" type="search" placeholder="Search names or keywords">
+                            </div>
+                            <div class="anchor w-100" id="traversal"></div>
+                            <!--end of col-->
+                            <!--end of col-->
+                        </div>
+                    </form>
+                </div>
+                <!--end of col-->
+            </div>
         </div>
     </div>
-    
+    </section>
 
+    <!-- GRAPH TRAVERSAL -->
+    <section id="graph-traversal">
+        <div class="container-fluid w-100" >
+            <!-- Gradient divider -->
+            <hr data-content="Graph traversal" class="hr-text mb-2 cd-hide">
+            <div class=" w-100 p-2 row mt-3 mb-3 cd-hide">
+                <div class="col-sm-1 col-md-1 col-lg-3"></div>
+                <div class="explanation col-sm-10 col-md-10 col-lg-6">
+                    A graph traversal algorithm visits every vertex it can reach from its starting point, effectively traversing the entire graph if there are no disconnected vertices.
+                </div>
+                <div class="col-sm-1 col-md-1 col-lg-3"></div>
+            </div>
+            <div class="card-deck mb-4 cd-hide">
+                <div id="breadth-first search bfs" class="algorithm shadow-highlight card" >
+                    <a href="bfs.html" class="unstyled-link">
+                            <div class="card-body">
+                            <h5 class="card-title">Breadth-first search</h5>
+                            <h6 class="card-subtitle">Graph traversal</h6>
+                            <p class="card-text">Breadth-first search starts at the root node (or any specified node) and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. 
+                                <br><br>
+                                <b>Time Complexity:</b>&emsp; <i>O(|V|+|E|)</i><br>
+                                <b>Space Complexity:</b>&emsp; <i>O(|V|)</i></p>
+                            </div>
+                    </a>
+                </div>
+                    <div id="depth-first search dfs" class="algorithm shadow-highlight card" >
+                        <a href="dfs.html" class="unstyled-link">
+                                <div class="card-body">
+                                <h5 class="card-title">Depth-first search</h5>
+                                <h6 class="card-subtitle">Graph traversal</h6>
+                                <p class="card-text">Depth-first search starts at the root node (or any specified node) and explores the node branch as far as possible before being forced to backtrack and expand other nodes. 
+                                    <br><br>
+                                    <b>Time Complexity:</b>&emsp; <i>O(|V|+|E|)</i><br>
+                                    <b>Space Complexity:</b>&emsp; <i>O(|V|)</i></p>
+                                </div>
+                        </a>
+                    </div>
+            </div>
+            <div id="results"></div>
+    </section>
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!-- MST -->
+    <div id="mst" class="anchor w-100" style="height: 72px;">&emsp;</div>
+    <section id="minimum-spanning-tree">
+        <div class="container-fluid w-100" >
+            <!-- Gradient divider -->
+            <hr data-content="Minimum spanning tree" class="hr-text cd-hide">
+            <div class=" w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide">
+                <div class="col-sm-12"> A minimum spanning tree (MST) is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.</div>
+            </div>
+            <div class="card-deck mb-4 cd-hide">
+                <div id="prim's algorithm prims algorithm" class="algorithm shadow-highlight card" >
+                    <a href="prims.html" class="unstyled-link">
+                            <div class="card-body">
+                            <h5 class="card-title">Prim's Algorithm</h5>
+                            <h6 class="card-subtitle">Minimum spanning tree</h6>
+                            <p class="card-text">Prim's algorithm operates by building the MST one vertex at a time, from an arbitrary starting vertex, at each step adding the cheapest possible connection from the tree to another vertex.
+                                <br><br>
+                                <b>Time Complexity:</b><br>
+                                <b>adjacency matrix:</b>&emsp;<br><i>O(|V|²)</i><br>
+                                <b>binary heap & adjacency list:</b>&emsp; <i>O(|E|log|V|)</i><br>
+                                <b>fibonacci heap & adjacency list:</b>&emsp; <i>O(|E|+|V|log|V|)</i></p>
+                            </div>
+                    </a>
+                </div>
+                <div id="kruskal's algorithm kruskals algorithm" class="algorithm shadow-highlight card" >
+                    <a href="kruskals.html" class="unstyled-link">
+                            <div class="card-body">
+                            <h5 class="card-title">Kruskal's Algorithm</h5>
+                            <h6 class="card-subtitle">Minimum spanning tree</h6>
+                            <p class="card-text">Kruskal's algorithm works by stepping through all edges and adding the next lowest-weight edge that will not form a cycle to the MST.
+                                <br><br>
+                                <b>Time Complexity:</b>&emsp; <i>O(|E|+|V|log|V|)</i></p>
+                            </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+    <footer class="py-5 page-footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12 col-md-6 footer-child copyright">
+              AlgoVis © 2020 All Rights Reserved
+            </div>
+            <div class="col-sm-12 col-md-6 footer-child footer-links">
+              <a href="" class="mr-3">Privacy Policy</a>
+              <a href="">FAQ</a>
+              <div>
+                <small>Made with <i class="fa fa-heart highlighted-text"></i> by <a href="http://tobinatore.github.io/" target="_blank">Tobias Nöthlich</a>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
+    <script>
+        const $body = $("body");
+        const $header = $(".page-header");
+        const $navCollapse = $(".navbar-collapse");
+        const scrollClass = "scroll";
+        $(".card-subtitle").hide();
+
+        $(window).on("scroll", () => {
+            // Color background of navbar a solid red on scroll
+            if (this.matchMedia("(min-width: 992px)").matches) {
+                const scrollY = $(this).scrollTop();
+                scrollY > 0
+                    ? $body.addClass(scrollClass)
+                    : $body.removeClass(scrollClass);
+            } else {
+                $body.removeClass(scrollClass);
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // when clicking a link in the navbar scroll smoothly to the anchor
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        function showRelevant(name=""){
+        /*************************************************************/
+        /* This function selects the algorithms fitting to the users */
+        /* search terms and displays them.                           */
+        /*                                                           */
+        /* Input: name (string) - the input of the search field      */
+        /*************************************************************/    
+            
+            if (name == "") {
+                // search bar is empty -> show every algorithm and clear results <div>
+                $(".cd-hide").show();
+                $(".card-subtitle").hide();
+                $("#results").empty();
+            }else{
+                // Since I'm updating the results on every letter the user enters,
+                // it's important to clear the results <div>, so therea are no duplicates
+                // or no longer relevant algorithms displayed.
+                $("#results").empty();
+                $(".card-subtitle").show();
+                $('.cd-hide').hide();
+                let algoList = $('.algorithm[id*="' + name.toLowerCase() + '"]');
+                let deckString = "<div class=\"card-deck mb-4\">";
+                let lastFilled = algoList.length % 4;
+                if(algoList.length != 0){
+                // Due to each card-deck being a different a different entity I can't
+                // simply hide the algorithms which aren't needed, as this causes
+                // a linebreak betwenn algorithms with different parent elements.
+                // ------------------------------------------------------------------
+                // A solution for this is to grab the algorithms needed and append 
+                // them all to a new <div>.
+
+                // Loop over the list of elements and build the content of the new <div>
+                for (let i = 0; i < algoList.length; i++) {
+                    // 4 algorithms on every row --> close the current card-deck after
+                    // 4 algorithms are processed and open a new one.
+                    if ((i+1) % 4 == 0) {
+                        deckString += algoList[i].outerHTML + "</div><div class=\"card-deck mb-4\">";
+                    } else {
+                        deckString += algoList[i].outerHTML;
+                    }
+                    
+                }
+
+                // if the last row is not completely filled, 
+                // fill it with hidden elements so the visible
+                // cards are the right size
+                if(lastFilled != 0){
+                    for (let j = 0; j < 4-lastFilled; j++) {
+                        element = algoList[0].cloneNode(true);
+                        element.style.visibility = "hidden";
+                        deckString += element.outerHTML;                
+                    }
+                }
+                // Closing the las card-deck and filling the <div> with the results
+                // of the users search term.
+                deckString += "</div>";
+                $("#results").append(deckString);
+                }else{
+                    $("#results").append(`No results matching ${name}.`);
+                }
+            }
+            
+
+
+        }
+
+        $('#search').on('input',function(e){
+            showRelevant(this.value);
+        });
+
+    </script>
 </body>
 </html>

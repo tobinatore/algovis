@@ -23,7 +23,16 @@ class UnweightedUndirectedGraph{
     }
 
     getNoOfVertices(){
-        return this.adjList.length;
+        return this.adjList.size;
+    }
+
+    getNoOfEdges(){
+        var numEdges = 0;
+        for (let i in this.adjList) {
+            numEdges += this.adjList.get(i).length;
+        }
+
+        return numEdges/2; //Undirected Graph -> Every edge appears twice
     }
 };
 
@@ -41,7 +50,16 @@ class UnweightedDirectedGraph{
     }
 
     getNoOfVertices(){
-        return this.adjList.length;
+        return this.adjList.size;
+    }
+
+    getNoOfEdges(){
+        var numEdges = 0;
+        for (let i in this.adjList) {
+            numEdges += this.adjList.get(i).length;
+        }
+
+        return numEdges; // Directed Graph -> Every edge counts
     }
 }
 
@@ -78,6 +96,15 @@ class WeightedUndirectedGraph{
 
     getNoOfVertices(){
         return this.adjList.size;
+    }
+
+    getNoOfEdges(){
+        var numEdges = 0;
+        for (let i in this.adjList) {
+            numEdges += this.adjList.get(i).length;
+        }
+
+        return numEdges/2; //Undirected Graph -> Every edge appears twice
     }
 
     getSecondVertex(vertex){

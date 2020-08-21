@@ -22,7 +22,7 @@
       <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
         <a class="btn back-button navbar-brand" href="sorting.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
           <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
-            Prim's MST Visualization
+            Kruskal's MST Visualization
           </span>
         </div>
         
@@ -45,31 +45,22 @@
       <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
         <div class="ide w-100">
           <div class="row ml-auto mr-auto 1">
-            <span>q = graph.getNeighbours(start).sortAscending()</span>
+            <span>q = graph.getEdges().sortAscending()</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 2 ">
-            <span>mst = [start]</span>
+            <span>mst = []</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 3 ">
-            <span><span class="op">while</span>(!q.empty())</span>
+            <span><span class="op">while</span>(mst < graph.numVertices()-1)</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 4 ">
             <span>&emsp;&emsp;next = q.popFirst()</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 5">
-            <span>&emsp;&emsp;<span class="op">if</span>(notVisited(next.vertex))</span>
+            <span>&emsp;&emsp;<span class="op">if</span>(!formsCycle(mst, next))</span>
           </div>
           <div class="row ml-auto mr-auto mt-1 6">
-            <span>&emsp;&emsp;&emsp;&emsp;visit(next.vertex)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 7">
-            <span>&emsp;&emsp;&emsp;&emsp;q.add(graph.getNeighbours(next.vertex))</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 8">
-            <span>&emsp;&emsp;&emsp;&emsp;q.sortAscending()</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 9">
-            <span>&emsp;&emsp;&emsp;&emsp;mst.append(next.vertex)</span>
+            <span>&emsp;&emsp;&emsp;&emsp;mst.push(next)</span>
           </div>
       </div>
     </div>
@@ -82,26 +73,18 @@
           <span class="comment w-100">---------------------</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">1. Mark all vertices as unvisited.</span>
+          <span class="comment">1. Sort all edges by weight (non-decreasing).</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">2. Visit the first vertex.</span>
+          <span class="comment">2. Pick the edge with the smallest weight.</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">3. Find all edges of the vertex and add them to a queue (cost ascending).</span>
+          <span class="comment">3. Check if adding that edge to the MST forms a cycle. If it doesn't, add it.</span>
         </div>
         <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">4. Dequeue the first element.</span>
+          <span class="comment">4. Repeat steps 2 and 3 until MST has a lenght of (number of Vertices - 1).</span>
         </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment"> - If the destination vertex has been visited, ignore the edge.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment"> - If it's not been visited, visit it and repeat steps 3 - 4.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">5. The visited vertices and edges form the minimum spanning tree of the graph.</span>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -131,20 +114,12 @@
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-sm-5">Start: </div>
-            <div class="col-sm-7">
-                <input id="start-node" type="text" class="form-control" id="data-input" placeholder="0">
+            <div class="col-sm-12">
+              <button id="start-button" type="button" onclick="kruskals()" class="btn btn-danger highlighted-bg w-100">Start</button>
             </div>
           </div>
         </form>
       </div>
-    </div>
-    <div class="row mx-auto">
-      <div class="col-lg-6"></div>
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <button id="start-button" type="button" onclick="prims()" class="btn btn-danger highlighted-bg w-100">Start</button>
-      </div>
-      <div class="col-4"></div>
     </div>
 </div>
 
@@ -173,6 +148,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
 <script src="https://d3js.org/d3.v5.js"></script>
 <script src="js/graph.js"></script>
+<script src="js/union-find.js"></script>
 
 <script>
     const container = document.querySelector(".data-container");
@@ -473,119 +449,151 @@ function isVector(v) {
         );
     }
 
-    async function prims(){
+    function find(parent, i){
+        if(parent[i] == i) return i;
+
+        return this.find(parent, parent[i]);
+    }
+
+    function union(parent, rank, x, y){
+        var xroot = find(parent, x) 
+        var yroot = find(parent, y) 
+
+        if(rank[xroot] < rank[yroot]){ 
+            parent[xroot] = yroot 
+        }
+        else if (rank[xroot] > rank[yroot]){ 
+            parent[yroot] = xroot 
+        }
+        else{
+            parent[yroot] = xroot 
+            rank[xroot] += 1
+        }
+    }
+
+    function seen(seenEdges, check){
+        for (const i in seenEdges) {
+            if (seenEdges[i][0] == check[0] && seenEdges[i][1] == check[1]) {
+                return true;  
+            }
+        }
+        return false;
+    }
+
+
+    async function kruskals(){
         $("#start-button").prop("disabled",true);
         $(".button-top").prop("disabled",true);
         running = true;
-        var q = []
+        var q = [];
+        var result = [];
         var graph = g;
-        d3.selectAll("circle,path").attr("stroke", "#999")
-        
-        var next = (!$("#start-node").val() || Number($("#start-node").val() > data_nodes.length-1)) ? 0 : Number($("#start-node").val());
-        var neighbours = graph.adjList.get(next);
         var len = 0;
-        q = q.concat(neighbours)
-        if(q.length > 1){
-            q = q.sort((a, b) => (a.len > b.len) ? 1 : -1);
-          }
+        d3.selectAll("circle,path").attr("stroke", "#999");
         
-        for (let i = 0; i < q.length; i++) {
-            for (let j = 0; j < data_edges.length; j++) {
-                if (data_edges[j].v1 == next || data_edges[j].v2 == next) {
-                    d3.select("#path"+data_edges[j].id)
-                        .attr("stroke", "#272F32");
-                } 
-            }          
+        var parent = [];
+        var rank = [];
+        var seenEdges = [];
+        for (let i = 0; i < graph.adjList.size; i++) {
+            parent.push(i);
+            rank.push(0);
+            var nbs = graph.adjList.get(i);
+            for (let j = 0; j < nbs.length; j++) {
+                if(!seen(seenEdges, [i, nbs[j].id])){
+                    nbs[j].v1 = i;
+                    seenEdges.push([nbs[j].id, i])
+                }
+                else{
+                  nbs[j].rem = true;
+                }
+            }
+            q = q.concat(nbs);
         }
-        highlightCode("1");
-        await timeout(DELAY/2);
-        var mstSet = new Set();
-        mstSet.add(next);
-        d3.select("#circle"+next)
+
+        for (let i = 0; i < q.length; i++) {
+          if (q[i].rem == true) {
+            q.splice(i,1);
+            i-= 1;
+          }
+        }
+        q = q.sort((a, b) => (a.len > b.len) ? 1 : -1);
+        
+        while(result.length < graph.getNoOfVertices()-1){
+            var nextEdge = q.shift();
+            d3.select("#circle"+nextEdge.v1)
             .transition()
             .duration(DELAY)
             .attr("stroke", "#FF3D2E")
-            .attr("stroke-width", "10px"); 
-        
-        highlightCode("3");
-        await timeout(DELAY/2);
-        while(q.length > 0){
-            if(mstSet.size == Number(graph.adjList.size)){
-              break;
-            }
-            highlightCode("4");
-            await timeout(DELAY/2);
-            var potNext = q.shift();
-            var last = graph.getSecondVertex(potNext);
-             var id = await findEdgeForAnim(last, potNext.id);
+            .attr("stroke-width", "10px");
+            d3.select("#circle"+nextEdge.id)
+            .transition()
+            .duration(DELAY)
+            .attr("stroke", "#FF3D2E")
+            .attr("stroke-width", "10px");
+             
 
-            highlightCode("5");
-            await timeout(DELAY/2);
-            if(!(mstSet.has(potNext.id))){
-                d3.select("#circle"+potNext.id)
-                    .transition()
-                    .duration(DELAY)
-                    .attr("stroke", "#FF3D2E")
-                    .attr("stroke-width", "10px");
+            await findEdgeForAnim(nextEdge.v1, nextEdge.id);
+            var x = find(parent, nextEdge.v1);
+            var y = find(parent, nextEdge.id);
 
-                d3.select("#path"+data_edges[id].id).attr("class", "MST");
-               
-                highlightCode("6");
-                await timeout(DELAY/2);
-                highlightCode("7");
-                await timeout(DELAY/2);
-                next = potNext.id;
-                
-                highlightCode("8");
-                await timeout(DELAY/2);
-                for (let j = 0; j < data_edges.length; j++) {
-                    if (data_edges[j].v1 == next || data_edges[j].v2 == next) {
-                        d3.select("#path"+data_edges[j].id)
-                            .filter(function() {
-                                return !this.classList.contains('MST')
-                            })
-                            .transition()
-                            .duration(DELAY/2)
-                            .attr("stroke", "#272F32")
-                            .attr("stroke-width", 5);
-                        await timeout(DELAY/2);
-                    } 
-                }          
-              
-                highlightCode("9");
-                await timeout(DELAY/2);
-                mstSet.add(next);
-                neighbours = graph.adjList.get(next);
-                q = q.concat(neighbours);
-                q = q.sort((a, b) => (a.len > b.len) ? 1 : -1);
-                len += potNext.len;
+            if(x != y){
+              d3.select("#circle"+nextEdge.v1)
+                  .attr("class", "MST")
+              d3.select("#circle"+nextEdge.id)
+                  .attr("class", "MST")
+              for (var i in data_edges) {
+                if((data_edges[i].v1 == nextEdge.v1 && data_edges[i].v2 == nextEdge.id) 
+                    || (data_edges[i].v1 == nextEdge.id && data_edges[i].v2 == nextEdge.v1) ){
+                    d3.select("#path"+data_edges[i].id)
+                    .attr("class", "MST"); 
+                  }
+                }
+                len += nextEdge.len;
+                result.push(nextEdge);
+                union(parent, rank, x, y)
             }
             else{
-                for (var i in data_edges) {
-                  var stop = false;
-                  if((data_edges[i].v1 == last && data_edges[i].v2 == potNext.id) 
-                      || (data_edges[i].v1 == potNext.id && data_edges[i].v2 == last)){
-                      d3.select("#path"+data_edges[i].id)
-                      .filter(function() {
-                          return !this.classList.contains('MST')
-                      })
-                      .transition()
-                      .duration(DELAY)
-                      .attr("stroke", "#DDD"); 
-                  }
+              d3.select("#circle"+nextEdge.v1)
+                    .filter(function() {
+                        return !this.classList.contains('MST')
+                    })
+                  .transition()
+                  .duration(DELAY)
+                  .attr("stroke", "#DDD")
+                  .attr("stroke-width", "5px"); 
+              d3.select("#circle"+nextEdge.id)
+                    .filter(function() {
+                        return !this.classList.contains('MST')
+                    })
+                  .transition()
+                  .duration(DELAY)
+                  .attr("stroke", "#DDD")
+                  .attr("stroke-width", "5px"); 
+            }
+            for (var i in data_edges) {
+                if((data_edges[i].v1 == nextEdge.v1 && data_edges[i].v2 == nextEdge.id) 
+                    || (data_edges[i].v1 == nextEdge.id && data_edges[i].v2 == nextEdge.v1) ){
+                    d3.select("#path"+data_edges[i].id)
+                    .filter(function() {
+                        return !this.classList.contains('MST')
+                    })
+                    .transition()
+                    .duration(DELAY)
+                    .attr("stroke", "#DDD"); 
                 }
             }
         }
-        
-        highlightCode("0");
+        for (var i in data_edges) {
+            d3.select("#path"+data_edges[i].id)
+                .filter(function() {
+                    return !this.classList.contains('MST')
+                })
+                .transition()
+                .duration(DELAY/10)
+                .attr("stroke", "#DDD"); 
+        }
         $("#nodes").html("Length of the MST: " + len);
-        d3.selectAll("path")
-            .filter(function() {
-                return !this.classList.contains('MST')
-            })
-            .transition()
-            .duration(DELAY/10)
-            .attr("stroke", "#DDD");
+
         running = false;
         $("#start-button").prop("disabled",false);
         $(".button-top").prop("disabled",false);

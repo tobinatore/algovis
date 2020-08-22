@@ -104,6 +104,13 @@ hr.hr-text {
     position: relative;
     margin: 0 auto;
   }
+
+  .data-container-big {
+    width: 100%;
+    height: 584px;
+    position: relative;
+    margin: 0 auto;
+  }
   
   .block {
     width: 28px;

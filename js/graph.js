@@ -49,6 +49,13 @@ class UnweightedDirectedGraph{
         this.adjList.get(v).push(w);
     }
 
+    edgeExists(v,w){
+        var array = this.adjList.get(v);
+    
+        if(!array) return false;
+        return (array.indexOf(w) != -1) ? true : false;
+    }
+
     getNoOfVertices(){
         return this.adjList.size;
     }

@@ -1,0 +1,505 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AlgoVis - Online Algorithm Visualization">
+  <meta name="author" content="Tobias Nöthlich">
+  <title>AlgoVis - Online Algorithm Visualization</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+
+<body class="scroll">
+  <header class="page-header w-100" >
+    <div class="container-fluid">
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+        <a class="btn back-button navbar-brand" href="sorting.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
+          <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
+            Counting sort Visualization
+          </span>
+        </div>
+        
+      </nav>
+    </div>
+  </header>
+
+    <div class="container-fluid px-0 mt-2" >
+        <div class="">
+        <div class="data-container px-1 mb-0 mt-0 w-100">
+          <svg id="visu"></svg>
+        </div>
+        </div>
+        <div class="row mx-auto">
+          <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+            <div class="ide w-100">
+            <div class="row ml-auto mr-auto 1">
+              <span>keys = [0,0,0,0,0,0,0,0,0]</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 2 ">
+              <span><span class="op">for</span>(i = 0 to length(list))</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 3">
+              <span>&emsp;&emsp;keys[list[i]-1]++;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 4">
+              <span><span class="op">for</span>(k = 0 to length(keys))</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 5">
+              <span>&emsp;&emsp;<span class="op">while</span>(keys[k] != 0)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 6">
+              <span>&emsp;&emsp;&emsp;&emsp;results.push(k+1)</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1 7">
+                <span>&emsp;&emsp;&emsp;&emsp;keys[k]--;</span>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+          <div class="ide w-100 pl-0">
+            <div class="row ml-auto mr-auto">
+              <span class="comment">SHORT EXPLANATION</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">--------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">1.&emsp; &emsp;Initialize the key array with zeros,</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">2.&emsp; &emsp;For every number in the list increase the respective index in the key array.</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">3. &emsp;&emsp;Loop over all elements of the key array.</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">3.1. While the current element is not zero, add the index to the result</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">&emsp;&emsp;&emsp;&emsp;&emsp;and decrease the counter.</span>
+              </div>
+          </div>
+        </div>
+      </div>
+        <hr data-content="Settings" class="hr-text mb-3 mt-4">
+        <div class="row mx-auto">
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <form>
+              <div class="form-group row">
+                  <div class="col-sm-3">Elements: </div>
+                  <div class="col-sm-9">
+                    <span>5&emsp;</span>  
+                    <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="50" data-slider-step="1" data-slider-value="15"/>
+                    <span id="max">&emsp;50</span>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <div class="col-sm-3">Data Generation</div>
+                  <div class="col-sm-9">
+                    <div class="form-check">
+                      <input id="own-data" class="form-check-input" type="checkbox" id="gridCheck1">
+                      <label class="form-check-label" for="gridCheck1">
+                        Use own data
+                      </label>
+                    </div>
+                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <form>
+              <div class="form-group row">
+                <div class="col-sm-5">Speed: </div>
+                <div class="col-sm-7">
+                  <span>Slow&emsp;</span>
+                  <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="10" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
+                  <span>&emsp;Fast</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="data-input" class="col-sm-5 col-form-label">Your data (max. 50 elements):</label>
+                <div class="col-sm-7">
+                  <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row mx-auto">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <button id="sort-button" type="button" onclick="countingSort()" class="btn btn-danger highlighted-bg w-100">Sort</button>
+          </div>
+          <div class="col-4"></div>
+        </div>
+    </div>
+
+    <footer class="pt-5 page-footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-6 footer-child copyright">
+            AlgoVis © 2020 All Rights Reserved
+          </div>
+          <div class="col-12 col-md-6 footer-child footer-links">
+            <a href="" class="mr-3">Privacy Policy</a>
+            <a href="">FAQ</a>
+            <div>
+              <small>Made with <i class="fa fa-heart highlighted-text"></i> by <a href="http://tobinatore.github.io/" target="_blank">Tobias Nöthlich</a>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+<script src="https://d3js.org/d3.v5.js"></script>
+
+<script>
+  $(document).ready(function() {
+    d3.select("#visu").attr("width", "100%").attr("height", "370").attr("viewBox", "0 0 "+ globalThis.screen.availWidth + " 370");
+    var slider = new Slider("#slider",{
+      handle : "square"
+    });
+
+    
+    var countArr = d3.select("#visu").selectAll("path")
+            .data([1,2,3,4,5,6,7,8,9])
+            .enter()
+            .append("g").attr("id", function(d,i){
+                return "g-count"+i;
+            })//.attr("transform", function(d, i) {return "translate(" + (xCount(i)) + ",0)"})
+            .attr("y", function(d) {
+                return h - (d * 10) - 5;
+            })
+        
+        countArr.append("rect")
+            .attr("width", w / 9 - (barPadding))
+            .attr("transform", function(d, i) {return "translate(" + (xCount(i)) + ",0)"})
+            .attr("y", function(d) {
+                return h - (d * 10)-16;
+            })
+            .attr("height", function(d) {
+                return d*10;
+            })
+            .attr("fill", "#DDD")
+            .attr("id", function(d,i){return "rect-count"+i;})
+        
+        countArr
+            .append("text")
+            .text("0")
+            .attr("transform", function(d, i) {return "translate(" + (xCount(i)+((w/9)/2)) + ",0)"})
+            .attr("y", function(d) {
+                return h ;//- (d * 10) - 5;
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "16px")
+            .attr("fill", "black").attr("text-anchor", "middle")
+            .attr("id", function(d,i){return "text-count"+i;});
+
+        countArr
+            .append("text")
+            .text(function(d){return d;})
+            .attr("transform", function(d, i) {return "translate(" + (xCount(i)+((w/9)/2)) + ",0)"})
+            .attr("y", function(d) {
+                return h - (d * 10) - 21;
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "16px")
+            .attr("fill", "black").attr("text-anchor", "middle")
+            .attr("id", function(d,i){return "text-num"+i;});
+
+    slider.on("slide", function(slideEvt) {
+      newSet(slideEvt);
+    });
+
+    $('#data-input').on('input',function(e){
+      ownData(this.value);
+    });
+
+    $('#own-data').change(function() {
+      if (this.checked) {
+        slider.disable();
+        $("#data-input").prop('disabled', false);
+      } else {
+        slider.enable();
+        $("#data-input").prop('disabled', true);
+      }
+    });
+
+    var speedSlider = new Slider("#speedslider",{
+	    reversed : true,
+      tooltip : "none",
+      handle : "square"
+    });
+
+    speedSlider.on("slide", function(slideEvt) {
+      setDelay(slideEvt);
+    });
+
+    if (globalThis.screen.availWidth <= 360) {
+      slider.setAttribute("max", "20");
+      slider.setAttribute("value", "15");
+      $('#max').html("&emsp;20")
+
+    }
+  });
+</script>
+
+<script>
+    const container = document.querySelector(".data-container");
+    var FLAG = false;
+    var DELAY = 200;
+    var w = globalThis.screen.availWidth;
+    var h = 370;
+    var barPadding = 5;
+    var data = [];
+    var x;
+    var svg = d3.select("#visu");
+    var xCount;
+
+    function setDelay(delay){
+      DELAY = delay;
+    }
+
+
+    function clamp(number, min, max) {
+      return Math.max(min, Math.min(number, max));
+    }
+
+
+    function newSet(num=20){
+      data  = [];
+      
+      for(let i = 0; i<num; i++) {
+        data.push(Math.floor(Math.random()*9)+1);
+      }
+
+      clearBlocks();
+      generateBlocks(data);
+    }   
+
+
+    function stop(){
+      FLAG = true;
+    }
+
+
+    function ownData(d = "1,2,3,4,5,6"){
+      data = d.split(",");
+      if (data.length > 50) {
+        data = data.slice(0, 50);
+      }
+      for (let i = 0; i < data.length; i++) {
+        data[i] = clamp(data[i],0,119);
+        
+      }
+      clearBlocks();
+      generateBlocks(data);
+    }
+
+    async function unslide(i, key, keyPos, num){
+        return new Promise(resolve => {        
+        
+        
+        d3.select("#text-count"+keyPos).transition().delay(DELAY).text(key-1);
+        if (key-1 == 0) {
+            d3.select("#rect-count"+keyPos).transition().delay(DELAY).attr("fill", "#DDD");
+        }
+
+        var text1 = d3.select("#text" + i)
+            .attr("transform", function(d) {return "translate(" + (x(i)+((w/data.length)/2)) + ", 0)";})
+            .attr("y",((h/3) - (num * 10) - 21))
+            .transition("text1").delay(DELAY)
+            .attr("hidden", null);
+            
+        var rect = d3.select("#rect" + i)
+            .transition("rect").duration(DELAY)
+            .attr("transform", function(d) {return "translate(" + x(i) + ", "+((h/3) - (num * 10) - 16)+")";})
+            .attr("width", w / data.length - (barPadding));
+        
+        setTimeout(() => {
+          resolve();
+        },(DELAY < 100) ? DELAY*5 : DELAY*2);
+      }, 600);
+    }
+
+    async function slide(i, num, key) {
+      return new Promise(resolve => {        
+        
+        d3.select("#rect-count"+num).transition().delay(DELAY).attr("fill", "#FF3D2E");
+        d3.select("#text-count"+num).transition().delay(DELAY).text(key);
+
+        var text1 = d3.select("#text" + i)
+            .transition("text1").duration(DELAY)
+            .attr("hidden", true)
+            .attr("class", "num-text"+(num+1));
+            //.attr("transform", function(d) {return "translate(" + (xCount(num)+((w/9)/2)) + ", 0)";})
+            //.attr("y",(h - (data[i] * 10) - 21));
+            
+        var rect = d3.select("#rect" + i)
+            .transition("rect").duration(DELAY)
+            .attr("transform", function(d) {return "translate(" + xCount(num) + ", "+(h - (data[i] * 10) - 16)+")";})
+            .attr("y", 0)
+            .attr("width", w / 9 - (barPadding)).attr("class", "num"+(num+1));
+        
+        setTimeout(() => {
+          resolve();
+        },(DELAY < 100) ? DELAY*5 : DELAY*2);
+      }, 600);
+    }
+
+
+    function clearBlocks(){
+        var test=svg.selectAll("rect")
+            .filter(function(d,i){
+                return !(this.id.includes("count"));
+            })
+            test.data([])
+            .exit()
+            .remove();
+        svg.selectAll("text")
+        .filter(function(d,i){
+                return !(this.id.includes("count")||this.id.includes("num"));
+            })
+            .data([])
+            .exit()
+            .remove();
+    }
+
+
+    function generateBlocks(data) {
+        x = d3.scaleLinear()
+            .domain([0,data.length])
+            .range([0, w]);
+
+        xCount = d3.scaleLinear()
+                    .domain([0,9])
+                    .range([0, w]);
+
+        var bars =
+            svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("g")
+            
+            .attr("id", function(d,i){return "g"+i;});
+        bars.append("rect").attr("width", w / data.length - barPadding)
+            .attr("height", function(d) {
+                return d*10;
+            }).attr("y", function(d) {
+                return (h/3) - d*10;
+            }).attr("fill", "#FF3D2E")
+            .attr("id", function(d,i){return "rect"+i;}).attr("transform", function(d, i) {return "translate(" + (x(i)) + ",0)"});
+        bars
+            .append("text")
+            .text(function(d) {
+                return d;
+            })
+            .attr("transform", function(d, i) {return "translate(" + (x(i)+((w/data.length)/2)) + ",0)"})
+            .attr("y", function(d) {
+                return (h/3) - (d * 10) - 5;
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "14px")
+            .attr("fill", "black").attr("text-anchor", "middle")
+            .attr("id", function(d,i){return "text"+i;});
+            
+    }
+
+
+    function highlightCode(elementClass){
+      $(".code-highlight").removeClass("code-highlight");
+      $(`.${elementClass}`).addClass("code-highlight");
+    }
+    
+    async function timeout(delay){
+        await new Promise(resolve =>
+            setTimeout(() => {  	
+                resolve();            
+            }, delay)               
+        );
+    }
+
+    async function countingSort() {
+        $("#sort-button").prop('disabled', true);
+        let keys = Array.from({ length: 9 }, () => 0);
+        let results = [];
+        let sameClass = [];
+
+        for(let i in data){
+            highlightCode("3");
+            keys[data[i]-1] += 1;
+            await slide(i, data[i]-1, keys[data[i]-1]);
+        }
+
+        for(let k in keys){
+            let count = keys[k];
+            while(count != 0){
+                results.push(Number(k)+1);
+                count--;
+            }
+        }
+        for(let r in results){
+            var dRect = d3.selectAll(".num"+results[r])
+            if(dRect.size() > 1){
+                sameClass.push({id:r, classOld:data[r]});
+                d3.select(".num"+results[r]).attr("id", "rect"+r).attr("class","doubled");
+            }
+            else{
+                dRect.attr("id", "rect"+r);
+            }
+
+            var dText = d3.selectAll(".num-text"+results[r])
+            if(dText.size() > 1){
+                sameClass.push({id:r, classOld:data[r]});
+                d3.select(".num-text"+results[r]).attr("id", "text"+r).attr("class","doubled");
+            }
+            else{
+                dText.attr("id", "text"+r);
+            }
+        }
+
+        for(s in sameClass){
+                d3.select("#rect"+sameClass[s].id).attr("class", "num"+sameClass[s].classOld);
+            }
+
+        let id = 0;
+        highlightCode("4");
+        await timeout(DELAY/2);
+        for(let k in keys){
+            highlightCode("5");
+            await timeout(DELAY/2);
+            while(keys[k] != 0){
+                highlightCode("6");
+                await unslide(id, keys[k], k, results[id]);
+                highlightCode("7");
+                await timeout(DELAY/2);
+                keys[k]--;
+                id++;
+            }
+        }
+
+        console.log(results);
+        $("#sort-button").prop('disabled', false);
+        highlightCode("0");
+    }
+    newSet(15);
+
+</script>
+</body>
+</html>

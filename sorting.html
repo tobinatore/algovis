@@ -470,19 +470,6 @@
                 <div class="col-sm-12"> Non-Comparison Sorts are sorting algorithms which sort a given input without comparing the elements, rather making certain assumptions about the data. Examples for non-comparison sorting algorithms are Counting sort which sorts using key-value and Bucket Sort which examines bits of keys.</div>
             </div>
             <div class="card-deck mb-4 cd-hide">
-                <div id="bucketsort" class="algorithm shadow-highlight card" >
-                    <a href="bucketsort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Bucketsort</h5>
-                            <h6 class="card-subtitle">Non-Comparison sort</h6>
-                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
                 <div id="burstsort" class="algorithm shadow-highlight card" >
                     <a href="burstsort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -522,34 +509,22 @@
                             </div>
                     </a>
                 </div>
+                <div id="radixsort" class="algorithm shadow-highlight card" >
+                    <a href="radixsort.html" class="unstyled-link ">
+                            <div class="card-body">
+                            <h5 class="card-title">Radix Sort</h5>
+                            <h6 class="card-subtitle">Non-Comparison sort</h6>
+                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                                <br><br>
+                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
+                                <b>Average-case:</b> <i>O(n²)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                            </div>
+                    </a>
+                </div>
             </div>
             <div class="card-deck mb-4 cd-hide">
-                <div id="lsdradixsort" class="algorithm shadow-highlight card" >
-                    <a href="lsdradixsort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">LSD Radix Sort</h5>
-                            <h6 class="card-subtitle">Non-Comparison sort</h6>
-                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
-                <div id="msdradixsort" class="algorithm shadow-highlight card" >
-                    <a href="msdradixsort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">MSD Radix Sort</h5>
-                            <h6 class="card-subtitle">Non-Comparison sort</h6>
-                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
+                
                 <div id="pidgeonholesort" class="algorithm shadow-highlight card" >
                     <a href="pidgeonholesort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -804,7 +779,7 @@
                         deckString += element.outerHTML;                
                     }
                 }
-                // Closing the las card-deck and filling the <div> with the results
+                // Closing the last card-deck and filling the <div> with the results
                 // of the users search term.
                 deckString += "</div>";
                 $("#results").append(deckString);

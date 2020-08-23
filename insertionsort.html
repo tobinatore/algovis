@@ -1,35 +1,86 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AlgoVis - Online Algorithm Visualization">
-  <meta name="author" content="Tobias Nöthlich">
-  <title>AlgoVis - Online Algorithm Visualization</title>
-  
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Insertionsort - AlgoVis.io</title>
+  <meta content="AlgoVis is an online algorithm visualization tool." name="description">
+  <meta content="algorithm visualization tool online" name="keywords">
+
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
-<body class="scroll">
-  <header class="page-header w-100" >
-    <div class="container-fluid">
-      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
-        <a class="btn back-button navbar-brand" href="sorting.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
-          <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
-            Insertionsort Visualization
-          </span>
-        </div>
-        
-      </nav>
-    </div>
-  </header>
+<body>
 
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top header-inner-pages">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">hello@algovis.io</a>
+      </div>
+      <div class="social-links">
+        <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
+        <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
+        <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container-fluid d-flex align-items-center">
+      <a class="btn back-button mr-4" href="sorting.html"><i class="bx bx-arrow-back white-text" aria-hidden="true"></i> Back</a>
+      <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sorting.html">Sorting</a></li>
+          <li>Insertionsort</li>
+        </ol>
+        <h2>Insertionsort visualization</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page pt-4">
   <div class="container-fluid px-0 mt-2" >
     <div class="">
     <span class="row mx-auto px-0 w-100"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of comparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
@@ -136,37 +187,78 @@
     <div class="row mx-auto">
       <div class="col-4"></div>
       <div class="col-4">
-        <button id="sort-button" type="button" onclick="insertionsort()" class="btn btn-danger highlighted-bg w-100">Sort</button>
+        <button id="sort-button" type="button" onclick="insertionsort()" class="btn btn-danger red w-100">Sort</button>
       </div>
       <div class="col-4"></div>
     </div>
 </div>
-
-<footer class="pt-5 page-footer">
-  <div class="container-fluid">
+</section>
+</main>
+<!-- ======= Footer ======= -->
+<footer id="footer">
+<div class="footer-top">
+  <div class="container">
     <div class="row">
-      <div class="col-12 col-md-6 footer-child copyright">
-        AlgoVis © 2020 All Rights Reserved
-      </div>
-      <div class="col-12 col-md-6 footer-child footer-links">
-        <a href="" class="mr-3">Privacy Policy</a>
-        <a href="">FAQ</a>
-        <div>
-          <small>Made with <i class="fa fa-heart highlighted-text"></i> by <a href="http://tobinatore.github.io/" target="_blank">Tobias Nöthlich</a>
-          </small>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-info">
+          <h3>AlgoVis.io</h3>
+            <strong>Email:</strong> hello@algovis.io<br>
+          </p>
+          <div class="social-links mt-3">
+            <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
+            <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
+            <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
+            <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+          </div>
         </div>
+      </div>
+      <div class="col-lg-2 col-md-6 footer-links"></div>
+      <div class="col-lg-2 col-md-6 footer-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="index.html#categories">Categories</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+        </ul>
       </div>
     </div>
   </div>
-</footer>
+</div>
 
+<div class="container">
+  <div class="copyright">
+    &copy; Copyright <strong><span>AlgoVis.io</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    <!-- All the links in the footer should remain intact. -->
+    <!-- You can delete the links only if you purchased the pro version. -->
+    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+  </div>
+</div>
+</footer><!-- End Footer -->
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/venobox/venobox.min.js"></script>
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
 <script src="https://d3js.org/d3.v5.js"></script>
 
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 
 <script>
   $(document).ready(function() {
@@ -301,7 +393,7 @@
       }
         setTimeout(() => {
           resolve();
-        },(DELAY < 100) ? DELAY*8 : DELAY*2);
+        },(DELAY < 80) ? DELAY*8 : DELAY*2);
       
       }, 600);
     }
@@ -336,7 +428,7 @@
           .attr("height", function(d) {
             return d*3;
           })
-          .attr("fill", "#FF3D2E")
+          .attr("fill", "#CC1616")
           .attr("id", function(d,i){return "rect"+i;});
 
       var labels =

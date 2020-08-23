@@ -1,0 +1,224 @@
+@-ms-viewport{
+  width: device-width;
+}
+  
+
+/* HORIZONTAL RULE
+–––––––––––––––––––-------––––––––––––––––––––––––––––––– */
+hr.hr-text {
+    position: relative;
+    border: none;
+    height: 1px;
+    background: #272F32;
+  }
+  
+  hr.hr-text::before {
+    content: attr(data-content);
+    display: inline-block;
+    background: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #cc1616;
+    border-radius: 30rem;
+    padding: 0.2rem 0.2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+/* VISUALIZATION CONTAINER & BLOCKS
+–––––––––––––––––––––––-------––––––––––––––––––––––––––– */
+.data-container {
+    width: 100%;
+    height: 384px;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .data-container-big {
+    width: 100%;
+    height: 584px;
+    position: relative;
+    margin: 0 auto;
+  }
+  
+  .block {
+    width: 28px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #CC1616;
+    transition: 0.2s all ease;
+  }
+  
+  .block_id {
+    position: absolute;
+    top: -24px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .block-selected{
+    background-color: #9DBDC6;
+  }
+  
+/* SLIDERS
+––––––––––––––––––––––––-------–––––––––––––––––––––––––– */
+.slider-selection {
+    background: #CC1616;
+}
+
+.slider-handle{
+    background: #e42619;
+}
+
+.slider-track-high{
+    background: #999;
+}
+
+/* LINKS
+––––––––––––––––––––––––––––-------–––––––––––––––––––––– */
+.unstyled-link{
+    color: #272F32;
+    text-decoration: none;
+}
+
+.unstyled-link:hover,.unstyled-link:focus{
+    color: #272F32;
+    text-decoration: none;
+}
+
+.link-bg:hover, .link-bg:focus{
+    background-color: #FEF0F0;
+}
+
+/* SIMULATED IDE
+–––––––––––––––––––––––––––––––-------––––––––––––––––––– */
+.ide{
+    background-color: #272F32;
+    color: #fff;
+    font-family: monospace;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.op {
+    color:#71D1E3 ;
+}
+
+.var {
+    color:#FACF5A;
+}
+
+.code-highlight{
+  background-color: #CC1616;
+}
+
+.comment{
+  color: #34e000;
+}
+  
+  
+/* BORDERLESS FORMS
+––––––––––––––––––––––––––––––––––––––––––––-------–––––– */
+.form-control-borderless {
+  border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+
+/* HIDING 'X' FOR CLEARING SEARCH BAR IN WEBKIT BROWSERS
+–––––––––––––––––––––––––––––––––––––––––––––-------––––– */
+input[type="search"]::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+}
+
+
+/* EXPLANATION BOX
+–––––––––––––––––––––––––––––-------––––––––––––––––––––– */
+.explanation {
+  padding: 30px 50px 30px 30px;
+  background: #FEF0F0;
+  border-left: 2px solid #CC1616;
+}
+
+
+
+/* SHADOW ON HOVER FOR ALGORITHMS
+–––––––––––––––––––––––––––––-------––––––––––––––––––––– */
+.shadow-highlight {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.shadow-highlight::after{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transition: opacity 0.3s ease-in-out;
+    background-color: #CC1616;
+    color: white;
+}
+
+.card-body:hover{
+  color:white;
+}
+
+.shadow-highlight:hover {
+  transform: scale(1.05, 1.05);
+}
+
+.shadow-highlight:hover::after {
+  opacity: 1;
+}
+
+.back-button {
+  border: 1px solid #FFF ;
+  border-radius: 7%;
+  color: white;
+}
+
+.back-button:hover {
+  color: #171717;
+  background-color: white;
+}
+
+.button-top{
+  border: 0px;
+  background-color: #FFF;
+}
+
+.button-top:hover{
+  background-color: rgb(201, 201, 201);
+}
+
+#nodes{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.red{
+  background-color: #CC1616;
+}
+
+.border-dark-nb{
+  border: 2px solid #171717;
+  border-bottom: none;
+}
+
+.border-dark-nt{
+  border: 2px solid #171717;
+  border-top: none;
+}

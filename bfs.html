@@ -1,215 +1,307 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AlgoVis - Online Algorithm Visualization">
-  <meta name="author" content="Tobias Nöthlich">
-  <title>AlgoVis - Online Algorithm Visualization</title>
-  
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>BFS - AlgoVis.io</title>
+  <meta content="AlgoVis is an online algorithm visualization tool." name="description">
+  <meta content="algorithm visualization tool online" name="keywords">
+
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
-<body class="scroll">
-  <header class="page-header w-100" >
-    <div class="container-fluid">
-      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
-        <a class="btn back-button navbar-brand" href="graphs.html"><i class="fa fa-arrow-left white-text" aria-hidden="true"></i> Back</a>
-          <span class="w-100 text-center white-text" style="font-size: x-large; font-weight: bold;">
-            Breadth-First-Search Visualization
-          </span>
-        </div>
-        
-      </nav>
-    </div>
-  </header>
+<body>
 
-  <div class="container-fluid px-0 mt-0" >
-    <div class="row w-100 mx-auto">
-        <div class="col-10 mx-0 px-0">
-            <span class="large-text logo-font">Draw your graph:</span>
-        </div>
-        <div class="col-2 mr-0 px-0 my-0 py-0 text-right"> <button onclick="clearCanvas()" class="button-top">Clear</button><button class="button-top ml-1" onclick="randomGraph()">Random</button></div>
-        </div>
-    <div class="data-container border-dark-nb p-1 mb-0 mt-0 w-100">
-      <svg id="visu"></svg>
-    </div>
-    <div class="w-100 row mx-auto border-dark-nt my-0 py-0"><p id="nodes" class="my-0 py-0">()</p></div>
-    <div class="row mx-auto">
-      <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
-        <div class="ide w-100">
-          <div class="row ml-auto mr-auto 1">
-            <span>start = <span class="op">input</span>(start)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 2 ">
-            <span>visited = []</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 3 ">
-            <span><span class="op">for</span>(i = 0 to Graph.numVertices)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 4">
-            <span>&emsp;&emsp;visited[i] = <span class="var">false</span></span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 5">
-            <span>visited[start] = <span class="var">true</span></span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 6">
-            <span>q = []</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 7">
-            <span>q.push(start)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 8">
-            <span><span class="op">while</span>(length(q) != 0)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 9">
-            <span>&emsp;&emsp;queueElement = q.shift()</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 10">
-            <span>&emsp;&emsp;neighbours = Graph.getNeighboursOf(queueElement)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 11">
-            <span>&emsp;&emsp;<span class="op">for</span>(x = 0 to length(neighbours))</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 12">
-            <span>&emsp;&emsp;&emsp;&emsp;nb = neighbours[x]</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 13">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!visited[nb])</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 14">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;visited[nb] = <span class="var">true</span></span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 15">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;q.push(nb)</span>
-          </div>
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top header-inner-pages">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">hello@algovis.io</a>
       </div>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
-      <div class="ide w-100 pl-0">
-        <div class="row ml-auto mr-auto">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment w-100">---------------------</span>
-          </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">| SHORT EXPLANATION |</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">---------------------</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">1. Visit the first vertex</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">2. Find all vertices this vertex has a connection to</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">3. Visit each of those vertices and push them onto the queue</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">4. Take the next vertex from the queue</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">5. Repeat steps 2 - 4 until the queue is empty</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-            <span class="comment">&emsp;</span>
-        </div>
+      <div class="social-links">
+        <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
+        <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
+        <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
       </div>
     </div>
   </div>
-    <hr data-content="Instructions" class="hr-text mb-3 mt-4">
-    <div class="row mx-auto">
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <form>
-          <div class="row">
-              <div class="col-12">
-                  To draw a new vertex, simply click anywhere on the canvas above.<br>
-                  To create an edge between two vertices, click on the first vertex and then on the second one.<br>
-                  You can create a random graph by clicking on the 'Random' button above the canvas.<br>
-                  To clear the canvas, use the 'Clear' button.
-                  
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container-fluid d-flex align-items-center">
+      <a class="btn back-button mr-4" href="graphs.html"><i class="bx bx-arrow-back white-text" aria-hidden="true"></i> Back</a>
+      <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header ->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="graphs.html">Graphs</a></li>
+          <li>Breadth-first search</li>
+        </ol>
+        <h2>Breadth-first search visualization</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page pt-4">
+      <div class="container-fluid px-0 mt-0" >
+        <div class="row w-100 mx-auto">
+            <div class="col-sm-9 col-md-10 mx-0 px-0">
+                <span style="font-weight: bold;">Draw your graph:</span>
+            </div>
+            <div class="col-sm-3 col-md-2 mr-auto px-0 my-0 py-0 text-right"> <button onclick="clearCanvas()" class="button-top">Clear</button><button class="button-top ml-1" onclick="randomGraph()">Random</button></div>
+            </div>
+        <div class="data-container border-dark-nb p-1 mb-0 mt-0 w-100">
+          <svg id="visu"></svg>
+        </div>
+        <div class="w-100 row mx-auto border-dark-nt my-0 py-0"><p id="nodes" class="my-0 py-0">()</p></div>
+        <div class="row mx-auto">
+          <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+            <div class="ide w-100">
+              <div class="row ml-auto mr-auto 1">
+                <span>start = <span class="op">input</span>(start)</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 2 ">
+                <span>visited = []</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 3 ">
+                <span><span class="op">for</span>(i = 0 to Graph.numVertices)</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 4">
+                <span>&emsp;&emsp;visited[i] = <span class="var">false</span></span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 5">
+                <span>visited[start] = <span class="var">true</span></span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 6">
+                <span>q = []</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 7">
+                <span>q.push(start)</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 8">
+                <span><span class="op">while</span>(length(q) != 0)</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 9">
+                <span>&emsp;&emsp;queueElement = q.shift()</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 10">
+                <span>&emsp;&emsp;neighbours = Graph.getNeighboursOf(queueElement)</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 11">
+                <span>&emsp;&emsp;<span class="op">for</span>(x = 0 to length(neighbours))</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 12">
+                <span>&emsp;&emsp;&emsp;&emsp;nb = neighbours[x]</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 13">
+                <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!visited[nb])</span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 14">
+                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;visited[nb] = <span class="var">true</span></span>
+              </div>
+              <div class="row ml-auto mr-auto mt-1 15">
+                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;q.push(nb)</span>
               </div>
           </div>
-        </form>
-      </div>
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <form>
-          <div class="form-group row">
-            <div class="col-sm-5">Speed: </div>
-            <div class="col-sm-7">
-              <span>Slow&emsp;</span>
-              <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="350" data-slider-max="1000" data-slider-step="10" data-slider-value="500"/>
-              <span>&emsp;Fast</span>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+          <div class="ide w-100 pl-0">
+            <div class="row ml-auto mr-auto">
+                <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment w-100">---------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment w-100">| SHORT EXPLANATION |</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment w-100">---------------------</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">1. Visit the first vertex</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">2. Find all vertices this vertex has a connection to</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">3. Visit each of those vertices and push them onto the queue</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+              <span class="comment">4. Take the next vertex from the queue</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">5. Repeat steps 2 - 4 until the queue is empty</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">&emsp;</span>
+            </div>
+            <div class="row ml-auto mr-auto mt-1">
+                <span class="comment">&emsp;</span>
             </div>
           </div>
-          <div class="form-group row">
-            <div class="col-sm-5">Start: </div>
-            <div class="col-sm-7">
-                <input id="start-node" type="text" class="form-control" id="data-input" placeholder="0">
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
-    <div class="row mx-auto">
-      <div class="col-lg-6"></div>
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <button id="start-button" type="button" onclick="bfs()" class="btn btn-danger highlighted-bg w-100">Start</button>
-      </div>
-      <div class="col-4"></div>
-    </div>
-</div>
+        <hr data-content="Instructions" class="hr-text mb-3 mt-4">
+        <div class="row mx-auto">
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <form>
+              <div class="row">
+                  <div class="col-12">
+                      To draw a new vertex, simply click anywhere on the canvas above.<br>
+                      To create an edge between two vertices, click on the first vertex and then on the second one.<br>
+                      You can create a random graph by clicking on the 'Random' button above the canvas.<br>
+                      To clear the canvas, use the 'Clear' button.
 
-<footer class="pt-5 page-footer">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 col-md-6 footer-child copyright">
-        AlgoVis © 2020 All Rights Reserved
-      </div>
-      <div class="col-12 col-md-6 footer-child footer-links">
-        <a href="" class="mr-3">Privacy Policy</a>
-        <a href="">FAQ</a>
-        <div>
-          <small>Made with <i class="fa fa-heart highlighted-text"></i> by <a href="http://tobinatore.github.io/" target="_blank">Tobias Nöthlich</a>
-          </small>
+                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <form>
+              <div class="form-group row">
+                <div class="col-sm-5">Speed: </div>
+                <div class="col-sm-7">
+                  <span>Slow&emsp;</span>
+                  <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="350" data-slider-max="1000" data-slider-step="10" data-slider-value="500"/>
+                  <span>&emsp;Fast</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-5">Start: </div>
+                <div class="col-sm-7">
+                    <input id="start-node" type="text" class="form-control" id="data-input" placeholder="0">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row mx-auto">
+          <div class="col-lg-6"></div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <button id="start-button" type="button" onclick="bfs()" class="btn btn-danger red w-100">Start</button>
+          </div>
+          <div class="col-4"></div>
+        </div>
+    </div>
+    </section>      
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info">
+            <h3>AlgoVis.io</h3>
+              <strong>Email:</strong> hello@algovis.io<br>
+            </p>
+            <div class="social-links mt-3">
+              <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
+              <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
+              <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
+              <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 footer-links"></div>
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html#categories">Categories</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-</footer>
 
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>AlgoVis.io</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/venobox/venobox.min.js"></script>
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
 <script src="https://d3js.org/d3.v5.js"></script>
-<script src="js/graph.js"></script>
+<script src="assets/js/graph.js"></script>
 
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 <script>
     const container = document.querySelector(".data-container");
     var FLAG = false;
@@ -301,7 +393,7 @@
                         y: Math.round( yScale.invert(coords[1]))
                     };
                     firstVert = i;
-                    svg.select("#circle"+i).attr("stroke", "#FF3D2E");
+                    svg.select("#circle"+i).attr("stroke", "#CC1616");
                 }
                 else{
                     //drawing = false;
@@ -343,7 +435,7 @@
                         svg.select("#circle"+i)
                             .transition()
                             .duration(250)
-                            .attr("stroke", "#FF3D2E")
+                            .attr("stroke", "#CC1616")
                             .attr("stroke-width", "10px");
                     } 
             });
@@ -412,7 +504,7 @@
                     d3.select("#path"+data_edges[i].id)
                     .transition()
                     .duration(500)
-                    .attr("stroke", "#FF3D2E")
+                    .attr("stroke", "#CC1616")
                     .attr("stroke-width", 10);                            
                     setTimeout(() => {  	
                         d3.select("#path"+data_edges[i].id)
@@ -493,7 +585,7 @@
             d3.select("#circle"+queueElement)
                 .transition()
                 .duration(500)
-                .attr("stroke", "#FF3D2E")
+                .attr("stroke", "#CC1616")
                 .attr("stroke-width", "10px"); 
             await timeout(DELAY)
 

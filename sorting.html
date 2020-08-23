@@ -1,110 +1,136 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="AlgoVis - Online Algorithm Visualization">
-    <meta name="author" content="Tobias Nöthlich">
-    <title>AlgoVis - Online Algorithm Visualization</title>
-  
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Walter+Turncoat&family=Roboto+Mono:wght@600&family=Kanit&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Sorting - AlgoVis.io</title>
+  <meta content="AlgoVis is an online algorithm visualization tool." name="description">
+  <meta content="algorithm visualization tool online" name="keywords">
+
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
+<body>
 
-<!-- NAV -->
-<body data-spy="scroll" data-target="#navbar" data-offset="72" class="">
-    <header class="fixed-top page-header w-100">
-        <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top header-inner-pages">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">hello@algovis.io</a>
+      </div>
+      <div class="social-links">
+        <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
+        <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
+        <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#comparison-sorts">Comparison sorts</a></li>
+          <li><a href="#non-comparison-sorts">Non-comparison sorts</a></li>
+          <li><a href="#other-sorts">Others</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>Sorting</li>
+        </ol>
+        <h2>Sorting Algorithms</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+        <section id="overview" class="pt-0">
+            <div class="container">
+            <h3 class="highlighted-text">Overview</h3>
+                <div class="mb-4 explanation ml-2 mr-2" style="font-size: large;">
+                    <p > A sorting algorithm is an algorithm that puts elements of a list in a certain order (thus sorting the list). The most frequently used orders are numerical order for lists of numbers and lexicographical order for lists of strings.<br><br>
+                        To put it more formally, the output generally has to fulfill two conditions:
+                        <ul>
+                            <li>The output is in nondecreasing order</li>
+                            <li>The output is a permutation of the input</li>
+                        </ul>
+                        Or, to put it simply, when running a sorting algorithm we expect an output that contains all the elements originally present in the input arranged in such a way that the smallest element (according to the operation used to sort the list) is in the leftmost place, with every element following being either bigger or equal to its predecessor.<br><br>
+                        Sorting algorithms can generally be classified into three distinct categories:
+                        <ul>
+                            <li>Comparison sorts</li>
+                            <li>Non-comparison sorts</li>
+                            <li>Others</li>
+                        </ul>
+                        On this page you can find many implementations for every category. If you need a visualization for a certain algorithm, just use the search function to find it quickly.
+                        </p>
+                </div>  
+            </div>
             <div class="container-fluid">
-          <a class="navbar-brand ml-2" href="index.html">AlgoVis</a>
-          <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-lg-between w-100" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#comparison">Comparison Sorts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#non-comparison">Non-Comparison Sorts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#others">Others</a>
-                </li>
-            </ul>
-          </div>
-        </div>
-        </nav>
-        
-    </header>
-    <main>
-        <section id="home" class="d-flex align-items-center position-relative cover algo-header">
-            <div class="container-fluid">
-                <div class="row ">
-                    <div class="col-sm-12 text-center">
-                        <h1 class="text-white " style="font-size: 3.5rem;">Sorting algorithms</h1>
+                <div class="row mt-5 highlighted-text"><div class="col-sm-12 text-center"><h2>Search</h2></div></div>
+                <div class="row justify-content-center mt-2">
+                    <div class="col-sm-12 col-md-10 col-lg-8">
+                        <form class="card card-sm border-red">
+                            <div class="card-body row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <i class="bx bx-search h4 text-body"></i>
+                                </div>
+                                <!--end of col-->
+                                <div class="col">
+                                    <input id="search" class="form-control form-control-borderless" type="search" placeholder="Search names or keywords">
+                                </div>
+                                <div class="anchor w-100" id="comparison"></div>
+                                <!--end of col-->
+                                <!--end of col-->
+                            </div>
+                        </form>
                     </div>
+                    <!--end of col-->
                 </div>
             </div>
+        </div>
         </section>
 
-    <section class="pb-5 mt-3">
-        <div class="container-fluid">
-        <h3 class="highlighted-text">Overview</h3>
-            <div class="mb-4 explanation ml-2 mr-2" style="font-size: large;">
-                <p > A sorting algorithm is an algorithm that puts elements of a list in a certain order (thus sorting the list). The most frequently used orders are numerical order for lists of numbers and lexicographical order for lists of strings.<br><br>
-                    To put it more formally, the output generally has to fulfill two conditions:
-                    <ul>
-                        <li>The output is in nondecreasing order</li>
-                        <li>The output is a permutation of the input</li>
-                    </ul>
-                    Or, to put it simply, when running a sorting algorithm we expect an output that contains all the elements originally present in the input arranged in such a way that the smallest element (according to the operation used to sort the list) is in the leftmost place, with every element following being either bigger or equal to its predecessor.<br><br>
-                    Sorting algorithms can generally be classified into three distinct categories:
-                    <ul>
-                        <li>Comparison sorts</li>
-                        <li>Non-comparison sorts</li>
-                        <li>Others</li>
-                    </ul>
-                    On this page you can find many implementations for every category. If you need a visualization for a certain algorithm, just use the search function to find it quickly.
-                    </p>
-            </div>  
-        </div>
-        <div class="container-fluid">
-            <div class="row mt-5 highlighted-text"><div class="col-sm-12 text-center"><h2>Search</h2></div></div>
-            <div class="row justify-content-center mt-2">
-                <div class="col-sm-12 col-md-10 col-lg-8">
-                    <form class="card card-sm border-red">
-                        <div class="card-body row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <i class="fa fa-search h4 text-body"></i>
-                            </div>
-                            <!--end of col-->
-                            <div class="col">
-                                <input id="search" class="form-control form-control-borderless" type="search" placeholder="Search names or keywords">
-                            </div>
-                            <div class="anchor w-100" id="comparison"></div>
-                            <!--end of col-->
-                            <!--end of col-->
-                        </div>
-                    </form>
-                </div>
-                <!--end of col-->
-            </div>
-        </div>
-    </div>
-    </section>
-
     <!-- COMPARISON SORTS -->
-    <section id="comparison-sorts">
+    <section id="comparison-sorts" class="pt-0">
         <div class="container-fluid w-100" >
             <!-- Gradient divider -->
             <hr data-content="Comparison Sorts" class="hr-text mb-2 cd-hide">
@@ -116,7 +142,6 @@
                 <div class="col-sm-1 col-md-1 col-lg-3"></div>
             </div>
             <div class="card-deck mb-4 cd-hide">
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="blocksort" class="algorithm shadow-highlight card" >
                     <a href="blocksort.html" class="unstyled-link">
                             <div class="card-body">
@@ -130,8 +155,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="bubblesort" class="algorithm shadow-highlight card">
                     <a href="bubblesort.html" class="unstyled-link">
                             <div class="card-body">
@@ -145,8 +168,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="cocktailshakersort" class="algorithm shadow-highlight card">
                     <a href="cocktailshakersort.html" class="unstyled-link">
                             <div class="card-body">
@@ -160,8 +181,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="combsort" class="algorithm shadow-highlight card ">
                     <a href="combsort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -175,10 +194,8 @@
                             </div>
                     </a>
                 </div>
-                </div>
             </div>
             <div class="card-deck mb-4 cd-hide">
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="cubesort" class="algorithm shadow-highlight card" >
                     <a href="cubesort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -192,8 +209,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="cyclesort" class="algorithm shadow-highlight card" >
                     <a href="cyclesort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -207,8 +222,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="gnomesort" class="algorithm shadow-highlight card" >
                     <a href="gnomesort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -222,8 +235,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="heapsort" class="algorithm shadow-highlight card" >
                     <a href="heapsort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -236,11 +247,10 @@
                                 <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
                             </div>
                     </a>
-                </div>
             </div>
         </div>
             <div class="card-deck mb-4 cd-hide">
-                <div class="col-sm-12 col-md-4 col-lg-3">
+               
                 <div id="insertionsort" class="algorithm shadow-highlight card" >
                     <a href="insertionsort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -254,8 +264,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="introsort" class="algorithm shadow-highlight card" >
                     <a href="introsort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -269,8 +277,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="librarysort" class="algorithm shadow-highlight card" >
                     <a href="librarysort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -284,8 +290,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="mergesort" class="algorithm shadow-highlight card" >
                     <a href="mergesort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -299,10 +303,8 @@
                             </div>
                     </a>
                 </div>
-                </div>
             </div>
             <div class="card-deck mb-4 cd-hide">
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="odd-evensort" class="algorithm shadow-highlight card" >
                     <a href="oddevensort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -316,8 +318,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="patiencesorting" class="algorithm shadow-highlight card" >
                     <a href="patiencesorting.html" class="unstyled-link ">
                             <div class="card-body">
@@ -331,8 +331,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
                 <div id="quicksort" class="algorithm shadow-highlight card" >
                     <a href="quicksort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -346,8 +344,6 @@
                             </div>
                     </a>
                 </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
               <div id="selectionsort" class="algorithm shadow-highlight card" >
                 <a href="selectionsort.html" class="unstyled-link ">
                         <div class="card-body">
@@ -362,9 +358,7 @@
                 </a>
               </div>
             </div>
-            </div>
             <div class="card-deck mb-4 cd-hide">
-                <div class="col-sm-12 col-md-4 col-lg-3">
               <div id="shellsort" class="algorithm shadow-highlight card" >
                 <a href="shellsort.html" class="unstyled-link ">
                         <div class="card-body">
@@ -377,9 +371,7 @@
                             <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
                         </div>
                 </a>
-            </div>
               </div>
-              <div class="col-sm-12 col-md-4 col-lg-3">
               <div id="smoothsort" class="algorithm shadow-highlight card" >
                 <a href="smoothsort.html" class="unstyled-link ">
                         <div class="card-body">
@@ -392,9 +384,7 @@
                             <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
                         </div>
                 </a>
-            </div>
               </div>
-              <div class="col-sm-12 col-md-4 col-lg-3">
               <div id="strandsort" class="algorithm shadow-highlight card" >
                 <a href="strandsort.html" class="unstyled-link ">
                         <div class="card-body">
@@ -408,8 +398,6 @@
                         </div>
                 </a>
             </div>
-              </div>
-              <div class="col-sm-12 col-md-4 col-lg-3">
               <div id="timsort" class="algorithm shadow-highlight card" >
                 <a href="timsort.html" class="unstyled-link ">
                         <div class="card-body">
@@ -423,10 +411,8 @@
                         </div>
                 </a>
             </div>
-              </div>
             </div>
             <div class="card-deck mb-4 cd-hide">
-                <div class="col-sm-12 col-md-4 col-lg-3">
               <div id="tournamentsort" class="algorithm shadow-highlight card" >
                 <a href="tournamentsort.html" class="unstyled-link ">
                         <div class="card-body">
@@ -440,8 +426,6 @@
                         </div>
                 </a>
             </div>
-              </div>
-              <div class="col-sm-12 col-md-4 col-lg-3">
               <div id="treesort" class="algorithm shadow-highlight card" >
                 <a href="treesort.html" class="unstyled-link ">
                         <div class="card-body">
@@ -454,15 +438,13 @@
                             <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
                         </div>
                 </a>
-            </div>
               </div>
             </div>
             <div id="results"></div>
     </section>
 
     <!-- NON-COMPARISON-SORTS -->
-    <div id="non-comparison" class="anchor w-100" style="height: 72px;">&emsp;</div>
-    <section id="non-comparison-sorts">
+    <section id="non-comparison-sorts" class="pt-0">
         <div class="container-fluid w-100" >
             <!-- Gradient divider -->
             <hr data-content="Non-Comparison Sorts" class="hr-text cd-hide">
@@ -556,8 +538,7 @@
     </section>
 
     <!-- OTHERS -->
-    <div id="others" class="anchor w-100" style="height: 72px;">&emsp;</div>
-    <section id="other-sorts">
+    <section id="other-sorts" class="pt-0">
         <div class="container-fluid w-100" >
             <!-- Gradient divider -->
             <hr data-content="Others" class="hr-text cd-hide">
@@ -675,28 +656,71 @@
         </div>
     </section>
 
-    </main>
-    <footer class="py-5 page-footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-12 col-md-6 footer-child copyright">
-              AlgoVis © 2020 All Rights Reserved
-            </div>
-            <div class="col-sm-12 col-md-6 footer-child footer-links">
-              <a href="" class="mr-3">Privacy Policy</a>
-              <a href="">FAQ</a>
-              <div>
-                <small>Made with <i class="fa fa-heart highlighted-text"></i> by <a href="http://tobinatore.github.io/" target="_blank">Tobias Nöthlich</a>
-                </small>
-              </div>
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info">
+            <h3>AlgoVis.io</h3>
+              <strong>Email:</strong> hello@algovis.io<br>
+            </p>
+            <div class="social-links mt-3">
+              <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
+              <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
+              <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
+              <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
             </div>
           </div>
         </div>
-      </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <div class="col-lg-2 col-md-6 footer-links"></div>
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html#categories">Categories</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>AlgoVis.io</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/venobox/venobox.min.js"></script>
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
     <script>
         const $body = $("body");
         const $header = $(".page-header");

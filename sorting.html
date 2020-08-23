@@ -340,17 +340,17 @@
             <div class=" w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide">
                 <div class="col-sm-12"> Algorithms in this category are impractical for real-life use in traditional software contexts due to extremely poor performance or specialized hardware requirements. These sorts are usually described for educational purposes in order to demonstrate how run time of algorithms is estimated.</div>
             </div>
-            <div class="card-deck mb-4 cd-hide">
+            <div class="card-deck mb-4 cd-hide mx-auto">
                 <div id="bogosort" class="algorithm shadow-highlight card" >
                     <a href="bogosort.html" class="unstyled-link ">
                             <div class="card-body">
-                            <h5 class="card-title">Bogo sort</h5>
+                            <h5 class="card-title">Bogosort</h5>
                             <h6 class="card-subtitle">Other sort</h6>
-                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
+                            <p class="card-text">Bogosort is a highly inefficient sorting algorithm based on the generate and test paradigm. The function successively generates permutations of its input until it finds one that is sorted. An analogy for the working of the algorithm is to sort a deck of cards by throwing the deck into the air, picking the cards up at random, and repeating the process until the deck is sorted
                                 <br><br>
                                 <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
+                                <b>Average-case:</b> <i>O((n+1)!)</i> <br>
+                                <b>Worst-case:</b>&emsp; <i>unbounded</i><br></p>
                             </div>
                     </a>
                 </div>

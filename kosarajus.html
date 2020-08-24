@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>BFS - AlgoVis.io</title>
+  <title>Kosaraju's Algorithm - AlgoVis.io</title>
   <meta content="AlgoVis is an online algorithm visualization tool." name="description">
   <meta content="algorithm visualization tool online" name="keywords">
 
@@ -73,168 +73,124 @@
         <ol>
           <li><a href="index.html">Home</a></li>
           <li><a href="graphs.html">Graphs</a></li>
-          <li>Breadth-first search</li>
+          <li>Kosaraju's Algorithm</li>
         </ol>
-        <h2>Breadth-first search visualization</h2>
+        <h2>Kosaraju's algorithm visualization</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
     <section class="inner-page pt-4">
-      <div class="container-fluid px-0 mt-0" >
-        <div class="row w-100 mx-auto">
-            <div class="col-sm-9 col-md-10 mx-0 px-0">
-                <span style="font-weight: bold;">Draw your graph:</span>
-            </div>
-            <div class="col-sm-3 col-md-2 mr-auto px-0 my-0 py-0 text-right"> <button onclick="clearCanvas()" class="button-top">Clear</button><button class="button-top ml-1" onclick="randomGraph()">Random</button></div>
-            </div>
-        <div class="data-container border-dark-nb p-1 mb-0 mt-0 w-100">
-          <svg id="visu"></svg>
+  <div class="container-fluid px-0 mt-0" >
+    <div class="row w-100 mx-auto">
+        <div class="col-sm-9 col-md-10 mx-0 px-0">
+            <span style="font-weight: bold;">Draw your graph:</span>
         </div>
-        <div class="w-100 row mx-auto border-dark-nt my-0 py-0"><p id="nodes" class="my-0 py-0">()</p></div>
-        <div class="row mx-auto">
-          <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
-            <div class="ide w-100">
-              <div class="row ml-auto mr-auto 1">
-                <span>start = <span class="op">input</span>(start)</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 2 ">
-                <span>visited = []</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 3 ">
-                <span><span class="op">for</span>(i = 0 to Graph.numVertices)</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 4">
-                <span>&emsp;&emsp;visited[i] = <span class="var">false</span></span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 5">
-                <span>visited[start] = <span class="var">true</span></span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 6">
-                <span>q = []</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 7">
-                <span>q.push(start)</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 8">
-                <span><span class="op">while</span>(length(q) != 0)</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 9">
-                <span>&emsp;&emsp;queueElement = q.shift()</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 10">
-                <span>&emsp;&emsp;neighbours = Graph.getNeighboursOf(queueElement)</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 11">
-                <span>&emsp;&emsp;<span class="op">for</span>(x = 0 to length(neighbours))</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 12">
-                <span>&emsp;&emsp;&emsp;&emsp;nb = neighbours[x]</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 13">
-                <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!visited[nb])</span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 14">
-                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;visited[nb] = <span class="var">true</span></span>
-              </div>
-              <div class="row ml-auto mr-auto mt-1 15">
-                <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;q.push(nb)</span>
-              </div>
-          </div>
+        <div class="col-sm-3 col-md-2 mr-0 px-0 my-0 py-0 text-right"> <button onclick="clearCanvas()" class="button-top">Clear</button><button class="button-top ml-1" onclick="randomGraph()">Random</button></div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
-          <div class="ide w-100 pl-0">
-            <div class="row ml-auto mr-auto">
-                <span class="comment">&emsp;</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-                <span class="comment">&emsp;</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-                <span class="comment">&emsp;</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment w-100">---------------------</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment w-100">| SHORT EXPLANATION |</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment w-100">---------------------</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">1. Visit the first vertex</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">2. Find all vertices this vertex has a connection to</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">3. Visit each of those vertices and push them onto the queue</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">4. Take the next vertex from the queue</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-                <span class="comment">5. Repeat steps 2 - 4 until the queue is empty</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-                <span class="comment">&emsp;</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-                <span class="comment">&emsp;</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-                <span class="comment">&emsp;</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-                <span class="comment">&emsp;</span>
-            </div>
+    <div class="data-container border-dark-nb p-1 mb-0 mt-0 w-100">
+      <svg id="visu"></svg>
+    </div>
+    <div class="w-100 row mx-auto border-dark-nt my-0 py-0"><p id="nodes" class="my-0 py-0"></p></div>
+    <div class="row mx-auto">
+      <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+        <div class="ide w-100">
+          <div class="row ml-auto mr-auto 1">
+            <span><span class="op">for</span>(i = 0 to graph.getVertCount())</span>
           </div>
+          <div class="row ml-auto mr-auto mt-1 2 ">
+            <span>&emsp;&emsp;<span class="op">if</span>(!visited[i])</span>
+          </div>
+          <div class="row ml-auto mr-auto mt-1 3 ">
+            <span>&emsp;&emsp;&emsp;&emsp;stack = <span class="op">dsf</span>(i)</span>
+          </div>
+          <div class="row ml-auto mr-auto mt-1 4 ">
+            <span><span class="op">setUnvisited(graph.vertices)</span></span>
+          </div>
+          <div class="row ml-auto mr-auto mt-1 5 ">
+            <span><span class="op">transpose(graph)</span></span>
+          </div>
+          <div class="row ml-auto mr-auto mt-1 6 ">
+            <span><span class="op">while</span>(!stack.empty())</span>
+          </div>
+          <div class="row ml-auto mr-auto mt-1 7">
+            <span>&emsp;&emsp;vert = stack.pop()</span>
+          </div>
+          <div class="row ml-auto mr-auto mt-1 8">
+            <span>&emsp;&emsp;<span class="op">if</span>(!visited[vert])</span>
+          </div>
+          <div class="row ml-auto mr-auto mt-1 9">
+            <span>&emsp;&emsp;&emsp;&emsp;scc = <span class="op">dfs</span>(vert)</span>
+          </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+      <div class="ide w-100 pl-0">
+        <div class="row ml-auto mr-auto">
+          <span class="comment w-100">SHORT EXPLANATION</span>
+        </div>
+        <div class="row ml-auto mr-auto mt-1">
+          <span class="comment w-100">---------------------</span>
+        </div>
+        <div class="row ml-auto mr-auto mt-1">
+          <span class="comment">1. Mark all vertices as unvisited.</span>
+        </div>
+        <div class="row ml-auto mr-auto mt-1">
+          <span class="comment">2. Run a Depth-first search on every unvisited vertex.</span>
+        </div>
+        <div class="row ml-auto mr-auto mt-1">
+          <span class="comment">3. Whenever a DFS finishes add the vertex it was run on to the stack.</span>
+        </div>
+        <div class="row ml-auto mr-auto mt-1">
+          <span class="comment">4. Transpose the graph (-> reverse the direction of the edges).</span>
+        </div>
+        <div class="row ml-auto mr-auto mt-1">
+          <span class="comment">4. Pop from the stack and run a DFS on the vertex if it hasn't been visited already.</span>
+        </div>
+        <div class="row ml-auto mr-auto mt-1">
+          <span class="comment"> - every finished DFS yields a list of vertices, which is a strongly connected component</span>
+        </div>
+        <div class="row ml-auto mr-auto mt-1">
+          <span class="comment">5. Repeat step 4 until the stack is empty.</span>
         </div>
       </div>
-        <hr data-content="Instructions" class="hr-text mb-3 mt-4">
-        <div class="row mx-auto">
-          <div class="col-sm-12 col-md-12 col-lg-6">
-            <form>
-              <div class="row">
-                  <div class="col-12">
-                      To draw a new vertex, simply click anywhere on the canvas above.<br>
-                      To create an edge between two vertices, click on the first vertex and then on the second one.<br>
-                      You can create a random graph by clicking on the 'Random' button above the canvas.<br>
-                      To clear the canvas, use the 'Clear' button.
-
-                  </div>
-              </div>
-            </form>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-6">
-            <form>
-              <div class="form-group row">
-                <div class="col-sm-5">Speed: </div>
-                <div class="col-sm-7">
-                  <span>Slow&emsp;</span>
-                  <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="350" data-slider-max="1000" data-slider-step="10" data-slider-value="500"/>
-                  <span>&emsp;Fast</span>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-5">Start: </div>
-                <div class="col-sm-7">
-                    <input id="start-node" type="text" class="form-control" id="data-input" placeholder="0">
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="row mx-auto">
-          <div class="col-lg-6"></div>
-          <div class="col-sm-12 col-md-12 col-lg-6">
-            <button id="start-button" type="button" onclick="bfs()" class="btn btn-danger red w-100">Start</button>
-          </div>
-          <div class="col-4"></div>
-        </div>
     </div>
-    </section>      
+  </div>
+    <hr data-content="Instructions" class="hr-text mb-3 mt-4">
+    <div class="row mx-auto">
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <form>
+          <div class="row">
+              <div class="col-12">
+                  To draw a new vertex, simply click anywhere on the canvas above.<br>
+                  To create an edge between two vertices, click on the first vertex and then on the second one.<br>
+                  You can create a random graph by clicking on the 'Random' button above the canvas.<br>
+                  To clear the canvas, use the 'Clear' button.
+                  
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <form>
+          <div class="form-group row">
+            <div class="col-sm-5">Speed: </div>
+            <div class="col-sm-7">
+              <span>Slow&emsp;</span>
+              <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="350" data-slider-max="1000" data-slider-step="10" data-slider-value="500"/>
+              <span>&emsp;Fast</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <button id="start-button" type="button" onclick="kosarajus()" class="btn btn-danger red w-100">Start</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+    </section>
   </main>
 <!-- ======= Footer ======= -->
 <footer id="footer">
@@ -315,11 +271,14 @@
     var drawing = false;
     var xy0;
     var xy1;
-    var g = new UnweightedUndirectedGraph();
+    var g = new UnweightedDirectedGraph();
     var vertexCount = 0;
     var firstVert;
     var secVert;
+    var visited = [];
     var running = false;
+    var stack = [];
+    var sccStack = [];
   
     function setDelay(delay){
         DELAY = delay;
@@ -337,12 +296,26 @@
     var svg = d3.select("#visu");
         svg.append("g").attr("id", "g-paths");
 
+        
+        svg.append("svg:defs").attr("id", "defs").append("svg:marker")
+            .attr("id", "triangle")
+            .attr("refX", 40)
+            .attr("refY", 9)
+            .attr("markerWidth", 40)
+            .attr("markerHeight", 40)
+            .attr("markerUnits","userSpaceOnUse")
+            .attr("orient", "auto")
+            .append("path")
+            .attr("d", "M 0 0 18 9 0 18 5 9")
+            .attr("id", "triangle-path")
+            .style("fill", "#171717");
+
     svg.on("click", async function() {
-        if(!running){
+      if(!running){
         var coords = d3.mouse(this);
         drawing = false;
-        await newVertex(coords);
-        }                    
+        await newVertex(coords);  
+      }                  
     });
 
     async function newVertex(coords){
@@ -368,7 +341,7 @@
                 .duration(500)
                 .attr("r", radius)
                 .attr("fill", "white")
-                .attr("stroke", "black")
+                .attr("stroke", "#171717")
                 .attr("stroke-width", strokeWidth)
                 .attr("id", function(d,i){return "circle"+i;})                
             setTimeout(() => {  
@@ -389,7 +362,7 @@
                     drawing = true;
                     var choords = d3.mouse(this);
                     xy0= {
-                        x: Math.round( xScale.invert(coords[0])),  // Takes the pixel number to convert to number
+                        x: Math.round( xScale.invert((coords[0]))),  // Takes the pixel number to convert to number
                         y: Math.round( yScale.invert(coords[1]))
                     };
                     firstVert = i;
@@ -414,47 +387,49 @@
                                 .transition()
                                 .duration(300)
                                 .attr("d", line([xy0,xy1]))
-                                .attr("stroke", "#272F32")
-                                .attr("stroke-width",4)
+                                .attr("stroke", "#171717")
+                                .attr("stroke-width", 4)
                                 .attr("fill", "none")
+                                .attr("marker-end","url(#triangle)")
                                 .attr("id", function(d,i){
-                                    data_edges.push({v1:firstVert, v2:secVert, id:data_edges.length});
+                                    data_edges.push({v1:firstVert, v2:secVert, xy0:xy0, xy1:xy1, id:data_edges.length});
                                     return "path"+(data_edges.length-1);
                                 });
                         }
                     }
                     drawing = false;
-                    svg.select("#circle"+firstVert).attr("stroke", "black");
-                    svg.select("#circle"+secVert).attr("stroke", "black");
+                    svg.select("#circle"+firstVert).attr("stroke", "#171717");
+                    svg.select("#circle"+secVert).attr("stroke", "#171717");
                 }
-            }
+              }
             });
             setTimeout(() => {
+              
                 groups.on("mouseover", function(d,i){
-                    if(!running){
-                        svg.select("#circle"+i)
-                            .transition()
-                            .duration(250)
-                            .attr("stroke", "#CC1616")
-                            .attr("stroke-width", "10px");
-                    } 
+                  if(!running){
+                      svg.select("#circle"+i)
+                          .transition()
+                          .duration(250)
+                          .attr("stroke", "#CC1616")
+                          .attr("stroke-width", "10px");
+                  } 
             });
             groups.on("mouseout", function(d,i){
-                if(!running){
-                    if(!drawing){
-                        svg.select("#circle"+i)
-                        .transition()
-                        .duration(250)
-                        .attr("stroke", "black")
-                        .attr("stroke-width", "5px"); 
-                    }
-                    else{
-                        svg.select("#circle"+i)
-                        .transition()
-                        .duration(250)
-                        .attr("stroke-width", "5px"); 
-                    }
+              if(!running){  
+                if(!drawing){
+                    svg.select("#circle"+i)
+                    .transition()
+                    .duration(250)
+                    .attr("stroke", "#171717")
+                    .attr("stroke-width", "5px"); 
                 }
+                else{
+                    svg.select("#circle"+i)
+                    .transition()
+                    .duration(250)
+                    .attr("stroke-width", "5px"); 
+                }
+              }
             });
             }, 510);
             
@@ -466,8 +441,8 @@
 
     async function newEdge(v1,v2){
         return new Promise(resolve => {
-            var xy_0 = data_nodes[v1];
-            var xy_1 = data_nodes[v2];
+            var xy0 = data_nodes[v1];
+            var xy1 = data_nodes[v2];
 
             var line = d3.line()
                 .x(function(d) { return d.x; })
@@ -479,12 +454,13 @@
                 svg.select("#g-paths").append("path")
                     .transition()
                     .duration(300)
-                    .attr("d", line([xy_0,xy_1]))
-                    .attr("stroke", "#272F32")
+                    .attr("d", line([xy0,xy1]))
+                    .attr("stroke", "#171717")
                     .attr("stroke-width", 4)
+                    .attr("marker-end","url(#triangle)")
                     .attr("fill", "none")
                     .attr("id", function(d,i){
-                        data_edges.push({v1:v1, v2:v2, id:data_edges.length});
+                        data_edges.push({v1:v1, v2:v2, xy0:xy0, xy1:xy1, id:data_edges.length});
                         return "path"+(data_edges.length-1);
                     });
             }
@@ -495,6 +471,57 @@
         });
     }
 
+    async function highlighSCC(scc){
+      seen = [];
+      for (const i in scc) {
+        for (let j = 0; j < scc.length; j++) {
+          if(j != i){
+            for (var x in data_edges) {
+              var stop = false;
+              if(((data_edges[x].v1 == scc[i] && data_edges[x].v2 == scc[j]) 
+                || (data_edges[x].v1 == scc[j] && data_edges[x].v2 == scc[i])) && seen.indexOf(data_edges[x].id) == -1 ){
+                d3.select("#path"+data_edges[x].id)
+                  .attr("class", "scc");     
+                seen.push(data_edges[x].id);                      
+                break;
+              }//if
+            }//for
+          }//if
+        }//for
+        d3.select("#circle"+scc[i])
+                .attr("class", "scc");
+      }//for
+    }//function
+
+    async function transposeGraph(){
+      return new Promise(resolve => {
+        var line = d3.line()
+                .x(function(d) { return d.x; })
+                .y(function(d) { return d.y; })
+                .curve(d3.curveLinear); 
+
+        var test = d3.selectAll("path").filter(function(){
+          return !this.id.includes("triangle");
+        });
+        test.data(data_edges)
+        .transition()
+        .duration(DELAY)
+        .attr("d", function(d,i){ 
+          var id = this.id.replace( /^\D+/g, '');
+          var l = line([data_edges[id].xy1,data_edges[id].xy0]);
+          temp = data_edges[id].xy1;
+          data_edges[id].xy1 = data_edges[id].xy0;
+          data_edges[id].xy0 = temp;
+          return l;
+        })
+        .attr("marker-end","url(#triangle)");
+
+        setTimeout(() => {
+            resolve();
+        }, DELAY*2); 
+      }, 1000);
+    }
+
     async function findEdgeForAnim(qe, nb){
         return new Promise(resolve => {
             for (var i in data_edges) {
@@ -503,14 +530,14 @@
                     || (data_edges[i].v1 == nb && data_edges[i].v2 == qe) ){
                     d3.select("#path"+data_edges[i].id)
                     .transition()
-                    .duration(500)
+                    .duration(DELAY)
                     .attr("stroke", "#CC1616")
                     .attr("stroke-width", 10);                            
                     setTimeout(() => {  	
                         d3.select("#path"+data_edges[i].id)
                             .transition()
-                            .duration(500)
-                            .attr("stroke", "#272F32")
+                            .duration(DELAY)
+                            .attr("stroke", "#171717")
                             .attr("stroke-width", 4);
                         }, DELAY);                                           
                     setTimeout(() => {
@@ -523,8 +550,14 @@
     }
 
     function highlightCode(elementClass){
-      $(".code-highlight").removeClass("code-highlight");
-      $(`.${elementClass}`).addClass("code-highlight");
+        $(".code-highlight").removeClass("code-highlight");
+        $(`.${elementClass}`).addClass("code-highlight");
+    }
+
+    async function runDfs(graph, v, run){
+        
+        await dfs(graph, v, run)
+        
     }
 
     async function timeout(delay){
@@ -535,113 +568,143 @@
         );
     }
 
-    async function bfs(){
-        running = true;
-        $("#start-button").prop("disabled", true);
-        $(".button-top").prop("disabled",true);
-        $("#nodes").html("()");
+    async function dfs(graph, v, run){
+        visited[v] = true;
+        d3.select("#circle"+v)
+            .transition()
+            .duration(DELAY)
+            .attr("stroke", "#CC1616")
+            .attr("stroke-width", "10px"); 
         
-        highlightCode("1");
-        await timeout(DELAY/10);
-
-        var startingNode = (!$("#start-node").val() || Number($("#start-node").val() > data_nodes.length-1)) ? 0 : Number($("#start-node").val());
-        
-        highlightCode("2");
-        await timeout(DELAY/10);
-        
-        var visited = [];
-        var graph = g;
-        
-        highlightCode("3");
-        await timeout(DELAY/10);
-        
-        for (let i = 0; i < graph.getNoOfVertices(); i++) {
-            visited[i] = false; 
-        }
-        
-        highlightCode("4");
-        await timeout(75);             
-        highlightCode("5");
-        await timeout(DELAY/10);
-        
-        var q = [];
-        
-        highlightCode("6");
-        await timeout(DELAY/10);
-        
-        visited[startingNode] = true;
-        
-        highlightCode("7");
-        await timeout(DELAY/10);
-        
-        q.push(startingNode);
-        
-        highlightCode("8");
-        await timeout(DELAY/10);
-        
-        while(q.length != 0) {
-            highlightCode("9");
-            var queueElement = q.shift();
-            d3.select("#circle"+queueElement)
+        var neighbours = graph.adjList.get(v);
+      
+        for (var i in neighbours) {
+          await findEdgeForAnim(v, neighbours[i]);
+          if(!visited[neighbours[i]]){
+          
+            d3.select("#circle"+v)
                 .transition()
-                .duration(500)
+                .duration(DELAY)
+                .attr("stroke", "#171717")
+                .attr("stroke-width", "5px"); 
+            
+            await dfs(graph, neighbours[i], run);
+            d3.select("#circle"+v)
+                .transition()
+                .duration(DELAY)
                 .attr("stroke", "#CC1616")
-                .attr("stroke-width", "10px"); 
-            await timeout(DELAY)
-
-            highlightCode("10");
-            await timeout(DELAY/10);
-
-            var neighbours = graph.adjList.get(queueElement);
-            
-            highlightCode("11");
-            await timeout(DELAY/10);
-            
-            for (var i in neighbours) {
-                highlightCode("12");
-                await timeout(DELAY/10);
-
-                var nb = neighbours[i];
-                
-                highlightCode("13");
-                await findEdgeForAnim(queueElement, nb);
-                
-                if(!visited[nb]){
-                    highlightCode("14");
-                    await timeout(DELAY/10);
-
-                    visited[nb] = true;
-                    highlightCode("15");
-                    await timeout(DELAY/10);
-
-                    q.push(nb);
-                }
-            }
-            d3.select("#circle"+queueElement)
-                .transition()
-                .duration(500)
-                .attr("stroke", "black")
-                .attr("stroke-width", "5px");
-            var currText = Array.from($("#nodes").text());
-            currText.splice(currText.length-1, 0, queueElement.toString()+" ");
-            currText= currText.join('');
-
-            $("#nodes").html(currText);
+                .attr("stroke-width", "10px");
+          }    
+          d3.select("#circle"+neighbours[i])
+              .transition()
+              .duration(DELAY)
+              .attr("stroke", "#171717")
+              .attr("stroke-width", "5px");
         }
-        $("#start-button").prop("disabled", false);
-        $(".button-top").prop("disabled",false);
-        running = false;
+        d3.select("#circle"+v)
+              .transition()
+              .duration(DELAY)
+              .attr("stroke", "#171717")
+              .attr("stroke-width", "5px");
+        
+        if(run == 1){
+            stack.push(v);
+          }
+        else{
+          sccStack.push(v);
+        }
     }
 
+    async function kosarajus(){
+      running = true;
+      $("#nodes").html("");
+      vertices = []
+      d3.selectAll("path, circle").attr("stroke", "#171717");
+      for(var x = 0; x < data_nodes.length; x++){
+            visited[x] = false;
+        }
+      for (let i = 0; i < g.getNoOfVertices(); i++) {
+        vertices.push(i);
+      }
+      highlightCode("1");
+      await timeout(DELAY/2);
+      for (const j in vertices) {
+          highlightCode("2");
+          await timeout(DELAY/2);
+          if(!visited[vertices[j]]){
+            highlightCode("3");
+            await runDfs(g, vertices[j],1);
+          }
+      }
+
+      highlightCode("4");
+      await timeout(DELAY/2);
+      for (let x = 0; x < g.adjList.size; x++) {
+          g.adjList.set(x,[]);    
+      }
+
+      
+      
+      for (const i in data_edges) {
+        g.addEdge(data_edges[i].v2, data_edges[i].v1)
+      }
+      highlightCode("5");
+      await transposeGraph();
+      for(var x = 0; x < data_nodes.length; x++){
+            visited[x] = false;
+      }
+      numComp = 0;
+
+      highlightCode("6");
+      await timeout(DELAY/2);
+      while(stack.length != 0){
+        highlightCode("7");
+        await timeout(DELAY/2);
+        source = stack.pop();
+        highlightCode("8");
+        await timeout(DELAY/2);
+        if(!visited[source]){
+          highlightCode("9");
+          await runDfs(g, source, 2);
+          await highlighSCC(sccStack);
+          sccStack = []
+          numComp++;
+        }
+      }
+
+      for (let x = 0; x < g.adjList.size; x++) {
+          g.adjList.set(x,[]);    
+      }
+
+      for (const i in data_edges) {
+        g.addEdge(data_edges[i].v1, data_edges[i].v2)
+      }
+      await transposeGraph();
+      
+      test = d3.selectAll("path").filter(function(){
+        return !this.classList.contains("scc");
+      })
+      test.attr("stroke","#DDD");
+
+      test2 = d3.selectAll(".scc")
+      test2.attr("stroke", "#CC1616").attr("class", "");
+      $("#nodes").html("Number of strongly connected components: "+numComp);
+    }
+
+
+
     function clearCanvas(){
+        running = false;
+        var ids = ["g-paths","defs","triangle","triangle-path","triangle-red", "triangle-path-red"];
         data_edges = [];
         data_nodes = [];
         vertexCount = 0;
-        g = new UnweightedUndirectedGraph();
+        g = new UnweightedDirectedGraph();
         drawing = false;
 
-        svg.selectAll("*").remove();
-        svg.append("g").attr("id", "g-paths")
+        svg.selectAll("*").filter(function(d,i){
+          return !ids.includes(this.id);
+        }).remove();        
     }
 
     function getRowCol(numVerts, taken) {
@@ -660,6 +723,7 @@
     }
 
     async function randomGraph(){
+        running = false;
         var numberVerts = Math.round((Math.random()*4)+4);
         var maxEdges = numberVerts*(numberVerts-1)/2;
         var numberEdges = Math.round((Math.random()*(maxEdges-numberVerts))+numberVerts);

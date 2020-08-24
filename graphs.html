@@ -162,7 +162,6 @@
     </section>
 
     <!-- MST -->
-    <div id="mst" class="anchor w-100" style="height: 72px;">&emsp;</div>
     <section id="mst">
         <div class="container-fluid w-100" >
             <!-- Gradient divider -->
@@ -174,12 +173,12 @@
                 <div id="prim's algorithm prims algorithm" class="algorithm shadow-highlight card" >
                     <a href="prims.html" class="unstyled-link">
                             <div class="card-body">
-                            <h5 class="card-title">Prim's Algorithm</h5>
+                            <h5 class="card-title">Prim's algorithm</h5>
                             <h6 class="card-subtitle">Minimum spanning tree</h6>
                             <p class="card-text">Prim's algorithm operates by building the MST one vertex at a time, from an arbitrary starting vertex, at each step adding the cheapest possible connection from the tree to another vertex.
                                 <br><br>
                                 <b>Time Complexity:</b><br>
-                                <b>adjacency matrix:</b>&emsp;<br><i>O(|V|²)</i><br>
+                                <b>adjacency matrix:</b>&emsp;<i>O(|V|²)</i><br>
                                 <b>binary heap & adjacency list:</b>&emsp; <i>O(|E|log|V|)</i><br>
                                 <b>fibonacci heap & adjacency list:</b>&emsp; <i>O(|E|+|V|log|V|)</i></p>
                             </div>
@@ -188,7 +187,7 @@
                 <div id="kruskal's algorithm kruskals algorithm" class="algorithm shadow-highlight card" >
                     <a href="kruskals.html" class="unstyled-link">
                             <div class="card-body">
-                            <h5 class="card-title">Kruskal's Algorithm</h5>
+                            <h5 class="card-title">Kruskal's algorithm</h5>
                             <h6 class="card-subtitle">Minimum spanning tree</h6>
                             <p class="card-text">Kruskal's algorithm works by stepping through all edges and adding the next lowest-weight edge that will not form a cycle to the MST.
                                 <br><br>
@@ -199,6 +198,31 @@
             </div>
         </div>
     </section>
+    <!-- SCC -->
+    <section id="scc">
+      <div class="container-fluid w-100" >
+          <!-- Gradient divider -->
+          <hr data-content="Strongly connected components" class="hr-text cd-hide">
+          <div class=" w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide">
+              <div class="col-sm-12"> Strongly connected component is subset of vertices such that any two vertices of this subset are reachable from each other.</div>
+          </div>
+          <div class="card-deck mb-4 cd-hide">
+              <div id="kosaraju's algorithm kosarajus algorithm" class="algorithm shadow-highlight card" >
+                  <a href="kosarajus.html" class="unstyled-link">
+                          <div class="card-body">
+                          <h5 class="card-title">Kosaraju's algorithm</h5>
+                          <h6 class="card-subtitle">Strongly connected components</h6>
+                          <p class="card-text">Kosaraju's algorithm is a DFS based algorithm used to find Strongly Connected Components (SCC) in a graph. It is based on the idea that if one is able to reach a vertex v starting from vertex u, then one should be able to reach vertex u starting from vertex v and if such is the case, one can say that vertices u and v are strongly connected - they are in a strongly connected sub-graph.
+                              <br><br>
+                              <b>Time Complexity:</b><br>
+                              <b>adjacency matrix:</b>&emsp;<i>O(|V|²)</i><br>
+                              <b>adjacency list:</b>&emsp; <i>O(|E|+|V|)</i></p>
+                          </div>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </section>
     </main>
  
 <!-- ======= Footer ======= -->

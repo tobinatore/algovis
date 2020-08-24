@@ -495,14 +495,14 @@
             d3.select("#rect" + (j+1)).attr("fill", "#CC1616");
         }
         
-        d3.select("#rect" + (data.length-1-i)).attr("fill", "#272F32");
+        d3.select("#rect" + (data.length-1-i)).attr("fill", "#171717");
         if (!swapped) {
             break;
         }
         
       }
       for (let i = 0; i < data.length; i++) {
-        d3.select("#rect" + i).attr("fill", "#272F32");
+        d3.select("#rect" + i).attr("fill", "#171717");
         
       }
       $("#sort-button").prop('disabled', false);

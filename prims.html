@@ -381,7 +381,7 @@
                                 .transition()
                                 .duration(300)
                                 .attr("d", line([xy0,xy1]))
-                                .attr("stroke", "#272F32")
+                                .attr("stroke", "#171717")
                                 .attr("stroke-width", 4)
                                 .attr("fill", "none")
                                 .attr("id", function(d,i){
@@ -508,7 +508,7 @@ function isVector(v) {
                     .transition()
                     .duration(300)
                     .attr("d", line([xy_0,xy_1]))
-                    .attr("stroke", "#272F32")
+                    .attr("stroke", "#171717")
                     .attr("stroke-width", 4)
                     .attr("fill", "none")
                     .attr("id", function(d,i){
@@ -586,7 +586,7 @@ function isVector(v) {
             for (let j = 0; j < data_edges.length; j++) {
                 if (data_edges[j].v1 == next || data_edges[j].v2 == next) {
                     d3.select("#path"+data_edges[j].id)
-                        .attr("stroke", "#272F32");
+                        .attr("stroke", "#171717");
                 } 
             }          
         }
@@ -639,7 +639,7 @@ function isVector(v) {
                             })
                             .transition()
                             .duration(DELAY/2)
-                            .attr("stroke", "#272F32")
+                            .attr("stroke", "#171717")
                             .attr("stroke-width", 5);
                         await timeout(DELAY/2);
                     } 

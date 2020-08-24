@@ -322,7 +322,7 @@
         .attr("y1",function(d,i){ return h-33;})
         .attr("x2", function(d,i){ return ((w/10)*(i+1)) - 5;})
         .attr("y2",function(d,i){ return h-33;})
-        .attr("stroke", "#272F32")
+        .attr("stroke", "#171717")
         .attr("stroke-width","2px")
         .attr("id", function(d,i){ return "bucket"+i;});
 
@@ -390,7 +390,7 @@
             if(pos != 0){
                 svg.selectAll(".num-text"+(pos-1))
                     .transition().duration(DELAY)
-                    .attr("fill", "#272F32");
+                    .attr("fill", "#171717");
             }
 
             setTimeout(() => {
@@ -457,7 +457,7 @@
           .attr("height", 30)
           .attr("y", "25")
           .attr("fill", "none")
-          .attr("stroke", "#272F32")
+          .attr("stroke", "#171717")
           .attr("stroke-width","2px")
           .attr("id", function(d,i){return "rect"+i;})
         

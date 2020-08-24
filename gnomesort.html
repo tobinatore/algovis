@@ -187,7 +187,7 @@
         <div class="row mx-auto">
           <div class="col-4"></div>
           <div class="col-4">
-            <button id="sort-button" type="button" onclick="bubbleSort()" class="btn btn-danger red w-100">Sort</button>
+            <button id="sort-button" type="button" onclick="gnomeSort()" class="btn btn-danger red w-100">Sort</button>
           </div>
           <div class="col-4"></div>
         </div>
@@ -449,13 +449,29 @@
     }
     
 
-    async function bubbleSort() {
+    async function timeout(delay){
+        await new Promise(resolve =>
+            setTimeout(() => {  	
+                resolve();            
+            }, delay)               
+        );
+    }
+
+    async function gnomeSort() {
         comparisons = 0;
         swaps = 0;
+        highlightCode("1");
+        await timeout(DELAY/2);
         pos = 0;
         $("#sort-button").prop('disabled', true);
+        highlightCode("2");
+        await timeout(DELAY/2);
         while(pos < data.length){
+            highlightCode("3");
+            await timeout(DELAY/2);
             if(pos == 0 || data[pos] >= data[pos-1]){
+                highlightCode("4");
+                await timeout(DELAY/2);
                 pos++;
                 d3.select("#rect" + pos).attr("fill", "#9DBDC6");
                 if(pos != 0){
@@ -465,7 +481,11 @@
                 $(".compSpan").text(`No. of comparisons: ${comparisons}`);
             }
             else{
+              highlightCode("5");
+            await timeout(DELAY/2);
               comparisons++;
+              highlightCode("6");
+            
               d3.select("#rect" + pos).attr("fill", "#9DBDC6");
               d3.select("#rect" + (pos-1)).attr("fill", "#9DBDC6");
               $(".compSpan").text(`No. of comparisons: ${comparisons}`);
@@ -475,13 +495,15 @@
               data[pos] = data[pos-1];
               data[pos-1]= x;
               swaps++;
+              highlightCode("7");
+              await timeout(DELAY/2);
               $(".swapSpan").text(`No. of swaps: ${swaps}`);
               pos--;
             }           
         }
       
         for (let i = 0; i < data.length; i++) {
-            d3.select("#rect" + i).attr("fill", "#272F32");
+            d3.select("#rect" + i).attr("fill", "#171717");
         
       }
       $("#sort-button").prop('disabled', false);

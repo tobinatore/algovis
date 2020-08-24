@@ -600,9 +600,9 @@
         var temp = data[i];
         data[i] = data[right];
         data[right] = temp;
-        d3.select("#rect"+i).attr("fill","#272F32");
+        d3.select("#rect"+i).attr("fill","#171717");
       }else{
-        d3.select("#rect"+right).attr("fill","#272F32");
+        d3.select("#rect"+right).attr("fill","#171717");
       }
       highlightCode("14");
       return i;
@@ -639,7 +639,7 @@
         await quicksort(DELAY, left, p-1);
 
         for(let i = 0; i < p; i++){  
-          d3.select("#rect" + i).attr("fill","#272F32");
+          d3.select("#rect" + i).attr("fill","#171717");
         }
 
         highlightCode("18");
@@ -651,7 +651,7 @@
         await quicksort(DELAY, p + 1, right);  
 
         for(let i = 0; i <= right; i++){  
-          d3.select("#rect" + i).attr("fill","#272F32");
+          d3.select("#rect" + i).attr("fill","#171717");
         }    
         highlightCode("20");   
       }

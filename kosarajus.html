@@ -471,7 +471,7 @@
         });
     }
 
-    async function highlighSCC(scc){
+    async function highlightSCC(scc){
       seen = [];
       for (const i in scc) {
         for (let j = 0; j < scc.length; j++) {
@@ -666,7 +666,7 @@
         if(!visited[source]){
           highlightCode("9");
           await runDfs(g, source, 2);
-          await highlighSCC(sccStack);
+          await highlightSCC(sccStack);
           sccStack = []
           numComp++;
         }

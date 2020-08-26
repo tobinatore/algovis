@@ -204,8 +204,8 @@
           <!-- Gradient divider -->
           <hr data-content="Strongly connected components" class="hr-text cd-hide">
           <div class=" w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide">
-              <div class="col-sm-12"> Strongly connected component is subset of vertices such that any two vertices of this subset are reachable from each other.</div>
-          </div>
+              <div class="col-sm-12"> A strongly connected component is a subset of vertices such that any two vertices of this subset are reachable from each other.</div>
+          </div> +
           <div class="card-deck mb-4 cd-hide">
               <div id="kosaraju's algorithm kosarajus algorithm" class="algorithm shadow-highlight card" >
                   <a href="kosarajus.html" class="unstyled-link">
@@ -220,6 +220,18 @@
                           </div>
                   </a>
               </div>
+              <div id="tarjan's algorithm tarjans algorithm" class="algorithm shadow-highlight card" >
+                <a href="tarjans.html" class="unstyled-link">
+                        <div class="card-body">
+                        <h5 class="card-title">Tarjan's algorithm</h5>
+                        <h6 class="card-subtitle">Strongly connected components</h6>
+                        <p class="card-text">Tarjan's algorithm is based on depth first search (DFS). The vertices are indexed as they are traversed by the DFS procedure. While returning from the recursion of DFS, every vertex V gets assigned a vertex L as a representative. L is a vertex with the least index that can be reach from V. Nodes with the same representative assigned are located in the same strongly connected component.
+                            <br><br>
+                            <b>Time Complexity:</b><br>
+                            <i>O(|E|+|V|)</i></p>
+                        </div>
+                </a>
+            </div>
           </div>
       </div>
   </section>

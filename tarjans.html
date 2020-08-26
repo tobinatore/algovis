@@ -1,890 +1,1119 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Tarjan's Algorithm - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
 
-  <title>Tarjan's Algorithm - AlgoVis.io</title>
-  <meta content="AlgoVis is an online algorithm visualization tool." name="description">
-  <meta content="algorithm visualization tool online" name="keywords">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top header-inner-pages">
-    <div class="container d-flex">
-      <div class="contact-info mr-auto">
-        <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">hello@algovis.io</a>
-      </div>
-      <div class="social-links">
-        <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
-        <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
-        <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-inner-pages">
-    <div class="container-fluid d-flex align-items-center">
-      <a class="btn back-button mr-4" href="graphs.html"><i class="bx bx-arrow-back white-text" aria-hidden="true"></i> Back</a>
-      <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-
-    </div>
-  </header><!-- End Header -->
-
-  <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="graphs.html">Graphs</a></li>
-          <li>Tarjan's Algorithm</li>
-        </ol>
-        <h2>Tarjan's algorithm visualization</h2>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
-
-    <section class="inner-page pt-4">
-  <div class="container-fluid px-0 mt-0" >
-    <div class="row w-100 mx-auto">
-        <div class="col-sm-9 col-md-10 mx-0 px-0">
-            <span style="font-weight: bold;">Draw your graph:</span>
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div
+      id="topbar"
+      class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
+    >
+      <div class="container d-flex">
+        <div class="contact-info mr-auto">
+          <i class="icofont-envelope"></i>
+          <a href="mailto:contact@example.com">hello@algovis.io</a>
         </div>
-        <div class="col-sm-3 col-md-2 mr-0 px-0 my-0 py-0 text-right"> <button onclick="clearCanvas()" class="button-top">Clear</button><button class="button-top ml-1" onclick="randomGraph()">Random</button></div>
-        </div>
-    <div class="data-container border-dark-nb p-1 mb-0 mt-0 w-100">
-      <svg id="visu"></svg>
-    </div>
-    <div class="w-100 row mx-auto border-dark-nt my-0 py-0"><p id="nodes" class="my-0 py-0"></p></div>
-    <div class="row mx-auto">
-      <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
-        <div class="ide w-100">
-          <div class="row ml-auto mr-auto ">
-            <span><span class="op">function</span> tarjan()</span>
-          </div>
-          <div class="row ml-auto mr-auto 1">
-            <span>&emsp;&emsp;<span class="op">for</span>(v = 0 to graph.getVertCount())</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 2 ">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!visited[v])</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 3 ">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">findSCC</span>(v)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 4 ">
-            <span>&emsp;&emsp;&emsp;&emsp;</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 5 ">
-            <span><span class="op">function</span> findSCC(v)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 6 ">
-            <span>&emsp;&emsp;discTime++</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 7 ">
-            <span>&emsp;&emsp;disc[v] = discTime</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 8 ">
-            <span>&emsp;&emsp;low[v] = discTime</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 9 ">
-            <span>&emsp;&emsp;stack.push(v)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 10">
-            <span>&emsp;&emsp;<span class="op">for each</span>(neighbour of v)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 11">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!visited[neighbour])</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 12">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">findSCC</span>(neighbour)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 13">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;low[v] = <span class="op">min</span>(low[v], low[neighbour])</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 14">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">else if</span>(onStack(neighbour))</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 15">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;low[v] = <span class="op">min</span>(low[v], disc[neighbour])</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 16">
-            <span>&emsp;&emsp;<span class="op">if</span>(low[v] == disc[v])</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 17">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">do</span></span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 18">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;elem = stack.pop()</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 19">
-            <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op">addToSCC</span>(elem)</span>
-          </div>
-          <div class="row ml-auto mr-auto mt-1 17">
-            <span>&emsp;&emsp;&emsp;&emsp;<span class="op">while</span>(elem != v)</span>
-          </div>
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
-      <div class="ide w-100 pl-0">
-        <div class="row ml-auto mr-auto">
-          <span class="comment w-100">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">---------------------</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">| SHORT EXPLANATION |</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">---------------------</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">1. Mark all vertices as unvisited.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">2. Run a Depth-first search on every unvisited vertex.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">3. Whenever a DFS begins add the vertex it was run on to the stack.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">4. Maintain two values (disc and low) for each vertex.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment"> - disc stores the discovery time of the vertex</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment"> - low stores the lowest disc reachable from this vertex</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">5. Search for vertices with low[v] == disc[v], as these are the root nodes in the SCC.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">6. Pop vertices from the stack until v from step 5 is on top. The popped vertices are the SCC with root v.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment">7. Repeat steps 5 and 6 until the stack is empty.</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">&emsp;</span>
-        </div>
-        <div class="row ml-auto mr-auto mt-1">
-          <span class="comment w-100">&emsp;</span>
+        <div class="social-links">
+          <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+            ><i class="icofont-twitter"></i
+          ></a>
+          <a href="https://github.com/tobinatore" class="github"
+            ><i class="icofont-github"></i
+          ></a>
+          <a
+            href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+            class="xing"
+            ><i class="icofont-xing"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/tobias-noethlich/"
+            class="linkedin"
+            ><i class="icofont-linkedin"></i
+          ></a>
         </div>
       </div>
     </div>
-  </div>
-    <hr data-content="Instructions" class="hr-text mb-3 mt-4">
-    <div class="row mx-auto">
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <form>
-          <div class="row">
-              <div class="col-12">
-                  To draw a new vertex, simply click anywhere on the canvas above.<br>
-                  To create an edge between two vertices, click on the first vertex and then on the second one.<br>
-                  You can create a random graph by clicking on the 'Random' button above the canvas.<br>
-                  To clear the canvas, use the 'Clear' button.
-                  
-              </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <form>
-          <div class="form-group row">
-            <div class="col-sm-5">Speed: </div>
-            <div class="col-sm-7">
-              <span>Slow&emsp;</span>
-              <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="350" data-slider-max="1000" data-slider-step="10" data-slider-value="500"/>
-              <span>&emsp;Fast</span>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <button id="start-button" type="button" onclick="tarjans()" class="btn btn-danger red w-100">Start</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-</div>
-    </section>
-  </main>
-<!-- ======= Footer ======= -->
-<footer id="footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
 
-        <div class="col-lg-4 col-md-6">
-          <div class="footer-info">
-            <h3>AlgoVis.io</h3>
-              <strong>Email:</strong> hello@algovis.io<br>
-            </p>
-            <div class="social-links mt-3">
-              <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
-              <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
-              <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
-              <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6 footer-links"></div>
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="graphs.html"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html#categories">Categories</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            <li><a href="index.html">Home</a></li>
           </ul>
+        </nav>
+        <!-- .nav-menu -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="graphs.html">Graphs</a></li>
+            <li>Tarjan's Algorithm</li>
+          </ol>
+          <h2>Tarjan's algorithm visualization</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page pt-4">
+        <div class="container-fluid px-0 mt-0">
+          <div class="row w-100 mx-auto">
+            <div class="col-sm-9 col-md-10 mx-0 px-0">
+              <span style="font-weight: bold">Draw your graph:</span>
+            </div>
+            <div class="col-sm-3 col-md-2 mr-0 px-0 my-0 py-0 text-right">
+              <button onclick="clearCanvas()" class="button-top">Clear</button
+              ><button class="button-top ml-1" onclick="randomGraph()">
+                Random
+              </button>
+            </div>
+          </div>
+          <div class="data-container border-dark-nb p-1 mb-0 mt-0 w-100">
+            <svg id="visu"></svg>
+          </div>
+          <div class="w-100 row mx-auto border-dark-nt my-0 py-0">
+            <p id="nodes" class="my-0 py-0"></p>
+          </div>
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto">
+                  <span><span class="op">function</span> tarjan()</span>
+                </div>
+                <div class="row ml-auto mr-auto 1">
+                  <span
+                    >&emsp;&emsp;<span class="op">for</span>(v = 0 to
+                    graph.getVertCount())</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span
+                    >(!visited[v])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
+                      >findSCC</span
+                    >(v)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  <span>&emsp;&emsp;&emsp;&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  <span><span class="op">function</span> findSCC(v)</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  <span>&emsp;&emsp;discTime++</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  <span>&emsp;&emsp;disc[v] = discTime</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 8">
+                  <span>&emsp;&emsp;low[v] = discTime</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 9">
+                  <span>&emsp;&emsp;stack.push(v)</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 10">
+                  <span
+                    >&emsp;&emsp;<span class="op">for each</span>(neighbour of
+                    v)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 11">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span
+                    >(!visited[neighbour])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 12">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
+                      >findSCC</span
+                    >(neighbour)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 13">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;low[v] =
+                    <span class="op">min</span>(low[v], low[neighbour])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 14">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">else if</span
+                    >(onStack(neighbour))</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 15">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;low[v] =
+                    <span class="op">min</span>(low[v], disc[neighbour])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 16">
+                  <span
+                    >&emsp;&emsp;<span class="op">if</span>(low[v] ==
+                    disc[v])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 17">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">do</span></span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 18">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;elem =
+                    stack.pop()</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 19">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
+                      >addToSCC</span
+                    >(elem)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 17">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">while</span>(elem
+                    != v)</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">---------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">| SHORT EXPLANATION |</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">---------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >1. Mark all vertices as unvisited.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >2. Run a Depth-first search on every unvisited
+                    vertex.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >3. Whenever a DFS begins add the vertex it was run on to
+                    the stack.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >4. Maintain two values (disc and low) for each
+                    vertex.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">
+                    - disc stores the discovery time of the vertex</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">
+                    - low stores the lowest disc reachable from this
+                    vertex</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >5. Search for vertices with low[v] == disc[v], as these are
+                    the root nodes in the SCC.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >6. Pop vertices from the stack until v from step 5 is on
+                    top. The popped vertices are the SCC with root v.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >7. Repeat steps 5 and 6 until the stack is empty.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr data-content="Instructions" class="hr-text mb-3 mt-4" />
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    To draw a new vertex, simply click anywhere on the canvas
+                    above.<br />
+                    To create an edge between two vertices, click on the first
+                    vertex and then on the second one.<br />
+                    You can create a random graph by clicking on the 'Random'
+                    button above the canvas.<br />
+                    To clear the canvas, use the 'Clear' button.
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="form-group row">
+                  <div class="col-sm-5">Speed:</div>
+                  <div class="col-sm-7">
+                    <span>Slow&emsp;</span>
+                    <input
+                      id="speedslider"
+                      data-slider-id="speedSlider"
+                      type="text"
+                      data-slider-min="350"
+                      data-slider-max="1000"
+                      data-slider-step="10"
+                      data-slider-value="500"
+                    />
+                    <span>&emsp;Fast</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <button
+                      id="start-button"
+                      type="button"
+                      onclick="tarjans()"
+                      class="btn btn-danger red w-100"
+                    >
+                      Start
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <h3>AlgoVis.io</h3>
+                <strong>Email:</strong> hello@algovis.io<br />
+                <div class="social-links mt-3">
+                  <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+                    ><i class="icofont-twitter"></i
+                  ></a>
+                  <a href="https://github.com/tobinatore" class="github"
+                    ><i class="icofont-github"></i
+                  ></a>
+                  <a
+                    href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+                    class="xing"
+                    ><i class="icofont-xing"></i
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/tobias-noethlich/"
+                    class="linkedin"
+                    ><i class="icofont-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 footer-links"></div>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#about">About us</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#categories">Categories</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Terms of service</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Privacy policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="container">
-    <div class="copyright">
-      &copy; Copyright <strong><span>AlgoVis.io</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </div>
-</footer><!-- End Footer -->
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>AlgoVis.io</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
 
-<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-<div id="preloader"></div>
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
 
-<!-- Vendor JS Files -->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/venobox/venobox.min.js"></script>
-<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-<script src="assets/vendor/aos/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
-<script src="https://d3js.org/d3.v5.js"></script>
-<script src="assets/js/graph.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="assets/js/graph.js"></script>
 
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
-<script>
-    const container = document.querySelector(".data-container");
-    var FLAG = false;
-    var DELAY = 500;
-    var w = globalThis.screen.availWidth;
-    var h = 370;
-    var data_nodes = [];
-    var data_edges = [];
-    var radius = 25;
-    var strokeWidth = "5px";
-    var drawing = false;
-    var xy0;
-    var xy1;
-    var g = new UnweightedDirectedGraph();
-    var vertexCount = 0;
-    var firstVert;
-    var secVert;
-    var visited = [];
-    var running = false;
-    var stack = [];
-    var sccStack = [];
-    var time = -1;
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script>
+      const container = document.querySelector(".data-container");
+      var FLAG = false;
+      var DELAY = 500;
+      var w = globalThis.screen.availWidth;
+      var h = 370;
+      var data_nodes = [];
+      var data_edges = [];
+      var radius = 25;
+      var strokeWidth = "5px";
+      var drawing = false;
+      var xy0;
+      var xy1;
+      var g = new UnweightedDirectedGraph();
+      var vertexCount = 0;
+      var firstVert;
+      var secVert;
+      var visited = [];
+      var running = false;
+      var stack = [];
+      var sccStack = [];
+      var time = -1;
 
-  
-    function setDelay(delay){
+      function setDelay(delay) {
         DELAY = delay;
-    }
-    
-    var xScale = d3.scaleLinear()
-        .domain([0, w])
-        .range([0, w]);  
+      }
 
-            
-    var yScale = d3.scaleLinear()
-        .domain([0, h])
-        .range([0, h]);  // Set margins for y specific
+      var xScale = d3.scaleLinear().domain([0, w]).range([0, w]);
 
-    var svg = d3.select("#visu");
-        svg.append("g").attr("id", "g-paths");
+      var yScale = d3.scaleLinear().domain([0, h]).range([0, h]); // Set margins for y specific
 
-        
-        svg.append("svg:defs").attr("id", "defs").append("svg:marker")
-            .attr("id", "triangle")
-            .attr("refX", 40)
-            .attr("refY", 9)
-            .attr("markerWidth", 40)
-            .attr("markerHeight", 40)
-            .attr("markerUnits","userSpaceOnUse")
-            .attr("orient", "auto")
-            .append("path")
-            .attr("d", "M 0 0 18 9 0 18 5 9")
-            .attr("id", "triangle-path")
-            .style("fill", "#171717");
+      var svg = d3.select("#visu");
+      svg.append("g").attr("id", "g-paths");
 
-    svg.on("click", async function() {
-      if(!running){
-        var coords = d3.mouse(this);
-        drawing = false;
-        await newVertex(coords);  
-      }                  
-    });
+      svg
+        .append("svg:defs")
+        .attr("id", "defs")
+        .append("svg:marker")
+        .attr("id", "triangle")
+        .attr("refX", 40)
+        .attr("refY", 9)
+        .attr("markerWidth", 40)
+        .attr("markerHeight", 40)
+        .attr("markerUnits", "userSpaceOnUse")
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 18 9 0 18 5 9")
+        .attr("id", "triangle-path")
+        .style("fill", "#171717");
 
-    async function newVertex(coords){
-        return new Promise(resolve => {
-            var newData= {
-                x: Math.round( xScale.invert(coords[0])),  // Takes the pixel number to convert to number
-                y: Math.round( yScale.invert(coords[1]))
-            };
+      svg.on("click", async function () {
+        if (!running) {
+          var coords = d3.mouse(this);
+          drawing = false;
+          await newVertex(coords);
+        }
+      });
 
+      async function newVertex(coords) {
+        return new Promise((resolve) => {
+          var newData = {
+            x: Math.round(xScale.invert(coords[0])), // Takes the pixel number to convert to number
+            y: Math.round(yScale.invert(coords[1])),
+          };
 
-            data_nodes.push(newData);   // Push data to our array
-            g.addVertex(vertexCount++);
+          data_nodes.push(newData); // Push data to our array
+          g.addVertex(vertexCount++);
 
-            var groups = svg.selectAll("circle")  // For new circle, go through the update process
-                .data(data_nodes)
-                .enter()
-                .append("g")
-                .attr("id", function(d,i){return "g"+i;})
-            groups.append("circle")
-                .attr("cx", function(d) { return xScale(d.x); }) 
-                .attr("cy", function(d) { return yScale(d.y); })
-                .transition()
-                .duration(500)
-                .attr("r", radius)
-                .attr("fill", "white")
-                .attr("stroke", "#171717")
-                .attr("stroke-width", strokeWidth)
-                .attr("id", function(d,i){return "circle"+i;})                
-            setTimeout(() => {  
-                groups.append("text")
-                .text(function(d,i){return i;})
-                .attr("id", function(d,i){return "vertex-text"+i;})
-                .attr("x", function(d) { return xScale(d.x)-5; }) 
-                .attr("y", function(d) { return yScale(d.y)+5; })
-                .attr("font-family", "sans-serif")
-                .attr("font-size", "18px")
-                .attr("font-weight", "bold");
-                groups.append("text")
-                .text("N").attr("id", function(d,i){return "disc-text"+i;})
-                .attr("x", function(d) { return xScale(d.x)-15; }) 
-                .attr("y", function(d) { return yScale(d.y)+45; })
-                .attr("font-family", "sans-serif")
-                .attr("font-size", "18px")
-                .attr("font-weight", "bold");
-                groups.append("text").attr("id", function(d,i){return "comma"+i;}).text("/")
-                .attr("x", function(d) { return xScale(d.x); }) 
-                .attr("y", function(d) { return yScale(d.y)+45; })
-                .attr("font-family", "sans-serif")
-                .attr("font-size", "18px")
-                .attr("font-weight", "bold");
-                groups.append("text").attr("id", function(d,i){return "low-text"+i;}).text("A")
-                .attr("x", function(d) { return xScale(d.x)+5; }) 
-                .attr("y", function(d) { return yScale(d.y)+45; })
-                .attr("font-family", "sans-serif")
-                .attr("font-size", "18px")
-                .attr("font-weight", "bold");
-
-            }, 300);
-            groups.on("click", function(d,i){
-                var e = d3.event;
-                e.cancelBubble = true;
-                if (e.stopPropagation) e.stopPropagation();
-                if(!running){
-                if(!drawing){
-                    drawing = true;
-                    var choords = d3.mouse(this);
-                    xy0= {
-                        x: Math.round( xScale.invert((coords[0]))),  // Takes the pixel number to convert to number
-                        y: Math.round( yScale.invert(coords[1]))
-                    };
-                    firstVert = i;
-                    svg.select("#circle"+i).attr("stroke", "#CC1616");
+          var groups = svg
+            .selectAll("circle") // For new circle, go through the update process
+            .data(data_nodes)
+            .enter()
+            .append("g")
+            .attr("id", function (d, i) {
+              return "g" + i;
+            });
+          groups
+            .append("circle")
+            .attr("cx", function (d) {
+              return xScale(d.x);
+            })
+            .attr("cy", function (d) {
+              return yScale(d.y);
+            })
+            .transition()
+            .duration(500)
+            .attr("r", radius)
+            .attr("fill", "white")
+            .attr("stroke", "#171717")
+            .attr("stroke-width", strokeWidth)
+            .attr("id", function (d, i) {
+              return "circle" + i;
+            });
+          setTimeout(() => {
+            groups
+              .append("text")
+              .text(function (d, i) {
+                return i;
+              })
+              .attr("id", function (d, i) {
+                return "vertex-text" + i;
+              })
+              .attr("x", function (d) {
+                return xScale(d.x) - 5;
+              })
+              .attr("y", function (d) {
+                return yScale(d.y) + 5;
+              })
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "18px")
+              .attr("font-weight", "bold");
+            groups
+              .append("text")
+              .text("N")
+              .attr("id", function (d, i) {
+                return "disc-text" + i;
+              })
+              .attr("x", function (d) {
+                return xScale(d.x) - 15;
+              })
+              .attr("y", function (d) {
+                return yScale(d.y) + 45;
+              })
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "18px")
+              .attr("font-weight", "bold");
+            groups
+              .append("text")
+              .attr("id", function (d, i) {
+                return "comma" + i;
+              })
+              .text("/")
+              .attr("x", function (d) {
+                return xScale(d.x);
+              })
+              .attr("y", function (d) {
+                return yScale(d.y) + 45;
+              })
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "18px")
+              .attr("font-weight", "bold");
+            groups
+              .append("text")
+              .attr("id", function (d, i) {
+                return "low-text" + i;
+              })
+              .text("A")
+              .attr("x", function (d) {
+                return xScale(d.x) + 5;
+              })
+              .attr("y", function (d) {
+                return yScale(d.y) + 45;
+              })
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "18px")
+              .attr("font-weight", "bold");
+          }, 300);
+          groups.on("click", function (d, i) {
+            var e = d3.event;
+            e.cancelBubble = true;
+            if (e.stopPropagation) e.stopPropagation();
+            if (!running) {
+              if (!drawing) {
+                drawing = true;
+                var choords = d3.mouse(this);
+                xy0 = {
+                  x: Math.round(xScale.invert(coords[0])), // Takes the pixel number to convert to number
+                  y: Math.round(yScale.invert(coords[1])),
+                };
+                firstVert = i;
+                svg.select("#circle" + i).attr("stroke", "#CC1616");
+              } else {
+                //drawing = false;
+                var choords = d3.mouse(this);
+                secVert = i;
+                xy1 = {
+                  x: Math.round(xScale.invert(coords[0])), // Takes the pixel number to convert to number
+                  y: Math.round(yScale.invert(coords[1])),
+                };
+                var line = d3
+                  .line()
+                  .x(function (d) {
+                    return d.x;
+                  })
+                  .y(function (d) {
+                    return d.y;
+                  })
+                  .curve(d3.curveLinear);
+                if (xy0.x != xy1.x || xy0.y != xy1.y) {
+                  if (!g.edgeExists(firstVert, secVert)) {
+                    g.addEdge(firstVert, secVert);
+                    svg
+                      .select("#g-paths")
+                      .append("path")
+                      .transition()
+                      .duration(300)
+                      .attr("d", line([xy0, xy1]))
+                      .attr("stroke", "#171717")
+                      .attr("stroke-width", 4)
+                      .attr("fill", "none")
+                      .attr("marker-end", "url(#triangle)")
+                      .attr("id", function (d, i) {
+                        data_edges.push({
+                          v1: firstVert,
+                          v2: secVert,
+                          xy0: xy0,
+                          xy1: xy1,
+                          id: data_edges.length,
+                        });
+                        return "path" + (data_edges.length - 1);
+                      });
+                  }
                 }
-                else{
-                    //drawing = false;
-                    var choords = d3.mouse(this);
-                    secVert = i;
-                    xy1= {
-                        x: Math.round( xScale.invert(coords[0])),  // Takes the pixel number to convert to number
-                        y: Math.round( yScale.invert(coords[1]))
-                    };
-                    var line = d3.line()
-                        .x(function(d) { return d.x; })
-                        .y(function(d) { return d.y; })
-                        .curve(d3.curveLinear);                        
-                    if(xy0.x != xy1.x || xy0.y != xy1.y){
-                        if(!g.edgeExists(firstVert,secVert)){
-                            g.addEdge(firstVert, secVert);
-                            svg.select("#g-paths").append("path")
-                                .transition()
-                                .duration(300)
-                                .attr("d", line([xy0,xy1]))
-                                .attr("stroke", "#171717")
-                                .attr("stroke-width", 4)
-                                .attr("fill", "none")
-                                .attr("marker-end","url(#triangle)")
-                                .attr("id", function(d,i){
-                                    data_edges.push({v1:firstVert, v2:secVert, xy0:xy0, xy1:xy1, id:data_edges.length});
-                                    return "path"+(data_edges.length-1);
-                                });
-                        }
-                    }
-                    drawing = false;
-                    svg.select("#circle"+firstVert).attr("stroke", "#171717");
-                    svg.select("#circle"+secVert).attr("stroke", "#171717");
-                }
+                drawing = false;
+                svg.select("#circle" + firstVert).attr("stroke", "#171717");
+                svg.select("#circle" + secVert).attr("stroke", "#171717");
               }
-            });
-            setTimeout(() => {
-              
-                groups.on("mouseover", function(d,i){
-                  if(!running){
-                      svg.select("#circle"+i)
-                          .transition()
-                          .duration(250)
-                          .attr("stroke", "#CC1616")
-                          .attr("stroke-width", "10px");
-                  } 
-            });
-            groups.on("mouseout", function(d,i){
-              if(!running){  
-                if(!drawing){
-                    svg.select("#circle"+i)
-                    .transition()
-                    .duration(250)
-                    .attr("stroke", "#171717")
-                    .attr("stroke-width", "5px"); 
-                }
-                else{
-                    svg.select("#circle"+i)
-                    .transition()
-                    .duration(250)
-                    .attr("stroke-width", "5px"); 
-                }
-              }
-            });
-            }, 510);
-            
-            setTimeout(() => {  
-                resolve();
-            }, 350);    
-        });
-    }
-
-    async function newEdge(v1,v2){
-        return new Promise(resolve => {
-            var xy0 = data_nodes[v1];
-            var xy1 = data_nodes[v2];
-
-            var line = d3.line()
-                .x(function(d) { return d.x; })
-                .y(function(d) { return d.y; })
-                .curve(d3.curveLinear); 
-            
-            if(!g.edgeExists(v1, v2)){
-                g.addEdge(v1, v2);
-                svg.select("#g-paths").append("path")
-                    .transition()
-                    .duration(300)
-                    .attr("d", line([xy0,xy1]))
-                    .attr("stroke", "#171717")
-                    .attr("stroke-width", 4)
-                    .attr("marker-end","url(#triangle)")
-                    .attr("fill", "none")
-                    .attr("id", function(d,i){
-                        data_edges.push({v1:v1, v2:v2, xy0:xy0, xy1:xy1, id:data_edges.length});
-                        return "path"+(data_edges.length-1);
-                    });
             }
-        setTimeout(() => {
+          });
+          setTimeout(() => {
+            groups.on("mouseover", function (d, i) {
+              if (!running) {
+                svg
+                  .select("#circle" + i)
+                  .transition()
+                  .duration(250)
+                  .attr("stroke", "#CC1616")
+                  .attr("stroke-width", "10px");
+              }
+            });
+            groups.on("mouseout", function (d, i) {
+              if (!running) {
+                if (!drawing) {
+                  svg
+                    .select("#circle" + i)
+                    .transition()
+                    .duration(250)
+                    .attr("stroke", "#171717")
+                    .attr("stroke-width", "5px");
+                } else {
+                  svg
+                    .select("#circle" + i)
+                    .transition()
+                    .duration(250)
+                    .attr("stroke-width", "5px");
+                }
+              }
+            });
+          }, 510);
+
+          setTimeout(() => {
             resolve();
-        }, 300);
-            
-        });
-    }
-
-    async function highlightSCC(scc){
-      seen = [];
-      for (const i in scc) {
-        for (let j = 0; j < scc.length; j++) {
-          if(j != i){
-            for (var x in data_edges) {
-              var stop = false;
-              if(((data_edges[x].v1 == scc[i] && data_edges[x].v2 == scc[j]) 
-                || (data_edges[x].v1 == scc[j] && data_edges[x].v2 == scc[i])) && seen.indexOf(data_edges[x].id) == -1 ){
-                d3.select("#path"+data_edges[x].id)
-                  .attr("class", "scc");     
-                seen.push(data_edges[x].id);                      
-                break;
-              }//if
-            }//for
-          }//if
-        }//for
-        d3.select("#circle"+scc[i])
-                .attr("class", "scc");
-      }//for
-    }//function
-
-    
-    async function findEdgeForAnim(qe, nb){
-        return new Promise(resolve => {
-            for (var i in data_edges) {
-                var stop = false;
-                if((data_edges[i].v1 == qe && data_edges[i].v2 == nb) 
-                    || (data_edges[i].v1 == nb && data_edges[i].v2 == qe) ){
-                    path = d3.select("#path"+data_edges[i].id)
-                    .filter(function(){
-                      return !this.classList.contains("vis");
-                    })
-                    .transition()
-                    .duration(DELAY)
-                    .attr("stroke", "#CC1616")
-                    .attr("stroke-width", 4)
-                    .attr("class", "vis");                            
-                                               
-                    if(path.size() > 0){
-                      setTimeout(() => {
-                          resolve();
-                      }, DELAY*2); 
-                      break;
-                    }
-                }
-            };    
-        }, 1000);
-    }
-
-    function highlightCode(elementClass){
-        $(".code-highlight").removeClass("code-highlight");
-        $(`.${elementClass}`).addClass("code-highlight");
-    }
-
-    async function runDfs(graph, v, run){
-        
-        await dfs(graph, v, run)
-        
-    }
-
-    async function timeout(delay){
-        await new Promise(resolve =>
-            setTimeout(() => {  	
-                resolve();            
-            }, delay)               
-        );
-    }
-
-    async function colorEdge(color, start, end){
-      return new Promise(resolve => {
-            for (var i in data_edges) {
-                var stop = false;
-                if((data_edges[i].v1 == start && data_edges[i].v2 == end) 
-                    || (data_edges[i].v1 == end && data_edges[i].v2 == start) ){
-                    d3.select("#path"+data_edges[i].id)
-                    .transition()
-                    .duration(DELAY)
-                    .attr("stroke", color)
-                    .attr("stroke-width", 4);                            
-                                                    
-                    setTimeout(() => {
-                        resolve();
-                    }, DELAY*2); 
-                    break;
-                }
-            };    
-        }, 1000);
-    }
-
-    async function greyoutEdges(vertList){
-      for (const i in vertList) {
-        edgeList = g.adjList;
-        edgeList.forEach(async (value, key) => {
-          for (const k in value) {
-            if(value[k] == vertList[i]){
-              await colorEdge("#DDD", vertList[i], key);
-            }
-          }
+          }, 350);
         });
       }
-    }
 
-    async function findSCC(graph, v, disc, low, stkItem){
-        
-        highlightCode("7");
-        await timeout(DELAY/2);
-        time++;
-        
-        highlightCode("8");
-        await timeout(DELAY/2);
-        disc[v] = time;
-        
-        highlightCode("9");
-        await timeout(DELAY/2);
-        low[v] = time;
-        stkItem[v] = true; 
-        
-        highlightCode("10");
-        await timeout(DELAY/2);
-        stack.push(v);        
-        d3.select("#disc-text"+v).text(disc[v]);
-        d3.select("#low-text"+v).text(low[v]);
-        d3.select("#comma"+v).text(",");
-        d3.select("#circle"+v)
-            .transition()
-            .duration(DELAY)
-            .attr("stroke", "#CC1616")
-            .attr("stroke-width", "10px"); 
-        
-        var neighbours = graph.adjList.get(v);
-      
-        highlightCode("11");
-        await timeout(DELAY/2);
-        for (var i in neighbours) {
-          
-          highlightCode("12");
-          await timeout(DELAY/2);
-          if(disc[neighbours[i]] == -1){
-            await findEdgeForAnim(v, neighbours[i]);
-            d3.select("#circle"+v)
-                .transition()
-                .duration(DELAY)
-                .attr("stroke", "#171717")
-                .attr("stroke-width", "5px");
-                
-            highlightCode("13");
-            await timeout(DELAY/2); 
-            await findSCC(graph, neighbours[i], disc, low, stkItem);
-            
-            highlightCode("14");
-            await timeout(DELAY/2);
-            low[v] = Math.min(low[v], low[neighbours[i]])
-            d3.select("#disc-text"+v).text(disc[v]);
-            d3.select("#low-text"+v).text(low[v]);
-            d3.select("#circle"+v)
+      async function newEdge(v1, v2) {
+        return new Promise((resolve) => {
+          var xy0 = data_nodes[v1];
+          var xy1 = data_nodes[v2];
+
+          var line = d3
+            .line()
+            .x(function (d) {
+              return d.x;
+            })
+            .y(function (d) {
+              return d.y;
+            })
+            .curve(d3.curveLinear);
+
+          if (!g.edgeExists(v1, v2)) {
+            g.addEdge(v1, v2);
+            svg
+              .select("#g-paths")
+              .append("path")
+              .transition()
+              .duration(300)
+              .attr("d", line([xy0, xy1]))
+              .attr("stroke", "#171717")
+              .attr("stroke-width", 4)
+              .attr("marker-end", "url(#triangle)")
+              .attr("fill", "none")
+              .attr("id", function (d, i) {
+                data_edges.push({
+                  v1: v1,
+                  v2: v2,
+                  xy0: xy0,
+                  xy1: xy1,
+                  id: data_edges.length,
+                });
+                return "path" + (data_edges.length - 1);
+              });
+          }
+          setTimeout(() => {
+            resolve();
+          }, 300);
+        });
+      }
+
+      async function highlightSCC(scc) {
+        seen = [];
+        for (const i in scc) {
+          for (let j = 0; j < scc.length; j++) {
+            if (j != i) {
+              for (var x in data_edges) {
+                var stop = false;
+                if (
+                  ((data_edges[x].v1 == scc[i] && data_edges[x].v2 == scc[j]) ||
+                    (data_edges[x].v1 == scc[j] &&
+                      data_edges[x].v2 == scc[i])) &&
+                  seen.indexOf(data_edges[x].id) == -1
+                ) {
+                  d3.select("#path" + data_edges[x].id).attr("class", "scc");
+                  seen.push(data_edges[x].id);
+                  break;
+                } //if
+              } //for
+            } //if
+          } //for
+          d3.select("#circle" + scc[i]).attr("class", "scc");
+        } //for
+      } //function
+
+      async function findEdgeForAnim(qe, nb) {
+        return new Promise((resolve) => {
+          for (var i in data_edges) {
+            var stop = false;
+            if (
+              (data_edges[i].v1 == qe && data_edges[i].v2 == nb) ||
+              (data_edges[i].v1 == nb && data_edges[i].v2 == qe)
+            ) {
+              path = d3
+                .select("#path" + data_edges[i].id)
+                .filter(function () {
+                  return !this.classList.contains("vis");
+                })
                 .transition()
                 .duration(DELAY)
                 .attr("stroke", "#CC1616")
-                .attr("stroke-width", "10px");
-          }else if (stkItem[neighbours[i]]){
-            
-            highlightCode("15");
-            await timeout(DELAY/2);
-            
-            highlightCode("16");
-            await timeout(DELAY/2);
-            low[v] = Math.min(low[v], disc[neighbours[i]])
-            d3.select("#low-text"+v).text(low[v]);
-            await findEdgeForAnim(v, neighbours[i]);
+                .attr("stroke-width", 4)
+                .attr("class", "vis");
+
+              if (path.size() > 0) {
+                setTimeout(() => {
+                  resolve();
+                }, DELAY * 2);
+                break;
+              }
+            }
           }
-          
-          d3.select("#circle"+neighbours[i])
+        }, 1000);
+      }
+
+      function highlightCode(elementClass) {
+        $(".code-highlight").removeClass("code-highlight");
+        $(`.${elementClass}`).addClass("code-highlight");
+      }
+
+      async function runDfs(graph, v, run) {
+        await dfs(graph, v, run);
+      }
+
+      async function timeout(delay) {
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve();
+          }, delay)
+        );
+      }
+
+      async function colorEdge(color, start, end) {
+        return new Promise((resolve) => {
+          for (var i in data_edges) {
+            var stop = false;
+            if (
+              (data_edges[i].v1 == start && data_edges[i].v2 == end) ||
+              (data_edges[i].v1 == end && data_edges[i].v2 == start)
+            ) {
+              d3.select("#path" + data_edges[i].id)
+                .transition()
+                .duration(DELAY)
+                .attr("stroke", color)
+                .attr("stroke-width", 4);
+
+              setTimeout(() => {
+                resolve();
+              }, DELAY * 2);
+              break;
+            }
+          }
+        }, 1000);
+      }
+
+      async function greyoutEdges(vertList) {
+        for (const i in vertList) {
+          edgeList = g.adjList;
+          edgeList.forEach(async (value, key) => {
+            for (const k in value) {
+              if (value[k] == vertList[i]) {
+                await colorEdge("#DDD", vertList[i], key);
+              }
+            }
+          });
+        }
+      }
+
+      async function findSCC(graph, v, disc, low, stkItem) {
+        highlightCode("7");
+        await timeout(DELAY / 2);
+        time++;
+
+        highlightCode("8");
+        await timeout(DELAY / 2);
+        disc[v] = time;
+
+        highlightCode("9");
+        await timeout(DELAY / 2);
+        low[v] = time;
+        stkItem[v] = true;
+
+        highlightCode("10");
+        await timeout(DELAY / 2);
+        stack.push(v);
+        d3.select("#disc-text" + v).text(disc[v]);
+        d3.select("#low-text" + v).text(low[v]);
+        d3.select("#comma" + v).text(",");
+        d3.select("#circle" + v)
+          .transition()
+          .duration(DELAY)
+          .attr("stroke", "#CC1616")
+          .attr("stroke-width", "10px");
+
+        var neighbours = graph.adjList.get(v);
+
+        highlightCode("11");
+        await timeout(DELAY / 2);
+        for (var i in neighbours) {
+          highlightCode("12");
+          await timeout(DELAY / 2);
+          if (disc[neighbours[i]] == -1) {
+            await findEdgeForAnim(v, neighbours[i]);
+            d3.select("#circle" + v)
               .transition()
               .duration(DELAY)
               .attr("stroke", "#171717")
               .attr("stroke-width", "5px");
+
+            highlightCode("13");
+            await timeout(DELAY / 2);
+            await findSCC(graph, neighbours[i], disc, low, stkItem);
+
+            highlightCode("14");
+            await timeout(DELAY / 2);
+            low[v] = Math.min(low[v], low[neighbours[i]]);
+            d3.select("#disc-text" + v).text(disc[v]);
+            d3.select("#low-text" + v).text(low[v]);
+            d3.select("#circle" + v)
+              .transition()
+              .duration(DELAY)
+              .attr("stroke", "#CC1616")
+              .attr("stroke-width", "10px");
+          } else if (stkItem[neighbours[i]]) {
+            highlightCode("15");
+            await timeout(DELAY / 2);
+
+            highlightCode("16");
+            await timeout(DELAY / 2);
+            low[v] = Math.min(low[v], disc[neighbours[i]]);
+            d3.select("#low-text" + v).text(low[v]);
+            await findEdgeForAnim(v, neighbours[i]);
+          }
+
+          d3.select("#circle" + neighbours[i])
+            .transition()
+            .duration(DELAY)
+            .attr("stroke", "#171717")
+            .attr("stroke-width", "5px");
         }
 
         var itemPopped = 0;
         highlightCode("17");
-        await timeout(DELAY/2);
-        if(low[v] == disc[v]){
+        await timeout(DELAY / 2);
+        if (low[v] == disc[v]) {
           stkItem[v] = false;
           var sccList = [];
           highlightCode("18");
-          await timeout(DELAY/2);
-          while(stack[stack.length-1] != v){
+          await timeout(DELAY / 2);
+          while (stack[stack.length - 1] != v) {
             highlightCode("19");
-            await timeout(DELAY/2);
+            await timeout(DELAY / 2);
             poppedItem = stack.pop();
-            d3.select("#circle"+v)
-                .transition()
-                .duration(DELAY)
-                .attr("stroke", "#CC1616")
-                .attr("stroke-width", "10px");
-                await timeout(DELAY/2)
+            d3.select("#circle" + v)
+              .transition()
+              .duration(DELAY)
+              .attr("stroke", "#CC1616")
+              .attr("stroke-width", "10px");
+            await timeout(DELAY / 2);
             highlightCode("20");
-            await timeout(DELAY/2);
+            await timeout(DELAY / 2);
             sccList.push(poppedItem);
             highlightCode("21");
-          await timeout(DELAY/2);
+            await timeout(DELAY / 2);
           }
-          if(stack[stack.length-1] == v){
+          if (stack[stack.length - 1] == v) {
             poppedItem = stack.pop();
-            d3.select("#circle"+v)
-                .transition()
-                .duration(DELAY)
-                .attr("stroke", "#CC1616")
-                .attr("stroke-width", "10px");
+            d3.select("#circle" + v)
+              .transition()
+              .duration(DELAY)
+              .attr("stroke", "#CC1616")
+              .attr("stroke-width", "10px");
             sccList.push(poppedItem);
-            
-            await greyoutEdges(sccList)
+
+            await greyoutEdges(sccList);
           }
           sccStack.push(sccList);
           highlightSCC(sccList);
-          
-          
         }
-        d3.select("#circle"+v)
-              .transition()
-              .duration(DELAY)
-              .attr("stroke", "#171717")
-              .attr("stroke-width", "5px");
-        
-    }
-
-    async function tarjans(){
-      running = true;
-      $("#nodes").html("");
-      d3.selectAll("path, circle").filter(function(){return !this.id.includes("triangle")}).attr("stroke", "#171717")
-      .attr("stroke-width", 4);
-      d3.selectAll("text").filter(function(){
-        return this.id.includes("disc-text");
-      })
-      .text("N");
-      d3.selectAll("text").filter(function(){
-        return this.id.includes("comma");
-      })
-      .text("/");
-      d3.selectAll("text").filter(function(){
-        return this.id.includes("low-text");
-      })
-      .text("A");
-      time = -1;
-      var disc = [];
-      var low  = [];
-      stack = [];
-      sccStack = [];
-      stkItem = []
-
-      for (let i = 0; i < g.getNoOfVertices(); i++) {
-        disc.push(-1);
-        low.push(-1);
-        stkItem.push(false);
+        d3.select("#circle" + v)
+          .transition()
+          .duration(DELAY)
+          .attr("stroke", "#171717")
+          .attr("stroke-width", "5px");
       }
 
-      highlightCode("2");
-      await timeout(DELAY/2);
-      for (let j = 0; j < g.getNoOfVertices(); j++) {
-        
-        highlightCode("3");
-        await timeout(DELAY/2);
-        if(disc[j] == -1){
-          
-          highlightCode("4");
-          await timeout(DELAY/2);
-          await findSCC(g, j, disc, low, stkItem);
+      async function tarjans() {
+        running = true;
+        $("#nodes").html("");
+        d3.selectAll("path, circle")
+          .filter(function () {
+            return !this.id.includes("triangle");
+          })
+          .attr("stroke", "#171717")
+          .attr("stroke-width", 4);
+        d3.selectAll("text")
+          .filter(function () {
+            return this.id.includes("disc-text");
+          })
+          .text("N");
+        d3.selectAll("text")
+          .filter(function () {
+            return this.id.includes("comma");
+          })
+          .text("/");
+        d3.selectAll("text")
+          .filter(function () {
+            return this.id.includes("low-text");
+          })
+          .text("A");
+        time = -1;
+        var disc = [];
+        var low = [];
+        stack = [];
+        sccStack = [];
+        stkItem = [];
+
+        for (let i = 0; i < g.getNoOfVertices(); i++) {
+          disc.push(-1);
+          low.push(-1);
+          stkItem.push(false);
         }
-        
+
+        highlightCode("2");
+        await timeout(DELAY / 2);
+        for (let j = 0; j < g.getNoOfVertices(); j++) {
+          highlightCode("3");
+          await timeout(DELAY / 2);
+          if (disc[j] == -1) {
+            highlightCode("4");
+            await timeout(DELAY / 2);
+            await findSCC(g, j, disc, low, stkItem);
+          }
+        }
+
+        test = d3.selectAll("path").filter(function () {
+          return !this.classList.contains("scc");
+        });
+        test.attr("stroke", "#DDD");
+
+        test2 = d3.selectAll(".scc");
+        test2
+          .transition()
+          .duration(DELAY)
+          .attr("stroke", "#CC1616")
+          .attr("class", "");
+        highlightCode("0");
+        $("#nodes").html(
+          "Number of strongly connected components: " + sccStack.length
+        );
       }
-      
 
-      test = d3.selectAll("path").filter(function(){
-        return !this.classList.contains("scc");
-      })
-      test.attr("stroke","#DDD");
-
-      test2 = d3.selectAll(".scc")
-      test2.transition().duration(DELAY).attr("stroke", "#CC1616").attr("class", "");
-      highlightCode("0");
-      $("#nodes").html("Number of strongly connected components: "+sccStack.length);
-    }
-
-
-
-    function clearCanvas(){
+      function clearCanvas() {
         running = false;
-        var ids = ["g-paths","defs","triangle","triangle-path","triangle-red", "triangle-path-red"];
+        var ids = [
+          "g-paths",
+          "defs",
+          "triangle",
+          "triangle-path",
+          "triangle-red",
+          "triangle-path-red",
+        ];
         data_edges = [];
         data_nodes = [];
         vertexCount = 0;
         g = new UnweightedDirectedGraph();
         drawing = false;
 
-        svg.selectAll("*").filter(function(d,i){
-          return !ids.includes(this.id);
-        }).remove();        
-    }
+        svg
+          .selectAll("*")
+          .filter(function (d, i) {
+            return !ids.includes(this.id);
+          })
+          .remove();
+      }
 
-    function getRowCol(numVerts, taken) {
-        row = Math.round(Math.random()*(numVerts-1));
-        col = Math.round(Math.random()*(numVerts-1));
+      function getRowCol(numVerts, taken) {
+        row = Math.round(Math.random() * (numVerts - 1));
+        col = Math.round(Math.random() * (numVerts - 1));
 
         while (taken[row][col]) {
-            row = Math.round(Math.random()*(numVerts-1));
-            col = Math.round(Math.random()*(numVerts-1));
+          row = Math.round(Math.random() * (numVerts - 1));
+          col = Math.round(Math.random() * (numVerts - 1));
         }
 
         taken[row][col] = true;
 
-        return({row:row, col:col, taken:taken});
+        return { row: row, col: col, taken: taken };
+      }
 
-    }
-
-    async function randomGraph(){
+      async function randomGraph() {
         running = false;
-        var numberVerts = Math.round((Math.random()*4)+4);
-        var maxEdges = numberVerts*(numberVerts-1)/2;
-        var numberEdges = Math.round((Math.random()*(maxEdges-numberVerts))+numberVerts);
-        var cellHeight = Math.round(h/6);
-        var cellWidth = Math.round(w/6);
+        var numberVerts = Math.round(Math.random() * 4 + 4);
+        var maxEdges = (numberVerts * (numberVerts - 1)) / 2;
+        var numberEdges = Math.round(
+          Math.random() * (maxEdges - numberVerts) + numberVerts
+        );
+        var cellHeight = Math.round(h / 6);
+        var cellWidth = Math.round(w / 6);
         var row = 0;
         var col = 0;
         var x = 0;
@@ -892,67 +1121,66 @@
         var v1;
         var v2;
         var taken = [];
-        
+
         for (let x = 0; x < 6; x++) {
-            var row = [];
-            for (let y = 0; y < 6; y++) { 
-                row.push(false);                
-            }
-            taken.push(row);
+          var row = [];
+          for (let y = 0; y < 6; y++) {
+            row.push(false);
+          }
+          taken.push(row);
         }
 
         clearCanvas();
 
         for (let i = 0; i < numberVerts; i++) {
-            var rowcol = getRowCol(6, taken);
-            row = rowcol.row;
-            col = rowcol.col;
-            taken = rowcol.taken;
+          var rowcol = getRowCol(6, taken);
+          row = rowcol.row;
+          col = rowcol.col;
+          taken = rowcol.taken;
 
-            x = Math.round((cellWidth*col)+Math.random()*25);
-            y = Math.round((cellHeight*row)+Math.random()*25);
-            await newVertex([x,y]);
+          x = Math.round(cellWidth * col + Math.random() * 25);
+          y = Math.round(cellHeight * row + Math.random() * 25);
+          await newVertex([x, y]);
         }
-        
+
         for (let j = 0; j < numberEdges; j++) {
-            v1 = Math.round(Math.random()*(numberVerts-1));
-            v2 = Math.round(Math.random()*(numberVerts-1));
-            let breaker = 0;
+          v1 = Math.round(Math.random() * (numberVerts - 1));
+          v2 = Math.round(Math.random() * (numberVerts - 1));
+          let breaker = 0;
 
-            while (v1 == v2 || g.edgeExists(v1, v2)) {
-                if(breaker < 100){
-                    v2 = Math.round(Math.random()*(numberVerts-1));
-                }
-                await new Promise(resolve =>
-                    setTimeout(() => {  	
-                        resolve();            
-                    }, DELAY/10)               
-                );
-                breaker++;
+          while (v1 == v2 || g.edgeExists(v1, v2)) {
+            if (breaker < 100) {
+              v2 = Math.round(Math.random() * (numberVerts - 1));
             }
-            if(breaker < 100) await newEdge(v1, v2);   
+            await new Promise((resolve) =>
+              setTimeout(() => {
+                resolve();
+              }, DELAY / 10)
+            );
+            breaker++;
+          }
+          if (breaker < 100) await newEdge(v1, v2);
         }
-    }
-  </script>
+      }
+    </script>
 
-<script>
-    $(document).ready(function() {
-      d3.select("#visu").attr("width", "100%").attr("height", "370").attr("viewBox", "0 0 "+ globalThis.screen.availWidth + " 370");
-     
-      var speedSlider = new Slider("#speedslider",{
-          reversed : true,
-        tooltip : "none",
-        handle : "square"
-      });
-  
-      speedSlider.on("slide", function(slideEvt) {
-        setDelay(slideEvt);
-      });
-  
-    });
-    
-</script>
-  
+    <script>
+      $(document).ready(function () {
+        d3.select("#visu")
+          .attr("width", "100%")
+          .attr("height", "370")
+          .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 370");
 
+        var speedSlider = new Slider("#speedslider", {
+          reversed: true,
+          tooltip: "none",
+          handle: "square",
+        });
+
+        speedSlider.on("slide", function (slideEvt) {
+          setDelay(slideEvt);
+        });
+      });
+    </script>
   </body>
-  </html>
+</html>

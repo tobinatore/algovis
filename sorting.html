@@ -1,215 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Sorting - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
 
-  <title>Sorting - AlgoVis.io</title>
-  <meta content="AlgoVis is an online algorithm visualization tool." name="description">
-  <meta content="algorithm visualization tool online" name="keywords">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top header-inner-pages">
-    <div class="container d-flex">
-      <div class="contact-info mr-auto">
-        <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">hello@algovis.io</a>
-      </div>
-      <div class="social-links">
-        <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
-        <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
-        <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div
+      id="topbar"
+      class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
+    >
+      <div class="container d-flex">
+        <div class="contact-info mr-auto">
+          <i class="icofont-envelope"></i>
+          <a href="mailto:contact@example.com">hello@algovis.io</a>
+        </div>
+        <div class="social-links">
+          <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+            ><i class="icofont-twitter"></i
+          ></a>
+          <a href="https://github.com/tobinatore" class="github"
+            ><i class="icofont-github"></i
+          ></a>
+          <a
+            href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+            class="xing"
+            ><i class="icofont-xing"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/tobias-noethlich/"
+            class="linkedin"
+            ><i class="icofont-linkedin"></i
+          ></a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-inner-pages">
-    <div class="container d-flex align-items-center">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container d-flex align-items-center">
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-      <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#comparison-sorts">Comparison sorts</a></li>
-          <li><a href="#non-comparison-sorts">Non-comparison sorts</a></li>
-          <li><a href="#other-sorts">Others</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-
-    </div>
-  </header><!-- End Header -->
-
-  <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li>Sorting</li>
-        </ol>
-        <h2>Sorting Algorithms</h2>
-
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#comparison-sorts">Comparison sorts</a></li>
+            <li><a href="#non-comparison-sorts">Non-comparison sorts</a></li>
+            <li><a href="#other-sorts">Others</a></li>
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
       </div>
-    </section><!-- End Breadcrumbs -->
+    </header>
+    <!-- End Header -->
 
-    <section class="inner-page">
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Sorting</li>
+          </ol>
+          <h2>Sorting Algorithms</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page">
         <section id="overview" class="pt-0">
-            <div class="container">
+          <div class="container">
             <h3 class="highlighted-text">Overview</h3>
-                <div class="mb-4 explanation ml-2 mr-2" style="font-size: large;">
-                    <p > A sorting algorithm is an algorithm that puts elements of a list in a certain order (thus sorting the list). The most frequently used orders are numerical order for lists of numbers and lexicographical order for lists of strings.<br><br>
-                        To put it more formally, the output generally has to fulfill two conditions:
-                        <ul>
-                            <li>The output is in nondecreasing order</li>
-                            <li>The output is a permutation of the input</li>
-                        </ul>
-                        Or, to put it simply, when running a sorting algorithm we expect an output that contains all the elements originally present in the input arranged in such a way that the smallest element (according to the operation used to sort the list) is in the leftmost place, with every element following being either bigger or equal to its predecessor.<br><br>
-                        Sorting algorithms can generally be classified into three distinct categories:
-                        <ul>
-                            <li>Comparison sorts</li>
-                            <li>Non-comparison sorts</li>
-                            <li>Others</li>
-                        </ul>
-                        On this page you can find many implementations for every category. If you need a visualization for a certain algorithm, just use the search function to find it quickly.
-                        </p>
-                </div>  
+            <div class="mb-4 explanation ml-2 mr-2" style="font-size: large">
+              A sorting algorithm is an algorithm that puts elements of a list
+              in a certain order (thus sorting the list). The most frequently
+              used orders are numerical order for lists of numbers and
+              lexicographical order for lists of strings.<br /><br />
+              To put it more formally, the output generally has to fulfill two
+              conditions:
+              <ul>
+                <li>The output is in nondecreasing order</li>
+                <li>The output is a permutation of the input</li>
+              </ul>
+              Or, to put it simply, when running a sorting algorithm we expect
+              an output that contains all the elements originally present in the
+              input arranged in such a way that the smallest element (according
+              to the operation used to sort the list) is in the leftmost place,
+              with every element following being either bigger or equal to its
+              predecessor.<br /><br />
+              Sorting algorithms can generally be classified into three distinct
+              categories:
+              <ul>
+                <li>Comparison sorts</li>
+                <li>Non-comparison sorts</li>
+                <li>Others</li>
+              </ul>
+              On this page you can find many implementations for every category.
+              If you need a visualization for a certain algorithm, just use the
+              search function to find it quickly.
             </div>
-            <div class="container-fluid">
-                <div class="row mt-5 highlighted-text"><div class="col-sm-12 text-center"><h2>Search</h2></div></div>
-                <div class="row justify-content-center mt-2">
-                    <div class="col-sm-12 col-md-10 col-lg-8">
-                        <form class="card card-sm border-red">
-                            <div class="card-body row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <i class="bx bx-search h4 text-body"></i>
-                                </div>
-                                <!--end of col-->
-                                <div class="col">
-                                    <input id="search" class="form-control form-control-borderless" type="search" placeholder="Search names or keywords">
-                                </div>
-                                <div class="anchor w-100" id="comparison"></div>
-                                <!--end of col-->
-                                <!--end of col-->
-                            </div>
-                        </form>
+          </div>
+          <div class="container-fluid">
+            <div class="row mt-5 highlighted-text">
+              <div class="col-sm-12 text-center"><h2>Search</h2></div>
+            </div>
+            <div class="row justify-content-center mt-2">
+              <div class="col-sm-12 col-md-10 col-lg-8">
+                <form class="card card-sm border-red">
+                  <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                      <i class="bx bx-search h4 text-body"></i>
                     </div>
                     <!--end of col-->
-                </div>
+                    <div class="col">
+                      <input
+                        id="search"
+                        class="form-control form-control-borderless"
+                        type="search"
+                        placeholder="Search names or keywords"
+                      />
+                    </div>
+                    <div class="anchor w-100" id="comparison"></div>
+                    <!--end of col-->
+                    <!--end of col-->
+                  </div>
+                </form>
+              </div>
+              <!--end of col-->
             </div>
-        </div>
+          </div>
         </section>
 
-    <!-- COMPARISON SORTS -->
-    <section id="comparison-sorts" class="pt-0">
-        <div class="container-fluid w-100" >
+        <!-- COMPARISON SORTS -->
+        <section id="comparison-sorts" class="pt-0">
+          <div class="container-fluid w-100">
             <!-- Gradient divider -->
-            <hr data-content="Comparison Sorts" class="hr-text mb-2 cd-hide">
-            <div class=" w-100 p-2 row mt-3 mb-3 cd-hide">
-                <div class="col-sm-1 col-md-1 col-lg-3"></div>
-                <div class="explanation col-sm-10 col-md-10 col-lg-6">
-                    A comparison sort is a type of sorting algorithm that only reads the list elements through a single abstract comparison operation (often a "less than or equal to" operator or a three-way comparison) that determines which of two elements should occur first in the final sorted list.
-                </div>
-                <div class="col-sm-1 col-md-1 col-lg-3"></div>
+            <hr data-content="Comparison Sorts" class="hr-text mb-2 cd-hide" />
+            <div class="w-100 p-2 row mt-3 mb-3 cd-hide">
+              <div class="col-sm-1 col-md-1 col-lg-3"></div>
+              <div class="explanation col-sm-10 col-md-10 col-lg-6">
+                A comparison sort is a type of sorting algorithm that only reads
+                the list elements through a single abstract comparison operation
+                (often a "less than or equal to" operator or a three-way
+                comparison) that determines which of two elements should occur
+                first in the final sorted list.
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-3"></div>
             </div>
             <div class="card-deck mb-4 cd-hide">
-                <div id="bubblesort" class="algorithm shadow-highlight card">
-                    <a href="bubblesort.html" class="unstyled-link">
-                            <div class="card-body">
-                            <h5 class="card-title">Bubblesort</h5>
-                            <h6 class="card-subtitle">Comparison sort</h6>
-                            <p class="card-text">Bubblesort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. 
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
-                <div id="cocktailshakersort" class="algorithm shadow-highlight card">
-                    <a href="cocktailshakersort.html" class="unstyled-link">
-                            <div class="card-body">
-                            <h5 class="card-title">Cocktail shaker sort</h5>
-                            <h6 class="card-subtitle">Comparison sort</h6>
-                            <p class="card-text">Cocktail shaker sort is an extension of bubble sort. It extends bubble sort by operating in two directions. While it improves on bubble sort by more quickly moving items to the beginning of the list, it provides only marginal performance improvements. 
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
-                <div id="combsort" class="algorithm shadow-highlight card ">
-                    <a href="combsort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Combsort</h5>
-                            <h6 class="card-subtitle">Comparison sort</h6>
-                            <p class="card-text">Combsort is an extension of bubble sort. It compares elements divided by a gap which shrinks after each pass through the list. This helps move smaller elements to the beginning of the list faster, which is a main problem of bubble sort.
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n log n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
-                <div id="gnomesort" class="algorithm shadow-highlight card" >
-                    <a href="gnomesort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Gnomesort</h5>
-                            <h6 class="card-subtitle">Comparison sort</h6>
-                            <p class="card-text">The gnome sort is a sorting algorithm which is similar to insertion sort in that it works with one item at a time but gets the item to the proper place by a series of swaps, similar to a bubble sort.
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
+              <div id="bubblesort" class="algorithm shadow-highlight card">
+                <a href="bubblesort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Bubblesort</h5>
+                    <h6 class="card-subtitle">Comparison sort</h6>
+                    <p class="card-text">
+                      Bubblesort is a simple sorting algorithm that repeatedly
+                      steps through the list, compares adjacent elements and
+                      swaps them if they are in the wrong order. The pass
+                      through the list is repeated until the list is sorted.
+                      <br /><br />
+                      <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                      <b>Average-case:</b> <i>O(n²)</i> <br />
+                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div
+                id="cocktailshakersort"
+                class="algorithm shadow-highlight card"
+              >
+                <a href="cocktailshakersort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Cocktail shaker sort</h5>
+                    <h6 class="card-subtitle">Comparison sort</h6>
+                    <p class="card-text">
+                      Cocktail shaker sort is an extension of bubble sort. It
+                      extends bubble sort by operating in two directions. While
+                      it improves on bubble sort by more quickly moving items to
+                      the beginning of the list, it provides only marginal
+                      performance improvements. <br /><br />
+                      <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                      <b>Average-case:</b> <i>O(n²)</i> <br />
+                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div id="combsort" class="algorithm shadow-highlight card">
+                <a href="combsort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Combsort</h5>
+                    <h6 class="card-subtitle">Comparison sort</h6>
+                    <p class="card-text">
+                      Combsort is an extension of bubble sort. It compares
+                      elements divided by a gap which shrinks after each pass
+                      through the list. This helps move smaller elements to the
+                      beginning of the list faster, which is a main problem of
+                      bubble sort. <br /><br />
+                      <b>Best-case:</b>&emsp;&emsp;<i> O(n log n)</i><br />
+                      <b>Average-case:</b> <i>O(n²)</i> <br />
+                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div id="gnomesort" class="algorithm shadow-highlight card">
+                <a href="gnomesort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Gnomesort</h5>
+                    <h6 class="card-subtitle">Comparison sort</h6>
+                    <p class="card-text">
+                      The gnome sort is a sorting algorithm which is similar to
+                      insertion sort in that it works with one item at a time
+                      but gets the item to the proper place by a series of
+                      swaps, similar to a bubble sort. <br /><br />
+                      <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                      <b>Average-case:</b> <i>O(n²)</i> <br />
+                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
             <div class="card-deck mb-4 cd-hide">
-                <div id="insertionsort" class="algorithm shadow-highlight card" >
-                    <a href="insertionsort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Insertionsort</h5>
-                            <h6 class="card-subtitle">Comparison sort</h6>
-                            <p class="card-text">Insertion sort is a simple sorting algorithm that builds the final sorted list one item at a time by inserting each element at its correct position.
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
-               <!-- TODO
+              <div id="insertionsort" class="algorithm shadow-highlight card">
+                <a href="insertionsort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Insertionsort</h5>
+                    <h6 class="card-subtitle">Comparison sort</h6>
+                    <p class="card-text">
+                      Insertion sort is a simple sorting algorithm that builds
+                      the final sorted list one item at a time by inserting each
+                      element at its correct position. <br /><br />
+                      <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                      <b>Average-case:</b> <i>O(n²)</i> <br />
+                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <!-- TODO
                     <div id="mergesort" class="algorithm shadow-highlight card" >
                     <a href="mergesort.html" class="unstyled-link ">
                             <div class="card-body">
@@ -223,268 +292,344 @@
                             </div>
                     </a>
                 </div>-->
-        
-            
-                <div id="quicksort" class="algorithm shadow-highlight card" >
-                    <a href="quicksort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Quicksort</h5>
-                            <h6 class="card-subtitle">Comparison sort</h6>
-                            <p class="card-text">Quicksort is a divide-and-conquer algorithm. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively. This can be done in-place, requiring small additional amounts of memory to perform the sorting.
-                                <br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n log n)</i><br>
-                                <b>Average-case:</b> <i>O(n log n)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br>
-                            </div>
-                    </a>
-                </div>
-                <div id="selectionsort" class="algorithm shadow-highlight card" >
-                    <a href="selectionsort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Selection sort</h5>
-                            <h6 class="card-subtitle">Comparison sort</h6>
-                            <p class="card-text">Selection sort divides the input list into two parts: a sorted sublist of items which is built up from left to right and an unsorted sublist. The algorithm repeatedly iterates over the unsorted sublist, finds the smallest element in that sublist, swaps it with the leftmost unsorted element, and moves the sublist boundaries one element to the right.
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O(n²)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>O(n²)</i><br></p>
-                            </div>
-                    </a>
-                </div>
-            </div>
-                
-        </div>
-            <div id="results"></div>
-    </section>
 
-    <!-- NON-COMPARISON-SORTS -->
-    <section id="non-comparison-sorts" class="pt-0">
-        <div class="container-fluid w-100" >
-            <!-- Gradient divider -->
-            <hr data-content="Non-Comparison Sorts" class="hr-text cd-hide">
-            <div class=" w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide">
-                <div class="col-sm-12"> Non-Comparison Sorts are sorting algorithms which sort a given input without comparing the elements, rather making certain assumptions about the data. Examples for non-comparison sorting algorithms are Counting sort which sorts using key-value and Bucket Sort which examines bits of keys.</div>
-            </div>
-            <div class="card-deck mb-4 cd-hide">
-                <div id="countingsort" class="algorithm shadow-highlight card" >
-                    <a href="countingsort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Counting sort</h5>
-                            <h6 class="card-subtitle">Non-Comparison sort</h6>
-                            <p class="card-text">Counting sort is an algorithm for sorting a collection of objects according to keys that are small integers. It operates by counting the number of objects that have each distinct key value, and using arithmetic on those counts to determine the positions of each key value in the output sequence.
-                                <br><br>
-                                <b>Time complexity:</b>&emsp;&emsp;<i> O(n+k)</i><br>
-                                with n being the number of elements and k being the number of keys.
-                            </p>
-                            </div>
-                    </a>
-                </div>
-                <div id="radixsort" class="algorithm shadow-highlight card" >
-                    <a href="radixsort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Radix sort</h5>
-                            <h6 class="card-subtitle">Non-Comparison sort</h6>
-                            <p class="card-text">Radix sort avoids comparison by creating and distributing elements into buckets according to their radix. For elements with more than one significant digit, this bucketing process is repeated for each digit, while preserving the ordering of the prior step, until all digits have been considered.
-                                <br><br>
-                                <b>Time complexity:</b>&emsp;&emsp;<i> O(nw)</i><br>
-                                with n being the number of elements and w being the key length.</p>
-                            </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- OTHERS -->
-    <section id="other-sorts" class="pt-0">
-        <div class="container-fluid w-100" >
-            <!-- Gradient divider -->
-            <hr data-content="Others" class="hr-text cd-hide">
-            <div class=" w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide">
-                <div class="col-sm-12"> Algorithms in this category are impractical for real-life use in traditional software contexts due to extremely poor performance or specialized hardware requirements. These sorts are usually described for educational purposes in order to demonstrate how run time of algorithms is estimated.</div>
-            </div>
-            <div class="card-deck mb-4 cd-hide mx-auto">
-                <div id="bogosort" class="algorithm shadow-highlight card" >
-                    <a href="bogosort.html" class="unstyled-link ">
-                            <div class="card-body">
-                            <h5 class="card-title">Bogosort</h5>
-                            <h6 class="card-subtitle">Other sort</h6>
-                            <p class="card-text">Bogosort is a highly inefficient sorting algorithm based on the generate and test paradigm. The function successively generates permutations of its input until it finds one that is sorted. An analogy for the working of the algorithm is to sort a deck of cards by throwing the deck into the air, picking the cards up at random, and repeating the process until the deck is sorted
-                                <br><br>
-                                <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br>
-                                <b>Average-case:</b> <i>O((n+1)!)</i> <br>
-                                <b>Worst-case:</b>&emsp; <i>unbounded</i><br></p>
-                            </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</main><!-- End #main -->
-
-<!-- ======= Footer ======= -->
-<footer id="footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-lg-4 col-md-6">
-          <div class="footer-info">
-            <h3>AlgoVis.io</h3>
-              <strong>Email:</strong> hello@algovis.io<br>
-            </p>
-            <div class="social-links mt-3">
-              <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
-              <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
-              <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
-              <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+              <div id="quicksort" class="algorithm shadow-highlight card">
+                <a href="quicksort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Quicksort</h5>
+                    <h6 class="card-subtitle">Comparison sort</h6>
+                    <p class="card-text">
+                      Quicksort is a divide-and-conquer algorithm. It works by
+                      selecting a 'pivot' element from the array and
+                      partitioning the other elements into two sub-arrays,
+                      according to whether they are less than or greater than
+                      the pivot. The sub-arrays are then sorted recursively.
+                      This can be done in-place, requiring small additional
+                      amounts of memory to perform the sorting.
+                      <br />
+                      <b>Best-case:</b>&emsp;&emsp;<i> O(n log n)</i><br />
+                      <b>Average-case:</b> <i>O(n log n)</i> <br />
+                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div id="selectionsort" class="algorithm shadow-highlight card">
+                <a href="selectionsort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Selection sort</h5>
+                    <h6 class="card-subtitle">Comparison sort</h6>
+                    <p class="card-text">
+                      Selection sort divides the input list into two parts: a
+                      sorted sublist of items which is built up from left to
+                      right and an unsorted sublist. The algorithm repeatedly
+                      iterates over the unsorted sublist, finds the smallest
+                      element in that sublist, swaps it with the leftmost
+                      unsorted element, and moves the sublist boundaries one
+                      element to the right. <br /><br />
+                      <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                      <b>Average-case:</b> <i>O(n²)</i> <br />
+                      <b>Worst-case:</b>&emsp; <i>O(n²)</i><br />
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-2 col-md-6 footer-links"></div>
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html#categories">Categories</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div id="results"></div>
+        </section>
 
-  <div class="container">
-    <div class="copyright">
-      &copy; Copyright <strong><span>AlgoVis.io</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </div>
-</footer><!-- End Footer -->
+        <!-- NON-COMPARISON-SORTS -->
+        <section id="non-comparison-sorts" class="pt-0">
+          <div class="container-fluid w-100">
+            <!-- Gradient divider -->
+            <hr data-content="Non-Comparison Sorts" class="hr-text cd-hide" />
+            <div
+              class="w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide"
+            >
+              <div class="col-sm-12">
+                Non-Comparison Sorts are sorting algorithms which sort a given
+                input without comparing the elements, rather making certain
+                assumptions about the data. Examples for non-comparison sorting
+                algorithms are Counting sort which sorts using key-value and
+                Bucket Sort which examines bits of keys.
+              </div>
+            </div>
+            <div class="card-deck mb-4 cd-hide">
+              <div id="countingsort" class="algorithm shadow-highlight card">
+                <a href="countingsort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Counting sort</h5>
+                    <h6 class="card-subtitle">Non-Comparison sort</h6>
+                    <p class="card-text">
+                      Counting sort is an algorithm for sorting a collection of
+                      objects according to keys that are small integers. It
+                      operates by counting the number of objects that have each
+                      distinct key value, and using arithmetic on those counts
+                      to determine the positions of each key value in the output
+                      sequence. <br /><br />
+                      <b>Time complexity:</b>&emsp;&emsp;<i> O(n+k)</i><br />
+                      with n being the number of elements and k being the number
+                      of keys.
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div id="radixsort" class="algorithm shadow-highlight card">
+                <a href="radixsort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Radix sort</h5>
+                    <h6 class="card-subtitle">Non-Comparison sort</h6>
+                    <p class="card-text">
+                      Radix sort avoids comparison by creating and distributing
+                      elements into buckets according to their radix. For
+                      elements with more than one significant digit, this
+                      bucketing process is repeated for each digit, while
+                      preserving the ordering of the prior step, until all
+                      digits have been considered. <br /><br />
+                      <b>Time complexity:</b>&emsp;&emsp;<i> O(nw)</i><br />
+                      with n being the number of elements and w being the key
+                      length.
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-<div id="preloader"></div>
+        <!-- OTHERS -->
+        <section id="other-sorts" class="pt-0">
+          <div class="container-fluid w-100">
+            <!-- Gradient divider -->
+            <hr data-content="Others" class="hr-text cd-hide" />
+            <div
+              class="w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide"
+            >
+              <div class="col-sm-12">
+                Algorithms in this category are impractical for real-life use in
+                traditional software contexts due to extremely poor performance
+                or specialized hardware requirements. These sorts are usually
+                described for educational purposes in order to demonstrate how
+                run time of algorithms is estimated.
+              </div>
+            </div>
+            <div class="card-deck mb-4 cd-hide mx-auto">
+              <div id="bogosort" class="algorithm shadow-highlight card">
+                <a href="bogosort.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Bogosort</h5>
+                    <h6 class="card-subtitle">Other sort</h6>
+                    <p class="card-text">
+                      Bogosort is a highly inefficient sorting algorithm based
+                      on the generate and test paradigm. The function
+                      successively generates permutations of its input until it
+                      finds one that is sorted. An analogy for the working of
+                      the algorithm is to sort a deck of cards by throwing the
+                      deck into the air, picking the cards up at random, and
+                      repeating the process until the deck is sorted
+                      <br /><br />
+                      <b>Best-case:</b>&emsp;&emsp;<i> O(n)</i><br />
+                      <b>Average-case:</b> <i>O((n+1)!)</i> <br />
+                      <b>Worst-case:</b>&emsp; <i>unbounded</i><br />
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<!-- Vendor JS Files -->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/venobox/venobox.min.js"></script>
-<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-<script src="assets/vendor/aos/aos.js"></script>
+    </main><!-- End #main -->
 
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
-    <script>
-        const $body = $("body");
-        const $header = $(".page-header");
-        const $navCollapse = $(".navbar-collapse");
-        const scrollClass = "scroll";
-        $(".card-subtitle").hide();
+        <!-- ======= Footer ======= -->
+        <footer id="footer">
+          <div class="footer-top">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <div class="footer-info">
+                    <h3>AlgoVis.io</h3>
+                    <strong>Email:</strong> hello@algovis.io<br />
+                    <div class="social-links mt-3">
+                      <a
+                        href="https://twitter.com/tobiasnoethlich"
+                        class="twitter"
+                        ><i class="icofont-twitter"></i
+                      ></a>
+                      <a href="https://github.com/tobinatore" class="github"
+                        ><i class="icofont-github"></i
+                      ></a>
+                      <a
+                        href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+                        class="xing"
+                        ><i class="icofont-xing"></i
+                      ></a>
+                      <a
+                        href="https://www.linkedin.com/in/tobias-noethlich/"
+                        class="linkedin"
+                        ><i class="icofont-linkedin"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-6 footer-links"></div>
+                <div class="col-lg-2 col-md-6 footer-links">
+                  <h4>Useful Links</h4>
+                  <ul>
+                    <li>
+                      <i class="bx bx-chevron-right"></i>
+                      <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                      <i class="bx bx-chevron-right"></i>
+                      <a href="index.html#about">About us</a>
+                    </li>
+                    <li>
+                      <i class="bx bx-chevron-right"></i>
+                      <a href="index.html#categories">Categories</a>
+                    </li>
+                    <li>
+                      <i class="bx bx-chevron-right"></i>
+                      <a href="#">Terms of service</a>
+                    </li>
+                    <li>
+                      <i class="bx bx-chevron-right"></i>
+                      <a href="#">Privacy policy</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        $(window).on("scroll", () => {
+          <div class="container">
+            <div class="copyright">
+              &copy; Copyright <strong><span>AlgoVis.io</span></strong
+              >. All Rights Reserved
+            </div>
+            <div class="credits">
+              <!-- All the links in the footer should remain intact. -->
+              <!-- You can delete the links only if you purchased the pro version. -->
+              <!-- Licensing information: https://bootstrapmade.com/license/ -->
+              <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+        </footer>
+        <!-- End Footer -->
+
+        <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+        <div id="preloader"></div>
+
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/jquery/jquery.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/venobox/venobox.min.js"></script>
+        <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="assets/js/main.js"></script>
+        <script>
+          const $body = $("body");
+          const $header = $(".page-header");
+          const $navCollapse = $(".navbar-collapse");
+          const scrollClass = "scroll";
+          $(".card-subtitle").hide();
+
+          $(window).on("scroll", () => {
             // Color background of navbar a solid red on scroll
             if (this.matchMedia("(min-width: 992px)").matches) {
-                const scrollY = $(this).scrollTop();
-                scrollY > 0
-                    ? $body.addClass(scrollClass)
-                    : $body.removeClass(scrollClass);
+              const scrollY = $(this).scrollTop();
+              scrollY > 0
+                ? $body.addClass(scrollClass)
+                : $body.removeClass(scrollClass);
             } else {
-                $body.removeClass(scrollClass);
+              $body.removeClass(scrollClass);
             }
-        });
+          });
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             // when clicking a link in the navbar scroll smoothly to the anchor
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+            anchor.addEventListener("click", function (e) {
+              e.preventDefault();
+              document.querySelector(this.getAttribute("href")).scrollIntoView({
+                behavior: "smooth",
+              });
             });
-        });
+          });
 
-        function showRelevant(name=""){
-        /*************************************************************/
-        /* This function selects the algorithms fitting to the users */
-        /* search terms and displays them.                           */
-        /*                                                           */
-        /* Input: name (string) - the input of the search field      */
-        /*************************************************************/    
-            
+          function showRelevant(name = "") {
+            /*************************************************************/
+            /* This function selects the algorithms fitting to the users */
+            /* search terms and displays them.                           */
+            /*                                                           */
+            /* Input: name (string) - the input of the search field      */
+            /*************************************************************/
+
             if (name == "") {
-                // search bar is empty -> show every algorithm and clear results <div>
-                $(".cd-hide").show();
-                $(".card-subtitle").hide();
-                $("#results").empty();
-            }else{
-                // Since I'm updating the results on every letter the user enters,
-                // it's important to clear the results <div>, so therea are no duplicates
-                // or no longer relevant algorithms displayed.
-                $("#results").empty();
-                $(".card-subtitle").show();
-                $('.cd-hide').hide();
-                let algoList = $('.algorithm[id*="' + name.toLowerCase() + '"]');
-                let deckString = "<div class=\"card-deck mb-4\">";
-                let lastFilled = algoList.length % 4;
-                if(algoList.length != 0){
+              // search bar is empty -> show every algorithm and clear results <div>
+              $(".cd-hide").show();
+              $(".card-subtitle").hide();
+              $("#results").empty();
+            } else {
+              // Since I'm updating the results on every letter the user enters,
+              // it's important to clear the results <div>, so therea are no duplicates
+              // or no longer relevant algorithms displayed.
+              $("#results").empty();
+              $(".card-subtitle").show();
+              $(".cd-hide").hide();
+              let algoList = $('.algorithm[id*="' + name.toLowerCase() + '"]');
+              let deckString = '<div class="card-deck mb-4">';
+              let lastFilled = algoList.length % 4;
+              if (algoList.length != 0) {
                 // Due to each card-deck being a different a different entity I can't
                 // simply hide the algorithms which aren't needed, as this causes
                 // a linebreak betwenn algorithms with different parent elements.
                 // ------------------------------------------------------------------
-                // A solution for this is to grab the algorithms needed and append 
+                // A solution for this is to grab the algorithms needed and append
                 // them all to a new <div>.
 
                 // Loop over the list of elements and build the content of the new <div>
                 for (let i = 0; i < algoList.length; i++) {
-                    // 4 algorithms on every row --> close the current card-deck after
-                    // 4 algorithms are processed and open a new one.
-                    if ((i+1) % 4 == 0) {
-                        deckString += algoList[i].outerHTML + "</div><div class=\"card-deck mb-4\">";
-                    } else {
-                        deckString += algoList[i].outerHTML;
-                    }
-                    
+                  // 4 algorithms on every row --> close the current card-deck after
+                  // 4 algorithms are processed and open a new one.
+                  if ((i + 1) % 4 == 0) {
+                    deckString +=
+                      algoList[i].outerHTML +
+                      '</div><div class="card-deck mb-4">';
+                  } else {
+                    deckString += algoList[i].outerHTML;
+                  }
                 }
 
-                // if the last row is not completely filled, 
+                // if the last row is not completely filled,
                 // fill it with hidden elements so the visible
                 // cards are the right size
-                if(lastFilled != 0){
-                    for (let j = 0; j < 4-lastFilled; j++) {
-                        element = algoList[0].cloneNode(true);
-                        element.style.visibility = "hidden";
-                        deckString += element.outerHTML;                
-                    }
+                if (lastFilled != 0) {
+                  for (let j = 0; j < 4 - lastFilled; j++) {
+                    element = algoList[0].cloneNode(true);
+                    element.style.visibility = "hidden";
+                    deckString += element.outerHTML;
+                  }
                 }
                 // Closing the last card-deck and filling the <div> with the results
                 // of the users search term.
                 deckString += "</div>";
                 $("#results").append(deckString);
-                }else{
-                    $("#results").append(`No results matching ${name}.`);
-                }
+              } else {
+                $("#results").append(`No results matching ${name}.`);
+              }
             }
-            
+          }
 
-
-        }
-
-        $('#search').on('input',function(e){
+          $("#search").on("input", function (e) {
             showRelevant(this.value);
-        });
-
-    </script>
-</body>
+          });
+        </script>
+  </body>
 </html>

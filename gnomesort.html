@@ -1,516 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Gnome sort - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
 
-  <title>Gnome sort - AlgoVis.io</title>
-  <meta content="AlgoVis is an online algorithm visualization tool." name="description">
-  <meta content="algorithm visualization tool online" name="keywords">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top header-inner-pages">
-    <div class="container d-flex">
-      <div class="contact-info mr-auto">
-        <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">hello@algovis.io</a>
-      </div>
-      <div class="social-links">
-        <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
-        <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
-        <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div
+      id="topbar"
+      class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
+    >
+      <div class="container d-flex">
+        <div class="contact-info mr-auto">
+          <i class="icofont-envelope"></i>
+          <a href="mailto:contact@example.com">hello@algovis.io</a>
+        </div>
+        <div class="social-links">
+          <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+            ><i class="icofont-twitter"></i
+          ></a>
+          <a href="https://github.com/tobinatore" class="github"
+            ><i class="icofont-github"></i
+          ></a>
+          <a
+            href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+            class="xing"
+            ><i class="icofont-xing"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/tobias-noethlich/"
+            class="linkedin"
+            ><i class="icofont-linkedin"></i
+          ></a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-inner-pages">
-    <div class="container-fluid d-flex align-items-center">
-      <a class="btn back-button mr-4" href="sorting.html"><i class="bx bx-arrow-back white-text" aria-hidden="true"></i> Back</a>
-      <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="sorting.html"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-    </div>
-  </header><!-- End Header -->
-
-<main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sorting.html">Sorting</a></li>
-          <li>Gnome sort</li>
-        </ol>
-        <h2>Gnome sort visualization</h2>
-
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
       </div>
-    </section><!-- End Breadcrumbs -->
+    </header>
+    <!-- End Header -->
 
-    <section class="inner-page pt-4">
-          <div class="container-fluid px-0 mt-2" >
-        <div class="">
-        <span class="row mx-auto px-0 w-100"><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan">No. of comparisons: 0 </span><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan">No. of swaps: 0 </span></span>
-        <div class="data-container px-1 mb-0 mt-0 w-100">
-          <svg id="visu"></svg>
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sorting.html">Sorting</a></li>
+            <li>Gnome sort</li>
+          </ol>
+          <h2>Gnome sort visualization</h2>
         </div>
-        </div>
-        <div class="row mx-auto">
-          <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
-            <div class="ide w-100">
-            <div class="row ml-auto mr-auto 1">
-              <span>pos = 0</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 2 ">
-              <span><span class="op">while</span>(pos < length(list))</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 3">
-              <span>&emsp;&emsp;<span class="op">if</span>(pos == 0 or list[pos] >= list[pos-1])</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 4">
-              <span>&emsp;&emsp;&emsp;&emsp;pos++</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 5">
-              <span>&emsp;&emsp;<span class="op">else</span></span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 6">
-              <span>&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span>(list[pos], list[pos-1])</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 7">
-              <span>&emsp;&emsp;&emsp;&emsp;pos--</span>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page pt-4">
+        <div class="container-fluid px-0 mt-2">
+          <div class="">
+            <span class="row mx-auto px-0 w-100"
+              ><span class="font-weight-bold ml-2 mt-2 mb-2 compSpan"
+                >No. of comparisons: 0 </span
+              ><span class="font-weight-bold ml-2 mt-2 mb-2 swapSpan"
+                >No. of swaps: 0
+              </span></span
+            >
+            <div class="data-container px-1 mb-0 mt-0 w-100">
+              <svg id="visu"></svg>
             </div>
           </div>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
-          <div class="ide w-100 pl-0">
-            <div class="row ml-auto mr-auto">
-              <span class="comment">SHORT EXPLANATION</span>
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span>pos = 0</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                  <span><span class="op">while</span>(pos < length(list))</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  <span
+                    >&emsp;&emsp;<span class="op">if</span>(pos == 0 or
+                    list[pos] >= list[pos-1])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  <span>&emsp;&emsp;&emsp;&emsp;pos++</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  <span>&emsp;&emsp;<span class="op">else</span></span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">swap</span
+                    >(list[pos], list[pos-1])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  <span>&emsp;&emsp;&emsp;&emsp;pos--</span>
+                </div>
+              </div>
             </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">------------------</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">1. Starting at index 1, compare the current element with the previous element</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment"> a. If the current element is greater than the previous element, move to the next element</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment"> b. If the current element is less than the previous element, swap them and keep moving</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">&emsp;&emsp;&emsp;that element back until it can't be moved back any further.</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">2. Repeat Step 1 until the list is sorted</span>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment">SHORT EXPLANATION</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >1. Starting at index 1, compare the current element with
+                    the previous element</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">
+                    a. If the current element is greater than the previous
+                    element, move to the next element</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">
+                    b. If the current element is less than the previous element,
+                    swap them and keep moving</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >&emsp;&emsp;&emsp;that element back until it can't be moved
+                    back any further.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >2. Repeat Step 1 until the list is sorted</span
+                  >
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-        <hr data-content="Settings" class="hr-text mb-3 mt-4">
-        <div class="row mx-auto">
-          <div class="col-sm-12 col-md-12 col-lg-6">
-            <form>
-              <div class="form-group row">
-                  <div class="col-sm-3">Elements: </div>
+          <hr data-content="Settings" class="hr-text mb-3 mt-4" />
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="form-group row">
+                  <div class="col-sm-3">Elements:</div>
                   <div class="col-sm-9">
-                    <span>5&emsp;</span>  
-                    <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="50" data-slider-step="1" data-slider-value="15"/>
+                    <span>5&emsp;</span>
+                    <input
+                      id="slider"
+                      data-slider-id="pointsSlider"
+                      type="text"
+                      data-slider-min="5"
+                      data-slider-max="50"
+                      data-slider-step="1"
+                      data-slider-value="15"
+                    />
                     <span id="max">&emsp;50</span>
                   </div>
-              </div>
-              <div class="form-group row">
+                </div>
+                <div class="form-group row">
                   <div class="col-sm-3">Data Generation</div>
                   <div class="col-sm-9">
                     <div class="form-check">
-                      <input id="own-data" class="form-check-input" type="checkbox" id="gridCheck1">
+                      <input
+                        id="own-data"
+                        class="form-check-input"
+                        type="checkbox"
+                        id="gridCheck1"
+                      />
                       <label class="form-check-label" for="gridCheck1">
                         Use own data
                       </label>
                     </div>
                   </div>
-              </div>
-            </form>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="form-group row">
+                  <div class="col-sm-5">Speed:</div>
+                  <div class="col-sm-7">
+                    <span>Slow&emsp;</span>
+                    <input
+                      id="speedslider"
+                      data-slider-id="speedSlider"
+                      type="text"
+                      data-slider-min="10"
+                      data-slider-max="1000"
+                      data-slider-step="10"
+                      data-slider-value="200"
+                    />
+                    <span>&emsp;Fast</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="data-input" class="col-sm-5 col-form-label"
+                    >Your data (max. 50 elements):</label
+                  >
+                  <div class="col-sm-7">
+                    <input
+                      disabled="true"
+                      type="text"
+                      class="form-control"
+                      id="data-input"
+                      placeholder="10,42,34,55,..."
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <div class="col-sm-12 col-md-12 col-lg-6">
-            <form>
-              <div class="form-group row">
-                <div class="col-sm-5">Speed: </div>
-                <div class="col-sm-7">
-                  <span>Slow&emsp;</span>
-                  <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="10" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
-                  <span>&emsp;Fast</span>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="data-input" class="col-sm-5 col-form-label">Your data (max. 50 elements):</label>
-                <div class="col-sm-7">
-                  <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
-                </div>
-              </div>
-            </form>
+          <div class="row mx-auto">
+            <div class="col-4"></div>
+            <div class="col-4">
+              <button
+                id="sort-button"
+                type="button"
+                onclick="gnomeSort()"
+                class="btn btn-danger red w-100"
+              >
+                Sort
+              </button>
+            </div>
+            <div class="col-4"></div>
           </div>
         </div>
-        <div class="row mx-auto">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <button id="sort-button" type="button" onclick="gnomeSort()" class="btn btn-danger red w-100">Sort</button>
-          </div>
-          <div class="col-4"></div>
-        </div>
-    </div>
-  </section>
-</main>
-<!-- ======= Footer ======= -->
-<footer id="footer">
-<div class="footer-top">
-  <div class="container">
-    <div class="row">
-
-      <div class="col-lg-4 col-md-6">
-        <div class="footer-info">
-          <h3>AlgoVis.io</h3>
-            <strong>Email:</strong> hello@algovis.io<br>
-          </p>
-          <div class="social-links mt-3">
-            <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
-            <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
-            <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
-            <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <h3>AlgoVis.io</h3>
+                <strong>Email:</strong> hello@algovis.io<br />
+                <div class="social-links mt-3">
+                  <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+                    ><i class="icofont-twitter"></i
+                  ></a>
+                  <a href="https://github.com/tobinatore" class="github"
+                    ><i class="icofont-github"></i
+                  ></a>
+                  <a
+                    href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+                    class="xing"
+                    ><i class="icofont-xing"></i
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/tobias-noethlich/"
+                    class="linkedin"
+                    ><i class="icofont-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 footer-links"></div>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#about">About us</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#categories">Categories</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Terms of service</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Privacy policy</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-2 col-md-6 footer-links"></div>
-      <div class="col-lg-2 col-md-6 footer-links">
-        <h4>Useful Links</h4>
-        <ul>
-          <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
-          <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
-          <li><i class="bx bx-chevron-right"></i> <a href="index.html#categories">Categories</a></li>
-          <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-          <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-        </ul>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>AlgoVis.io</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+    </footer>
+    <!-- End Footer -->
 
-<div class="container">
-  <div class="copyright">
-    &copy; Copyright <strong><span>AlgoVis.io</span></strong>. All Rights Reserved
-  </div>
-  <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
-    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-  </div>
-</div>
-</footer><!-- End Footer -->
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
 
-<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-<div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
 
-<!-- Vendor JS Files -->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/venobox/venobox.min.js"></script>
-<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-<script src="assets/vendor/aos/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
-<script src="https://d3js.org/d3.v5.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
+    <script>
+      $(document).ready(function () {
+        d3.select("#visu")
+          .attr("width", "100%")
+          .attr("height", "370")
+          .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 370");
+        var slider = new Slider("#slider", {
+          handle: "square",
+        });
 
-<script>
-  $(document).ready(function() {
-    d3.select("#visu").attr("width", "100%").attr("height", "370").attr("viewBox", "0 0 "+ globalThis.screen.availWidth + " 370");
-    var slider = new Slider("#slider",{
-      handle : "square"
-    });
+        slider.on("slide", function (slideEvt) {
+          newSet(slideEvt);
+        });
 
-    slider.on("slide", function(slideEvt) {
-      newSet(slideEvt);
-    });
+        $("#data-input").on("input", function (e) {
+          ownData(this.value);
+        });
 
-    $('#data-input').on('input',function(e){
-      ownData(this.value);
-    });
+        $("#own-data").change(function () {
+          if (this.checked) {
+            slider.disable();
+            $("#data-input").prop("disabled", false);
+          } else {
+            slider.enable();
+            $("#data-input").prop("disabled", true);
+          }
+        });
 
-    $('#own-data').change(function() {
-      if (this.checked) {
-        slider.disable();
-        $("#data-input").prop('disabled', false);
-      } else {
-        slider.enable();
-        $("#data-input").prop('disabled', true);
-      }
-    });
+        var speedSlider = new Slider("#speedslider", {
+          reversed: true,
+          tooltip: "none",
+          handle: "square",
+        });
 
-    var speedSlider = new Slider("#speedslider",{
-	    reversed : true,
-      tooltip : "none",
-      handle : "square"
-    });
+        speedSlider.on("slide", function (slideEvt) {
+          setDelay(slideEvt);
+        });
 
-    speedSlider.on("slide", function(slideEvt) {
-      setDelay(slideEvt);
-    });
+        if (globalThis.screen.availWidth <= 360) {
+          slider.setAttribute("max", "20");
+          slider.setAttribute("value", "15");
+          $("#max").html("&emsp;20");
+        }
+      });
+    </script>
 
-    if (globalThis.screen.availWidth <= 360) {
-      slider.setAttribute("max", "20");
-      slider.setAttribute("value", "15");
-      $('#max').html("&emsp;20")
+    <script>
+      const container = document.querySelector(".data-container");
+      var FLAG = false;
+      var DELAY = 200;
+      var w = globalThis.screen.availWidth;
+      var h = 370;
+      var barPadding = 5;
+      var data = [];
+      var x;
+      var svg = d3.select("#visu");
+      var comparisons = 0;
+      var swaps = 0;
 
-    }
-  });
-</script>
-
-<script>
-    const container = document.querySelector(".data-container");
-    var FLAG = false;
-    var DELAY = 200;
-    var w = globalThis.screen.availWidth;
-    var h = 370;
-    var barPadding = 5;
-    var data = [];
-    var x;
-    var svg = d3.select("#visu");
-    var comparisons = 0;
-    var swaps = 0;
-
-    function setDelay(delay){
-      DELAY = delay;
-    }
-
-
-    function clamp(number, min, max) {
-      return Math.max(min, Math.min(number, max));
-    }
-
-
-    function newSet(num=20){
-      data  = [];
-      
-      for(let i = 0; i<num; i++) {
-        data.push(Math.floor(Math.random()*119)+1);
+      function setDelay(delay) {
+        DELAY = delay;
       }
 
-      clearBlocks();
-      generateBlocks(data);
-    }   
-
-
-    function stop(){
-      FLAG = true;
-    }
-
-
-    function ownData(d = "1,2,3,4,5,6"){
-      data = d.split(",");
-      if (data.length > 50) {
-        data = data.slice(0, 50);
+      function clamp(number, min, max) {
+        return Math.max(min, Math.min(number, max));
       }
-      for (let i = 0; i < data.length; i++) {
-        data[i] = clamp(data[i],0,119);
-        
+
+      function newSet(num = 20) {
+        data = [];
+
+        for (let i = 0; i < num; i++) {
+          data.push(Math.floor(Math.random() * 119) + 1);
+        }
+
+        clearBlocks();
+        generateBlocks(data);
       }
-      clearBlocks();
-      generateBlocks(data);
-    }
 
+      function stop() {
+        FLAG = true;
+      }
 
-    async function slide(i) {
-      return new Promise(resolve => {
-        var calcTransl2 = (x(i));
-        var calcTransl1 = (x(i-1));  
-        
+      function ownData(d = "1,2,3,4,5,6") {
+        data = d.split(",");
+        if (data.length > 50) {
+          data = data.slice(0, 50);
+        }
+        for (let i = 0; i < data.length; i++) {
+          data[i] = clamp(data[i], 0, 119);
+        }
+        clearBlocks();
+        generateBlocks(data);
+      }
 
-        var text1 = d3.select("#text" + i)
-            .transition("text1").duration(DELAY)
-            .attr("transform", function(d) {return "translate(" + (calcTransl1+((w/data.length)/2)) + ", 0)";});
-            
-        var rect1 = d3.select("#rect" + i)
-            .transition("rect1").duration(DELAY)
-            .attr("transform", function(d) {return "translate(" + calcTransl1 + ", 0)";});
-        
-        var text2 = d3.select("#text" + (i-1))
-            .transition("text2").duration(DELAY)
-            .attr("transform", function(d) {return "translate(" + (calcTransl2+((w/data.length)/2)) + ", 0)";})
-            
-        var rect2 = d3.select("#rect" + (i-1))
-            .transition("rect2").duration(DELAY)
-            .attr("transform", function(d) {return "translate(" + calcTransl2 + ", 0)";})
-        
-        text1.attr("id", "text"+(i-1));
-        rect1.attr("id", "rect"+(i-1));
-        text2.attr("id", "text"+i);
-        rect2.attr("id", "rect"+i);
-        
-        setTimeout(() => {
-          resolve();
-        },(DELAY < 100) ? DELAY*5 : DELAY*2);
-      }, 600);
-    }
+      async function slide(i) {
+        return new Promise((resolve) => {
+          var calcTransl2 = x(i);
+          var calcTransl1 = x(i - 1);
 
+          var text1 = d3
+            .select("#text" + i)
+            .transition("text1")
+            .duration(DELAY)
+            .attr("transform", function (d) {
+              return (
+                "translate(" + (calcTransl1 + w / data.length / 2) + ", 0)"
+              );
+            });
 
-    function clearBlocks(){
-      svg.selectAll("rect")
-          .data([])
-          .exit()
-          .remove();
-      svg.selectAll("text")
-          .data([])
-          .exit()
-          .remove();
-    }
+          var rect1 = d3
+            .select("#rect" + i)
+            .transition("rect1")
+            .duration(DELAY)
+            .attr("transform", function (d) {
+              return "translate(" + calcTransl1 + ", 0)";
+            });
 
+          var text2 = d3
+            .select("#text" + (i - 1))
+            .transition("text2")
+            .duration(DELAY)
+            .attr("transform", function (d) {
+              return (
+                "translate(" + (calcTransl2 + w / data.length / 2) + ", 0)"
+              );
+            });
 
-    function generateBlocks(data) {
-      x = d3.scaleLinear()
-        .domain([0,data.length])
-        .range([0, w]);
-      var bars =
-        svg.selectAll("rect")
+          var rect2 = d3
+            .select("#rect" + (i - 1))
+            .transition("rect2")
+            .duration(DELAY)
+            .attr("transform", function (d) {
+              return "translate(" + calcTransl2 + ", 0)";
+            });
+
+          text1.attr("id", "text" + (i - 1));
+          rect1.attr("id", "rect" + (i - 1));
+          text2.attr("id", "text" + i);
+          rect2.attr("id", "rect" + i);
+
+          setTimeout(
+            () => {
+              resolve();
+            },
+            DELAY < 100 ? DELAY * 5 : DELAY * 2
+          );
+        }, 600);
+      }
+
+      function clearBlocks() {
+        svg.selectAll("rect").data([]).exit().remove();
+        svg.selectAll("text").data([]).exit().remove();
+      }
+
+      function generateBlocks(data) {
+        x = d3.scaleLinear().domain([0, data.length]).range([0, w]);
+        var bars = svg
+          .selectAll("rect")
           .data(data)
           .enter()
           .append("rect")
-          .attr("transform", function(d, i) {return "translate(" + (x(i)) + ",0)"})
-          .attr("y", function(d) {
-            return h - d*3;
+          .attr("transform", function (d, i) {
+            return "translate(" + x(i) + ",0)";
+          })
+          .attr("y", function (d) {
+            return h - d * 3;
           })
           .attr("width", w / data.length - barPadding)
-          .attr("height", function(d) {
-            return d*3;
+          .attr("height", function (d) {
+            return d * 3;
           })
           .attr("fill", "#CC1616")
-          .attr("id", function(d,i){return "rect"+i;});
+          .attr("id", function (d, i) {
+            return "rect" + i;
+          });
 
-      var labels =
-        svg.selectAll("text")
+        var labels = svg
+          .selectAll("text")
           .data(data)
           .enter()
           .append("text")
-          .text(function(d) {
+          .text(function (d) {
             return d;
           })
-          .attr("transform", function(d, i) {return "translate(" + (x(i)+((w/data.length)/2)) + ",0)"})
-          .attr("y", function(d) {
-            return h - (d * 3) - 5;
+          .attr("transform", function (d, i) {
+            return "translate(" + (x(i) + w / data.length / 2) + ",0)";
+          })
+          .attr("y", function (d) {
+            return h - d * 3 - 5;
           })
           .attr("font-family", "sans-serif")
           .attr("font-size", "14px")
-          .attr("fill", "black").attr("text-anchor", "middle")
-          .attr("id", function(d,i){return "text"+i;});
-    }
+          .attr("fill", "black")
+          .attr("text-anchor", "middle")
+          .attr("id", function (d, i) {
+            return "text" + i;
+          });
+      }
 
+      function highlightCode(elementClass) {
+        $(".code-highlight").removeClass("code-highlight");
+        $(`.${elementClass}`).addClass("code-highlight");
+      }
 
-    function highlightCode(elementClass){
-      $(".code-highlight").removeClass("code-highlight");
-      $(`.${elementClass}`).addClass("code-highlight");
-    }
-    
-
-    async function timeout(delay){
-        await new Promise(resolve =>
-            setTimeout(() => {  	
-                resolve();            
-            }, delay)               
+      async function timeout(delay) {
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve();
+          }, delay)
         );
-    }
+      }
 
-    async function gnomeSort() {
+      async function gnomeSort() {
         comparisons = 0;
         swaps = 0;
         highlightCode("1");
-        await timeout(DELAY/2);
+        await timeout(DELAY / 2);
         pos = 0;
-        $("#sort-button").prop('disabled', true);
+        $("#sort-button").prop("disabled", true);
         highlightCode("2");
-        await timeout(DELAY/2);
-        while(pos < data.length){
-            highlightCode("3");
-            await timeout(DELAY/2);
-            if(pos == 0 || data[pos] >= data[pos-1]){
-                highlightCode("4");
-                await timeout(DELAY/2);
-                pos++;
-                d3.select("#rect" + pos).attr("fill", "#9DBDC6");
-                if(pos != 0){
-                  d3.select("#rect" + (pos-1)).attr("fill", "#CC1616");
-                }
-                comparisons++;
-                $(".compSpan").text(`No. of comparisons: ${comparisons}`);
+        await timeout(DELAY / 2);
+        while (pos < data.length) {
+          highlightCode("3");
+          await timeout(DELAY / 2);
+          if (pos == 0 || data[pos] >= data[pos - 1]) {
+            highlightCode("4");
+            await timeout(DELAY / 2);
+            pos++;
+            d3.select("#rect" + pos).attr("fill", "#9DBDC6");
+            if (pos != 0) {
+              d3.select("#rect" + (pos - 1)).attr("fill", "#CC1616");
             }
-            else{
-              highlightCode("5");
-            await timeout(DELAY/2);
-              comparisons++;
-              highlightCode("6");
-            
-              d3.select("#rect" + pos).attr("fill", "#9DBDC6");
-              d3.select("#rect" + (pos-1)).attr("fill", "#9DBDC6");
-              $(".compSpan").text(`No. of comparisons: ${comparisons}`);
-              await slide(pos);
-              d3.select("#rect" + pos).attr("fill", "#CC1616");
-              let x = data[pos];
-              data[pos] = data[pos-1];
-              data[pos-1]= x;
-              swaps++;
-              highlightCode("7");
-              await timeout(DELAY/2);
-              $(".swapSpan").text(`No. of swaps: ${swaps}`);
-              pos--;
-            }           
-        }
-      
-        for (let i = 0; i < data.length; i++) {
-            d3.select("#rect" + i).attr("fill", "#171717");
-        
-      }
-      $("#sort-button").prop('disabled', false);
-      highlightCode("0");
-    }
-    newSet(15);
+            comparisons++;
+            $(".compSpan").text(`No. of comparisons: ${comparisons}`);
+          } else {
+            highlightCode("5");
+            await timeout(DELAY / 2);
+            comparisons++;
+            highlightCode("6");
 
-</script>
-</body>
+            d3.select("#rect" + pos).attr("fill", "#9DBDC6");
+            d3.select("#rect" + (pos - 1)).attr("fill", "#9DBDC6");
+            $(".compSpan").text(`No. of comparisons: ${comparisons}`);
+            await slide(pos);
+            d3.select("#rect" + pos).attr("fill", "#CC1616");
+            let x = data[pos];
+            data[pos] = data[pos - 1];
+            data[pos - 1] = x;
+            swaps++;
+            highlightCode("7");
+            await timeout(DELAY / 2);
+            $(".swapSpan").text(`No. of swaps: ${swaps}`);
+            pos--;
+          }
+        }
+
+        for (let i = 0; i < data.length; i++) {
+          d3.select("#rect" + i).attr("fill", "#171717");
+        }
+        $("#sort-button").prop("disabled", false);
+        highlightCode("0");
+      }
+      newSet(15);
+    </script>
+  </body>
 </html>

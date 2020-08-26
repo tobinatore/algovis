@@ -1,580 +1,745 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Radixsort - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
 
-  <title>Radixsort - AlgoVis.io</title>
-  <meta content="AlgoVis is an online algorithm visualization tool." name="description">
-  <meta content="algorithm visualization tool online" name="keywords">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top header-inner-pages">
-    <div class="container d-flex">
-      <div class="contact-info mr-auto">
-        <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">hello@algovis.io</a>
-      </div>
-      <div class="social-links">
-        <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
-        <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
-        <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div
+      id="topbar"
+      class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
+    >
+      <div class="container d-flex">
+        <div class="contact-info mr-auto">
+          <i class="icofont-envelope"></i>
+          <a href="mailto:contact@example.com">hello@algovis.io</a>
+        </div>
+        <div class="social-links">
+          <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+            ><i class="icofont-twitter"></i
+          ></a>
+          <a href="https://github.com/tobinatore" class="github"
+            ><i class="icofont-github"></i
+          ></a>
+          <a
+            href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+            class="xing"
+            ><i class="icofont-xing"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/tobias-noethlich/"
+            class="linkedin"
+            ><i class="icofont-linkedin"></i
+          ></a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-inner-pages">
-    <div class="container-fluid d-flex align-items-center">
-      <a class="btn back-button mr-4" href="sorting.html"><i class="bx bx-arrow-back white-text" aria-hidden="true"></i> Back</a>
-      <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="sorting.html"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-    </div>
-  </header><!-- End Header -->
-
-<main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sorting.html">Sorting</a></li>
-          <li>Radixsort</li>
-        </ol>
-        <h2>Radixsort visualization</h2>
-
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
       </div>
-    </section><!-- End Breadcrumbs -->
+    </header>
+    <!-- End Header -->
 
-    <section class="inner-page pt-4">
-    <div class="container-fluid px-0 mt-2" >
-        <div class="data-container-big px-1 mb-0 mt-0 w-100">
-          <svg id="visu"></svg>
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sorting.html">Sorting</a></li>
+            <li>Radixsort</li>
+          </ol>
+          <h2>Radixsort visualization</h2>
         </div>
-        <div class="row mx-auto">
-          <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
-            <div class="ide w-100">
-            <div class="row ml-auto mr-auto 1">
-              <span><span class="op">for</span> i = 0 to <span class="op">numDigits</span>(data.max)</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 2 ">
-              <span>&emsp;&emsp;buckets = <span class="var">new</span> Array(10)</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 3">
-              <span>&emsp;&emsp;<span class="op">for</span> x = 0 to length(data)</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 4">
-              <span>&emsp;&emsp;&emsp;&emsp;num = <span class="op">getNum</span>(data[j], i)</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1 5">
-                <span>&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> num !== undefined</span>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page pt-4">
+        <div class="container-fluid px-0 mt-2">
+          <div class="data-container-big px-1 mb-0 mt-0 w-100">
+            <svg id="visu"></svg>
+          </div>
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span
+                    ><span class="op">for</span> i = 0 to
+                    <span class="op">numDigits</span>(data.max)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                  <span
+                    >&emsp;&emsp;buckets =
+                    <span class="var">new</span> Array(10)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  <span
+                    >&emsp;&emsp;<span class="op">for</span> x = 0 to
+                    length(data)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;num =
+                    <span class="op">getNum</span>(data[j], i)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span> num !==
+                    undefined</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;buckets[num].push(data[j])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  <span
+                    >&emsp;&emsp;data =
+                    <span class="op">mergeBuckets</span>()</span
+                  >
+                </div>
               </div>
-            <div class="row ml-auto mr-auto mt-1 6">
-              <span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;buckets[num].push(data[j])</span>
             </div>
-            <div class="row ml-auto mr-auto mt-1 7">
-              <span>&emsp;&emsp;data = <span class="op">mergeBuckets</span>()</span>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment">---------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">| SHORT EXPLANATION | </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">---------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >1. Create ten empty arrays (the buckets which will later
+                    hold the numbers)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >2. For each element in the list, move it into the correct
+                    bucket.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >3. For each bucket (starting from 0), restore elements to
+                    the list.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >4. Repeat steps 2 and 3 until all digits have been
+                    seen.</span
+                  >
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
-          <div class="ide w-100 pl-0">
-            <div class="row ml-auto mr-auto">
-                <span class="comment">---------------------</span>
-              </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">| SHORT EXPLANATION | </span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">---------------------</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">1. Create ten empty arrays (the buckets which will later hold the numbers)</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">2. For each element in the list, move it into the correct bucket.</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-              <span class="comment">3. For each bucket (starting from 0), restore elements to the list.</span>
-            </div>
-            <div class="row ml-auto mr-auto mt-1">
-                <span class="comment">4. Repeat steps 2 and 3 until all digits have been seen.</span>
-              </div>
-          </div>
-        </div>
-      </div>
-        <hr data-content="Settings" class="hr-text mb-3 mt-4">
-        <div class="row mx-auto">
-          <div class="col-sm-12 col-md-12 col-lg-6">
-            <form>
-              <div class="form-group row">
-                  <div class="col-sm-3">Elements: </div>
+          <hr data-content="Settings" class="hr-text mb-3 mt-4" />
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="form-group row">
+                  <div class="col-sm-3">Elements:</div>
                   <div class="col-sm-9">
-                    <span>5&emsp;</span>  
-                    <input id="slider" data-slider-id='pointsSlider' type="text" data-slider-min="5" data-slider-max="20" data-slider-step="1" data-slider-value="20"/>
+                    <span>5&emsp;</span>
+                    <input
+                      id="slider"
+                      data-slider-id="pointsSlider"
+                      type="text"
+                      data-slider-min="5"
+                      data-slider-max="20"
+                      data-slider-step="1"
+                      data-slider-value="20"
+                    />
                     <span id="max">&emsp;20</span>
                   </div>
-              </div>
-              <div class="form-group row">
+                </div>
+                <div class="form-group row">
                   <div class="col-sm-3">Data Generation</div>
                   <div class="col-sm-9">
                     <div class="form-check">
-                      <input id="own-data" class="form-check-input" type="checkbox" id="gridCheck1">
+                      <input
+                        id="own-data"
+                        class="form-check-input"
+                        type="checkbox"
+                        id="gridCheck1"
+                      />
                       <label class="form-check-label" for="gridCheck1">
                         Use own data
                       </label>
                     </div>
                   </div>
-              </div>
-            </form>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="form-group row">
+                  <div class="col-sm-5">Speed:</div>
+                  <div class="col-sm-7">
+                    <span>Slow&emsp;</span>
+                    <input
+                      id="speedslider"
+                      data-slider-id="speedSlider"
+                      type="text"
+                      data-slider-min="10"
+                      data-slider-max="1000"
+                      data-slider-step="10"
+                      data-slider-value="200"
+                    />
+                    <span>&emsp;Fast</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="data-input" class="col-sm-5 col-form-label"
+                    >Your data (max. 15 elements):</label
+                  >
+                  <div class="col-sm-7">
+                    <input
+                      disabled="true"
+                      type="text"
+                      class="form-control"
+                      id="data-input"
+                      placeholder="10,42,34,55,..."
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <div class="col-sm-12 col-md-12 col-lg-6">
-            <form>
-              <div class="form-group row">
-                <div class="col-sm-5">Speed: </div>
-                <div class="col-sm-7">
-                  <span>Slow&emsp;</span>
-                  <input id="speedslider" data-slider-id='speedSlider' type="text" data-slider-min="10" data-slider-max="1000" data-slider-step="10" data-slider-value="200"/>
-                  <span>&emsp;Fast</span>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="data-input" class="col-sm-5 col-form-label">Your data (max. 15 elements):</label>
-                <div class="col-sm-7">
-                  <input disabled="true" type="text" class="form-control" id="data-input" placeholder="10,42,34,55,...">
-                </div>
-              </div>
-            </form>
+          <div class="row mx-auto">
+            <div class="col-4"></div>
+            <div class="col-4">
+              <button
+                id="sort-button"
+                type="button"
+                onclick="radixSort()"
+                class="btn btn-danger red w-100"
+              >
+                Sort
+              </button>
+            </div>
+            <div class="col-4"></div>
           </div>
         </div>
-        <div class="row mx-auto">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <button id="sort-button" type="button" onclick="radixSort()" class="btn btn-danger red w-100">Sort</button>
-          </div>
-          <div class="col-4"></div>
-        </div>
-    </div>
-  </section>
-</main>
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-  
-        <div class="col-lg-4 col-md-6">
-          <div class="footer-info">
-            <h3>AlgoVis.io</h3>
-              <strong>Email:</strong> hello@algovis.io<br>
-            </p>
-            <div class="social-links mt-3">
-              <a href="https://twitter.com/tobiasnoethlich" class="twitter"><i class="icofont-twitter"></i></a>
-              <a href="https://github.com/tobinatore" class="github"><i class="icofont-github"></i></i></a>
-              <a href="https://www.xing.com/profile/Tobias_Noethlich/cv" class="xing"><i class="icofont-xing"></i></i></a>
-              <a href="https://www.linkedin.com/in/tobias-noethlich/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <h3>AlgoVis.io</h3>
+                <strong>Email:</strong> hello@algovis.io<br />
+                <div class="social-links mt-3">
+                  <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+                    ><i class="icofont-twitter"></i
+                  ></a>
+                  <a href="https://github.com/tobinatore" class="github"
+                    ><i class="icofont-github"></i
+                  ></a>
+                  <a
+                    href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+                    class="xing"
+                    ><i class="icofont-xing"></i
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/tobias-noethlich/"
+                    class="linkedin"
+                    ><i class="icofont-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 footer-links"></div>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#about">About us</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#categories">Categories</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Terms of service</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Privacy policy</a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6 footer-links"></div>
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="index.html#categories">Categories</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-          </ul>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>AlgoVis.io</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
       </div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <div class="copyright">
-      &copy; Copyright <strong><span>AlgoVis.io</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </div>
-  </footer><!-- End Footer -->
-  
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-  <div id="preloader"></div>
-  
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
-  <script src="https://d3js.org/d3.v5.js"></script>
-  
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-  
-<script>
-  $(document).ready(function() {
-    d3.select("#visu").attr("width", "100%").attr("height", "570").attr("viewBox", "0 0 "+ globalThis.screen.availWidth + " 570");
-    var slider = new Slider("#slider",{
-      handle : "square"
-    });
+    </footer>
+    <!-- End Footer -->
 
-    slider.on("slide", function(slideEvt) {
-      newSet(slideEvt);
-    });
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
 
-    $('#data-input').on('input',function(e){
-      ownData(this.value);
-    });
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
 
-    $('#own-data').change(function() {
-      if (this.checked) {
-        slider.disable();
-        $("#data-input").prop('disabled', false);
-      } else {
-        slider.enable();
-        $("#data-input").prop('disabled', true);
-      }
-    });
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
-    var speedSlider = new Slider("#speedslider",{
-	    reversed : true,
-      tooltip : "none",
-      handle : "square"
-    });
+    <script>
+      $(document).ready(function () {
+        d3.select("#visu")
+          .attr("width", "100%")
+          .attr("height", "570")
+          .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 570");
+        var slider = new Slider("#slider", {
+          handle: "square",
+        });
 
-    speedSlider.on("slide", function(slideEvt) {
-      setDelay(slideEvt);
-    });
+        slider.on("slide", function (slideEvt) {
+          newSet(slideEvt);
+        });
 
-    if (globalThis.screen.availWidth <= 360) {
-      slider.setAttribute("max", "20");
-      slider.setAttribute("value", "15");
-      $('#max').html("&emsp;20")
+        $("#data-input").on("input", function (e) {
+          ownData(this.value);
+        });
 
-    }
-  });
-</script>
+        $("#own-data").change(function () {
+          if (this.checked) {
+            slider.disable();
+            $("#data-input").prop("disabled", false);
+          } else {
+            slider.enable();
+            $("#data-input").prop("disabled", true);
+          }
+        });
 
-<script>
-    const container = document.querySelector(".data-container");
-    var FLAG = false;
-    var DELAY = 200;
-    var w = globalThis.screen.availWidth;
-    var h = 570;
-    var barPadding = 5;
-    var data = [];
-    var x;
-    var svg = d3.select("#visu");
-    var bucketLabels = [0,1,2,3,4,5,6,7,8,9];
-    
+        var speedSlider = new Slider("#speedslider", {
+          reversed: true,
+          tooltip: "none",
+          handle: "square",
+        });
 
-    svg.selectAll("line")
+        speedSlider.on("slide", function (slideEvt) {
+          setDelay(slideEvt);
+        });
+
+        if (globalThis.screen.availWidth <= 360) {
+          slider.setAttribute("max", "20");
+          slider.setAttribute("value", "15");
+          $("#max").html("&emsp;20");
+        }
+      });
+    </script>
+
+    <script>
+      const container = document.querySelector(".data-container");
+      var FLAG = false;
+      var DELAY = 200;
+      var w = globalThis.screen.availWidth;
+      var h = 570;
+      var barPadding = 5;
+      var data = [];
+      var x;
+      var svg = d3.select("#visu");
+      var bucketLabels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+      svg
+        .selectAll("line")
         .data(bucketLabels)
         .enter()
         .append("line")
-        .attr("x1", function(d,i){ return (w/10)*i;})
-        .attr("y1",function(d,i){ return h-33;})
-        .attr("x2", function(d,i){ return ((w/10)*(i+1)) - 5;})
-        .attr("y2",function(d,i){ return h-33;})
+        .attr("x1", function (d, i) {
+          return (w / 10) * i;
+        })
+        .attr("y1", function (d, i) {
+          return h - 33;
+        })
+        .attr("x2", function (d, i) {
+          return (w / 10) * (i + 1) - 5;
+        })
+        .attr("y2", function (d, i) {
+          return h - 33;
+        })
         .attr("stroke", "#171717")
-        .attr("stroke-width","2px")
-        .attr("id", function(d,i){ return "bucket"+i;});
+        .attr("stroke-width", "2px")
+        .attr("id", function (d, i) {
+          return "bucket" + i;
+        });
 
-    svg.selectAll("g")
+      svg
+        .selectAll("g")
         .data(bucketLabels)
         .enter()
         .append("text")
-        .attr("id", function(d,i){ return "bucket-text"+i;})
-        .text(function(d) {
-            return d;
+        .attr("id", function (d, i) {
+          return "bucket-text" + i;
         })
-        .attr("transform", function(d, i) {return "translate(" + (((w/10)*i)+((w/10)/2)-4) + ",0)"})
-        .attr("y", function(d,i){return h-10})
+        .text(function (d) {
+          return d;
+        })
+        .attr("transform", function (d, i) {
+          return "translate(" + ((w / 10) * i + w / 10 / 2 - 4) + ",0)";
+        })
+        .attr("y", function (d, i) {
+          return h - 10;
+        })
         .attr("font-family", "sans-serif")
         .attr("font-size", "18px")
-        .attr("fill", "black").attr("text-anchor", "middle");
+        .attr("fill", "black")
+        .attr("text-anchor", "middle");
 
-
-    function setDelay(delay){
-      DELAY = delay;
-    }
-
-
-    function clamp(number, min, max) {
-      return Math.max(min, Math.min(number, max));
-    }
-
-
-    function newSet(num=20){
-      data  = [];
-      
-      for(let i = 0; i<num; i++) {
-        data.push(Math.floor(Math.random()*4999)+1);
+      function setDelay(delay) {
+        DELAY = delay;
       }
 
-      clearAll();
-      generateBlocks(data);
-    }   
-
-
-    function stop(){
-      FLAG = true;
-    }
-
-
-    function ownData(d = "1,2,3,4,5,6"){
-      data = d.split(",");
-      if (data.length > 15) {
-        data = data.slice(0, 15);
+      function clamp(number, min, max) {
+        return Math.max(min, Math.min(number, max));
       }
-      for (let i = 0; i < data.length; i++) {
-        data[i] = clamp(data[i],0,9999);
-        
+
+      function newSet(num = 20) {
+        data = [];
+
+        for (let i = 0; i < num; i++) {
+          data.push(Math.floor(Math.random() * 4999) + 1);
+        }
+
+        clearAll();
+        generateBlocks(data);
       }
-      clearAll();
-      generateBlocks(data);
-    }
 
-    async function highlightNumber(pos){
-        return new Promise(resolve => {
-            svg.selectAll(".num-text"+pos)
-                .transition().duration(DELAY)
-                .attr("fill", "#FF3D2E");
-            
-            if(pos != 0){
-                svg.selectAll(".num-text"+(pos-1))
-                    .transition().duration(DELAY)
-                    .attr("fill", "#171717");
-            }
+      function stop() {
+        FLAG = true;
+      }
 
-            setTimeout(() => {
-                resolve();
-            },(DELAY < 100) ? DELAY*5 : DELAY*2);
+      function ownData(d = "1,2,3,4,5,6") {
+        data = d.split(",");
+        if (data.length > 15) {
+          data = data.slice(0, 15);
+        }
+        for (let i = 0; i < data.length; i++) {
+          data[i] = clamp(data[i], 0, 9999);
+        }
+        clearAll();
+        generateBlocks(data);
+      }
+
+      async function highlightNumber(pos) {
+        return new Promise((resolve) => {
+          svg
+            .selectAll(".num-text" + pos)
+            .transition()
+            .duration(DELAY)
+            .attr("fill", "#FF3D2E");
+
+          if (pos != 0) {
+            svg
+              .selectAll(".num-text" + (pos - 1))
+              .transition()
+              .duration(DELAY)
+              .attr("fill", "#171717");
+          }
+
+          setTimeout(
+            () => {
+              resolve();
+            },
+            DELAY < 100 ? DELAY * 5 : DELAY * 2
+          );
         }, 600);
-    }
+      }
 
-    async function reSlide(newPos){
-        return new Promise(resolve => {
-            var startPos = w/data.length;
-            svg.select("#g"+newPos)
-                .transition().duration(DELAY)
-                .attr("transform", function(d, i) {return "translate(" + (startPos*newPos) + ",0)"})
-                .attr("y", "25");
+      async function reSlide(newPos) {
+        return new Promise((resolve) => {
+          var startPos = w / data.length;
+          svg
+            .select("#g" + newPos)
+            .transition()
+            .duration(DELAY)
+            .attr("transform", function (d, i) {
+              return "translate(" + startPos * newPos + ",0)";
+            })
+            .attr("y", "25");
 
-            setTimeout(() => {
-                resolve();
-            },(DELAY < 100) ? DELAY*5 : DELAY*2);
+          setTimeout(
+            () => {
+              resolve();
+            },
+            DELAY < 100 ? DELAY * 5 : DELAY * 2
+          );
         }, 600);
-    }
+      }
 
-    async function slide(num, j, len) {
-      return new Promise(resolve => {
-        var calcTranslX = (w/10)*num;  
-        var calcTranslY = ((h-60) - (33*len)-5);
-        
-        var g = d3.select("#g"+j).transition("rect1").duration(DELAY)
-            .attr("transform", function(d) {return "translate(" + calcTranslX + ", "+calcTranslY+")";});
+      async function slide(num, j, len) {
+        return new Promise((resolve) => {
+          var calcTranslX = (w / 10) * num;
+          var calcTranslY = h - 60 - 33 * len - 5;
 
-        
-        
-        setTimeout(() => {
-          resolve();
-        },(DELAY < 100) ? DELAY*5 : DELAY*2);
-      }, 600);
-    }
+          var g = d3
+            .select("#g" + j)
+            .transition("rect1")
+            .duration(DELAY)
+            .attr("transform", function (d) {
+              return "translate(" + calcTranslX + ", " + calcTranslY + ")";
+            });
 
+          setTimeout(
+            () => {
+              resolve();
+            },
+            DELAY < 100 ? DELAY * 5 : DELAY * 2
+          );
+        }, 600);
+      }
 
-    function clearAll(){
-        svg.selectAll("g")
-            .data([])
-            .exit()
-            .remove();
-    }
+      function clearAll() {
+        svg.selectAll("g").data([]).exit().remove();
+      }
 
-
-    function generateBlocks(data) {
-        x = d3.scaleLinear()
-            .domain([0,9])
-            .range([0, w]);
-        var startPos = w/data.length;
-        var bars =
-        svg.selectAll("rect")
+      function generateBlocks(data) {
+        x = d3.scaleLinear().domain([0, 9]).range([0, w]);
+        var startPos = w / data.length;
+        var bars = svg
+          .selectAll("rect")
           .data(data)
           .enter()
-          .append("g").attr("id", function(d,i){return "g"+i;}).attr("class", function(d,i){return "num"+d;})
-          .attr("transform", function(d, i) {return "translate(" + (startPos*i) + ",0)"})
+          .append("g")
+          .attr("id", function (d, i) {
+            return "g" + i;
+          })
+          .attr("class", function (d, i) {
+            return "num" + d;
+          })
+          .attr("transform", function (d, i) {
+            return "translate(" + startPos * i + ",0)";
+          })
           .attr("width", w / 20 - barPadding)
-          .attr("y", "25")
-        
-        bars.append("rect")
+          .attr("y", "25");
+
+        bars
+          .append("rect")
           .attr("width", w / 20 - barPadding)
           .attr("height", 30)
           .attr("y", "25")
           .attr("fill", "none")
           .attr("stroke", "#171717")
-          .attr("stroke-width","2px")
-          .attr("id", function(d,i){return "rect"+i;})
-        
+          .attr("stroke-width", "2px")
+          .attr("id", function (d, i) {
+            return "rect" + i;
+          });
+
         for (let i in data) {
-            let num = String(data[i]).split('');
-            for (let j in num) {
-                d3.select("#g"+i).append("text")
-                    .text(function(d) {
-                        return num[j];
-                    })
-                    .attr("transform", function(){return "translate("+(20+(10*j))+",0)"}) //((startPos*i)+((w/data.length)/2)-4)
-                    .attr("y", "45")
-                    .attr("font-family", "sans-serif")
-                    .attr("font-size", "18px")
-                    .attr("fill", "black").attr("text-anchor", "middle")
-                    .attr("class", function(d,i){return "num-text"+(num.length-j-1);});
-            }
+          let num = String(data[i]).split("");
+          for (let j in num) {
+            d3.select("#g" + i)
+              .append("text")
+              .text(function (d) {
+                return num[j];
+              })
+              .attr("transform", function () {
+                return "translate(" + (20 + 10 * j) + ",0)";
+              }) //((startPos*i)+((w/data.length)/2)-4)
+              .attr("y", "45")
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "18px")
+              .attr("fill", "black")
+              .attr("text-anchor", "middle")
+              .attr("class", function (d, i) {
+                return "num-text" + (num.length - j - 1);
+              });
+          }
         }
+      }
 
-        
-    }
+      function highlightCode(elementClass) {
+        $(".code-highlight").removeClass("code-highlight");
+        $(`.${elementClass}`).addClass("code-highlight");
+      }
 
-
-    function highlightCode(elementClass){
-      $(".code-highlight").removeClass("code-highlight");
-      $(`.${elementClass}`).addClass("code-highlight");
-    }
-    
-    function getNum(num, index){
+      function getNum(num, index) {
         var numStr = String(num);
         let end = numStr.length - 1;
         const found = numStr[end - index];
 
         if (found === undefined) return 0;
         else return found;
-    }
+      }
 
-    function longest(){
+      function longest() {
         let longest = "0";
 
-        data.forEach(num => {
-            const numStr = String(num);
+        data.forEach((num) => {
+          const numStr = String(num);
 
-            if (numStr.length > longest.length) longest = numStr;
+          if (numStr.length > longest.length) longest = numStr;
         });
 
         return longest.length;
+      }
 
-    }
-
-    async function timeout(delay){
-        await new Promise(resolve =>
-            setTimeout(() => {  	
-                resolve();            
-            }, delay)               
+      async function timeout(delay) {
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve();
+          }, delay)
         );
-    }
+      }
 
-
-    async function radixSort() {
-        $("#sort-button").prop('disabled', true);
+      async function radixSort() {
+        $("#sort-button").prop("disabled", true);
         var sameClass = [];
         let maxLen = longest();
 
         for (let i = 0; i < maxLen; i++) {
-            highlightCode("2");
-            let buckets = Array.from({ length: 10 }, () => []);
-            await highlightNumber(i);
+          highlightCode("2");
+          let buckets = Array.from({ length: 10 }, () => []);
+          await highlightNumber(i);
 
-            highlightCode("3");
-            await timeout(DELAY/2);
-            
-            for (let j = 0; j < data.length; j++) {
-                
-                highlightCode("4");
-                await timeout(DELAY/2);
+          highlightCode("3");
+          await timeout(DELAY / 2);
 
-                let num = getNum(data[j], i);
-                
-                highlightCode("5");
-                await  timeout(DELAY/2);
+          for (let j = 0; j < data.length; j++) {
+            highlightCode("4");
+            await timeout(DELAY / 2);
 
-                if (num !== undefined){ 
-                    highlightCode("6");
-                    buckets[num].push(data[j]);
-                    await slide(num, j, buckets[num].length);
-                }
+            let num = getNum(data[j], i);
+
+            highlightCode("5");
+            await timeout(DELAY / 2);
+
+            if (num !== undefined) {
+              highlightCode("6");
+              buckets[num].push(data[j]);
+              await slide(num, j, buckets[num].length);
             }
-            
-            highlightCode("7");
-            data = buckets.flat();
-            for(x in data){
-                var test = d3.selectAll(".num"+data[x])
-                if(test.size() > 1){
-                    sameClass.push({id:x, classOld:data[x]});
-                    d3.select(".num"+data[x]).attr("id", "g"+x).attr("class","doubled");
-                }
-                else{
-                    test.attr("id", "g"+x);
-                }
-            }
+          }
 
-            for(x in sameClass){
-                d3.select("#g"+sameClass[x].id).attr("class", "num"+sameClass[x].classOld);
+          highlightCode("7");
+          data = buckets.flat();
+          for (x in data) {
+            var test = d3.selectAll(".num" + data[x]);
+            if (test.size() > 1) {
+              sameClass.push({ id: x, classOld: data[x] });
+              d3.select(".num" + data[x])
+                .attr("id", "g" + x)
+                .attr("class", "doubled");
+            } else {
+              test.attr("id", "g" + x);
             }
+          }
 
-            for(x in data){
-                await reSlide(x);
-            }
-           
+          for (x in sameClass) {
+            d3.select("#g" + sameClass[x].id).attr(
+              "class",
+              "num" + sameClass[x].classOld
+            );
+          }
+
+          for (x in data) {
+            await reSlide(x);
+          }
         }
-      $("#sort-button").prop('disabled', false);
-      highlightCode("0");
-      await highlightNumber(maxLen);
-    }
-    newSet(20);
-
-</script>
-</body>
+        $("#sort-button").prop("disabled", false);
+        highlightCode("0");
+        await highlightNumber(maxLen);
+      }
+      newSet(20);
+    </script>
+  </body>
 </html>

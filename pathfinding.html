@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Pathfinding - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div
+      id="topbar"
+      class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
+    >
+      <div class="container d-flex">
+        <div class="contact-info mr-auto">
+          <i class="icofont-envelope"></i>
+          <a href="mailto:contact@example.com">hello@algovis.io</a>
+        </div>
+        <div class="social-links">
+          <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+            ><i class="icofont-twitter"></i
+          ></a>
+          <a href="https://github.com/tobinatore" class="github"
+            ><i class="icofont-github"></i
+          ></a>
+          <a
+            href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+            class="xing"
+            ><i class="icofont-xing"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/tobias-noethlich/"
+            class="linkedin"
+            ><i class="icofont-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="graphs.html"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Pathfinding</li>
+            <li class="algo"></li>
+          </ol>
+          <h2><span class="algo">Pathfinding</span> visualization</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page pt-2">
+        <div class="container-fluid">
+          <div class="mb-2">
+            <div class="row mx-auto">
+              <div class="dropdown">
+                <button
+                  class="btn btn-dark dropdown-toggle mr-3"
+                  type="button"
+                  id="dropdownAlgo"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Select an Algorithm
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownAlgo">
+                  <button
+                    class="dropdown-item"
+                    onclick="setAlgo(1)"
+                    type="button"
+                  >
+                    A*
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setAlgo(2)"
+                    type="button"
+                  >
+                    BFS
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setAlgo(3)"
+                    type="button"
+                  >
+                    DFS
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setAlgo(4)"
+                    type="button"
+                  >
+                    Dijkstra's algorithm
+                  </button>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button
+                  class="btn btn-dark dropdown-toggle mr-3"
+                  type="button"
+                  id="dropdownGen"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Generate Maze
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownGen">
+                  <button class="dropdown-item" type="button">
+                    Recursively
+                  </button>
+                  <button class="dropdown-item" type="button">BFS</button>
+                  <button class="dropdown-item" type="button">DFS</button>
+                  <button class="dropdown-item" type="button">Dijkstra</button>
+                </div>
+                <button
+                  class="btn btn-danger red mr-3"
+                  type="button"
+                  id="startPf"
+                  onclick="runAlgo()"
+                >
+                  Visualize Algorithm
+                </button>
+              </div>
+              <span
+                class="red-text pt-2 pl-1 pr-3"
+                id="algowarning"
+                hidden
+                style="font-size: large; font-weight: bold"
+              >
+                Please select an algorithm first.
+              </span>
+              <button class="btn btn-dark" onclick="clearGrid()">
+                Clear grid
+              </button>
+            </div>
+          </div>
+          <div id="grid"></div>
+        </div>
+      </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <h3>AlgoVis.io</h3>
+                <strong>Email:</strong> hello@algovis.io<br />
+                <div class="social-links mt-3">
+                  <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+                    ><i class="icofont-twitter"></i
+                  ></a>
+                  <a href="https://github.com/tobinatore" class="github"
+                    ><i class="icofont-github"></i
+                  ></a>
+                  <a
+                    href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+                    class="xing"
+                    ><i class="icofont-xing"></i
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/tobias-noethlich/"
+                    class="linkedin"
+                    ><i class="icofont-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 footer-links"></div>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#about">About us</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#categories">Categories</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Terms of service</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Privacy policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>AlgoVis.io</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="assets/js/graph.js"></script>
+    <script src="assets/js/pathfinding.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script>
+      var mouseDown = false;
+      var algo = 0;
+      var gridArr = [];
+      var startPos = { x: 0, y: 0 };
+      var endPos = { x: 0, y: 0 };
+
+      $(document)
+        .mousedown(function (e) {
+          mouseDown = true;
+        })
+        .mouseup(function (e) {
+          mouseDown = false;
+        })
+        .mouseleave(function (e) {
+          mouseDown = false;
+        });
+
+      function setAlgo(algorithm) {
+        switch (algorithm) {
+          case 1:
+            $("#dropdownAlgo").text("A*");
+            $("#startPf").text("Visualize A*");
+            $(".algo").html("A* algorithm");
+            document.title = "A* - AlgoVis.io";
+            $("#algowarning").prop("hidden", true);
+            algo = 1;
+            break;
+          case 2:
+            $("#dropdownAlgo").text("BFS");
+            $("#startPf").text("Visualize BFS");
+            $(".algo").html("Breadth-first search");
+            document.title = "Breadth-first search - AlgoVis.io";
+            $("#algowarning").prop("hidden", true);
+            algo = 2;
+            break;
+          case 3:
+            $("#dropdownAlgo").text("DFS");
+            $("#startPf").text("Visualize DFS");
+            $(".algo").html("Depth-first search");
+            document.title = "Depth-first search - AlgoVis.io";
+            $("#algowarning").prop("hidden", true);
+            algo = 3;
+            break;
+          case 4:
+            $("#dropdownAlgo").text("Dijkstra's algorithm");
+            $("#startPf").text("Visualize Dijkstra's algorithm");
+            $(".algo").html("Dijkstra's algorithm");
+            document.title = "Dijkstra's algorithm - AlgoVis.io";
+            $("#algowarning").prop("hidden", true);
+            algo = new Dijkstras();
+            break;
+          default:
+            $("#dropdownAlgo").text("A*");
+            $("#startPf").text("Visualize A*");
+            $(".algo").html("A* algorithm");
+            document.title = "A* - AlgoVis.io";
+            $("#algowarning").prop("hidden", true);
+            algo = 1;
+            break;
+        }
+      }
+
+      function gridData() {
+        var data = new Array();
+        var xpos = 1; // starting at (1,1) so the stroke gets rendered
+        var ypos = 1;
+        var width = 25;
+        var height = 25;
+        var click = 0;
+        var screenWidth = globalThis.screen.availWidth;
+        var screenHeight = globalThis.screen.availHeight;
+        var rows = Math.floor(globalThis.screen.availHeight / height) - 4;
+        var cols = Math.floor(globalThis.screen.availWidth / width) - 1;
+
+        for (var row = 0; row < rows; row++) {
+          data.push(new Array());
+          gridArr.push(new Array());
+          for (var column = 0; column < cols; column++) {
+            data[row].push({
+              x: xpos,
+              y: ypos,
+              width: width,
+              height: height,
+              click: click,
+              row: row,
+              col: column,
+              dist: Infinity,
+              predecessor: undefined,
+              type: "floor",
+              anim: false,
+            });
+
+            gridArr[row].push(1);
+
+            xpos += width;
+          }
+
+          xpos = 1;
+
+          ypos += height;
+        }
+        return data;
+      }
+
+      function getNearestMultiple(input, x) {
+        var out = Math.round(input / x);
+        return out == 0 && input > 0 ? (out + 1) * x : out * x;
+      }
+
+      function clamp(number, min, max) {
+        return Math.max(min, Math.min(number, max));
+      }
+
+      function dragged(d) {
+        var x = d3.event.x;
+        var y = d3.event.y;
+        var gridX = clamp(
+          getNearestMultiple(x, 25) + 1,
+          0,
+          (gridArr[0].length - 1) * 25
+        );
+        var gridY = clamp(
+          getNearestMultiple(y, 25) + 1,
+          0,
+          (gridArr.length - 1) * 25
+        );
+        if (d == "start") {
+          var newX = Math.round((gridX - 1) / 25);
+          var newY = Math.round((gridY - 1) / 25);
+          if (newX != endPos.x || newY != endPos.y) {
+            startPos.x = newX;
+            startPos.y = newY;
+            d3.select(this).attr("x", gridX).attr("y", gridY);
+          }
+        } else {
+          var newX = Math.round((gridX - 1) / 25);
+          var newY = Math.round((gridY - 1) / 25);
+          if (newX != startPos.x || newY != startPos.y) {
+            endPos.x = Math.round((gridX - 1) / 25);
+            endPos.y = Math.round((gridY - 1) / 25);
+            d3.select(this).attr("x", gridX).attr("y", gridY);
+          }
+        }
+      }
+
+      var gridData = gridData();
+
+      console.log(gridData);
+      console.log(grid);
+      var drag = d3
+        .drag()
+        .subject(function () {
+          var t = d3.select(this);
+          return { x: t.attr("x"), y: t.attr("y") };
+        })
+        .on("drag", dragged);
+
+      var grid = d3
+        .select("#grid")
+        .append("svg")
+        .attr("width", globalThis.screen.availWidth)
+        .attr("height", globalThis.screen.availHeight);
+
+      var row = grid
+        .selectAll(".row")
+        .data(gridData)
+        .enter()
+        .append("g")
+        .attr("id", function (d, i) {
+          return "row" + i;
+        });
+
+      var column = row
+        .selectAll(".square")
+        .data(function (d) {
+          return d;
+        })
+        .enter()
+        .append("rect")
+        .attr("class", "square")
+        .attr("id", function (d, i) {
+          return "node-" + d.row + "-" + d.col;
+        })
+        .attr("x", function (d) {
+          return d.x;
+        })
+        .attr("y", function (d) {
+          return d.y;
+        })
+        .attr("width", function (d) {
+          return d.width;
+        })
+        .attr("height", function (d) {
+          return d.height;
+        })
+        .attr("fill", "#fff")
+        .attr("stroke", "#222")
+        .on("mousedown", async function (d) {
+          var coords = this.id.replace(/^\D+/g, "").split("-");
+          var col = coords[1];
+          var row = coords[0];
+          mouseDown = true;
+          if (
+            (col != startPos.x || row != startPos.y) &&
+            (col != endPos.x || row != endPos.y)
+          ) {
+            d.click++;
+            if (d.click % 2 == 0) {
+              d3.select(this).transition().duration(400).attr("fill", "#fff");
+              d.type = "floor";
+            }
+            if (d.click % 2 == 1) {
+              d.anim = true;
+              d3.select(this)
+                .attr("x", d.x + 12.5)
+                .attr("y", d.y + 12.5)
+                .attr("height", 0)
+                .attr("width", 0)
+                .attr("fill", "#171717")
+                .transition()
+                .duration(150)
+                .attr("x", d.x)
+                .attr("y", d.y)
+                .attr("height", 25)
+                .attr("width", 25);
+              await timeout(155);
+              d.anim = false;
+              d.type = "wall";
+              console.log(gridData);
+            }
+          }
+        })
+        .on("dblclick", function (d) {
+          var coords = this.id.replace(/^\D+/g, "").split("-");
+          var col = coords[1];
+          var row = coords[0];
+          if (
+            (col != startPos.x || row != startPos.y) &&
+            (col != endPos.x || row != endPos.y)
+          ) {
+            d.click = 1;
+            d3.select(this).transition().duration(400).attr("fill", "#B0B0B0");
+            d.type = "weight";
+          }
+        })
+        .on("mouseenter", async function (d) {
+          var coords = this.id.replace(/^\D+/g, "").split("-");
+          var col = coords[1];
+          var row = coords[0];
+          if (
+            (col != startPos.x || row != startPos.y) &&
+            (col != endPos.x || row != endPos.y)
+          ) {
+            if (mouseDown && !d.anim) {
+              d.click++;
+              if (d.click % 2 == 0) {
+                d3.select(this).transition().duration(400).attr("fill", "#fff");
+                d.type = "floor";
+                console.log("yeet");
+              }
+              if (d.click % 2 == 1) {
+                d.anim = true;
+                await colorBlock("#" + this.id, "#171717", 150, "fill");
+                setTimeout(() => {
+                  d.anim = false;
+                }, 300);
+
+                d.type = "wall";
+              }
+            }
+          }
+        });
+
+      var start = grid
+        .selectAll(".start")
+        .data(["start"])
+        .enter()
+        .append("image")
+        .attr("xlink:href", "assets/img/start.svg")
+        .attr("id", "start")
+        .attr("x", function () {
+          var col = Math.round(Math.random() * (gridArr[0].length - 1));
+          startPos.x = col;
+          return 25 * col;
+        })
+        .attr("y", function () {
+          var row = Math.round(Math.random() * (gridArr.length - 1));
+          startPos.y = row;
+          console.log("startPos: " + startPos.x + ", " + startPos.y);
+          return 25 * row;
+        })
+        .attr("width", 25)
+        .attr("height", 25)
+        .call(drag);
+
+      var end = grid
+        .selectAll(".start")
+        .data(["end"])
+        .enter()
+        .append("image")
+        .attr("id", "end")
+        .attr("xlink:href", "assets/img/end.svg")
+        .attr("x", function () {
+          var col = Math.round(Math.random() * (gridArr[0].length - 1));
+          endPos.x = col;
+          return 25 * col;
+        })
+        .attr("y", function () {
+          var row = Math.round(Math.random() * (gridArr.length - 1));
+          endPos.y = row;
+          console.log("endPos: " + endPos.x + ", " + endPos.y);
+          return 25 * row;
+        })
+        .attr("width", 25)
+        .attr("height", 25)
+        .call(drag);
+
+      async function timeout(delay) {
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve();
+          }, delay)
+        );
+      }
+      async function colorBlock(block, color, delay, mode) {
+        return new Promise((resolve) => {
+          if (mode == "fill") {
+            var coords = block.replace(/^\D+/g, "").split("-");
+            var col = coords[1];
+            var row = coords[0];
+            d3.select(block)
+              .attr("x", gridData[row][col].x + 12.5)
+              .attr("y", gridData[row][col].y + 12.5)
+              .attr("height", 0)
+              .attr("width", 0)
+              .attr("fill", color)
+              .transition()
+              .duration(delay)
+              .attr("x", gridData[row][col].x)
+              .attr("y", gridData[row][col].y)
+              .attr("height", 25)
+              .attr("width", 25);
+          } else {
+            d3.select(block).transition().duration(delay).attr("fill", color);
+          }
+          setTimeout(() => {
+            resolve();
+          }, 30);
+        }, 30);
+      }
+
+      async function runAlgo() {
+        if (algo != 0) {
+          $("#algowarning").prop("hidden", true);
+          await algo.run(gridData, startPos, endPos);
+        } else {
+          $("#algowarning").prop("hidden", false);
+        }
+      }
+
+      function clearGrid() {
+        d3.selectAll(".square").transition().duration(500).attr("fill", "#fff");
+        for (let y = 0; y < gridData.length; y++) {
+          for (let x = 0; x < gridData[0].length; x++) {
+            gridData[y][x].type = "floor";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

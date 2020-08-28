@@ -168,12 +168,13 @@
                   Generate Maze
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownGen">
-                  <button class="dropdown-item" type="button">
-                    Recursively
+                  <button
+                    class="dropdown-item"
+                    type="button"
+                    onclick='generateMaze("recDFS")'
+                  >
+                    Recursive DFS
                   </button>
-                  <button class="dropdown-item" type="button">BFS</button>
-                  <button class="dropdown-item" type="button">DFS</button>
-                  <button class="dropdown-item" type="button">Dijkstra</button>
                 </div>
                 <button
                   class="btn btn-danger red mr-3"
@@ -292,6 +293,7 @@
     <script src="https://d3js.org/d3.v5.js"></script>
     <script src="assets/js/graph.js"></script>
     <script src="assets/js/pathfinding.js"></script>
+    <script src="assets/js/mazeGenerator.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
@@ -663,6 +665,24 @@
             gridData[y][x].type = "floor";
           }
         }
+      }
+
+      async function generateMaze(type) {
+        var mazeGen;
+        switch (type) {
+          case "recDFS":
+            mazeGen = new RecursiveDFS();
+            break;
+
+          default:
+            mazeGen = new RecursiveDFS();
+            break;
+        }
+        var cell = {
+          x: Math.round(Math.random() * gridData[0].length),
+          y: Math.round(Math.random() * gridData.length),
+        };
+        mazeGen.startMaze(cell);
       }
     </script>
   </body>

@@ -42,7 +42,6 @@ class Dijkstras {
           }
         }
       }
-      //q.sort((a, b) => (a.dist > b.dist ? 1 : -1));
     }
   }
 
@@ -94,12 +93,33 @@ class Dijkstras {
   }
 
   async makePath(grid, end, start) {
+    await timeout(500);
+    var list = [];
     var v = grid[end.y][end.x];
+    list.unshift(v);
     while (v.predecessor != undefined) {
       console.log(v);
       await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250);
       v = grid[v.predecessor.row][v.predecessor.col];
+      list.unshift(v);
     }
+    list.unshift(v);
     console.log(v);
+    this.makeHimRun(list);
+  }
+
+  async makeHimRun(list) {
+    for (let i in list) {
+      d3.select("#start")
+        .transition()
+        .duration(50)
+        .attr("x", list[i].x)
+        .attr("y", list[i].y);
+      await timeout(50);
+    }
+    await timeout(200);
+    var x = gridData[startPos.y][startPos.x].x;
+    var y = gridData[startPos.y][startPos.x].y;
+    d3.select("#start").attr("x", x).attr("y", y);
   }
 }

@@ -114,70 +114,81 @@
         <div class="container-fluid">
           <div class="mb-2">
             <div class="row mx-auto">
-              <div class="dropdown">
-                <button
-                  class="btn btn-dark dropdown-toggle mr-3"
-                  type="button"
-                  id="dropdownAlgo"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Select an Algorithm
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownAlgo">
+              <div class="col-sm-2 pl-0">
+                <div class="dropdown">
                   <button
-                    class="dropdown-item"
-                    onclick="setAlgo(1)"
+                    class="btn btn-dark btn-block dropdown-toggle"
                     type="button"
+                    id="dropdownAlgo"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
-                    A*
+                    Select an Algorithm
                   </button>
-                  <button
-                    class="dropdown-item"
-                    onclick="setAlgo(2)"
-                    type="button"
-                  >
-                    BFS
-                  </button>
-                  <button
-                    class="dropdown-item"
-                    onclick="setAlgo(3)"
-                    type="button"
-                  >
-                    DFS
-                  </button>
-                  <button
-                    class="dropdown-item"
-                    onclick="setAlgo(4)"
-                    type="button"
-                  >
-                    Dijkstra's algorithm
-                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownAlgo">
+                    <button
+                      class="dropdown-item"
+                      onclick="setAlgo(1)"
+                      type="button"
+                    >
+                      A*
+                    </button>
+                    <button
+                      class="dropdown-item"
+                      onclick="setAlgo(2)"
+                      type="button"
+                    >
+                      BFS
+                    </button>
+                    <button
+                      class="dropdown-item"
+                      onclick="setAlgo(3)"
+                      type="button"
+                    >
+                      DFS
+                    </button>
+                    <button
+                      class="dropdown-item"
+                      onclick="setAlgo(4)"
+                      type="button"
+                    >
+                      Dijkstra's algorithm
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div class="dropdown">
-                <button
-                  class="btn btn-dark dropdown-toggle mr-3"
-                  type="button"
-                  id="dropdownGen"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Generate Maze
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownGen">
+              <div class="col-sm-2">
+                <div class="dropdown">
                   <button
-                    class="dropdown-item"
+                    class="btn btn-block btn-dark dropdown-toggle"
                     type="button"
-                    onclick='generateMaze("recDFS")'
+                    id="dropdownGen"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
-                    Recursive DFS
+                    Generate Maze
                   </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownGen">
+                    <button
+                      class="dropdown-item"
+                      type="button"
+                      onclick='generateMaze("recDFS")'
+                    >
+                      Recursive DFS
+                    </button>
+                  </div>
                 </div>
+              </div>
+              <div class="col-sm-2">
+                <button class="btn btn-block btn-dark" onclick="clearGrid()">
+                  Clear grid
+                </button>
+              </div>
+              <div class="col-sm-2">
                 <button
-                  class="btn btn-danger red mr-3"
+                  class="btn btn-block btn-danger red"
                   type="button"
                   id="startPf"
                   onclick="runAlgo()"
@@ -185,20 +196,139 @@
                   Visualize Algorithm
                 </button>
               </div>
-              <span
-                class="red-text pt-2 pl-1 pr-3"
-                id="algowarning"
-                hidden
-                style="font-size: large; font-weight: bold"
-              >
-                Please select an algorithm first.
-              </span>
-              <button class="btn btn-dark" onclick="clearGrid()">
-                Clear grid
-              </button>
+              <div class="col-sm-4 pr-0">
+                <div
+                  class="alert alert-success text-center my-0 py-2"
+                  role="alert"
+                  hidden
+                >
+                  <div class="row">
+                    <div class="col-1">
+                      <i class="bx bx-check-circle"></i>
+                    </div>
+                    <div class="col-11">
+                      Algorithm always finds shortest path.
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="alert alert-warning text-center my-0 py-2"
+                  role="alert"
+                  hidden
+                >
+                  <div class="row">
+                    <div class="col-1">
+                      <i class="bx bx-error-circle"></i>
+                    </div>
+                    <div class="col-11">
+                      Algorithm does not guarantee shortest path.
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="alert alert-danger my-0 py-2"
+                  id="algowarning"
+                  role="alert"
+                  hidden
+                >
+                  <div class="row">
+                    <div class="col-1">
+                      <i class="bx bx-x-circle"></i>
+                    </div>
+                    <div class="col-11">Please select an algorithm first.</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <div class="row justify-content-center mx-auto"></div>
           <div id="grid"></div>
+          <button
+            type="button"
+            class="legend-toggle"
+            data-toggle="modal"
+            data-target="#legendModal"
+            style="border: none; background: none"
+          >
+            <i class="icofont-simple-left"></i>
+          </button>
+        </div>
+        <div
+          class="modal fade"
+          id="legendModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="legendModal"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-dialog modal-dialog-slideout modal-sm"
+            role="document"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Legend</h5>
+              </div>
+              <div class="modal-body">
+                <div class="row ml-2 mt-4 text-center w-100">
+                  <div
+                    class="mr-2"
+                    style="
+                      height: 25px;
+                      width: 25px;
+                      display: inline-block;
+                      background-color: #fff;
+                      border: 1px solid #222;
+                    "
+                  ></div>
+                  Empty
+                </div>
+                <div class="row ml-2 mt-4 text-center w-100">
+                  <div
+                    class="mr-2"
+                    style="
+                      height: 25px;
+                      width: 25px;
+                      display: inline-block;
+                      background-color: #b0b0b0;
+                    "
+                  ></div>
+                  Weight
+                </div>
+                <div class="row ml-2 mt-4 text-center w-100">
+                  <div
+                    class="mr-2"
+                    style="
+                      height: 25px;
+                      width: 25px;
+                      display: inline-block;
+                      background-color: #171717;
+                    "
+                  ></div>
+                  Wall
+                </div>
+                <div class="row ml-2 mt-4 text-center w-100">
+                  <img
+                    class="mr-2"
+                    src="assets/img/start.svg"
+                    style="width: 25px; height: 25px"
+                  />Start
+                </div>
+                <div class="row ml-2 mt-4 text-center">
+                  <img
+                    class="mr-2"
+                    src="assets/img/end.svg"
+                    style="width: 25px; height: 25px"
+                  />End
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -277,7 +407,7 @@
     </footer>
     <!-- End Footer -->
 
-    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <!--<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>-->
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
@@ -323,6 +453,8 @@
             $(".algo").html("A* algorithm");
             document.title = "A* - AlgoVis.io";
             $("#algowarning").prop("hidden", true);
+            $(".alert-success").prop("hidden", false);
+            $(".alert-warning").prop("hidden", true);
             algo = 1;
             break;
           case 2:
@@ -331,6 +463,8 @@
             $(".algo").html("Breadth-first search");
             document.title = "Breadth-first search - AlgoVis.io";
             $("#algowarning").prop("hidden", true);
+            $(".alert-success").prop("hidden", false);
+            $(".alert-warning").prop("hidden", true);
             algo = 2;
             break;
           case 3:
@@ -339,14 +473,18 @@
             $(".algo").html("Depth-first search");
             document.title = "Depth-first search - AlgoVis.io";
             $("#algowarning").prop("hidden", true);
-            algo = 3;
+            $(".alert-success").prop("hidden", true);
+            $(".alert-warning").prop("hidden", false);
+            algo = new DFS();
             break;
           case 4:
             $("#dropdownAlgo").text("Dijkstra's algorithm");
-            $("#startPf").text("Visualize Dijkstra's algorithm");
+            $("#startPf").text("Visualize Dijkstra's");
             $(".algo").html("Dijkstra's algorithm");
             document.title = "Dijkstra's algorithm - AlgoVis.io";
             $("#algowarning").prop("hidden", true);
+            $(".alert-success").prop("hidden", false);
+            $(".alert-warning").prop("hidden", true);
             algo = new Dijkstras();
             break;
           default:
@@ -355,6 +493,8 @@
             $(".algo").html("A* algorithm");
             document.title = "A* - AlgoVis.io";
             $("#algowarning").prop("hidden", true);
+            $(".alert-success").prop("hidden", false);
+            $(".alert-warning").prop("hidden", true);
             algo = 1;
             break;
         }
@@ -369,7 +509,7 @@
         var click = 0;
         var screenWidth = globalThis.screen.availWidth;
         var screenHeight = globalThis.screen.availHeight;
-        var rows = Math.floor(globalThis.screen.availHeight / height) - 4;
+        var rows = Math.floor(globalThis.screen.availHeight / height) - 6;
         var cols = Math.floor(globalThis.screen.availWidth / width) - 1;
 
         for (var row = 0; row < rows; row++) {
@@ -388,6 +528,7 @@
               predecessor: undefined,
               type: "floor",
               anim: false,
+              visited: false,
             });
 
             gridArr[row].push(1);
@@ -459,7 +600,7 @@
         .select("#grid")
         .append("svg")
         .attr("width", globalThis.screen.availWidth)
-        .attr("height", globalThis.screen.availHeight);
+        .attr("height", globalThis.screen.availHeight - 6 * 25);
 
       var row = grid
         .selectAll(".row")
@@ -652,7 +793,9 @@
       async function runAlgo() {
         if (algo != 0) {
           $("#algowarning").prop("hidden", true);
+          $("#startPf").prop("disabled", true);
           await algo.run(gridData, startPos, endPos);
+          $("#startPf").prop("disabled", false);
         } else {
           $("#algowarning").prop("hidden", false);
         }
@@ -682,7 +825,9 @@
           x: Math.round(Math.random() * gridData[0].length),
           y: Math.round(Math.random() * gridData.length),
         };
-        mazeGen.startMaze(cell);
+        $("#startPf").prop("disabled", true);
+        await mazeGen.startMaze(cell);
+        $("#startPf").prop("disabled", false);
       }
     </script>
   </body>

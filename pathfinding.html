@@ -523,7 +523,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
     <script src="assets/js/graph.js"></script>
-    <script src="assets/js/pathfinding.js"></script>
+    <script src="assets/js/Pathfinding/astar_pf.js"></script>
+    <script src="assets/js/Pathfinding/bfs_pf.js"></script>
+    <script src="assets/js/Pathfinding/dfs_pf.js"></script>
+    <script src="assets/js/Pathfinding/dijkstra_pf.js"></script>
     <script src="assets/js/mazeGenerator.js"></script>
 
     <!-- Template Main JS File -->
@@ -560,7 +563,7 @@
             $("#dfs-expl").prop("hidden", true);
             $("#bfs-expl").prop("hidden", true);
             $("#dijkstra-expl").prop("hidden", true);
-            algo = 1;
+            algo = new AStar();
             break;
           case 2:
             $("#dropdownAlgo").text("BFS");
@@ -616,7 +619,7 @@
             $("#dfs-expl").prop("hidden", true);
             $("#bfs-expl").prop("hidden", true);
             $("#dijkstra-expl").prop("hidden", true);
-            algo = 1;
+            algo = new AStar();
             break;
         }
       }
@@ -646,6 +649,7 @@
               row: row,
               col: column,
               dist: Infinity,
+              fScore: Infinity,
               predecessor: undefined,
               type: "floor",
               anim: false,

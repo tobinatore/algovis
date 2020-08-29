@@ -1,9 +1,9 @@
 class RecursiveDFS {
   constructor() {}
 
-  startMaze(cell) {
+  async startMaze(cell) {
     this.fillGrid();
-    this.generateMaze(cell);
+    await this.generateMaze(cell);
   }
 
   async generateMaze(cell) {

@@ -243,6 +243,107 @@
           </div>
           <div class="row justify-content-center mx-auto"></div>
           <div id="grid"></div>
+          <hr data-content="Explanation" class="hr-text mb-3 mt-4" />
+          <div class="row mx-auto">
+            <div id="astar-expl" hidden>
+              <b>
+                A* is a weighted algorithm which always finds the shortest path.
+              </b>
+              <br /><br />
+              A* uses heuristics to find the destination faster. It starts from
+              a specific starting node of a graph, and aims to find a path to
+              the given goal node having the smallest cost. A* does this by
+              maintaining a tree of paths originating at the start node and
+              extending those paths one edge at a time until it reached the
+              destination. At each iteration of its main loop, A* needs to
+              determine which of its paths to extend. It does so based on the
+              cost of the path and an estimate of the cost required to extend
+              the path all the way to the goal, selecting the path which
+              minimizes the sum of the current cost and the estimated remaining
+              cost.<br />
+              A* terminates when the path it chooses to extend is a path from
+              start to goal or if there are no paths eligible to be extended.
+              <br /><br />
+              Dijkstra's algorithm can be viewed as a special case of A* without
+              a heuristics function.
+            </div>
+            <div id="bfs-expl" hidden>
+              <b>
+                Breadth-first search is an unweighted algorithm which always
+                finds the shortest path.
+              </b>
+              <br /><br />
+              Breadth-first search starts at the source node, and explores all
+              of the neighbor nodes at the present depth prior to moving on to
+              the nodes at the next depth level. It uses the opposite strategy
+              as depth-first search.
+              <br /><br />
+              It works similar to Dijkstra's algorithm, the main difference
+              being that it only works with unweighted edges thus not taking
+              weights added by the user into consideration and treating them as
+              simple nodes.
+              <br /><br />
+              An explanation of the algorithm can be found
+              <a href="bfs.html">here</a>.
+            </div>
+            <div id="dfs-expl" hidden>
+              <b>
+                Depth-first search is an unweighted algorithm which does not
+                always find the shortest path.
+              </b>
+              <br /><br />
+              Depth-first search starts at the source node and explores as far
+              as possible along each branch before backtracking. It is thus not
+              the best choice for pathfinding, as it's not guaranteed to find a
+              shortest path and may take a long time to find the destination
+              vertex.
+              <br /><br />
+              An explanation of the algorithm can be found
+              <a href="dfs.html">here</a>.
+            </div>
+            <div id="dijkstra-expl" hidden>
+              <b>
+                Dijkstras algorithm is a weighted algorithm which always finds
+                the shortest path.
+              </b>
+              <br /><br />
+              The original algorithm Dijkstra created finds the shortest path
+              from a single starting point to a single target. This is the
+              variant I implemented here. Other variations of Dijkstra's
+              algorithm find the shortest path from the source node to every
+              other node in the graph, thus creating a shortest-path-tree.
+              <br /><br />
+              The principle behind Dijkstra's algorithm is best explained with
+              an example.<br /><br />
+              Suppose you're a pirate captain in the 1670's having a base on one
+              of the countless islands in an archipelago somewhere in the
+              carribean. You and your crew hid a treasure on another island far
+              away from your base. Of course you have a map of the archipelago
+              with all the ways to get from one island to another and the length
+              of these routes.<br />
+              Being a smart pirate you thought of a way to find the shortest
+              path between your location and the treasure.<br />
+              You start by marking the distance from your location to every
+              other island with infinity, because you don't know yet how far
+              they are from your base. Next you have a look at the islands you
+              can directly reach from your base and update their respective
+              distances. You do this by determining the sum of the distance
+              between an unvisited island and the value of the current island (0
+              because you're still in your base) and then relabeling the
+              unvisited island with the sum if it is less than the unvisited
+              island's current value, drawing an arrow from the current island
+              to the other one and erasing every other arrow pointing to that
+              island. After marking the current island as "done", you repeat
+              that process for the island closest to yours, once again finding
+              all islands you can reach from that specific island, updating
+              their values and drawing/erasing arrows. You sit the whole night
+              updating the map until you finally mark the treasure island as
+              done. <br />
+              Now finding the shortest path is done by simply tracing your way
+              back by following the arrows in reverse.
+            </div>
+          </div>
+
           <button
             type="button"
             class="legend-toggle"
@@ -455,6 +556,10 @@
             $("#algowarning").prop("hidden", true);
             $(".alert-success").prop("hidden", false);
             $(".alert-warning").prop("hidden", true);
+            $("#astar-expl").prop("hidden", false);
+            $("#dfs-expl").prop("hidden", true);
+            $("#bfs-expl").prop("hidden", true);
+            $("#dijkstra-expl").prop("hidden", true);
             algo = 1;
             break;
           case 2:
@@ -465,7 +570,11 @@
             $("#algowarning").prop("hidden", true);
             $(".alert-success").prop("hidden", false);
             $(".alert-warning").prop("hidden", true);
-            algo = 2;
+            $("#dfs-expl").prop("hidden", true);
+            $("#astar-expl").prop("hidden", true);
+            $("#dijkstra-expl").prop("hidden", true);
+            $("#bfs-expl").prop("hidden", false);
+            algo = new BFS();
             break;
           case 3:
             $("#dropdownAlgo").text("DFS");
@@ -476,6 +585,10 @@
             $(".alert-success").prop("hidden", true);
             $(".alert-warning").prop("hidden", false);
             algo = new DFS();
+            $("#astar-expl").prop("hidden", true);
+            $("#bfs-expl").prop("hidden", true);
+            $("#dijkstra-expl").prop("hidden", true);
+            $("#dfs-expl").prop("hidden", false);
             break;
           case 4:
             $("#dropdownAlgo").text("Dijkstra's algorithm");
@@ -486,6 +599,10 @@
             $(".alert-success").prop("hidden", false);
             $(".alert-warning").prop("hidden", true);
             algo = new Dijkstras();
+            $("#astar-expl").prop("hidden", true);
+            $("#dfs-expl").prop("hidden", true);
+            $("#bfs-expl").prop("hidden", true);
+            $("#dijkstra-expl").prop("hidden", false);
             break;
           default:
             $("#dropdownAlgo").text("A*");
@@ -495,6 +612,10 @@
             $("#algowarning").prop("hidden", true);
             $(".alert-success").prop("hidden", false);
             $(".alert-warning").prop("hidden", true);
+            $("#astar-expl").prop("hidden", false);
+            $("#dfs-expl").prop("hidden", true);
+            $("#bfs-expl").prop("hidden", true);
+            $("#dijkstra-expl").prop("hidden", true);
             algo = 1;
             break;
         }

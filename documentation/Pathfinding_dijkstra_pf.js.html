@@ -1,4 +1,32 @@
-/** Class for running Dijkstra's algorithm on the grid */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Pathfinding/dijkstra_pf.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Pathfinding/dijkstra_pf.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Class for running Dijkstra's algorithm on the grid */
 class Dijkstras {
   constructor() {}
 
@@ -15,8 +43,8 @@ class Dijkstras {
     grid[start.y][start.x].dist = 0;
 
     // push every node to the queue
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
+    for (let y = 0; y &lt; grid.length; y++) {
+      for (let x = 0; x &lt; grid[y].length; x++) {
         q.push(grid[y][x]);
       }
     }
@@ -27,7 +55,7 @@ class Dijkstras {
 
       // current node is the target node
       // -> print path and break
-      if (v.col == end.x && v.row == end.y) {
+      if (v.col == end.x &amp;&amp; v.row == end.y) {
         this.makePath(grid, end, start);
         return;
       }
@@ -39,11 +67,11 @@ class Dijkstras {
         // get index of neighbour in queue
         // or -1 if it is not an element of q
         var indInQ = q.findIndex(
-          (elem) => elem.x == neighbours[n].x && elem.y == neighbours[n].y
+          (elem) => elem.x == neighbours[n].x &amp;&amp; elem.y == neighbours[n].y
         );
 
         // check if node has not been visited and is not a wall
-        if (indInQ != -1 && neighbours[n].type != "wall") {
+        if (indInQ != -1 &amp;&amp; neighbours[n].type != "wall") {
           // calculate new distance by adding either 1 or 10 (-> node is a weight)
           // to the current distance
           var alt = v.dist + (neighbours[n].type == "weight" ? 10 : 1);
@@ -60,7 +88,7 @@ class Dijkstras {
           }
 
           // update distance and predecessor if new path is shorter
-          if (alt < neighbours[n].dist) {
+          if (alt &lt; neighbours[n].dist) {
             neighbours[n].dist = alt;
             neighbours[n].predecessor = { row: v.row, col: v.col };
           }
@@ -73,15 +101,15 @@ class Dijkstras {
    * @param {Object[][]} grid - 2d array of objects representing the grid
    */
   resetGrid(grid) {
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
+    for (let y = 0; y &lt; grid.length; y++) {
+      for (let x = 0; x &lt; grid[y].length; x++) {
         // reset distances, fScores, predecessors and visited status
         grid[y][x].dist = Infinity;
         grid[y][x].fScore = Infinity;
         grid[y][x].predecessor = undefined;
         grid[y][x].visited = false;
         // reset colors
-        if (grid[y][x].type != "wall" && grid[y][x].type != "weight") {
+        if (grid[y][x].type != "wall" &amp;&amp; grid[y][x].type != "weight") {
           // floor nodes are white
           d3.select("#node-" + y + "-" + x).attr("fill", "#FFF");
         } else if (grid[y][x].type == "weight") {
@@ -101,22 +129,22 @@ class Dijkstras {
   getNeighbours(grid, v) {
     var nbs = [];
 
-    if (v.col - 1 >= 0 && grid[v.row][v.col - 1]) {
+    if (v.col - 1 >= 0 &amp;&amp; grid[v.row][v.col - 1]) {
       if (grid[v.row][v.col - 1].type != "wall")
         // node left of v
         nbs.push(grid[v.row][v.col - 1]);
     }
-    if (v.col + 1 < grid[0].length && grid[v.row][v.col + 1]) {
+    if (v.col + 1 &lt; grid[0].length &amp;&amp; grid[v.row][v.col + 1]) {
       if (grid[v.row][v.col + 1].type != "wall")
         // node right of v
         nbs.push(grid[v.row][v.col + 1]);
     }
-    if (v.row - 1 >= 0 && grid[v.row - 1][v.col]) {
+    if (v.row - 1 >= 0 &amp;&amp; grid[v.row - 1][v.col]) {
       if (grid[v.row - 1][v.col].type != "wall")
         // node above v
         nbs.push(grid[v.row - 1][v.col]);
     }
-    if (v.row + 1 < grid.length && grid[v.row + 1][v.col]) {
+    if (v.row + 1 &lt; grid.length &amp;&amp; grid[v.row + 1][v.col]) {
       if (grid[v.row + 1][v.col].type != "wall")
         // node below v
         nbs.push(grid[v.row + 1][v.col]);
@@ -139,7 +167,7 @@ class Dijkstras {
     // gradually find node with lowest distance
     // by looping through q and updating 'closest'
     // when needed
-    for (let i = 0; i < q.length; i++) {
+    for (let i = 0; i &lt; q.length; i++) {
       if (closest.dist > q[i].dist) {
         closest = q[i];
         ind = i;
@@ -198,3 +226,26 @@ class Dijkstras {
     d3.select("#start").attr("x", x).attr("y", y);
   }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Thu Sep 03 2020 10:27:17 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

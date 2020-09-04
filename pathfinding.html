@@ -178,11 +178,36 @@
                     >
                       Recursive DFS
                     </button>
+                    <button
+                      class="dropdown-item"
+                      type="button"
+                      onclick='generateMaze("growing")'
+                    >
+                      Growing tree algorithm
+                    </button>
+                    <button
+                      class="dropdown-item"
+                      type="button"
+                      onclick='generateMaze("binTree")'
+                    >
+                      Binary tree generator
+                    </button>
+                    <button
+                      class="dropdown-item"
+                      type="button"
+                      onclick='generateMaze("side")'
+                    >
+                      Sidewinder algorithm
+                    </button>
                   </div>
                 </div>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-block btn-dark" onclick="clearGrid()">
+                <button
+                  class="btn btn-block btn-dark"
+                  id="btnClear"
+                  onclick="clearGrid()"
+                >
                   Clear grid
                 </button>
               </div>
@@ -522,12 +547,14 @@
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
-    <script src="assets/js/graph.js"></script>
     <script src="assets/js/Pathfinding/astar_pf.js"></script>
     <script src="assets/js/Pathfinding/bfs_pf.js"></script>
     <script src="assets/js/Pathfinding/dfs_pf.js"></script>
     <script src="assets/js/Pathfinding/dijkstra_pf.js"></script>
-    <script src="assets/js/mazeGenerator.js"></script>
+    <script src="assets/js/Maze/recursive_dfs.js"></script>
+    <script src="assets/js/Maze/recursive_division.js"></script>
+    <script src="assets/js/Maze/binary_tree_generator.js"></script>
+    <script src="assets/js/Maze/sidewinder.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
@@ -888,7 +915,7 @@
           }, delay)
         );
       }
-      async function colorBlock(block, color, delay, mode) {
+      async function colorBlock(block, color, delayDraw, delay, mode) {
         return new Promise((resolve) => {
           if (mode == "fill") {
             var coords = block.replace(/^\D+/g, "").split("-");
@@ -901,26 +928,35 @@
               .attr("width", 0)
               .attr("fill", color)
               .transition()
-              .duration(delay)
+              .duration(delayDraw)
               .attr("x", gridData[row][col].x)
               .attr("y", gridData[row][col].y)
               .attr("height", 25)
               .attr("width", 25);
           } else {
-            d3.select(block).transition().duration(delay).attr("fill", color);
+            d3.select(block)
+              .transition()
+              .duration(delayDraw)
+              .attr("fill", color);
           }
           setTimeout(() => {
             resolve();
-          }, 30);
-        }, 30);
+          }, delay);
+        }, delay);
       }
 
       async function runAlgo() {
         if (algo != 0) {
           $("#algowarning").prop("hidden", true);
           $("#startPf").prop("disabled", true);
+          $("#dropdownAlgo").prop("disabled", true);
+          $("#dropdownGen").prop("disabled", true);
+          $("#btnClear").prop("disabled", true);
           await algo.run(gridData, startPos, endPos);
           $("#startPf").prop("disabled", false);
+          $("#dropdownAlgo").prop("disabled", false);
+          $("#dropdownGen").prop("disabled", false);
+          $("#btnClear").prop("disabled", false);
         } else {
           $("#algowarning").prop("hidden", false);
         }
@@ -937,22 +973,66 @@
 
       async function generateMaze(type) {
         var mazeGen;
+        var cell = undefined;
         switch (type) {
           case "recDFS":
             mazeGen = new RecursiveDFS();
+            cell = {
+              x: Math.round(Math.random() * gridData[0].length),
+              y: Math.round(Math.random() * gridData.length),
+            };
             break;
+          case "growing":
+            mazeGen = new GrowingTree();
+            cell = {
+              x: Math.round(Math.random() * (gridData[0].length - 2)) + 1,
+              y: Math.round(Math.random() * (gridData.length - 2)) + 1,
+            };
+            let colEven = gridData[0].length % 2 == 0;
+            let rowEven = gridData.length % 2 == 0;
 
+            if (colEven) {
+              cell.x = cell.x % 2 == 0 ? cell.x : cell.x + 1;
+            } else {
+              cell.x = cell.x % 2 == 0 ? cell.x + 1 : cell.x;
+            }
+            if (rowEven) {
+              cell.y = cell.y % 2 == 0 ? cell.y : cell.y + 1;
+            } else {
+              cell.y = cell.y % 2 == 0 ? cell.y + 1 : cell.y;
+            }
+
+            break;
+          case "binTree":
+            mazeGen = new BinaryTreeGenerator();
+            break;
+          case "side":
+            mazeGen = new Sidewinder();
+            break;
           default:
             mazeGen = new RecursiveDFS();
+            cell = {
+              x: Math.round(Math.random() * gridData[0].length),
+              y: Math.round(Math.random() * gridData.length),
+            };
             break;
         }
-        var cell = {
-          x: Math.round(Math.random() * gridData[0].length),
-          y: Math.round(Math.random() * gridData.length),
-        };
+
         $("#startPf").prop("disabled", true);
-        await mazeGen.startMaze(cell);
+        $("#dropdownAlgo").prop("disabled", true);
+        $("#dropdownGen").prop("disabled", true);
+        $("#btnClear").prop("disabled", true);
+
+        if (cell) {
+          await mazeGen.startMaze(cell);
+        } else {
+          await mazeGen.startMaze();
+        }
+
         $("#startPf").prop("disabled", false);
+        $("#dropdownAlgo").prop("disabled", false);
+        $("#dropdownGen").prop("disabled", false);
+        $("#btnClear").prop("disabled", false);
       }
     </script>
   </body>

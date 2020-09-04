@@ -66,6 +66,7 @@ class DFS {
           "#node-" + node.row + "-" + node.col,
           "#FF8B84",
           500,
+          30,
           "fill"
         );
 
@@ -135,7 +136,7 @@ class DFS {
     // step through predecessors until we hit the source node
     while (v.predecessor != undefined) {
       // color path red and add node to a list
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250);
+      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
       v = grid[v.predecessor.row][v.predecessor.col];
       list.unshift(v);
     }

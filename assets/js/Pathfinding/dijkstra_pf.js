@@ -55,6 +55,7 @@ class Dijkstras {
               "#node-" + neighbours[n].row + "-" + neighbours[n].col,
               "#FF8B84",
               500,
+              30,
               "fill"
             );
           }
@@ -165,7 +166,7 @@ class Dijkstras {
     // source node, whose predecessor is undefined
     while (v.predecessor != undefined) {
       // color path red and add nodes to path list
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250);
+      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
       v = grid[v.predecessor.row][v.predecessor.col];
       list.unshift(v);
     }

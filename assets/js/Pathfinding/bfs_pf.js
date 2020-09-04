@@ -53,6 +53,7 @@ class BFS {
               "#node-" + neighbours[n].row + "-" + neighbours[n].col,
               "#FF8B84",
               500,
+              30,
               "fill"
             );
           }
@@ -155,7 +156,7 @@ class BFS {
     // step through the predecessors until we hit the start node.
     // color every node on the way and save the path in a list.
     while (v.predecessor != undefined) {
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250);
+      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
       v = grid[v.predecessor.row][v.predecessor.col];
       list.unshift(v);
     }

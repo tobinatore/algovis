@@ -28,6 +28,7 @@ class AStar {
         "#node-" + curr.row + "-" + curr.col,
         "#FF8B84",
         500,
+        30,
         "fill"
       );
 
@@ -191,7 +192,7 @@ class AStar {
     // step through the predecessors until we hit the start node.
     // color every node on the way and save the path in a list.
     while (v.predecessor != undefined) {
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250);
+      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
       v = grid[v.predecessor.row][v.predecessor.col];
       list.unshift(v);
     }

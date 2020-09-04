@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Maze/growing_tree.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Maze/growing_tree.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Class for generating a maze using the growing tree algorithm. */
+class GrowingTree {
+  constructor() {}
+
+  /**
+   * Generates the maze using the growing tree algorithm.
+   * @param {Object} cell - The starting cell, usually randomly chosen.
+   */
+  async startMaze(cell) {
+    // filling the grid so the algorithm can carve out ways
+    this.fillGrid();
+
+    // declaring a list of unvisited cells
+    // and a list of possible directions
+    let cells = [];
+    let dirs = [
+      { dy: 0, dx: 2 },
+      { dy: 2, dx: 0 },
+      { dy: -2, dx: 0 },
+      { dy: 0, dx: -2 },
+    ];
+
+    let width = gridData[0].length;
+    let height = gridData.length;
+
+    cells.push(cell);
+
+    // running as long as there are unvisited cells left
+    while (cells.length != 0) {
+      // shuffling the list of directions
+      dirs = this.shuffle(dirs);
+
+      let index = Math.round(Math.random() * (cells.length - 1));
+
+      let x = cells[index].x;
+      let y = cells[index].y;
+
+      gridData[y][x] = "floor";
+      await colorBlock("#node-" + y + "-" + x, "#fff", 100, 10);
+
+      // looping over the list of directions to check for unvisited neighbours
+      for (const direction in dirs) {
+        let dx = dirs[direction].dx;
+        let dy = dirs[direction].dy;
+
+        let nx = x + dx;
+        let ny = y + dy;
+
+        // check if the cell in the current direction
+        // is within bounds and unvisited
+        if (
+          nx > 0 &amp;&amp;
+          ny > 0 &amp;&amp;
+          nx &lt; width &amp;&amp;
+          ny &lt; height &amp;&amp;
+          gridData[ny][nx].type == "wall"
+        ) {
+          // set the cell to type "floor"
+          // color it and add it to the list
+          // of cells to check
+          gridData[ny][nx] = "floor";
+          await colorBlock("#node-" + ny + "-" + nx, "#fff", 10, 0);
+
+          // updating the cell between the other cells
+          if (dx != 0) {
+            gridData[y][x + dx / 2] = "floor";
+            await colorBlock(
+              "#node-" + y + "-" + (x + dx / 2),
+              "#fff",
+              100,
+              10
+            );
+          } else {
+            gridData[y + dy / 2][x] = "floor";
+            await colorBlock("#node-" + (y + dy / 2) + "-" + x, "#fff", 10, 0);
+          }
+
+          cells.push({ x: nx, y: ny });
+          index = undefined;
+          break;
+        }
+      }
+      // there were nor unvisited neighbours
+      // -> delete cell from the list
+      if (index != undefined) {
+        cells.splice(index, 1);
+      }
+    }
+  }
+
+  /**
+   * Fills the grid with walls as preparation for the algorithm.
+   */
+  fillGrid() {
+    for (let y = 0; y &lt; gridData.length; y++) {
+      for (let x = 0; x &lt; gridData[y].length; x++) {
+        gridData[y][x].type = "wall";
+        d3.select("#node-" + y + "-" + x)
+          .transition()
+          .duration(500)
+          .attr("fill", "#171717");
+      }
+    }
+  }
+
+  /**
+   * Fisher-Yates shuffle for shuffling the list of neighbouring cells.
+   * @param {Object[]} array - The list of neighbouring cells
+   * @returns {Object[]} - The shuffled list
+   */
+  shuffle(array) {
+    var j, x, i;
+    for (i = array.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = array[i];
+      array[i] = array[j];
+      array[j] = x;
+    }
+    return array;
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Sep 04 2020 14:39:34 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

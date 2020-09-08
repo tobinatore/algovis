@@ -45,7 +45,7 @@ class Sidewinder {
           let cell = runStart + Math.round(Math.random() * (x - runStart));
           // make sure that the way up is positioned below a tile thats a floor
           // -> cell has to be odd of colCount is odd or even if colCount is even
-          let colOdd = gridData[y].length % 2 != 1;
+          let colOdd = gridData[y].length % 2 != 0;
 
           if (colOdd) {
             cell = cell % 2 == 0 ? cell + 1 : cell;

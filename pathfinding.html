@@ -552,7 +552,7 @@
     <script src="assets/js/Pathfinding/dfs_pf.js"></script>
     <script src="assets/js/Pathfinding/dijkstra_pf.js"></script>
     <script src="assets/js/Maze/recursive_dfs.js"></script>
-    <script src="assets/js/Maze/recursive_division.js"></script>
+    <script src="assets/js/Maze/growing_tree.js"></script>
     <script src="assets/js/Maze/binary_tree_generator.js"></script>
     <script src="assets/js/Maze/sidewinder.js"></script>
 
@@ -849,7 +849,6 @@
               if (d.click % 2 == 0) {
                 d3.select(this).transition().duration(400).attr("fill", "#fff");
                 d.type = "floor";
-                console.log("yeet");
               }
               if (d.click % 2 == 1) {
                 d.anim = true;
@@ -1027,6 +1026,36 @@
           await mazeGen.startMaze(cell);
         } else {
           await mazeGen.startMaze();
+        }
+
+        while (
+          gridData[startPos.y][startPos.x].type == "wall" ||
+          (startPos.x == endPos.x && startPos.y == endPos.y)
+        ) {
+          if (startPos.x > 0) {
+            startPos.x -= 1;
+            d3.select("#start").attr("x", startPos.x * 25);
+            continue;
+          }
+          if (startPos.x < gridData[0].length - 2) {
+            startPos.x += 1;
+            d3.select("#start").attr("x", startPos.x * 25);
+          }
+        }
+
+        while (
+          gridData[endPos.y][endPos.x].type == "wall" ||
+          (startPos.x == endPos.x && startPos.y == endPos.y)
+        ) {
+          if (endPos.x > 0) {
+            endPos.x -= 1;
+            d3.select("#end").attr("x", endPos.x * 25);
+            continue;
+          }
+          if (endPos.x < gridData[0].length - 2) {
+            endPos.x += 1;
+            d3.select("#end").attr("x", endPos.x * 25);
+          }
         }
 
         $("#startPf").prop("disabled", false);

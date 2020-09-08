@@ -720,7 +720,10 @@
         if (d == "start") {
           var newX = Math.round((gridX - 1) / 25);
           var newY = Math.round((gridY - 1) / 25);
-          if (newX != endPos.x || newY != endPos.y) {
+          if (
+            (newX != endPos.x || newY != endPos.y) &&
+            gridData[newY][newX].type != "wall"
+          ) {
             startPos.x = newX;
             startPos.y = newY;
             d3.select(this).attr("x", gridX).attr("y", gridY);
@@ -728,7 +731,10 @@
         } else {
           var newX = Math.round((gridX - 1) / 25);
           var newY = Math.round((gridY - 1) / 25);
-          if (newX != startPos.x || newY != startPos.y) {
+          if (
+            (newX != startPos.x || newY != startPos.y) &&
+            gridData[newY][newX].type != "wall"
+          ) {
             endPos.x = Math.round((gridX - 1) / 25);
             endPos.y = Math.round((gridY - 1) / 25);
             d3.select(this).attr("x", gridX).attr("y", gridY);
@@ -738,8 +744,6 @@
 
       var gridData = gridData();
 
-      console.log(gridData);
-      console.log(grid);
       var drag = d3
         .drag()
         .subject(function () {
@@ -914,6 +918,7 @@
           }, delay)
         );
       }
+
       async function colorBlock(block, color, delayDraw, delay, mode) {
         return new Promise((resolve) => {
           if (mode == "fill") {

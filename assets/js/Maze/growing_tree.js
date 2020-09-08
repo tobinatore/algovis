@@ -35,7 +35,7 @@ class GrowingTree {
       let x = cells[index].x;
       let y = cells[index].y;
 
-      gridData[y][x] = "floor";
+      gridData[y][x].type = "floor";
       await colorBlock("#node-" + y + "-" + x, "#fff", 100, 10);
 
       // looping over the list of directions to check for unvisited neighbours
@@ -58,12 +58,12 @@ class GrowingTree {
           // set the cell to type "floor"
           // color it and add it to the list
           // of cells to check
-          gridData[ny][nx] = "floor";
+          gridData[ny][nx].type = "floor";
           await colorBlock("#node-" + ny + "-" + nx, "#fff", 10, 0);
 
           // updating the cell between the other cells
           if (dx != 0) {
-            gridData[y][x + dx / 2] = "floor";
+            gridData[y][x + dx / 2].type = "floor";
             await colorBlock(
               "#node-" + y + "-" + (x + dx / 2),
               "#fff",
@@ -71,7 +71,7 @@ class GrowingTree {
               10
             );
           } else {
-            gridData[y + dy / 2][x] = "floor";
+            gridData[y + dy / 2][x].type = "floor";
             await colorBlock("#node-" + (y + dy / 2) + "-" + x, "#fff", 10, 0);
           }
 

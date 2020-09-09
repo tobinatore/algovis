@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Linked list - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div
+      id="topbar"
+      class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
+    >
+      <div class="container d-flex">
+        <div class="contact-info mr-auto">
+          <i class="icofont-envelope"></i>
+          <a href="mailto:contact@example.com">hello@algovis.io</a>
+        </div>
+        <div class="social-links">
+          <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+            ><i class="icofont-twitter"></i
+          ></a>
+          <a href="https://github.com/tobinatore" class="github"
+            ><i class="icofont-github"></i
+          ></a>
+          <a
+            href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+            class="xing"
+            ><i class="icofont-xing"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/tobias-noethlich/"
+            class="linkedin"
+            ><i class="icofont-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="graphs.html"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="datastructures.html">Data structures</a></li>
+            <li>Linked list</li>
+          </ol>
+          <h2>Linked list visualization</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page pt-2">
+        <div class="container-fluid">
+          <div class="row mx-auto mb-2">
+            <div class="col-sm-2">
+              <button
+                class="btn btn-block btn-dark"
+                onclick="generateLinkedList()"
+              >
+                Generate random list
+              </button>
+            </div>
+            <div class="col-sm-2 pl-0">
+              <div class="dropdown">
+                <button
+                  class="btn btn-dark btn-block dropdown-toggle"
+                  type="button"
+                  id="dropdownOp"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Select an operation
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownOp">
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(1)"
+                    type="button"
+                  >
+                    Insert element
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(2)"
+                    type="button"
+                  >
+                    Remove element
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(3)"
+                    type="button"
+                  >
+                    Search element
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id="posInput" class="col-sm-3" hidden>
+              <form class="form-inline">
+                <div class="col-5">
+                  <label class="mr-2" for="data-pos-input"
+                    >Position (0..N-1)</label
+                  >
+                </div>
+                <div class="col-7">
+                  <input
+                    type="text"
+                    class="form-control mx-auto w-100"
+                    id="data-pos-input"
+                    placeholder="0"
+                  /><small id="pos-error" class="red-text" hidden
+                    >Please select an index from X to Y.</small
+                  >
+                </div>
+              </form>
+            </div>
+            <div id="valInput" class="col-sm-3" hidden>
+              <form class="form-inline">
+                <div class="col-2">
+                  <label class="mr-2" for="data-val-input">Data</label>
+                </div>
+                <div class="col-10">
+                  <input
+                    type="text"
+                    class="form-control mx-auto w-100"
+                    id="data-val-input"
+                    placeholder="22"
+                  /><small id="data-error" class="red-text" hidden>
+                    Please select a number < 100.
+                  </small>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-2">
+              <button
+                class="btn btn-block btn-danger red"
+                type="button"
+                id="startPf"
+                onclick="runOp()"
+              >
+                Go!
+              </button>
+            </div>
+          </div>
+          <div class="data-container border-dark-nb p-1 mb-0 mt-0 w-100">
+            <svg id="visu"></svg>
+          </div>
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto">
+                  <span><span class="op">function</span> tarjan()</span>
+                </div>
+                <div class="row ml-auto mr-auto 1">
+                  <span
+                    >&emsp;&emsp;<span class="op">for</span>(v = 0 to
+                    graph.getVertCount())</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span
+                    >(!visited[v])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
+                      >findSCC</span
+                    >(v)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  <span>&emsp;&emsp;&emsp;&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  <span><span class="op">function</span> findSCC(v)</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  <span>&emsp;&emsp;discTime++</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  <span>&emsp;&emsp;disc[v] = discTime</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 8">
+                  <span>&emsp;&emsp;low[v] = discTime</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 9">
+                  <span>&emsp;&emsp;stack.push(v)</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 10">
+                  <span
+                    >&emsp;&emsp;<span class="op">for each</span>(neighbour of
+                    v)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 11">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span
+                    >(!visited[neighbour])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 12">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
+                      >findSCC</span
+                    >(neighbour)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 13">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;low[v] =
+                    <span class="op">min</span>(low[v], low[neighbour])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 14">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">else if</span
+                    >(onStack(neighbour))</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 15">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;low[v] =
+                    <span class="op">min</span>(low[v], disc[neighbour])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 16">
+                  <span
+                    >&emsp;&emsp;<span class="op">if</span>(low[v] ==
+                    disc[v])</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 17">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">do</span></span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 18">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;elem =
+                    stack.pop()</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 19">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
+                      >addToSCC</span
+                    >(elem)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 17">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">while</span>(elem
+                    != v)</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">---------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">| SHORT EXPLANATION |</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">---------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >1. Mark all vertices as unvisited.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >2. Run a Depth-first search on every unvisited
+                    vertex.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >3. Whenever a DFS begins add the vertex it was run on to
+                    the stack.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >4. Maintain two values (disc and low) for each
+                    vertex.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">
+                    - disc stores the discovery time of the vertex</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">
+                    - low stores the lowest disc reachable from this
+                    vertex</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >5. Search for vertices with low[v] == disc[v], as these are
+                    the root nodes in the SCC.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >6. Pop vertices from the stack until v from step 5 is on
+                    top. The popped vertices are the SCC with root v.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >7. Repeat steps 5 and 6 until the stack is empty.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment w-100">&emsp;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr data-content="Instructions" class="hr-text mb-3 mt-4" />
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    To draw a new vertex, simply click anywhere on the canvas
+                    above.<br />
+                    To create an edge between two vertices, click on the first
+                    vertex and then on the second one.<br />
+                    You can create a random graph by clicking on the 'Random'
+                    button above the canvas.<br />
+                    To clear the canvas, use the 'Clear' button.
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="form-group row">
+                  <div class="col-sm-5">Speed:</div>
+                  <div class="col-sm-7">
+                    <span>Slow&emsp;</span>
+                    <input
+                      id="speedslider"
+                      data-slider-id="speedSlider"
+                      type="text"
+                      data-slider-min="350"
+                      data-slider-max="1000"
+                      data-slider-step="10"
+                      data-slider-value="500"
+                    />
+                    <span>&emsp;Fast</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <button
+                      id="start-button"
+                      type="button"
+                      onclick="tarjans()"
+                      class="btn btn-danger red w-100"
+                    >
+                      Start
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <h3>AlgoVis.io</h3>
+                <strong>Email:</strong> hello@algovis.io<br />
+                <div class="social-links mt-3">
+                  <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+                    ><i class="icofont-twitter"></i
+                  ></a>
+                  <a href="https://github.com/tobinatore" class="github"
+                    ><i class="icofont-github"></i
+                  ></a>
+                  <a
+                    href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+                    class="xing"
+                    ><i class="icofont-xing"></i
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/tobias-noethlich/"
+                    class="linkedin"
+                    ><i class="icofont-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 footer-links"></div>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#about">About us</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#categories">Categories</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Terms of service</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Privacy policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>AlgoVis.io</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="assets/js/Data_structures/linked_list.js"></script>
+    <script src="assets/js/Data_structures/anim/anim_ll.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script>
+      const container = document.querySelector(".data-container");
+      var DELAY = 500;
+      var w = globalThis.screen.availWidth;
+      var h = 370;
+      var data_nodes = [];
+      var data_set = new Set();
+      var radius = 25;
+      var strokeWidth = "5px";
+      var list = new LinkedList();
+
+      function setDelay(delay) {
+        DELAY = delay;
+      }
+
+      var xScale = d3.scaleLinear().domain([0, w]).range([0, w]);
+
+      var yScale = d3.scaleLinear().domain([0, h]).range([0, h]);
+
+      var svg = d3.select("#visu");
+      svg.append("g").attr("id", "g-paths");
+
+      svg
+        .append("svg:defs")
+        .attr("id", "defs")
+        .append("svg:marker")
+        .attr("id", "triangle")
+        .attr("refX", 40)
+        .attr("refY", 9)
+        .attr("markerWidth", 40)
+        .attr("markerHeight", 40)
+        .attr("markerUnits", "userSpaceOnUse")
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 18 9 0 18 5 9")
+        .attr("id", "triangle-path")
+        .style("fill", "#171717");
+
+      function highlightCode(elementClass) {
+        $(".code-highlight").removeClass("code-highlight");
+        $(`.${elementClass}`).addClass("code-highlight");
+      }
+
+      async function timeout(delay) {
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve();
+          }, delay)
+        );
+      }
+
+      async function generateLinkedList() {
+        list = new LinkedList();
+        data_set = new Set();
+        data_nodes = [];
+        var ids = [
+          "g-paths",
+          "defs",
+          "triangle",
+          "triangle-path",
+          "triangle-red",
+          "triangle-path-red",
+        ];
+
+        svg
+          .selectAll("*")
+          .filter(function (d, i) {
+            return !ids.includes(this.id);
+          })
+          .remove();
+
+        let rand = Math.round(Math.random() * 5 + 4);
+
+        for (let i = 0; i < rand; i++) {
+          let data = Math.round(Math.random() * 98 + 1);
+
+          while (data_set.has(data)) {
+            data = Math.round(Math.random() * 98 + 1);
+          }
+
+          data_set.add(data);
+
+          await list.insert(data, i);
+          console.log(data_nodes);
+          if (i != 0) {
+            //  await newArrow(data_nodes[i - 1], data_nodes[i]);
+          }
+        }
+      }
+
+      function setOperation(op) {
+        switch (op) {
+          case 1:
+            operation = "insert";
+            $("#dropdownOp").html("Insert element");
+            $("#posInput").prop("hidden", false);
+            $("#valInput").prop("hidden", false);
+            break;
+          case 2:
+            operation = "remove";
+            $("#dropdownOp").html("Remove element");
+            $("#posInput").prop("hidden", false);
+            $("#valInput").prop("hidden", true);
+            break;
+          case 3:
+            operation = "search";
+            $("#dropdownOp").html("Search element");
+            $("#posInput").prop("hidden", true);
+            $("#valInput").prop("hidden", false);
+            break;
+
+          default:
+            operation = "insert";
+            $("#dropdownOp").html("Insert element");
+            $("#posInput").prop("hidden", false);
+            $("#valInput").prop("hidden", false);
+            break;
+            break;
+        }
+      }
+
+      async function runOp() {
+        switch (operation) {
+          case "insert":
+            let pos = !$("#data-pos-input").val()
+              ? 0
+              : Number($("#data-pos-input").val());
+            let error = false;
+
+            if (pos > list.length) {
+              $("#data-pos-input").css("border-color", "red");
+              $("#pos-error").prop("hidden", false);
+              let text =
+                list.length == 0
+                  ? "Please generate a linked list first, or add a node to position 0."
+                  : "Please select an index from 0 to " + list.length + ".";
+              $("#pos-error").html(text);
+              error = true;
+            } else {
+              $("#data-pos-input").css("border-color", "");
+              $("#pos-error").prop("hidden", true);
+            }
+
+            let data = Number($("#data-val-input").val());
+
+            if (data > 99) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("Please select a number < 100.");
+              error = true;
+            } else if (data_set.has(data)) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html(
+                "Please select a number that's not already in the list."
+              );
+              error = true;
+            } else if (list.length == 10) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("The maximum size of the list is 10.");
+              error = true;
+            } else {
+              $("#data-val-input").css("border-color", "");
+              $("#data-error").prop("hidden", true);
+              data_set.add(data);
+            }
+            if (!error) {
+              list.insert(data, pos);
+            }
+            break;
+          case "remove":
+            break;
+          case "search":
+            break;
+
+          default:
+            break;
+        }
+      }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        d3.select("#visu")
+          .attr("width", "100%")
+          .attr("height", "370")
+          .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 370");
+
+        var speedSlider = new Slider("#speedslider", {
+          reversed: true,
+          tooltip: "none",
+          handle: "square",
+        });
+
+        speedSlider.on("slide", function (slideEvt) {
+          setDelay(slideEvt);
+        });
+      });
+    </script>
+  </body>
+</html>

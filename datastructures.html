@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>Graphs - AlgoVis.io</title>
+    <title>Data structures - AlgoVis.io</title>
     <meta
       content="AlgoVis is an online algorithm visualization tool."
       name="description"
@@ -84,9 +84,11 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="#overview">Overview</a></li>
-            <li><a href="#traversal">Traversal</a></li>
-            <li><a href="#mst">MST</a></li>
-            <li><a href="#other">Others</a></li>
+            <li><a href="#stack">Stack</a></li>
+            <li><a href="#linkedlist">Linked List</a></li>
+            <li><a href="#hashtable">Hash table</a></li>
+            <!-- <li><a href="#mst">MST</a></li>
+            <li><a href="#other">Others</a></li>-->
           </ul>
         </nav>
         <!-- .nav-menu -->
@@ -100,9 +102,9 @@
         <div class="container">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Graphs</li>
+            <li>Data structures</li>
           </ol>
-          <h2>Graph algorithms</h2>
+          <h2>Data structures</h2>
         </div>
       </section>
       <!-- End Breadcrumbs -->
@@ -113,28 +115,15 @@
             <h3 class="highlighted-text">Overview</h3>
             <div class="mb-4 explanation ml-2 mr-2" style="font-size: large">
               <p>
-                A graph is a structure amounting to a set of objects in which
-                some pairs of the objects are in some sense "related".
-                <br /><br />
-                They consist of a fixed number of vertices (or nodes), which
-                represent the data points and edges, which show the relation
-                between vertices. These edges can be directed or undirected.
-                <br /><br />For example, if the vertices represent people at a
-                party, and there is an edge between two people if they shake
-                hands, then this graph is undirected because any person A can
-                shake hands with a person B only if B also shakes hands with A.
-                In contrast, if any edge from a person A to a person B
-                corresponds to A owes money to B, then this graph is directed,
-                because owing money is not necessarily reciprocated. The former
-                type of graph is called an undirected graph while the latter
-                type of graph is called a directed graph. <br /><br />Typically,
-                a graph is depicted in diagrammatic form as a set of dots or
-                circles for the vertices, joined by lines or curves for the
-                edges.
+                A data structure is a data organization, management, and storage
+                format that enables efficient access and modification. More
+                precisely, a data structure is a collection of data values, the
+                relationships among them, and the functions or operations that
+                can be applied to the data.
               </p>
             </div>
           </div>
-          <div class="container-fluid">
+          <div class="container">
             <div class="row mt-5 highlighted-text">
               <div class="col-sm-12 text-center"><h2>Search</h2></div>
             </div>
@@ -164,187 +153,71 @@
           </div>
         </section>
 
-        <!-- GRAPH TRAVERSAL -->
-        <section id="traversal">
-          <div class="container-fluid w-100">
+        <!-- DATA STRUCTURES -->
+        <section id="data-structures">
+          <div class="container w-100">
             <!-- Gradient divider -->
-            <hr data-content="Graph traversal" class="hr-text mb-2 cd-hide" />
-            <div class="w-100 p-2 row mt-3 mb-3 cd-hide">
-              <div class="col-sm-1 col-md-1 col-lg-3"></div>
-              <div class="explanation col-sm-10 col-md-10 col-lg-6">
-                A graph traversal algorithm visits every vertex it can reach
-                from its starting point, effectively traversing the entire graph
-                if there are no disconnected vertices.
-              </div>
-              <div class="col-sm-1 col-md-1 col-lg-3"></div>
-            </div>
+            <hr data-content="Data structures" class="hr-text cd-hide" />
             <div class="card-deck mb-4 cd-hide">
-              <div
-                id="breadth-first search bfs"
-                class="algorithm shadow-highlight card"
-              >
-                <a href="bfs.html" class="unstyled-link">
+              <div id="stack" class="algorithm shadow-highlight card">
+                <a href="stack.html" class="unstyled-link">
                   <div class="card-body">
-                    <h5 class="card-title">Breadth-first search</h5>
-                    <h6 class="card-subtitle">Graph traversal</h6>
+                    <h5 class="card-title">Stack</h5>
+                    <h6 class="card-subtitle">Data structure</h6>
+                    <div class="card-text">
+                      A stack is an abstract data type that serves as a
+                      collection of elements, with two main principal
+                      operations:
+                      <ul>
+                        <li>push, which adds an element to the collection,</li>
+                        <li>
+                          and pop, which removes the most recently added element
+                        </li>
+                      </ul>
+
+                      The order in which elements come off a stack gives rise to
+                      its alternative name, LIFO (last in, first out).
+                      <br /><br />
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div id="linked list" class="algorithm shadow-highlight card">
+                <a href="linkedlist.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Linked list</h5>
+                    <h6 class="card-subtitle">Data structure</h6>
                     <p class="card-text">
-                      Breadth-first search starts at the root node (or any
-                      specified node) and explores all of the neighbor nodes at
-                      the present depth prior to moving on to the nodes at the
-                      next depth level. <br /><br />
-                      <b>Time Complexity:</b>&emsp; <i>O(|V|+|E|)</i><br />
-                      <b>Space Complexity:</b>&emsp; <i>O(|V|)</i>
+                      A linked list is a linear collection of data elements
+                      whose order is not given by their physical placement in
+                      memory. Instead, each element points to the next. It is a
+                      data structure consisting of a collection of nodes which
+                      together represent a sequence. <br />This structure allows
+                      for efficient insertion or removal of elements from any
+                      position in the sequence during iteration.<br /><br />
                     </p>
                   </div>
                 </a>
               </div>
-              <div
-                id="depth-first search dfs"
-                class="algorithm shadow-highlight card"
-              >
-                <a href="dfs.html" class="unstyled-link">
+              <div id="hash table" class="algorithm shadow-highlight card">
+                <a href="linkedlist.html" class="unstyled-link">
                   <div class="card-body">
-                    <h5 class="card-title">Depth-first search</h5>
-                    <h6 class="card-subtitle">Graph traversal</h6>
+                    <h5 class="card-title">Hash table</h5>
+                    <h6 class="card-subtitle">Data structure</h6>
                     <p class="card-text">
-                      Depth-first search starts at the root node (or any
-                      specified node) and explores the node branch as far as
-                      possible before being forced to backtrack and expand other
-                      nodes. <br /><br />
-                      <b>Time Complexity:</b>&emsp; <i>O(|V|+|E|)</i><br />
-                      <b>Space Complexity:</b>&emsp; <i>O(|V|)</i>
+                      A hash table is a data structure that implements an
+                      associative array abstract data type, a structure that can
+                      map keys to values. A hash table uses a hash function to
+                      compute an index, also called a hash code, into an array
+                      of buckets or slots, from which the desired value can be
+                      found. During lookup, the key is hashed and the resulting
+                      hash indicates where the corresponding value is stored.<br /><br />
                     </p>
                   </div>
                 </a>
               </div>
             </div>
             <div id="results"></div>
-          </div>
-        </section>
-
-        <!-- MST -->
-        <section id="mst">
-          <div class="container-fluid w-100">
-            <!-- Gradient divider -->
-            <hr data-content="Minimum spanning tree" class="hr-text cd-hide" />
-            <div
-              class="w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide"
-            >
-              <div class="col-sm-12">
-                A minimum spanning tree (MST) is a subset of the edges of a
-                connected, edge-weighted undirected graph that connects all the
-                vertices together, without any cycles and with the minimum
-                possible total edge weight.
-              </div>
-            </div>
-            <div class="card-deck mb-4 cd-hide">
-              <div
-                id="prim's algorithm prims algorithm"
-                class="algorithm shadow-highlight card"
-              >
-                <a href="prims.html" class="unstyled-link">
-                  <div class="card-body">
-                    <h5 class="card-title">Prim's algorithm</h5>
-                    <h6 class="card-subtitle">Minimum spanning tree</h6>
-                    <p class="card-text">
-                      Prim's algorithm operates by building the MST one vertex
-                      at a time, from an arbitrary starting vertex, at each step
-                      adding the cheapest possible connection from the tree to
-                      another vertex. <br /><br />
-                      <b>Time Complexity:</b><br />
-                      <b>adjacency matrix:</b>&emsp;<i>O(|V|²)</i><br />
-                      <b>binary heap & adjacency list:</b>&emsp;
-                      <i>O(|E|log|V|)</i><br />
-                      <b>fibonacci heap & adjacency list:</b>&emsp;
-                      <i>O(|E|+|V|log|V|)</i>
-                    </p>
-                  </div>
-                </a>
-              </div>
-              <div
-                id="kruskal's algorithm kruskals algorithm"
-                class="algorithm shadow-highlight card"
-              >
-                <a href="kruskals.html" class="unstyled-link">
-                  <div class="card-body">
-                    <h5 class="card-title">Kruskal's algorithm</h5>
-                    <h6 class="card-subtitle">Minimum spanning tree</h6>
-                    <p class="card-text">
-                      Kruskal's algorithm works by stepping through all edges
-                      and adding the next lowest-weight edge that will not form
-                      a cycle to the MST. <br /><br />
-                      <b>Time Complexity:</b>&emsp; <i>O(|E|+|V|log|V|)</i>
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- SCC -->
-        <section id="scc">
-          <div class="container-fluid w-100">
-            <!-- Gradient divider -->
-            <hr
-              data-content="Strongly connected components"
-              class="hr-text cd-hide"
-            />
-            <div
-              class="w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide"
-            >
-              <div class="col-sm-12">
-                A strongly connected component is a subset of vertices such that
-                any two vertices of this subset are reachable from each other.
-              </div>
-            </div>
-            <div class="card-deck mb-4 cd-hide">
-              <div
-                id="kosaraju's algorithm kosarajus algorithm"
-                class="algorithm shadow-highlight card"
-              >
-                <a href="kosarajus.html" class="unstyled-link">
-                  <div class="card-body">
-                    <h5 class="card-title">Kosaraju's algorithm</h5>
-                    <h6 class="card-subtitle">Strongly connected components</h6>
-                    <p class="card-text">
-                      Kosaraju's algorithm is a DFS based algorithm used to find
-                      Strongly Connected Components (SCC) in a graph. It is
-                      based on the idea that if one is able to reach a vertex v
-                      starting from vertex u, then one should be able to reach
-                      vertex u starting from vertex v and if such is the case,
-                      one can say that vertices u and v are strongly connected -
-                      they are in a strongly connected sub-graph. <br /><br />
-                      <b>Time Complexity:</b><br />
-                      <b>adjacency matrix:</b>&emsp;<i>O(|V|²)</i><br />
-                      <b>adjacency list:</b>&emsp; <i>O(|E|+|V|)</i>
-                    </p>
-                  </div>
-                </a>
-              </div>
-              <div
-                id="tarjan's algorithm tarjans algorithm"
-                class="algorithm shadow-highlight card"
-              >
-                <a href="tarjans.html" class="unstyled-link">
-                  <div class="card-body">
-                    <h5 class="card-title">Tarjan's algorithm</h5>
-                    <h6 class="card-subtitle">Strongly connected components</h6>
-                    <p class="card-text">
-                      Tarjan's algorithm is based on depth first search (DFS).
-                      The vertices are indexed as they are traversed by the DFS
-                      procedure. While returning from the recursion of DFS,
-                      every vertex V gets assigned a vertex L as a
-                      representative. L is a vertex with the least index that
-                      can be reach from V. Nodes with the same representative
-                      assigned are located in the same strongly connected
-                      component. <br /><br />
-                      <b>Time Complexity:</b><br />
-                      <i>O(|E|+|V|)</i>
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
           </div>
         </section>
       </section>

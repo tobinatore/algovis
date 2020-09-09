@@ -593,6 +593,13 @@
         .attr("d", "M 0 0 18 9 0 18 5 9")
         .attr("id", "triangle-path")
         .style("fill", "#171717");
+      svg
+        .append("text")
+        .attr("id", "results-text")
+        .attr("y", "370")
+        .attr("x", "5")
+        .attr("font-size", "25px")
+        .attr("font-weight", "bold");
 
       function highlightCode(elementClass) {
         $(".code-highlight").removeClass("code-highlight");
@@ -618,6 +625,7 @@
           "triangle-path",
           "triangle-red",
           "triangle-path-red",
+          "results-text",
         ];
 
         svg
@@ -680,6 +688,7 @@
       async function runOp() {
         switch (operation) {
           case "insert":
+            d3.select("#results-text").text("");
             let pos = !$("#data-pos-input").val()
               ? 0
               : Number($("#data-pos-input").val());
@@ -699,7 +708,9 @@
               $("#pos-error").prop("hidden", true);
             }
 
-            let data = Number($("#data-val-input").val());
+            let data = !$("#data-val-input").val()
+              ? 22
+              : Number($("#data-val-input").val());
 
             if (data > 99) {
               $("#data-val-input").css("border-color", "red");
@@ -728,8 +739,33 @@
             }
             break;
           case "remove":
+            d3.select("#results-text").text("");
             break;
           case "search":
+            d3.select("#results-text").text("");
+            let find = !$("#data-val-input").val()
+              ? 22
+              : Number($("#data-val-input").val());
+
+            if (find > 99) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("Please select a number < 100.");
+            } else {
+              $("#data-val-input").css("border-color", "");
+              $("#data-error").prop("hidden", true);
+              let index = await list.search(find);
+
+              if (index >= 0) {
+                d3.select("#results-text").text(
+                  "Found element " + find + " at index " + index + "."
+                );
+              } else {
+                d3.select("#results-text").text(
+                  "Did not find element " + find + " in list."
+                );
+              }
+            }
             break;
 
           default:

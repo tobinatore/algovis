@@ -301,25 +301,29 @@ async function rerouteArrow(id, start, end) {
  * Function for highlighting which nodes and arrows
  * are currently getting checked.
  * @param {number} index - The index of the element to highlight.
+ * @param {string} color - The highlight color (in hex -> eg. #CC1616)
+ * @param {boolean} onlyNode - Signifies that only the corresponding node should be colored.
  */
-async function highlightArrow(index) {
+async function highlight(index, color, onlyNode) {
   return new Promise((resolve) => {
-    // color paths red
-    d3.select("#path" + index)
-      .transition()
-      .duration(1000)
-      .attr("stroke", "#CC1616");
+    if (!onlyNode) {
+      // color paths red
+      d3.select("#path" + index)
+        .transition()
+        .duration(1000)
+        .attr("stroke", color);
+    }
 
     let circle = d3.select("#g" + index).select("circle");
-    let text = d3.select("#g" + index).select("text");
 
     // stroke and fill circles red
     circle
       .transition()
       .duration(1000)
-      .attr("fill", "#CC1616")
-      .attr("stroke", "#CC1616");
+      .attr("fill", color)
+      .attr("stroke", color);
 
+    let text = d3.select("#g" + index).select("text");
     // color text inside of the circles white
     text.transition().duration(1000).attr("fill", "#FFF");
     setTimeout(() => {
@@ -381,6 +385,7 @@ async function newMidNode(pos, data) {
   let coords = [pos * 150 + 50, 150];
   // create new node
   await newNode(coords, data, pos);
+  await highlight(list.length, "#0DC1D9", true);
   // create new arrow pointing to the node's successor
   await newArrow(
     { x: pos * 150 + 50, y: 150 },

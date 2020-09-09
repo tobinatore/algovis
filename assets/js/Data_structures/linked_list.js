@@ -34,6 +34,7 @@ class LinkedList {
    * @param {number} pos - The index at which the node should be inserted.
    */
   async insert(data, pos) {
+    await resetColors();
     const node = new ListNode(data);
     let coords = [pos * 150 + 50, 50];
     if (this[head] == undefined) {
@@ -74,23 +75,45 @@ class LinkedList {
 
           while (index != pos - 1) {
             current = current.next;
-            await highlightArrow(index);
+            await highlight(index, "#CC1616", false);
             index++;
           }
-          await highlightArrow(index);
+          await highlight(index, "#CC1616", false);
           await newMidNode(pos, data);
 
           node.next = current.next;
           current.next = node;
           this.length++;
-          await timeout(1500);
-          await resetColors();
           break;
       }
     }
   }
 
-  search(node) {}
+  /**
+   * Function to find the index of a node containing a given value in the linked list, if it exists.
+   * @param {number} data - The data you're looking for
+   * @returns {number} - The index of the node or -1 if it doesn't exist.
+   */
+  async search(data) {
+    await resetColors();
+    const NOT_FOUND = -1;
+    let current = this[head];
+    let index = 0;
+    while (current.data != data) {
+      await highlight(index, "#CC1616", false);
+      if (current.next == null) {
+        return NOT_FOUND;
+      }
+      current = current.next;
+      index++;
+    }
+    await highlight(index, "#0DC1D9", true);
+    return index;
+  }
 
+  /**
+   * Function for removing an element from the list.
+   * @param {number} pos - The index of the element that should be removed
+   */
   remove(pos) {}
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Dijkstras</title>
+    <title>JSDoc: Global</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Dijkstras</h1>
+    <h1 class="page-title">Global</h1>
 
     
 
@@ -28,9 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Dijkstras<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">Class for running Dijkstra's algorithm on the grid</div>
+        <h2></h2>
         
     
 </header>
@@ -40,28 +38,7 @@
     
         
 
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="Dijkstras"><span class="type-signature"></span>new Dijkstras<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 <dl class="details">
@@ -91,11 +68,6 @@
     
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Pathfinding_dijkstra_pf.js.html">Pathfinding/dijkstra_pf.js</a>, <a href="Pathfinding_dijkstra_pf.js.html#line3">line 3</a>
-    </li></ul></dd>
-    
 
     
 
@@ -105,24 +77,7 @@
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
 
@@ -149,7 +104,7 @@
     
 
     
-    <h4 class="name" id="findLeastDist"><span class="type-signature"></span>findLeastDist<span class="signature">(q)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="newArrow"><span class="type-signature">(async) </span>newArrow<span class="signature">(startCoords, endCoords, pos)</span><span class="type-signature"></span></h4>
     
 
     
@@ -157,7 +112,7 @@
 
 
 <div class="description">
-    Finds the node with the lowest total distance, removes it from the listand returns it.
+    Function for creating a new arrow connecting two nodes.
 </div>
 
 
@@ -193,189 +148,7 @@
 
         <tr>
             
-                <td class="name"><code>q</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Object></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">List of all unvisited nodes</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Pathfinding_dijkstra_pf.js.html">Pathfinding/dijkstra_pf.js</a>, <a href="Pathfinding_dijkstra_pf.js.html#line135">line 135</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - The node with the lowest total distance
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getNeighbours"><span class="type-signature"></span>getNeighbours<span class="signature">(grid, v)</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Gets all nodes adjacent to the current node.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>grid</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Array.&lt;Object>></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">2d array of nodes</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>v</code></td>
+                <td class="name"><code>startCoords</code></td>
             
 
             <td class="type">
@@ -391,310 +164,14 @@
 
             
 
-            <td class="description last">The current node</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Pathfinding_dijkstra_pf.js.html">Pathfinding/dijkstra_pf.js</a>, <a href="Pathfinding_dijkstra_pf.js.html#line102">line 102</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - A list of nodes adjacent to v
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;Object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="makeHimRun"><span class="type-signature">(async) </span>makeHimRun<span class="signature">(list)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Animates the stick figure to move from start to target.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>list</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Object></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">List of nodes in the path</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Pathfinding_dijkstra_pf.js.html">Pathfinding/dijkstra_pf.js</a>, <a href="Pathfinding_dijkstra_pf.js.html#line183">line 183</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="makePath"><span class="type-signature">(async) </span>makePath<span class="signature">(grid, end)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Reads predecessors starting from the target node and colors the path.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>grid</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Array.&lt;Object>></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">2d array of nodes representing the grid</td>
+            <td class="description last">Coordinates of the first node.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>end</code></td>
+                <td class="name"><code>endCoords</code></td>
             
 
             <td class="type">
@@ -710,7 +187,30 @@
 
             
 
-            <td class="description last">Row and column of the target node</td>
+            <td class="description last">Coordinates of the second node.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pos</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The 'index' of the arrow.</td>
         </tr>
 
     
@@ -751,7 +251,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Pathfinding_dijkstra_pf.js.html">Pathfinding/dijkstra_pf.js</a>, <a href="Pathfinding_dijkstra_pf.js.html#line160">line 160</a>
+        <a href="Data_structures_anim_anim_ll.js.html">Data_structures/anim/anim_ll.js</a>, <a href="Data_structures_anim_anim_ll.js.html#line175">line 175</a>
     </li></ul></dd>
     
 
@@ -787,7 +287,7 @@
     
 
     
-    <h4 class="name" id="resetGrid"><span class="type-signature"></span>resetGrid<span class="signature">(grid)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="newNode"><span class="type-signature">(async) </span>newNode<span class="signature">(coords, data, pos)</span><span class="type-signature"></span></h4>
     
 
     
@@ -795,7 +295,7 @@
 
 
 <div class="description">
-    Resets the grid and every node.
+    Function for creating a new node in the linked list.
 </div>
 
 
@@ -831,13 +331,13 @@
 
         <tr>
             
-                <td class="name"><code>grid</code></td>
+                <td class="name"><code>coords</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;Object>></span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -847,7 +347,53 @@
 
             
 
-            <td class="description last">2d array of objects representing the grid</td>
+            <td class="description last">The coordinates where the new node will be created</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data the node contains</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pos</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The 'index' in the list</td>
         </tr>
 
     
@@ -888,7 +434,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Pathfinding_dijkstra_pf.js.html">Pathfinding/dijkstra_pf.js</a>, <a href="Pathfinding_dijkstra_pf.js.html#line76">line 76</a>
+        <a href="Data_structures_anim_anim_ll.js.html">Data_structures/anim/anim_ll.js</a>, <a href="Data_structures_anim_anim_ll.js.html#line105">line 105</a>
     </li></ul></dd>
     
 
@@ -924,7 +470,7 @@
     
 
     
-    <h4 class="name" id="run"><span class="type-signature">(async) </span>run<span class="signature">(grid, start, end)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="pushNodes"><span class="type-signature">(async) </span>pushNodes<span class="signature">(pos)</span><span class="type-signature"></span></h4>
     
 
     
@@ -932,7 +478,7 @@
 
 
 <div class="description">
-    Run the algorithm with the provided values.
+    Function that pushes all nodes and arrows with indexes bigger than thespecified index one position to the right.
 </div>
 
 
@@ -968,13 +514,13 @@
 
         <tr>
             
-                <td class="name"><code>grid</code></td>
+                <td class="name"><code>pos</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Array.&lt;Object>></span>
+<span class="param-type">number</span>
 
 
             
@@ -984,7 +530,144 @@
 
             
 
-            <td class="description last">A 2d array representing the grid the algorithm runs on</td>
+            <td class="description last">The index where the new node will be inserted</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Data_structures_anim_anim_ll.js.html">Data_structures/anim/anim_ll.js</a>, <a href="Data_structures_anim_anim_ll.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="rerouteArrow"><span class="type-signature">(async) </span>rerouteArrow<span class="signature">(id, start, end)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Function for animating an arrow going from one node to another.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -997,7 +680,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -1007,7 +690,7 @@
 
             
 
-            <td class="description last">Row and column of the source node</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1020,7 +703,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -1030,7 +713,7 @@
 
             
 
-            <td class="description last">Row and column of the target node</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1071,7 +754,190 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Pathfinding_dijkstra_pf.js.html">Pathfinding/dijkstra_pf.js</a>, <a href="Pathfinding_dijkstra_pf.js.html#line11">line 11</a>
+        <a href="Data_structures_anim_anim_ll.js.html">Data_structures/anim/anim_ll.js</a>, <a href="Data_structures_anim_anim_ll.js.html#line259">line 259</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="slideArrow"><span class="type-signature">(async) </span>slideArrow<span class="signature">(id, start, end)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Function for smoothly sliding an arrow between 2 positions.Used for moving the arrow head with the node it points to.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Id of the SVG element representing the arrow.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>start</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordinates where the arrow starts.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>end</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordinates where the arrow ends</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Data_structures_anim_anim_ll.js.html">Data_structures/anim/anim_ll.js</a>, <a href="Data_structures_anim_anim_ll.js.html#line224">line 224</a>
     </li></ul></dd>
     
 

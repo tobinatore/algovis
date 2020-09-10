@@ -24,17 +24,15 @@ async function pushNodes(pos) {
       if (transform == null) {
         return "translate( 150, 0)";
       } else {
-        let currTranslate = transform.match(/^\d+|\d+\b|\d+(?=\w)/g);
+        let currTranslate = transform.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/g);
         let x = Number(currTranslate[0]) + 150;
-        let y = -currTranslate[1];
+        let y = currTranslate[1];
         return "translate(" + x + ", " + y + ")";
       }
     })
     .attr("id", function () {
-      let currNum = Number(this.id.match(/^\d+|\d+\b|\d+(?=\w)/i)[0]);
-      console.log(currNum);
+      let currNum = Number(this.id.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/i)[0]);
       let test = this.id.substring(0, this.id.length - 1) + (currNum + 1);
-      console.log(test);
       return test;
     })
     .attr("class", "moved");
@@ -94,6 +92,43 @@ async function pushNodes(pos) {
   await timeout(510);
   // remove the temporary classes used for filtering
   svg.selectAll("*").attr("class", null);
+}
+
+/**
+ * Function that pulls all nodes and arrows with indexes bigger than the
+ * specified index one position to the left.
+ * @param {number} pos - The index where the new node will be after the deleted node
+ */
+async function pullNodes(pos) {
+  let selection = "none";
+  // building a selection string for d3.js
+  for (let i = pos; i < list.length; i++) {
+    selection += ", #g" + i;
+
+    if (i < list.length - 1) {
+      selection += ", #path" + i;
+    }
+  }
+
+  d3.selectAll(selection)
+    .transition()
+    .duration(500)
+    .attr("transform", function () {
+      let transform = d3.select(this).attr("transform");
+      if (transform == null) {
+        return "translate(-150, 0)";
+      } else {
+        let currTranslate = transform.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/g);
+        let x = Number(currTranslate[0]) - 150;
+        let y = currTranslate[1];
+        return "translate(" + x + ", " + y + ")";
+      }
+    })
+    .attr("id", function () {
+      let currNum = Number(this.id.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/i)[0]);
+      let test = this.id.substring(0, this.id.length - 1) + (currNum - 1);
+      return test;
+    });
 }
 
 /**
@@ -199,19 +234,57 @@ async function newArrow(startCoords, endCoords, pos) {
       .select("#g-paths")
       .append("path")
       .transition()
-      .duration(300)
+      .duration(100)
       .attr("d", line([xy0, xy1]))
       .attr("stroke", "#171717")
       .attr("stroke-width", 4)
       .attr("marker-end", "url(#triangle)")
       .attr("fill", "none")
-      .attr("id", function (d, i) {
+      .attr("id", function () {
         return "path" + (data_nodes.length - 2);
       });
     setTimeout(() => {
       resolve();
-    }, 300);
+    }, 100);
   });
+}
+
+/**
+ * Function to delete an SVG element representing a node from the canvas.
+ * @param {number} pos - The index of the element
+ */
+async function deleteNode(pos) {
+  d3.select("#g" + pos)
+    .transition()
+    .ease(d3.easeExp)
+    .duration(500)
+
+    .attr("transform", function () {
+      let transform = d3.select(this).attr("transform");
+      if (transform == null) {
+        return "translate(0, 60)";
+      } else {
+        let currTranslate = transform.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/g);
+        let x = Number(currTranslate[0]);
+        return "translate(" + x + ", 60)";
+      }
+    })
+    .style("opacity", 0);
+  await timeout(510);
+  d3.select("#g" + pos).remove();
+}
+
+/**
+ * Function to remove an arrow from the SVG canvas.
+ * @param {Object} pos - The index of the arrow.
+ */
+async function removeArrow(pos) {
+  d3.select("#path" + pos)
+    .transition()
+    .duration(500)
+    .style("opacity", 0);
+  await timeout(510);
+  d3.select("#path" + pos).remove();
 }
 
 /**
@@ -339,7 +412,7 @@ async function highlight(index, color, onlyNode) {
 async function resetColors() {
   return new Promise((resolve) => {
     // color paths black
-    d3.selectAll("path").transition().duration(1000).attr("stroke", "#171717");
+    d3.selectAll("path").transition().duration(100).attr("stroke", "#171717");
 
     let circle = d3.selectAll("circle");
     let text = d3.selectAll("text");
@@ -347,15 +420,15 @@ async function resetColors() {
     // color circles black and fill them white
     circle
       .transition()
-      .duration(1000)
+      .duration(100)
       .attr("fill", "#FFF")
       .attr("stroke", "#171717");
 
     // color text black
-    text.transition().duration(1000).attr("fill", "#000");
+    text.transition().duration(100).attr("fill", "#000");
     setTimeout(() => {
       resolve();
-    }, 1000);
+    }, 100);
   });
 }
 
@@ -386,6 +459,7 @@ async function newMidNode(pos, data) {
   // create new node
   await newNode(coords, data, pos);
   await highlight(list.length, "#0DC1D9", true);
+  await highlightCode(12);
   // create new arrow pointing to the node's successor
   await newArrow(
     { x: pos * 150 + 50, y: 150 },
@@ -396,6 +470,7 @@ async function newMidNode(pos, data) {
   let arrowStart = [(pos - 1) * 150 + 50, 50];
   let arrowEnd = [pos * 150 + 50, 150];
   // animate the arrow coming from the node's predecessor
+  await highlightCode(13);
   await rerouteArrow("#path" + (pos - 1), arrowStart, arrowEnd);
   await timeout(1000);
   // move succeding nodes to the right.

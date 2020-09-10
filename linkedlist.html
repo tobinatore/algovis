@@ -117,6 +117,7 @@
               <button
                 class="btn btn-block btn-dark"
                 onclick="generateLinkedList()"
+                id="generate"
               >
                 Generate random list
               </button>
@@ -198,125 +199,87 @@
               <button
                 class="btn btn-block btn-danger red"
                 type="button"
-                id="startPf"
+                id="startOp"
                 onclick="runOp()"
               >
                 Go!
               </button>
             </div>
           </div>
-          <div class="data-container border-dark-nb p-1 mb-0 mt-0 w-100">
+          <div class="data-container border-dark p-1 mb-0 mt-0 w-100">
             <svg id="visu"></svg>
           </div>
-          <div class="row mx-auto">
+          <div class="row mx-auto" id="remove-pseudocode" hidden>
             <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
               <div class="ide w-100">
-                <div class="row ml-auto mr-auto">
-                  <span><span class="op">function</span> tarjan()</span>
-                </div>
                 <div class="row ml-auto mr-auto 1">
-                  <span
-                    >&emsp;&emsp;<span class="op">for</span>(v = 0 to
-                    graph.getVertCount())</span
-                  >
+                  <span class="op">switch</span>(position)
                 </div>
                 <div class="row ml-auto mr-auto mt-1 2">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span
-                    >(!visited[v])</span
-                  >
+                  &emsp;&emsp;<span class="op">case</span>&emsp;0:
                 </div>
                 <div class="row ml-auto mr-auto mt-1 3">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
-                      >findSCC</span
-                    >(v)</span
+                  &emsp;&emsp;&emsp;&emsp; head = head.<span class="var"
+                    >next</span
                   >
                 </div>
                 <div class="row ml-auto mr-auto mt-1 4">
-                  <span>&emsp;&emsp;&emsp;&emsp;</span>
+                  &emsp;&emsp;<span class="op">case</span>&emsp;list.length - 1:
                 </div>
                 <div class="row ml-auto mr-auto mt-1 5">
-                  <span><span class="op">function</span> findSCC(v)</span>
+                  &emsp;&emsp;&emsp;&emsp; current = head
                 </div>
                 <div class="row ml-auto mr-auto mt-1 6">
-                  <span>&emsp;&emsp;discTime++</span>
+                  &emsp;&emsp;&emsp;&emsp; index = 0
                 </div>
                 <div class="row ml-auto mr-auto mt-1 7">
-                  <span>&emsp;&emsp;disc[v] = discTime</span>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">while</span>(current.
+                  <span class="var">next</span>
+                  != tail)
                 </div>
                 <div class="row ml-auto mr-auto mt-1 8">
-                  <span>&emsp;&emsp;low[v] = discTime</span>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
+                  <span class="var">next</span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 9">
-                  <span>&emsp;&emsp;stack.push(v)</span>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index += 1
                 </div>
                 <div class="row ml-auto mr-auto mt-1 10">
-                  <span
-                    >&emsp;&emsp;<span class="op">for each</span>(neighbour of
-                    v)</span
-                  >
+                  &emsp;&emsp;&emsp;&emsp; current.<span class="var">next</span>
+                  = none
                 </div>
                 <div class="row ml-auto mr-auto mt-1 11">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span
-                    >(!visited[neighbour])</span
-                  >
+                  &emsp;&emsp;&emsp;&emsp; tail = current
                 </div>
                 <div class="row ml-auto mr-auto mt-1 12">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
-                      >findSCC</span
-                    >(neighbour)</span
-                  >
+                  &emsp;&emsp; <span class="op">default</span>:
                 </div>
                 <div class="row ml-auto mr-auto mt-1 13">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;low[v] =
-                    <span class="op">min</span>(low[v], low[neighbour])</span
-                  >
+                  &emsp;&emsp;&emsp;&emsp; current = head
                 </div>
                 <div class="row ml-auto mr-auto mt-1 14">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;<span class="op">else if</span
-                    >(onStack(neighbour))</span
-                  >
+                  &emsp;&emsp;&emsp;&emsp; index = 0
                 </div>
                 <div class="row ml-auto mr-auto mt-1 15">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;low[v] =
-                    <span class="op">min</span>(low[v], disc[neighbour])</span
-                  >
+                  &emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">while</span>(index + 1 != position)
                 </div>
                 <div class="row ml-auto mr-auto mt-1 16">
-                  <span
-                    >&emsp;&emsp;<span class="op">if</span>(low[v] ==
-                    disc[v])</span
-                  >
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
+                  <span class="var">next</span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 17">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;<span class="op">do</span></span
-                  >
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index += 1
                 </div>
                 <div class="row ml-auto mr-auto mt-1 18">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;elem =
-                    stack.pop()</span
-                  >
+                  &emsp;&emsp;&emsp;&emsp; nextNext = current.<span class="var"
+                    >next</span
+                  >.<span class="var">next</span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 19">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="op"
-                      >addToSCC</span
-                    >(elem)</span
-                  >
-                </div>
-                <div class="row ml-auto mr-auto mt-1 17">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;<span class="op">while</span>(elem
-                    != v)</span
-                  >
+                  &emsp;&emsp;&emsp;&emsp;&emsp;current.
+                  <span class="var">next</span> = nextNext
                 </div>
               </div>
             </div>
@@ -324,139 +287,180 @@
               <div class="ide w-100 pl-0">
                 <div class="row ml-auto mr-auto">
                   <span class="comment w-100">&emsp;</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">&emsp;</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">&emsp;</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">&emsp;</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">---------------------</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">| SHORT EXPLANATION |</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">---------------------</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >1. Mark all vertices as unvisited.</span
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">---------------------</span>
+                  <span class="comment w-100 mt-1">| SHORT EXPLANATION |</span>
+                  <span class="comment w-100 mt-1">---------------------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Determine which node will be removed</span
                   >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >2. Run a Depth-first search on every unvisited
-                    vertex.</span
+                  <span class="comment w-100 mt-1">
+                    - if it's the head, just update the head pointer
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >- if it's the tail, traverse the list and set the sucessor
+                    of the node before the tail to none</span
                   >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >3. Whenever a DFS begins add the vertex it was run on to
-                    the stack.</span
+                  <span class="comment w-100 mt-1"
+                    >2. If it gets removed from index N, traverse the list up to
+                    node N-1 and get the node after the node it points to
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >3. Point the 'next' pointer of the node at N-1 to the node
+                    obtained in step 2</span
                   >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >4. Maintain two values (disc and low) for each
-                    vertex.</span
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">Time complexity:</span>
+                  <span class="comment w-100 mt-1">Remove head: O(1)</span>
+                  <span class="comment w-100 mt-1">Remove tail: O(n)</span>
+                  <span class="comment w-100 mt-1"
+                    >Remove from index: O(n)</span
                   >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment">
-                    - disc stores the discovery time of the vertex</span
-                  >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment">
-                    - low stores the lowest disc reachable from this
-                    vertex</span
-                  >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >5. Search for vertices with low[v] == disc[v], as these are
-                    the root nodes in the SCC.</span
-                  >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >6. Pop vertices from the stack until v from step 5 is on
-                    top. The popped vertices are the SCC with root v.</span
-                  >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >7. Repeat steps 5 and 6 until the stack is empty.</span
-                  >
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">&emsp;</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">&emsp;</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">&emsp;</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment w-100">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
                 </div>
               </div>
             </div>
           </div>
-          <hr data-content="Instructions" class="hr-text mb-3 mt-4" />
-          <div class="row mx-auto">
-            <div class="col-sm-12 col-md-12 col-lg-6">
-              <form>
-                <div class="row">
-                  <div class="col-12">
-                    To draw a new vertex, simply click anywhere on the canvas
-                    above.<br />
-                    To create an edge between two vertices, click on the first
-                    vertex and then on the second one.<br />
-                    You can create a random graph by clicking on the 'Random'
-                    button above the canvas.<br />
-                    To clear the canvas, use the 'Clear' button.
-                  </div>
+          <div class="row mx-auto" id="insert-pseudocode" hidden>
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span class="op">switch</span>(position)
                 </div>
-              </form>
+                <div class="row ml-auto mr-auto mt-1 2">
+                  &emsp;&emsp;<span class="op">case</span>&emsp;0:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  &emsp;&emsp;&emsp;&emsp; node.<span class="var">next</span> =
+                  head
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  &emsp;&emsp;&emsp;&emsp; head = node
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  &emsp;&emsp;<span class="op">case</span>&emsp;list.length:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  &emsp;&emsp;&emsp;&emsp; tail.<span class="var">next</span> =
+                  node
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  &emsp;&emsp;&emsp;&emsp; tail = node
+                </div>
+                <div class="row ml-auto mr-auto mt-1 8">
+                  &emsp;&emsp;<span class="op">default</span>:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 9">
+                  &emsp;&emsp;&emsp;&emsp; current = head
+                </div>
+                <div class="row ml-auto mr-auto mt-1 10">
+                  &emsp;&emsp;&emsp;&emsp; <span class="op">for</span>(i = 0 to
+                  position - 1)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 11">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
+                  <span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 12">
+                  &emsp;&emsp;&emsp;&emsp; node.<span class="var">next</span> =
+                  current.<span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 13">
+                  &emsp;&emsp;&emsp;&emsp; current.<span class="var">next</span>
+                  = node
+                </div>
+              </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-6">
-              <form>
-                <div class="form-group row">
-                  <div class="col-sm-5">Speed:</div>
-                  <div class="col-sm-7">
-                    <span>Slow&emsp;</span>
-                    <input
-                      id="speedslider"
-                      data-slider-id="speedSlider"
-                      type="text"
-                      data-slider-min="350"
-                      data-slider-max="1000"
-                      data-slider-step="10"
-                      data-slider-value="500"
-                    />
-                    <span>&emsp;Fast</span>
-                  </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment w-100">SHORT EXPLANATION</span>
+                  <span class="comment w-100 mt-1">-----------------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Determine where the new node will be inserted</span
+                  >
+                  <span class="comment w-100 mt-1">
+                    - if it becomes the new head, overwrite the current head
+                    after saving it as the node's successor
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >- if it's the new tail, set it as the successor of the
+                    current tail</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >2. If it gets inserted at index N, traverse the list up to
+                    node N-1 and get the node it points to
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >3. Point the 'next' pointer of the new node to the node
+                    obtained in step 2</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >4. Point the 'next' pointer of the node at index N-1 to the
+                    new node</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">Time complexity:</span>
+                  <span class="comment w-100 mt-1">Insert as head: O(1)</span>
+                  <span class="comment w-100 mt-1"
+                    >Insert as tail: O(1) if you keep pointer to the tail, O(n)
+                    else</span
+                  >
+                  <span class="comment w-100 mt-1">Insert at index: O(n)</span>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-12">
-                    <button
-                      id="start-button"
-                      type="button"
-                      onclick="tarjans()"
-                      class="btn btn-danger red w-100"
-                    >
-                      Start
-                    </button>
-                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mx-auto" id="search-pseudocode" hidden>
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">current = head</div>
+                <div class="row ml-auto mr-auto mt-1 2">index = 0</div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  <span class="op">while</span>(current.data != data)
                 </div>
-              </form>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  &emsp;&emsp; <span class="op">if</span>(current.
+                  <span class="var">next</span>&emsp;== none)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  &emsp;&emsp;&emsp;&emsp;
+                  <span class="op">return</span>&emsp;-1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  &emsp; current = current.<span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  &emsp;&emsp;index += 1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 8">
+                  <span class="op">return</span>&emsp;index
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment w-100">SHORT EXPLANATION</span>
+                  <span class="comment w-100 mt-1">-----------------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Traverse the list until element is found or the whole
+                    list has been traversed</span
+                  >
+                  <span class="comment w-100 mt-1">
+                    - if element was found, return index
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >- else return not_found</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp; </span>
+                  <span class="comment w-100 mt-1">Time complexity</span>
+                  <span class="comment w-100 mt-1">Find element: O(n)</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -615,6 +619,7 @@
       }
 
       async function generateLinkedList() {
+        $("#generate, #dropdownOp, #startOp").prop("disabled", true);
         list = new LinkedList();
         data_set = new Set();
         data_nodes = [];
@@ -647,11 +652,9 @@
           data_set.add(data);
 
           await list.insert(data, i);
-          console.log(data_nodes);
-          if (i != 0) {
-            //  await newArrow(data_nodes[i - 1], data_nodes[i]);
-          }
         }
+        $("#generate, #dropdownOp, #startOp").prop("disabled", false);
+        await highlightCode(0);
       }
 
       function setOperation(op) {
@@ -659,27 +662,34 @@
           case 1:
             operation = "insert";
             $("#dropdownOp").html("Insert element");
-            $("#posInput").prop("hidden", false);
-            $("#valInput").prop("hidden", false);
+            $("#posInput, #valInput, #insert-pseudocode").prop("hidden", false);
+            $("#remove-pseudocode, #search-pseudocode").prop("hidden", true);
             break;
           case 2:
             operation = "remove";
             $("#dropdownOp").html("Remove element");
-            $("#posInput").prop("hidden", false);
-            $("#valInput").prop("hidden", true);
+            $("#posInput, #remove-pseudocode").prop("hidden", false);
+            $("#valInput, #insert-pseudocode, #search-pseudocode").prop(
+              "hidden",
+              true
+            );
+
             break;
           case 3:
             operation = "search";
             $("#dropdownOp").html("Search element");
-            $("#posInput").prop("hidden", true);
-            $("#valInput").prop("hidden", false);
+            $("#posInput, #insert-pseudocode, #remove-pseudocode").prop(
+              "hidden",
+              true
+            );
+            $("#valInput, #search-pseudocode").prop("hidden", false);
             break;
 
           default:
             operation = "insert";
             $("#dropdownOp").html("Insert element");
-            $("#posInput").prop("hidden", false);
-            $("#valInput").prop("hidden", false);
+            $("#posInput, #valInput, #insert-pseudocode").prop("hidden", false);
+            $("#remove-pseudocode, #search-pseudocode").prop("hidden", true);
             break;
             break;
         }
@@ -687,6 +697,7 @@
 
       async function runOp() {
         switch (operation) {
+          //--- INSERT ---
           case "insert":
             d3.select("#results-text").text("");
             let pos = !$("#data-pos-input").val()
@@ -735,12 +746,33 @@
               data_set.add(data);
             }
             if (!error) {
-              list.insert(data, pos);
+              await list.insert(data, pos);
+              await highlightCode(0);
             }
             break;
+          //--- REMOVE ---
           case "remove":
             d3.select("#results-text").text("");
+            let index = !$("#data-pos-input").val()
+              ? 0
+              : Number($("#data-pos-input").val());
+
+            if (index > list.length - 1) {
+              $("#data-pos-input").css("border-color", "red");
+              $("#pos-error").prop("hidden", false);
+              let text =
+                list.length == 0
+                  ? "Please generate a linked list first, or add a node to position 0."
+                  : "Please select an index from 0 to " + list.length + ".";
+              $("#pos-error").html(text);
+            } else {
+              $("#data-pos-input").css("border-color", "");
+              $("#pos-error").prop("hidden", true);
+              await list.remove(index);
+              await highlightCode(0);
+            }
             break;
+          //--- SEARCH ---
           case "search":
             d3.select("#results-text").text("");
             let find = !$("#data-val-input").val()
@@ -755,7 +787,7 @@
               $("#data-val-input").css("border-color", "");
               $("#data-error").prop("hidden", true);
               let index = await list.search(find);
-
+              await highlightCode(0);
               if (index >= 0) {
                 d3.select("#results-text").text(
                   "Found element " + find + " at index " + index + "."
@@ -780,16 +812,6 @@
           .attr("width", "100%")
           .attr("height", "370")
           .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 370");
-
-        var speedSlider = new Slider("#speedslider", {
-          reversed: true,
-          tooltip: "none",
-          handle: "square",
-        });
-
-        speedSlider.on("slide", function (slideEvt) {
-          setDelay(slideEvt);
-        });
       });
     </script>
   </body>

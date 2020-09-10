@@ -45,22 +45,36 @@ class LinkedList {
       await newNode(coords, data, pos);
       this.length++;
     } else {
+      await highlightCode(1);
+      await timeout(200);
       // there's at least one node in the linked list
       switch (pos) {
         // insert the new node at the specified position
         case 0:
+          await highlightCode(2);
+          await timeout(200);
+
           // new node is the new head
           node.next = this[head];
           this[head] = node;
+          await highlightCode(3);
+
           await animateNewHead(data);
+
+          await highlightCode(4);
+          await timeout(200);
           this.length++;
           break;
         case this.length:
+          await highlightCode(5);
+          await timeout(200);
           //new node is the new tail
           this[tail].next = node;
           this[tail] = node;
           coords = [pos * 150 + 50, 50];
+          await highlightCode(6);
           await newNode(coords, data, pos);
+          await highlightCode(7);
           await newArrow(
             { x: (pos - 1) * 150 + 50, y: 50 },
             { x: pos * 150 + 50, y: 50 },
@@ -69,18 +83,24 @@ class LinkedList {
           this.length++;
           break;
         default:
+          await highlightCode(8);
+          await timeout(200);
+
           // new node is inserted somewhere in the list
           let current = this[head];
+          await highlightCode(9);
+          await timeout(10);
           let index = 0;
-
+          await highlightCode(10);
+          await timeout(200);
           while (index != pos - 1) {
             current = current.next;
+            await highlightCode(11);
             await highlight(index, "#CC1616", false);
             index++;
           }
           await highlight(index, "#CC1616", false);
           await newMidNode(pos, data);
-
           node.next = current.next;
           current.next = node;
           this.length++;
@@ -97,23 +117,167 @@ class LinkedList {
   async search(data) {
     await resetColors();
     const NOT_FOUND = -1;
+
+    await highlightCode(1);
+    await timeout(200);
+
     let current = this[head];
+
+    await highlightCode(2);
+    await timeout(200);
+
     let index = 0;
+
+    await highlightCode(3);
+    await timeout(200);
+
     while (current.data != data) {
+      await highlightCode(4);
+
       await highlight(index, "#CC1616", false);
       if (current.next == null) {
+        await highlightCode(5);
+        await timeout(200);
+
         return NOT_FOUND;
       }
+      await highlightCode(6);
+      await timeout(200);
+
       current = current.next;
+
+      await highlightCode(7);
+      await timeout(200);
+
       index++;
     }
+
+    await highlightCode(8);
     await highlight(index, "#0DC1D9", true);
+
     return index;
   }
 
   /**
    * Function for removing an element from the list.
-   * @param {number} pos - The index of the element that should be removed
+   * @param {number} pos - The index of the element that should be removed.
    */
-  remove(pos) {}
+  async remove(pos) {
+    await resetColors();
+    await highlightCode(1);
+    await timeout(200);
+    switch (pos) {
+      // removing head
+      case 0:
+        await highlightCode(2);
+        await timeout(200);
+        data_set.delete(this[head].data);
+        await highlightCode(3);
+        this[head] = this[head].next;
+        // delete outgoing arrow
+        await removeArrow(pos);
+        // delete head
+        await deleteNode(pos);
+        // move all nodes 1 place to the left
+        await pullNodes(pos + 1);
+
+        data_nodes.splice(pos, 1);
+        this.length--;
+        break;
+      // removing tail
+      case this.length - 1:
+        await highlightCode(4);
+        await timeout(200);
+        await highlightCode(5);
+        await timeout(200);
+        let current = this[head];
+        await highlightCode(6);
+        await timeout(200);
+        let index = 0;
+        await highlightCode(7);
+        await timeout(200);
+        // loop over linked list to find predecessor of tail
+        while (current.next != this[tail]) {
+          await highlightCode(8);
+          current = current.next;
+          await highlight(index, "#CC1616", false);
+          await highlightCode(9);
+          await timeout(200);
+          index++;
+        }
+
+        data_set.delete(this[tail].data);
+
+        current.next = undefined;
+
+        this[tail] = current;
+
+        // highlight predecessor
+        await highlight(index, "#CC1616", false);
+        await highlightCode(10);
+        //remove outgoing arrow
+        await removeArrow(index);
+        // delete tail
+        await deleteNode(pos);
+        await highlightCode(11);
+        await timeout(200);
+        data_nodes.splice(pos, 1);
+        this.length--;
+        break;
+      // removing node somewhere in the list
+      default:
+        await highlightCode(12);
+        await timeout(200);
+        await highlightCode(13);
+        await timeout(200);
+        let curr = this[head];
+        await highlightCode(14);
+        await timeout(200);
+        let i = 0;
+        await highlightCode(15);
+        await timeout(200);
+        // looping through the list until preceding node is found
+        while (i + 1 != pos) {
+          await highlightCode(16);
+          curr = curr.next;
+          await highlight(i, "#CC1616", false);
+          await highlightCode(17);
+          await timeout(200);
+          i++;
+        }
+        data_set.delete(curr.next.data);
+        let nextNext = curr.next.next;
+        curr.next = nextNext;
+        data_nodes.splice(pos, 1);
+
+        // highlighting predecessor
+        await highlight(i, "#CC1616", false);
+        await highlightCode(18);
+        // removing outgoing arrow from target node
+        await removeArrow(pos);
+
+        // calculating coordinates of predecessor
+        // and successor of target node
+        let start = [(pos - 1) * 150 + 50, 50];
+        let end = [(pos + 1) * 150 + 50, 50];
+
+        await highlightCode(19);
+        // rerouting predecessor's arrow to successor
+        await rerouteArrow("#path" + (pos - 1), start, end);
+        // deleting target nodes
+        await deleteNode(pos);
+        // moving succeeding nodes & arrows 1 position to the left
+        await pullNodes(pos + 1);
+
+        // calculating new end coordinates
+        // for previously rerouted arrow
+        end = [pos * 150 + 50, 50];
+
+        // smoothly scaling that arrow to new length
+        await slideArrow("#path" + (pos - 1), start, end);
+
+        this.length--;
+        break;
+    }
+  }
 }

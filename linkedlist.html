@@ -49,7 +49,7 @@
       id="topbar"
       class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
     >
-      <div class="container d-flex">
+      <div class="container-fluid d-flex">
         <div class="contact-info mr-auto">
           <i class="icofont-envelope"></i>
           <a href="mailto:contact@example.com">hello@algovis.io</a>
@@ -78,7 +78,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top header-inner-pages">
       <div class="container-fluid d-flex align-items-center">
-        <a class="btn back-button mr-4" href="graphs.html"
+        <a class="btn back-button mr-4" href="datastructures.html"
           ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
           Back</a
         >
@@ -99,7 +99,7 @@
     <main id="main">
       <!-- ======= Breadcrumbs ======= -->
       <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
+        <div class="container-fluid">
           <ol>
             <li><a href="index.html">Home</a></li>
             <li><a href="datastructures.html">Data structures</a></li>
@@ -162,13 +162,13 @@
             <div id="posInput" class="col-sm-3" hidden>
               <form class="form-inline">
                 <div class="col-5">
-                  <label class="mr-2" for="data-pos-input"
+                  <label class="mr-2" for="data-pos-input" id="pos-label"
                     >Position (0..N-1)</label
                   >
                 </div>
                 <div class="col-7">
                   <input
-                    type="text"
+                    type="number"
                     class="form-control mx-auto w-100"
                     id="data-pos-input"
                     placeholder="0"
@@ -181,11 +181,11 @@
             <div id="valInput" class="col-sm-3" hidden>
               <form class="form-inline">
                 <div class="col-2">
-                  <label class="mr-2" for="data-val-input">Data</label>
+                  <label class="mr-2" for="data-val-input">Data:</label>
                 </div>
                 <div class="col-10">
                   <input
-                    type="text"
+                    type="number"
                     class="form-control mx-auto w-100"
                     id="data-val-input"
                     placeholder="22"
@@ -640,7 +640,7 @@
           })
           .remove();
 
-        let rand = Math.round(Math.random() * 5 + 4);
+        let rand = Math.round(Math.random() * 2 + 4);
 
         for (let i = 0; i < rand; i++) {
           let data = Math.round(Math.random() * 98 + 1);
@@ -664,6 +664,7 @@
             $("#dropdownOp").html("Insert element");
             $("#posInput, #valInput, #insert-pseudocode").prop("hidden", false);
             $("#remove-pseudocode, #search-pseudocode").prop("hidden", true);
+            $("#pos-label").html("Position (0 - " + list.length + "):");
             break;
           case 2:
             operation = "remove";
@@ -673,7 +674,7 @@
               "hidden",
               true
             );
-
+            $("#pos-label").html("Position (0 - " + (list.length - 1) + "):");
             break;
           case 3:
             operation = "search";
@@ -690,7 +691,6 @@
             $("#dropdownOp").html("Insert element");
             $("#posInput, #valInput, #insert-pseudocode").prop("hidden", false);
             $("#remove-pseudocode, #search-pseudocode").prop("hidden", true);
-            break;
             break;
         }
       }
@@ -734,6 +734,11 @@
               $("#data-error").html(
                 "Please select a number that's not already in the list."
               );
+              error = true;
+            } else if (data < -9) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("Please select a number > -10.");
               error = true;
             } else if (list.length == 10) {
               $("#data-val-input").css("border-color", "red");

@@ -664,7 +664,6 @@
             $("#dropdownOp").html("Insert element");
             $("#posInput, #valInput, #insert-pseudocode").prop("hidden", false);
             $("#remove-pseudocode, #search-pseudocode").prop("hidden", true);
-            $("#pos-label").html("Position (0 - " + list.length + "):");
             break;
           case 2:
             operation = "remove";
@@ -674,7 +673,6 @@
               "hidden",
               true
             );
-            $("#pos-label").html("Position (0 - " + (list.length - 1) + "):");
             break;
           case 3:
             operation = "search";
@@ -714,6 +712,12 @@
                   : "Please select an index from 0 to " + list.length + ".";
               $("#pos-error").html(text);
               error = true;
+            } else if (pos < 0) {
+              $("#data-pos-input").css("border-color", "red");
+              $("#pos-error").prop("hidden", false);
+              let text = "Indices can't be negative.";
+              $("#pos-error").html(text);
+              error = true;
             } else {
               $("#data-pos-input").css("border-color", "");
               $("#pos-error").prop("hidden", true);
@@ -748,9 +752,9 @@
             } else {
               $("#data-val-input").css("border-color", "");
               $("#data-error").prop("hidden", true);
-              data_set.add(data);
             }
             if (!error) {
+              data_set.add(data);
               await list.insert(data, pos);
               await highlightCode(0);
             }
@@ -769,6 +773,11 @@
                 list.length == 0
                   ? "Please generate a linked list first, or add a node to position 0."
                   : "Please select an index from 0 to " + list.length + ".";
+              $("#pos-error").html(text);
+            } else if (index < 0) {
+              $("#data-pos-input").css("border-color", "red");
+              $("#pos-error").prop("hidden", false);
+              let text = "Indices can't be negative.";
               $("#pos-error").html(text);
             } else {
               $("#data-pos-input").css("border-color", "");

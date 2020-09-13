@@ -256,7 +256,7 @@
               <form>
                 <div class="form-group row">
                   <div class="col-sm-3">Elements:</div>
-                  <div class="col-sm-9">
+                  <div class="col-sm-9 disableSlider">
                     <span>5&emsp;</span>
                     <input
                       id="slider"
@@ -639,6 +639,8 @@
       async function combsort() {
         comparisons = 0;
         swaps = 0;
+        $("#sort-button, #data-input").prop("disabled", true);
+        $(".disableSlider").prop("hidden", true);
         highlightCode("1");
         await new Promise((resolve) =>
           setTimeout(() => {
@@ -722,6 +724,8 @@
           );
           d3.select("#rect" + i).attr("fill", "#171717");
         }
+        $("#sort-button, #data-input").prop("disabled", false);
+        $(".disableSlider").prop("hidden", false);
       }
 
       newSet(15);

@@ -308,7 +308,7 @@
               <form>
                 <div class="form-group row">
                   <div class="col-sm-3">Elements:</div>
-                  <div class="col-sm-9">
+                  <div class="col-sm-9 disableSlider">
                     <span>5&emsp;</span>
                     <input
                       id="slider"
@@ -692,11 +692,13 @@
       }
 
       async function runQuicksort() {
-        $("#sort-button").prop("disabled", true);
+        $("#sort-button, #data-input").prop("disabled", true);
+        $(".disableSlider").prop("hidden", true);
         comparisons = 0;
         swaps = 0;
         await quicksort();
-        $("#sort-button").prop("disabled", false);
+        $("#sort-button, #data-input").prop("disabled", false);
+        $(".disableSlider").prop("hidden", false);
       }
 
       async function partition(left, right) {

@@ -147,7 +147,7 @@
               <form>
                 <div class="form-group row">
                   <div class="col-sm-3">Elements:</div>
-                  <div class="col-sm-9">
+                  <div class="col-sm-9 disableSlider">
                     <span>5&emsp;</span>
                     <input
                       id="slider"
@@ -552,7 +552,8 @@
       }
 
       async function bogoSort() {
-        $("#sort-button").prop("disabled", true);
+        $("#sort-button, #data-input").prop("disabled", true);
+        $(".disableSlider").prop("hidden", true);
         while (!isSorted(data)) {
           var index = [];
           var dataOld = Array.from(data);
@@ -570,7 +571,8 @@
         for (let i = 0; i < data.length; i++) {
           d3.select("#rect" + i).attr("fill", "#171717");
         }
-        $("#sort-button").prop("disabled", false);
+        $("#sort-button, #data-input").prop("disabled", false);
+        $(".disableSlider").prop("hidden", false);
         highlightCode("0");
       }
       newSet(15);

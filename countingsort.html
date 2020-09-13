@@ -196,7 +196,7 @@
               <form>
                 <div class="form-group row">
                   <div class="col-sm-3">Elements:</div>
-                  <div class="col-sm-9">
+                  <div class="col-sm-9 disableSlider">
                     <span>5&emsp;</span>
                     <input
                       id="slider"
@@ -379,6 +379,7 @@
           .attr("width", "100%")
           .attr("height", "370")
           .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 370");
+
         var slider = new Slider("#slider", {
           handle: "square",
         });
@@ -698,7 +699,8 @@
       }
 
       async function countingSort() {
-        $("#sort-button").prop("disabled", true);
+        $("#sort-button, #data-input").prop("disabled", true);
+        $(".disableSlider").prop("hidden", true);
         let keys = Array.from({ length: 9 }, () => 0);
         let results = [];
         let sameClass = [];
@@ -762,7 +764,8 @@
         }
 
         console.log(results);
-        $("#sort-button").prop("disabled", false);
+        $("#sort-button, #data-input").prop("disabled", false);
+        $(".disableSlider").prop("hidden", false);
         highlightCode("0");
       }
       newSet(15);

@@ -205,7 +205,7 @@
               <form>
                 <div class="form-group row">
                   <div class="col-sm-3">Elements:</div>
-                  <div class="col-sm-9">
+                  <div class="col-sm-9 disableSlider">
                     <span>5&emsp;</span>
                     <input
                       id="slider"
@@ -682,7 +682,8 @@
       }
 
       async function radixSort() {
-        $("#sort-button").prop("disabled", true);
+        $("#sort-button, #data-input").prop("disabled", true);
+        $(".disableSlider").prop("hidden", true);
         var sameClass = [];
         let maxLen = longest();
 
@@ -735,7 +736,8 @@
             await reSlide(x);
           }
         }
-        $("#sort-button").prop("disabled", false);
+        $("#sort-button, #slider, #data-input").prop("disabled", false);
+        $(".disableSlider").prop("hidden", false);
         highlightCode("0");
         await highlightNumber(maxLen);
       }

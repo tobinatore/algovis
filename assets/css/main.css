@@ -44,6 +44,7 @@ hr.hr-text::before {
   height: 584px;
   position: relative;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 .block {

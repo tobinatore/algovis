@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: GrowingTree</title>
+    <title>JSDoc: Module: StackAnimation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: GrowingTree</h1>
+    <h1 class="page-title">Module: StackAnimation</h1>
 
     
 
@@ -28,9 +28,6 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>GrowingTree<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">Class for generating a maze using the growing tree algorithm.</div>
         
     
 </header>
@@ -40,89 +37,7 @@
     
         
 
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="GrowingTree"><span class="type-signature"></span>new GrowingTree<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line3">line 3</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
 
@@ -149,7 +64,7 @@
     
 
     
-    <h4 class="name" id="fillGrid"><span class="type-signature"></span>fillGrid<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~deleteStackNode"><span class="type-signature">(async, inner) </span>deleteStackNode<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -157,7 +72,7 @@
 
 
 <div class="description">
-    Fills the grid with walls as preparation for the algorithm.
+    Function to delete an SVG element representing a node from the canvas.
 </div>
 
 
@@ -201,7 +116,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line94">line 94</a>
+        <a href="Data_structures_anim_anim_stack.js.html">Data_structures/anim/anim_stack.js</a>, <a href="Data_structures_anim_anim_stack.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -237,7 +152,7 @@
     
 
     
-    <h4 class="name" id="shuffle"><span class="type-signature"></span>shuffle<span class="signature">(array)</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span></h4>
+    <h4 class="name" id="~newStackElement"><span class="type-signature">(async, inner) </span>newStackElement<span class="signature">(coords, data)</span><span class="type-signature"></span></h4>
     
 
     
@@ -245,7 +160,7 @@
 
 
 <div class="description">
-    Fisher-Yates shuffle for shuffling the list of neighbouring cells.
+    Function for creating a new element on the stack.
 </div>
 
 
@@ -281,13 +196,13 @@
 
         <tr>
             
-                <td class="name"><code>array</code></td>
+                <td class="name"><code>coords</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -297,7 +212,30 @@
 
             
 
-            <td class="description last">The list of neighbouring cells</td>
+            <td class="description last">The coordinates where the new element will be created</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data the element contains</td>
         </tr>
 
     
@@ -338,7 +276,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line111">line 111</a>
+        <a href="Data_structures_anim_anim_stack.js.html">Data_structures/anim/anim_stack.js</a>, <a href="Data_structures_anim_anim_stack.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -363,28 +301,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - The shuffled list
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;Object></span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -396,7 +312,7 @@
     
 
     
-    <h4 class="name" id="startMaze"><span class="type-signature">(async) </span>startMaze<span class="signature">(cell)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~peekStack"><span class="type-signature">(async, inner) </span>peekStack<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -404,7 +320,95 @@
 
 
 <div class="description">
-    Generates the maze using the growing tree algorithm.
+    Function which highlights the node returned by the peek function.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Data_structures_anim_anim_stack.js.html">Data_structures/anim/anim_stack.js</a>, <a href="Data_structures_anim_anim_stack.js.html#line117">line 117</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~slideIntoPositionStack"><span class="type-signature">(async, inner) </span>slideIntoPositionStack<span class="signature">(pos)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Entry animation for new elements of the stack.
 </div>
 
 
@@ -440,13 +444,13 @@
 
         <tr>
             
-                <td class="name"><code>cell</code></td>
+                <td class="name"><code>pos</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">number</span>
 
 
             
@@ -456,7 +460,7 @@
 
             
 
-            <td class="description last">The starting cell, usually randomly chosen.</td>
+            <td class="description last">The index number of the element</td>
         </tr>
 
     
@@ -497,7 +501,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line9">line 9</a>
+        <a href="Data_structures_anim_anim_stack.js.html">Data_structures/anim/anim_stack.js</a>, <a href="Data_structures_anim_anim_stack.js.html#line90">line 90</a>
     </li></ul></dd>
     
 

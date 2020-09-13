@@ -1,3 +1,5 @@
+/** @module LinkedListAnimation */
+
 /**
  * Function that pushes all nodes and arrows with indexes bigger than the
  * specified index one position to the right.

@@ -694,6 +694,7 @@
       }
 
       async function runOp() {
+        $("#generate, #dropdownOp, #startOp").prop("disabled", true);
         switch (operation) {
           //--- INSERT ---
           case "insert":
@@ -817,6 +818,7 @@
           default:
             break;
         }
+        $("#generate, #dropdownOp, #startOp").prop("disabled", false);
       }
     </script>
 

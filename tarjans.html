@@ -1002,6 +1002,8 @@
       }
 
       async function tarjans() {
+        $("#start-button").prop("disabled", true);
+        $(".button-top").prop("disabled", true);
         running = true;
         $("#nodes").html("");
         d3.selectAll("path, circle")
@@ -1065,6 +1067,8 @@
         $("#nodes").html(
           "Number of strongly connected components: " + sccStack.length
         );
+        $("#start-button").prop("disabled", false);
+        $(".button-top").prop("disabled", false);
       }
 
       function clearCanvas() {
@@ -1106,6 +1110,8 @@
       }
 
       async function randomGraph() {
+        $("#start-button").prop("disabled", true);
+        $(".button-top").prop("disabled", true);
         running = false;
         var numberVerts = Math.round(Math.random() * 4 + 4);
         var maxEdges = (numberVerts * (numberVerts - 1)) / 2;
@@ -1161,6 +1167,8 @@
           }
           if (breaker < 100) await newEdge(v1, v2);
         }
+        $("#start-button").prop("disabled", false);
+        $(".button-top").prop("disabled", false);
       }
     </script>
 

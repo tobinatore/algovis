@@ -871,6 +871,8 @@
       }
 
       async function randomGraph() {
+        $("#start-button").prop("disabled", true);
+        $(".button-top").prop("disabled", true);
         if (!drawGraph) {
           drawGraph = true;
           var numberVerts = Math.round(Math.random() * 4 + 4);
@@ -969,6 +971,8 @@
           }
           drawGraph = false;
         }
+        $("#start-button").prop("disabled", false);
+        $(".button-top").prop("disabled", false);
       }
     </script>
 

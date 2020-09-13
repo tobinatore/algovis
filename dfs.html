@@ -722,6 +722,8 @@
       }
 
       async function randomGraph() {
+        $("#start-button").prop("disabled", true);
+        $(".button-top").prop("disabled", true);
         var numberVerts = Math.round(Math.random() * 4 + 4);
         var maxEdges = (numberVerts * (numberVerts - 1)) / 2;
         var numberEdges = Math.round(
@@ -776,6 +778,8 @@
           }
           if (breaker < 100) await newEdge(v1, v2);
         }
+        $("#start-button").prop("disabled", false);
+        $(".button-top").prop("disabled", false);
       }
     </script>
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>Linked list - AlgoVis.io</title>
+    <title>Doubly linked list - AlgoVis.io</title>
     <meta
       content="AlgoVis is an online algorithm visualization tool."
       name="description"
@@ -100,9 +100,9 @@
           <ol>
             <li><a href="index.html">Home</a></li>
             <li><a href="datastructures.html">Data structures</a></li>
-            <li>Linked list</li>
+            <li>Doubly linked list</li>
           </ol>
-          <h2>Linked list visualization</h2>
+          <h2>Doubly linked list visualization</h2>
         </div>
       </section>
       <!-- End Breadcrumbs -->
@@ -160,7 +160,7 @@
               <form class="form-inline">
                 <div class="col-5">
                   <label class="mr-2" for="data-pos-input" id="pos-label"
-                    >Position (0..N)</label
+                    >Position (0..N-1)</label
                   >
                 </div>
                 <div class="col-7">
@@ -224,59 +224,81 @@
                   &emsp;&emsp;<span class="op">case</span>&emsp;list.length - 1:
                 </div>
                 <div class="row ml-auto mr-auto mt-1 5">
-                  &emsp;&emsp;&emsp;&emsp; current = head
+                  &emsp;&emsp;&emsp;&emsp; current = tail.prev
                 </div>
                 <div class="row ml-auto mr-auto mt-1 6">
-                  &emsp;&emsp;&emsp;&emsp; index = 0
+                  &emsp;&emsp;&emsp;&emsp; current.next = none
                 </div>
                 <div class="row ml-auto mr-auto mt-1 7">
-                  &emsp;&emsp;&emsp;&emsp;&emsp;
-                  <span class="op">while</span>(current.
-                  <span class="var">next</span>
-                  != tail)
-                </div>
-                <div class="row ml-auto mr-auto mt-1 8">
-                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
-                  <span class="var">next</span>
-                </div>
-                <div class="row ml-auto mr-auto mt-1 9">
-                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index += 1
-                </div>
-                <div class="row ml-auto mr-auto mt-1 10">
-                  &emsp;&emsp;&emsp;&emsp; current.<span class="var">next</span>
-                  = none
-                </div>
-                <div class="row ml-auto mr-auto mt-1 11">
                   &emsp;&emsp;&emsp;&emsp; tail = current
                 </div>
-                <div class="row ml-auto mr-auto mt-1 12">
+                <div class="row ml-auto mr-auto mt-1 8">
                   &emsp;&emsp; <span class="op">default</span>:
                 </div>
-                <div class="row ml-auto mr-auto mt-1 13">
+                <div class="row ml-auto mr-auto mt-1 9">
                   &emsp;&emsp;&emsp;&emsp; current = head
                 </div>
-                <div class="row ml-auto mr-auto mt-1 14">
+                <div class="row ml-auto mr-auto mt-1 10">
                   &emsp;&emsp;&emsp;&emsp; index = 0
                 </div>
-                <div class="row ml-auto mr-auto mt-1 15">
+                <div class="row ml-auto mr-auto mt-1 11">
                   &emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">if</span>(list.length / position >= 2)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 12">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                   <span class="op">while</span>(index + 1 != position)
                 </div>
-                <div class="row ml-auto mr-auto mt-1 16">
-                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
+                <div class="row ml-auto mr-auto mt-1 13">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current =
+                  current.
                   <span class="var">next</span>
                 </div>
-                <div class="row ml-auto mr-auto mt-1 17">
-                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index += 1
+                <div class="row ml-auto mr-auto mt-1 14">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index += 1
                 </div>
-                <div class="row ml-auto mr-auto mt-1 18">
-                  &emsp;&emsp;&emsp;&emsp; nextNext = current.<span class="var"
+                <div class="row ml-auto mr-auto mt-1 15">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; nextNext = current.<span
+                    class="var"
                     >next</span
                   >.<span class="var">next</span>
                 </div>
+                <div class="row ml-auto mr-auto mt-1 16">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;current.
+                  <span class="var">next</span> &emsp;= nextNext
+                </div>
+                <div class="row ml-auto mr-auto mt-1 17">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">else</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 18">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = tail
+                </div>
                 <div class="row ml-auto mr-auto mt-1 19">
-                  &emsp;&emsp;&emsp;&emsp;&emsp;current.
-                  <span class="var">next</span> = nextNext
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index = list.length
+                  - 1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 20">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">while</span>(index - 1 != position)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 21">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current =
+                  current.
+                  <span class="var">prev</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 22">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index -= 1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 23">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; prevPrev = current.<span
+                    class="var"
+                    >prev</span
+                  >.<span class="var">prev</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 24">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;current.
+                  <span class="var">prev</span> &emsp;= prevPrev
                 </div>
               </div>
             </div>
@@ -296,25 +318,48 @@
                     - if it's the head, just update the head pointer
                   </span>
                   <span class="comment w-100 mt-1"
-                    >- if it's the tail, traverse the list and set the sucessor
-                    of the node before the tail to none</span
+                    >- if it's the tail, update the tail pointer</span
                   >
                   <span class="comment w-100 mt-1"
-                    >2. If it gets removed from index N, traverse the list up to
-                    node N-1 and get the node after the node it points to
+                    >2. If it gets removed from index N, determine if it's
+                    faster to get to the node from the tail or the head
                   </span>
                   <span class="comment w-100 mt-1"
-                    >3. Point the 'next' pointer of the node at N-1 to the node
-                    obtained in step 2</span
+                    >3. Traverse the list up to the node before or after the one
+                    which will be removed (depends on the direction)</span
                   >
-                  <span class="comment w-100 mt-1">&emsp;</span>
-                  <span class="comment w-100 mt-1">&emsp;</span>
-                  <span class="comment w-100 mt-1">Time complexity:</span>
-                  <span class="comment w-100 mt-1">Remove head: O(1)</span>
-                  <span class="comment w-100 mt-1">Remove tail: O(n)</span>
                   <span class="comment w-100 mt-1"
-                    >Remove from index: O(n)</span
+                    >4. Remove the node which was supposed to be removed</span
                   >
+                  <span class="comment w-100 mt-1"
+                    >5. Update the 'next' and 'prev' pointers of the nodes
+                    coming before and after the one which was just removed
+                    respectively</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1"
+                    >---------------------------</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >| Time
+                    complexity:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >| Remove head:
+                    O(1)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >| Remove tail:
+                    O(1)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >| Remove from index: O(n) |</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >---------------------------</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp;</span>
                   <span class="comment w-100 mt-1">&emsp;</span>
                   <span class="comment w-100 mt-1">&emsp;</span>
                 </div>
@@ -335,47 +380,100 @@
                   head
                 </div>
                 <div class="row ml-auto mr-auto mt-1 4">
-                  &emsp;&emsp;&emsp;&emsp; head = node
+                  &emsp;&emsp;&emsp;&emsp; head.<span class="var">prev</span> =
+                  node
                 </div>
                 <div class="row ml-auto mr-auto mt-1 5">
-                  &emsp;&emsp;<span class="op">case</span>&emsp;list.length:
+                  &emsp;&emsp;&emsp;&emsp; head = node
                 </div>
                 <div class="row ml-auto mr-auto mt-1 6">
+                  &emsp;&emsp;<span class="op">case</span>&emsp;list.length:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
                   &emsp;&emsp;&emsp;&emsp; tail.<span class="var">next</span> =
                   node
                 </div>
-                <div class="row ml-auto mr-auto mt-1 7">
-                  &emsp;&emsp;&emsp;&emsp; tail = node
-                </div>
                 <div class="row ml-auto mr-auto mt-1 8">
-                  &emsp;&emsp;<span class="op">default</span>:
+                  &emsp;&emsp;&emsp;&emsp; node.<span class="var">prev</span> =
+                  tail
                 </div>
                 <div class="row ml-auto mr-auto mt-1 9">
-                  &emsp;&emsp;&emsp;&emsp; current = head
+                  &emsp;&emsp;&emsp;&emsp; tail = node
                 </div>
                 <div class="row ml-auto mr-auto mt-1 10">
-                  &emsp;&emsp;&emsp;&emsp; <span class="op">for</span>(i = 0 to
-                  position - 1)
+                  &emsp;&emsp;<span class="op">default</span>:
                 </div>
                 <div class="row ml-auto mr-auto mt-1 11">
-                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
-                  <span class="var">next</span>
+                  &emsp;&emsp;&emsp;&emsp; current = head
                 </div>
                 <div class="row ml-auto mr-auto mt-1 12">
+                  &emsp;&emsp;&emsp;&emsp; index = 0
+                </div>
+                <div class="row ml-auto mr-auto mt-1 13">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">if</span>(list.length / position >= 2)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 14">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">while</span>(index != position - 1)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 15">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current =
+                  current.
+                  <span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 16">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index += 1
+                </div>
+
+                <div class="row ml-auto mr-auto mt-1 17">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">else</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 18">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = tail
+                </div>
+                <div class="row ml-auto mr-auto mt-1 19">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index = list.length
+                  - 1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 20">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">while</span>(index != position)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 21">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current =
+                  current.
+                  <span class="var">prev</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 22">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index -= 1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 23">
                   &emsp;&emsp;&emsp;&emsp; node.<span class="var">next</span> =
                   current.<span class="var">next</span>
                 </div>
-                <div class="row ml-auto mr-auto mt-1 13">
-                  &emsp;&emsp;&emsp;&emsp; current.<span class="var">next</span>
-                  = node
+                <div class="row ml-auto mr-auto mt-1 24">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;node.
+                  <span class="var">prev</span> &emsp;= current
+                </div>
+                <div class="row ml-auto mr-auto mt-1 25">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;current.
+                  <span class="var">next</span> &emsp;= node
                 </div>
               </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
               <div class="ide w-100 pl-0">
                 <div class="row ml-auto mr-auto">
-                  <span class="comment w-100">SHORT EXPLANATION</span>
-                  <span class="comment w-100 mt-1">-----------------</span>
+                  <span class="comment w-100">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">---------------------</span>
+                  <span class="comment w-100 mt-1">| SHORT EXPLANATION |</span>
+                  <span class="comment w-100 mt-1">---------------------</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
                   <span class="comment w-100 mt-1"
                     >1. Determine where the new node will be inserted</span
                   >
@@ -388,25 +486,43 @@
                     current tail</span
                   >
                   <span class="comment w-100 mt-1"
-                    >2. If it gets inserted at index N, traverse the list up to
-                    node N-1 and get the node it points to
+                    >2. If it gets inserted at index N, determine if it's faster
+                    to get to that position from the tail or the head
                   </span>
                   <span class="comment w-100 mt-1"
-                    >3. Point the 'next' pointer of the new node to the node
-                    obtained in step 2</span
+                    >3. Traverse the list up to one node before or after the
+                    position where the new node will be inserted (depends on the
+                    direction)</span
                   >
+                  <span class="comment w-100 mt-1">4. Add the new node</span>
                   <span class="comment w-100 mt-1"
-                    >4. Point the 'next' pointer of the node at index N-1 to the
-                    new node</span
+                    >5. Update the 'next' and 'prev' pointers of the nodes
+                    coming before and after the one which was just added
+                    respectively</span
                   >
                   <span class="comment w-100 mt-1">&emsp;</span>
-                  <span class="comment w-100 mt-1">Time complexity:</span>
-                  <span class="comment w-100 mt-1">Insert as head: O(1)</span>
                   <span class="comment w-100 mt-1"
-                    >Insert as tail: O(1) if you keep pointer to the tail, O(n)
-                    else</span
+                    >-------------------------</span
                   >
-                  <span class="comment w-100 mt-1">Insert at index: O(n)</span>
+                  <span class="comment w-100 mt-1"
+                    >| Time
+                    complexity:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >| Insert as head: O(1)&emsp;&emsp;|</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >| Insert as tail: O(1)&emsp;&emsp;|</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >| Insert at index: O(n) |</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >-------------------------</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
                 </div>
               </div>
             </div>
@@ -552,8 +668,8 @@
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
     <script src="https://d3js.org/d3.v5.js"></script>
-    <script src="assets/js/Data_structures/linked_list.js"></script>
-    <script src="assets/js/Data_structures/anim/anim_ll.js"></script>
+    <script src="assets/js/Data_structures/doubly_linked_list.js"></script>
+    <script src="assets/js/Data_structures/anim/anim_dll.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
@@ -566,7 +682,7 @@
       var data_set = new Set();
       var radius = 25;
       var strokeWidth = "5px";
-      var list = new LinkedList();
+      var list = new DoublyLinkedList();
 
       function setDelay(delay) {
         DELAY = delay;
@@ -617,7 +733,7 @@
 
       async function generateLinkedList() {
         $("#generate, #dropdownOp, #startOp").prop("disabled", true);
-        list = new LinkedList();
+        list = new DoublyLinkedList();
         data_set = new Set();
         data_nodes = [];
         var ids = [

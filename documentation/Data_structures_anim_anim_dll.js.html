@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Data_structures/anim/anim_ll.js</title>
+    <title>JSDoc: Source: Data_structures/anim/anim_dll.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Data_structures/anim/anim_ll.js</h1>
+    <h1 class="page-title">Source: Data_structures/anim/anim_dll.js</h1>
 
     
 
@@ -26,10 +26,10 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module LinkedListAnimation */
+            <pre class="prettyprint source linenums"><code>/** @module DoublyLinkedListAnimation */
 
 /**
- * Function that pushes all nodes and arrows with indexes bigger than the
+ * Function that pushes all nodes and arrows with indices bigger than the
  * specified index one position to the right.
  * @param {number} pos - The index where the new node will be inserted
  */
@@ -41,6 +41,7 @@ async function pushNodes(pos) {
 
     if (i &lt; list.length - 1) {
       selection += ", #path" + i;
+      selection += ", #path" + i + "-2";
     }
   }
 
@@ -61,8 +62,14 @@ async function pushNodes(pos) {
       }
     })
     .attr("id", function () {
-      let currNum = Number(this.id.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/i)[0]);
-      let test = this.id.substring(0, this.id.length - 1) + (currNum + 1);
+      let regex = this.id.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/gi);
+      let currNum = Number(regex[0]);
+      let test = "";
+      if (!regex[1]) {
+        test = this.id.substring(0, this.id.length - 1) + (currNum + 1);
+      } else {
+        test = this.id.substring(0, this.id.length - 3) + (currNum + 1) + "-2";
+      }
       return test;
     })
     .attr("class", "moved");
@@ -110,6 +117,15 @@ async function pushNodes(pos) {
     .attr("d", line([xy0, xy1]))
     .attr("id", "path" + pos);
 
+  d3.select("#path" + (list.length - 1) + "-2")
+    .filter(function () {
+      return !this.classList.contains("moved");
+    })
+    .transition()
+    .duration(500)
+    .attr("d", line([xy1, xy0]))
+    .attr("id", "path" + pos + "-2");
+
   // if the new node is not the head...
   if (pos != 0) {
     // ...animate the arrow connecting the
@@ -117,6 +133,7 @@ async function pushNodes(pos) {
     let start = [(pos - 1) * 150 + 50, 50];
     let end = [pos * 150 + 50, 50];
     await slideArrow("#path" + (pos - 1), start, end);
+    await slideArrow("#path" + (pos - 1) + "-2", end, start);
   }
 
   await timeout(510);
@@ -137,6 +154,7 @@ async function pullNodes(pos) {
 
     if (i &lt; list.length - 1) {
       selection += ", #path" + i;
+      selection += ", #path" + i + "-2";
     }
   }
 
@@ -155,8 +173,14 @@ async function pullNodes(pos) {
       }
     })
     .attr("id", function () {
-      let currNum = Number(this.id.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/i)[0]);
-      let test = this.id.substring(0, this.id.length - 1) + (currNum - 1);
+      let regex = this.id.match(/^\d+|\d+\b|-\d+|\d+(?=\w)/gi);
+      let currNum = Number(regex[0]);
+      let test = "";
+      if (!regex[1]) {
+        test = this.id.substring(0, this.id.length - 1) + (currNum - 1);
+      } else {
+        test = this.id.substring(0, this.id.length - 3) + (currNum - 1) + "-2";
+      }
       return test;
     });
 }
@@ -273,6 +297,19 @@ async function newArrow(startCoords, endCoords, pos) {
       .attr("id", function () {
         return "path" + (data_nodes.length - 2);
       });
+    svg
+      .select("#g-paths")
+      .append("path")
+      .transition()
+      .duration(100)
+      .attr("d", line([xy1, xy0]))
+      .attr("stroke", "#171717")
+      .attr("stroke-width", 4)
+      .attr("marker-end", "url(#triangle)")
+      .attr("fill", "none")
+      .attr("id", function () {
+        return "path" + (data_nodes.length - 2) + "-2";
+      });
     setTimeout(() => {
       resolve();
     }, 100);
@@ -308,13 +345,18 @@ async function deleteNode(pos) {
  * Function to remove an arrow from the SVG canvas.
  * @param {Object} pos - The index of the arrow.
  */
-async function removeArrow(pos) {
+async function removeArrows(pos) {
   d3.select("#path" + pos)
+    .transition()
+    .duration(500)
+    .style("opacity", 0);
+  d3.select("#path" + pos + "-2")
     .transition()
     .duration(500)
     .style("opacity", 0);
   await timeout(510);
   d3.select("#path" + pos).remove();
+  d3.select("#path" + pos + "-2").remove();
 }
 
 /**
@@ -415,6 +457,10 @@ async function highlight(index, color, onlyNode) {
         .transition()
         .duration(1000)
         .attr("stroke", color);
+      d3.select("#path" + index + "-2")
+        .transition()
+        .duration(1000)
+        .attr("stroke", color);
     }
 
     let circle = d3.select("#g" + index).select("circle");
@@ -489,19 +535,19 @@ async function newMidNode(pos, data) {
   // create new node
   await newNode(coords, data, pos);
   await highlight(list.length, "#0DC1D9", true);
-  await highlightCode(12);
   // create new arrow pointing to the node's successor
   await newArrow(
     { x: pos * 150 + 50, y: 150 },
     { x: pos * 150 + 50, y: 50 },
     pos
   );
+
   // new coordinates for the arrow coming from the nodes predecessor
   let arrowStart = [(pos - 1) * 150 + 50, 50];
   let arrowEnd = [pos * 150 + 50, 150];
   // animate the arrow coming from the node's predecessor
-  await highlightCode(13);
   await rerouteArrow("#path" + (pos - 1), arrowStart, arrowEnd);
+  await rerouteArrow("#path" + (pos - 1) + "-2", arrowEnd, arrowStart);
   await timeout(1000);
   // move succeding nodes to the right.
   await pushNodes(pos);
@@ -509,6 +555,7 @@ async function newMidNode(pos, data) {
   arrowEnd = [pos * 150 + 50, 50];
   // animate the arrow sliding up with the node
   await slideArrow("#path" + (pos - 1), arrowStart, arrowEnd);
+  await slideArrow("#path" + (pos - 1) + "-2", arrowEnd, arrowStart);
 }
 </code></pre>
         </article>

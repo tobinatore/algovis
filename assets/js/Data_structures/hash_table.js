@@ -1,0 +1,443 @@
+/** Implementation of the hash table data structure. */
+class HashTable {
+  #hashlist;
+
+  /**
+   * Creates a new HashTable with 'size' buckets.
+   * @param {number} size - The number of buckets the hash table has
+   */
+  constructor(size) {
+    this.#hashlist = [];
+
+    for (let i = 0; i < size; i++) {
+      this.#hashlist.push(undefined);
+    }
+
+    // Setting the method of collision resolution
+    // 'not_set', to make it clear that the user
+    // has to choose one of the methods
+    this.collisionResolution = "not_set";
+    this.loadFactor = 0.75 * size;
+    this.items = 0;
+  }
+
+  /**
+   * Sets the collision resolution method.
+   * @param {string} type - The collision resolution method. Either 'linear_probing' or 'quadratic_probing'
+   */
+  setCollisionResolution(type) {
+    this.collisionResolution = type;
+  }
+
+  /**
+   * This function hashes the data. When using quadratic probing,
+   * the parameter 'step' is needed to calculate the hash.
+   * @param {number} data - The data which is to be stored in the hash table
+   * @param {boolean} quadratic - Whether the collision resolution is quadratic probing or not
+   * @param {number} step - Number of times quadratic probing has failed to insert data
+   */
+  hash(data, quadratic, step) {
+    if (!quadratic) {
+      return data % this.#hashlist.length;
+    } else {
+      return (data + step * step) % this.#hashlist.length;
+    }
+  }
+
+  /**
+   * Function for adding data to the hashlist.
+   * @param {number} data - The data to add.
+   */
+  async add(data) {
+    await removeColors();
+    await highlightCode(1);
+    await timeout(300);
+    await highlightCode(2);
+    await timeout(300);
+
+    // check collision resolution
+    if (this.collisionResolution == "linear_probing") {
+      await highlightCode(3);
+      await timeout(300);
+
+      // generate the key by hashing the data
+      let key = this.hash(data, false, 0);
+
+      await highlightCode(4);
+      let start = key;
+
+      $("#results-text").html("Checking index " + key);
+
+      await highlightBucket(key);
+      await timeout(750);
+
+      await highlightCode(5);
+      await timeout(300);
+
+      // if the bucket is already occupied, walk through the list to find the first free bucket
+      while (this.#hashlist[key] != undefined) {
+        await highlightCode(6);
+        key = (key + 1) % this.#hashlist.length;
+
+        await highlightBucket(key);
+        $("#results-text").html("Checking index " + key);
+        await timeout(750);
+
+        await highlightCode(7);
+        await timeout(300);
+
+        // back at the start without finding a free bucket
+        // -> return error
+        if (key == start) {
+          $("#results-text").html(
+            "Could not insert " + data + " into the hash table."
+          );
+          await highlightCode(8);
+          await timeout(300);
+          return;
+        }
+      }
+
+      await highlightCode(9);
+      await timeout(300);
+      // add the data
+      this.#hashlist[key] = data;
+      this.items++;
+
+      await highlightBucket(key);
+      await updateText(key, data);
+      data_set.add(data);
+      $("#results-text").html("Inserted " + data + " at index " + key + ".");
+    } else if (this.collisionResolution == "quadratic_probing") {
+      await highlightCode(10);
+      await timeout(300);
+      await highlightCode(11);
+      await timeout(300);
+
+      let step = 0;
+      await highlightCode(12);
+
+      // get key by hashing the data
+      let key = this.hash(data, true, step);
+      $("#results-text").html("Checking index " + key);
+
+      await highlightBucket(key);
+      await timeout(750);
+
+      await highlightCode(13);
+      await timeout(300);
+
+      // if the bucket is already occupied, try to find free bucket
+      while (this.#hashlist[key] != undefined) {
+        await highlightCode(14);
+        await timeout(300);
+
+        step++;
+        await highlightCode(15);
+
+        key = this.hash(data, true, step);
+
+        await highlightBucket(key);
+        $("#results-text").html("Checking index " + key);
+        await timeout(750);
+
+        await highlightCode(16);
+        await timeout(300);
+        // tried every possible bucket but none were free
+        // -> return
+        if (step == this.#hashlist.length) {
+          $("#results-text").html(
+            "Could not insert " +
+              data +
+              " into the hash table. (Failed to insert after " +
+              this.#hashlist.length +
+              " steps.)"
+          );
+          await highlightCode(17);
+          await timeout(300);
+          return;
+        }
+      }
+
+      await highlightCode(18);
+      await timeout(300);
+
+      // add the data
+      this.#hashlist[key] = data;
+      this.items++;
+      data_set.add(data);
+
+      await highlightBucket(key);
+      await updateText(key, data);
+      $("#results-text").html("Inserted " + data + " at index " + key + ".");
+    }
+  }
+
+  /**
+   * Searches a given number in the hash table.
+   * @param {number} data - The number to find.
+   * @param {boolean} highlight - Whether the pseudocode should be highlighted when
+   *                                  running this method. False when run from HashTable.remove()
+   * @returns {number} - The index of the found data or -1 if it couldn't be found.
+   */
+  async search(data, highlight) {
+    // reset highlighted buckets
+    await removeColors();
+    if (highlight) {
+      await highlightCode(1);
+      await timeout(300);
+      await highlightCode(2);
+      await timeout(300);
+    }
+
+    // check which method of collision resolution was used to insert the values
+    if (this.collisionResolution == "linear_probing") {
+      if (highlight) {
+        await highlightCode(3);
+        await timeout(300);
+      }
+
+      let key = this.hash(data, false, 0);
+
+      if (highlight) {
+        await highlightCode(4);
+      }
+
+      let start = key;
+
+      $("#results-text").html("Checking index " + key);
+      await highlightBucket(key);
+      await timeout(750);
+
+      if (highlight) {
+        await highlightCode(5);
+        await timeout(300);
+      }
+
+      // Index where the data would be stored is empty
+      // -> data is not in hashtable
+      if (this.#hashlist[key] == undefined) {
+        $("#results-text").html(
+          "Could not find " +
+            data +
+            " in the hash table. (Index " +
+            key +
+            " is empty)."
+        );
+
+        if (highlight) {
+          await highlightCode(6);
+          await timeout(300);
+        }
+
+        return -1;
+      }
+
+      if (highlight) {
+        await highlightCode(7);
+        await timeout(300);
+      }
+      // walk through list to try and find the data
+      while (this.#hashlist[key] != data) {
+        if (highlight) {
+          await highlightCode(8);
+        }
+
+        key = (key + 1) % this.#hashlist.length;
+
+        await highlightBucket(key);
+        $("#results-text").html("Checking index " + key);
+        await timeout(750);
+        if (highlight) {
+          await highlightCode(9);
+          await timeout(300);
+        }
+        // checked whole list -> data is not in the hashtable
+        if (key == start) {
+          $("#results-text").html(
+            "Could not find " + data + " in the hash table."
+          );
+
+          if (highlight) {
+            await highlightCode(10);
+            await timeout(300);
+          }
+
+          return -1;
+        } // index where data would be stored is empty -> data is not in HT
+        else if (this.#hashlist[key] == undefined) {
+          $("#results-text").html(
+            "Could not find " +
+              data +
+              " in the hash table. (Next possible index (" +
+              key +
+              ") is empty)."
+          );
+
+          if (highlight) {
+            await highlightCode(10);
+            await timeout(300);
+          }
+
+          return -1;
+        }
+      }
+
+      $("#results-text").html(
+        "Found element " + data + " at index " + key + "."
+      );
+
+      if (highlight) {
+        await highlightCode(11);
+        await timeout(300);
+      }
+      // return index of the data
+      return key;
+    } else if (this.collisionResolution == "quadratic_probing") {
+      if (highlight) {
+        await highlightCode(12);
+        await timeout(300);
+        await highlightCode(13);
+        await timeout(300);
+        await highlightCode(14);
+      }
+
+      let step = 0;
+      let key = this.hash(data, true, step);
+      $("#results-text").html("Checking index " + key);
+
+      await highlightBucket(key);
+      await timeout(750);
+
+      if (highlight) {
+        await highlightCode(15);
+        await timeout(300);
+      }
+
+      // Index where the data would be stored is empty
+      // -> data is not in hashtable
+      if (this.#hashlist[key] == undefined) {
+        $("#results-text").html(
+          "Could not find " +
+            data +
+            " in the hash table. (Index " +
+            key +
+            " is empty)."
+        );
+        if (highlight) {
+          await highlightCode(16);
+          await timeout(300);
+        }
+
+        return -1;
+      }
+
+      if (highlight) {
+        await highlightCode(17);
+        await timeout(300);
+      }
+
+      // if the bucket is already occupied, try to find the data
+      while (this.#hashlist[key] != data) {
+        if (highlight) {
+          await highlightCode(18);
+          await timeout(300);
+        }
+
+        step++;
+
+        if (highlight) {
+          await highlightCode(19);
+        }
+
+        key = this.hash(data, true, step);
+
+        await highlightBucket(key);
+        $("#results-text").html("Checking index " + key);
+        await timeout(750);
+        if (highlight) {
+          await highlightCode(20);
+          await timeout(300);
+        }
+
+        // checked all possible buckets -> data is not in hashtable
+        if (step == this.#hashlist.length) {
+          $("#results-text").html(
+            "Could not find " +
+              data +
+              " in the hash table. (Checked all possible indices.)"
+          );
+
+          if (highlight) {
+            await highlightCode(21);
+            await timeout(300);
+          }
+
+          return -1;
+        } // possible location of data is empty -> data is not in hashtable
+        else if (this.#hashlist[key] == undefined) {
+          $("#results-text").html(
+            "Could not find " +
+              data +
+              " in the hash table. (Next possible index (" +
+              key +
+              ") is empty)."
+          );
+
+          if (highlight) {
+            await highlightCode(21);
+            await timeout(300);
+          }
+
+          return -1;
+        }
+      }
+
+      if (highlight) {
+        await highlightCode(22);
+      }
+
+      await highlightBucket(key);
+      $("#results-text").html(
+        "Found element " + data + " at index " + key + "."
+      );
+
+      // return index of data
+      return key;
+    }
+  }
+
+  /**
+   * Function to remove data from the hash table.
+   * @param {number} data - The data which should be removed.
+   */
+  async remove(data) {
+    await removeColors();
+    await highlightCode(1);
+
+    // search data in the list
+    let index = await this.search(data, false);
+
+    await highlightCode(2);
+    await timeout(300);
+
+    // if the data has been found...
+    if (index != -1) {
+      await highlightCode(3);
+      await timeout(300);
+
+      // ...delete it
+      this.#hashlist[index] = undefined;
+      data_set.delete(data);
+      await updateText(index, "");
+      $("#results-text").html(
+        "Removed element " + data + " from index " + index + "."
+      );
+    } else {
+      // data is not stored in hashtable
+      $("#results-text").html(
+        "Could not remove element " + data + ". (Element not found.)"
+      );
+    }
+  }
+}

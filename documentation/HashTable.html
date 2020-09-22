@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: WeightedDirectedGraph</title>
+    <title>JSDoc: Class: HashTable</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: WeightedDirectedGraph</h1>
+    <h1 class="page-title">Class: HashTable</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>WeightedDirectedGraph<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>HashTable<span class="signature">(size)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Class implementing a weighted directed graph</div>
+            <div class="class-description">Implementation of the hash table data structure.</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="WeightedDirectedGraph"><span class="type-signature"></span>new WeightedDirectedGraph<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="HashTable"><span class="type-signature"></span>new HashTable<span class="signature">(size)</span><span class="type-signature"></span></h4>
     
 
     
@@ -53,7 +53,7 @@
 
 
 <div class="description">
-    Initializes adjacency list
+    Creates a new HashTable with 'size' buckets.
 </div>
 
 
@@ -62,6 +62,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The number of buckets the hash table has</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -97,7 +146,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphs_weighted_directed.js.html">graphs/weighted_directed.js</a>, <a href="graphs_weighted_directed.js.html#line4">line 4</a>
+        <a href="Data_structures_hash_table.js.html">Data_structures/hash_table.js</a>, <a href="Data_structures_hash_table.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -153,7 +202,7 @@
     
 
     
-    <h4 class="name" id="addEdge"><span class="type-signature"></span>addEdge<span class="signature">(v, w)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="add"><span class="type-signature">(async) </span>add<span class="signature">(data)</span><span class="type-signature"></span></h4>
     
 
     
@@ -161,7 +210,7 @@
 
 
 <div class="description">
-    Adds a directed weighted edge between two given vertices
+    Function for adding data to the hashlist.
 </div>
 
 
@@ -197,13 +246,13 @@
 
         <tr>
             
-                <td class="name"><code>v</code></td>
+                <td class="name"><code>data</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">number</span>
 
 
             
@@ -213,30 +262,7 @@
 
             
 
-            <td class="description last">First vertex</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>w</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Second vertex</td>
+            <td class="description last">The data to add.</td>
         </tr>
 
     
@@ -277,7 +303,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphs_weighted_directed.js.html">graphs/weighted_directed.js</a>, <a href="graphs_weighted_directed.js.html#line21">line 21</a>
+        <a href="Data_structures_hash_table.js.html">Data_structures/hash_table.js</a>, <a href="Data_structures_hash_table.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -313,7 +339,7 @@
     
 
     
-    <h4 class="name" id="addVertex"><span class="type-signature"></span>addVertex<span class="signature">(v)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="hash"><span class="type-signature"></span>hash<span class="signature">(data, quadratic, step)</span><span class="type-signature"></span></h4>
     
 
     
@@ -321,7 +347,7 @@
 
 
 <div class="description">
-    Adds a given vertex v to the adjacency list of the graph.
+    This function hashes the data. When using quadratic probing,the parameter 'step' is needed to calculate the hash.
 </div>
 
 
@@ -357,7 +383,7 @@
 
         <tr>
             
-                <td class="name"><code>v</code></td>
+                <td class="name"><code>data</code></td>
             
 
             <td class="type">
@@ -373,318 +399,22 @@
 
             
 
-            <td class="description last">The vertex which should be added</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphs_weighted_directed.js.html">graphs/weighted_directed.js</a>, <a href="graphs_weighted_directed.js.html#line12">line 12</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="edgeExists"><span class="type-signature"></span>edgeExists<span class="signature">(v, w)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Checks if an edge exists between the two vertices.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>v</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The first vertex</td>
+            <td class="description last">The data which is to be stored in the hash table</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>w</code></td>
+                <td class="name"><code>quadratic</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The second vertex</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphs_weighted_directed.js.html">graphs/weighted_directed.js</a>, <a href="graphs_weighted_directed.js.html#line38">line 38</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - True if the edge exists, else false.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
 <span class="param-type">boolean</span>
 
 
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getEdgeLength"><span class="type-signature"></span>getEdgeLength<span class="signature">(v1, v2)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns the length of an edge defined by two vertices.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>v1</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
             
             </td>
 
@@ -692,14 +422,14 @@
 
             
 
-            <td class="description last">The first vertex</td>
+            <td class="description last">Whether the collision resolution is quadratic probing or not</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>v2</code></td>
+                <td class="name"><code>step</code></td>
             
 
             <td class="type">
@@ -715,7 +445,7 @@
 
             
 
-            <td class="description last">The second vertex</td>
+            <td class="description last">Number of times quadratic probing has failed to insert data</td>
         </tr>
 
     
@@ -756,7 +486,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphs_weighted_directed.js.html">graphs/weighted_directed.js</a>, <a href="graphs_weighted_directed.js.html#line79">line 79</a>
+        <a href="Data_structures_hash_table.js.html">Data_structures/hash_table.js</a>, <a href="Data_structures_hash_table.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -781,28 +511,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - The length of the edge or -1 if the edge doesn't exist
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -814,7 +522,7 @@
     
 
     
-    <h4 class="name" id="getNoOfEdges"><span class="type-signature"></span>getNoOfEdges<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="remove"><span class="type-signature">(async) </span>remove<span class="signature">(data)</span><span class="type-signature"></span></h4>
     
 
     
@@ -822,7 +530,7 @@
 
 
 <div class="description">
-    Returns the number of edges in the graph.
+    Function to remove data from the hash table.
 </div>
 
 
@@ -831,6 +539,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data which should be removed.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -866,7 +623,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphs_weighted_directed.js.html">graphs/weighted_directed.js</a>, <a href="graphs_weighted_directed.js.html#line64">line 64</a>
+        <a href="Data_structures_hash_table.js.html">Data_structures/hash_table.js</a>, <a href="Data_structures_hash_table.js.html#line414">line 414</a>
     </li></ul></dd>
     
 
@@ -891,28 +648,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - The number of edges
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -924,7 +659,7 @@
     
 
     
-    <h4 class="name" id="getNoOfVertices"><span class="type-signature"></span>getNoOfVertices<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="search"><span class="type-signature">(async) </span>search<span class="signature">(data, highlight)</span><span class="type-signature"> &rarr; {number}</span></h4>
     
 
     
@@ -932,7 +667,7 @@
 
 
 <div class="description">
-    Returns the number of vertices in the graph.
+    Searches a given number in the hash table.
 </div>
 
 
@@ -941,6 +676,78 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The number to find.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>highlight</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Whether the pseudocode should be highlighted when                                 running this method. False when run from HashTable.remove()</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -976,7 +783,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="graphs_weighted_directed.js.html">graphs/weighted_directed.js</a>, <a href="graphs_weighted_directed.js.html#line56">line 56</a>
+        <a href="Data_structures_hash_table.js.html">Data_structures/hash_table.js</a>, <a href="Data_structures_hash_table.js.html#line183">line 183</a>
     </li></ul></dd>
     
 
@@ -1005,7 +812,7 @@
 
         
 <div class="param-desc">
-    - Number of vertices in the graph
+    - The index of the found data or -1 if it couldn't be found.
 </div>
 
 
@@ -1023,6 +830,143 @@
 </dl>
 
     
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setCollisionResolution"><span class="type-signature"></span>setCollisionResolution<span class="signature">(type)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Sets the collision resolution method.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The collision resolution method. Either 'linear_probing' or 'quadratic_probing'</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Data_structures_hash_table.js.html">Data_structures/hash_table.js</a>, <a href="Data_structures_hash_table.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1050,7 +994,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:14 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:13 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

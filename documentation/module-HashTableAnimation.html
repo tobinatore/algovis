@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Stack</title>
+    <title>JSDoc: Module: HashTableAnimation</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Stack</h1>
+    <h1 class="page-title">Module: HashTableAnimation</h1>
 
     
 
@@ -28,9 +28,6 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Stack<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">Class simulating a stack using the inbuilt js arrays.</div>
         
     
 </header>
@@ -40,93 +37,7 @@
     
         
 
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="Stack"><span class="type-signature"></span>new Stack<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Initializung the stack as empty arrayand setting the size to 0.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Data_structures_stack.js.html">Data_structures/stack.js</a>, <a href="Data_structures_stack.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
 
@@ -153,7 +64,7 @@
     
 
     
-    <h4 class="name" id="peek"><span class="type-signature">(async) </span>peek<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="~highlightBucket"><span class="type-signature">(async, inner) </span>highlightBucket<span class="signature">(key)</span><span class="type-signature"></span></h4>
     
 
     
@@ -161,227 +72,7 @@
 
 
 <div class="description">
-    Function for returning the next element on the stackwithout removing it.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Data_structures_stack.js.html">Data_structures/stack.js</a>, <a href="Data_structures_stack.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - The top element
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="pop"><span class="type-signature">(async) </span>pop<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Function for returning the next element on the stackand deleting it from the stack.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Data_structures_stack.js.html">Data_structures/stack.js</a>, <a href="Data_structures_stack.js.html#line44">line 44</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - The top element.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="push"><span class="type-signature">(async) </span>push<span class="signature">(data)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Function for adding data to the stack.
+    Highlights the bucket at index 'key' by setting the stroke color to redand the stroke width to 5px.
 </div>
 
 
@@ -417,7 +108,7 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>key</code></td>
             
 
             <td class="type">
@@ -433,7 +124,7 @@
 
             
 
-            <td class="description last">The data that gets added to the stack.</td>
+            <td class="description last">The index of the bucket to highlight.</td>
         </tr>
 
     
@@ -474,7 +165,392 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Data_structures_stack.js.html">Data_structures/stack.js</a>, <a href="Data_structures_stack.js.html#line20">line 20</a>
+        <a href="Data_structures_anim_anim_ht.js.html">Data_structures/anim/anim_ht.js</a>, <a href="Data_structures_anim_anim_ht.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~initializeAnim"><span class="type-signature">(async, inner) </span>initializeAnim<span class="signature">(size)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Initializes a visual representation of the hashtable.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">How many buckets the hashtable has.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Data_structures_anim_anim_ht.js.html">Data_structures/anim/anim_ht.js</a>, <a href="Data_structures_anim_anim_ht.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~removeColors"><span class="type-signature">(async, inner) </span>removeColors<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Resets color and stroke width of all rectangles.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Data_structures_anim_anim_ht.js.html">Data_structures/anim/anim_ht.js</a>, <a href="Data_structures_anim_anim_ht.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~updateText"><span class="type-signature">(async, inner) </span>updateText<span class="signature">(key, data)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Updates the text inside bucket 'key' to 'data'.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The index of the bucket whose text gets updated.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The data the text will be updated to.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Data_structures_anim_anim_ht.js.html">Data_structures/anim/anim_ht.js</a>, <a href="Data_structures_anim_anim_ht.js.html#line102">line 102</a>
     </li></ul></dd>
     
 
@@ -526,7 +602,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:14 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:13 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

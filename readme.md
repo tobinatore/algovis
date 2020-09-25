@@ -27,7 +27,7 @@ AlgoVis<span>.</span>io is an online algorithm visualization tool written using 
 
 ### Setup
 
-You do not need to download / clone / fork / whatever anything to test the website, as a live version can be found [on my GithubPages portfolio](https://tobinatore.githubio/algovis/)!
+You do not need to download / clone / fork / whatever anything to test the website, as a live version can be found [on my GithubPages portfolio](https://tobinatore.github.io/algovis/)!
 
 If you wish to have a local copy for testing all you need to do is fork and clone the repository. There are no complicated setup steps to get it up and running. You won't need a webserver as I'm not using php or any other server-side languages in this project.
 

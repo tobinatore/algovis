@@ -48,13 +48,13 @@ A full list of all algorithms can be found under [Full list of algorithms](#Full
 Selection sort:  
 ![Selection sort](https://i.imgur.com/gQMfbjx.gif)
 
-Kruskal's algorithm:
+Kruskal's algorithm:  
 ![Kruskal' algorithm](https://i.imgur.com/kuGmsbF.gif)
 
-Dijkstra's algorithm:
+Dijkstra's algorithm:  
 ![Diijkstra's algorithm](https://i.imgur.com/beyCCsQ.gif)
 
-Growing tree algorithm:
+Growing tree algorithm:  
 ![Growing tree algorithm](https://i.imgur.com/cDm39b6.gif)
 
 Stack:  

@@ -77,3 +77,41 @@ async function makeHimRun(list) {
   var y = gridData[startPos.y][startPos.x].y;
   d3.select("#start").attr("x", x).attr("y", y);
 }
+
+/**
+ * Reads predecessors starting from the target node and colors the path.
+ * @param {Object[][]} grid - 2d array of nodes representing the grid
+ * @param {Object} end - Row and column of the target node
+ */
+async function makePath(grid, end) {
+  await timeout(500);
+  var list = [];
+  var v = grid[end.y][end.x];
+  list.unshift(v);
+  // step through the predecessors until we hit the start node.
+  // color every node on the way and save the path in a list.
+  while (v.predecessor != undefined) {
+    await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
+    v = grid[v.predecessor.row][v.predecessor.col];
+    list.unshift(v);
+  }
+
+  list.unshift(v);
+  // animate the stick figure
+  makeHimRun(list);
+}
+
+/**
+ * Creates a list of all nodes in a grid.
+ * @param {Object[][]} grid - 2d array of nodes representing the grid
+ * @returns {Object} - List of all the nodes in the grid
+ */
+function makeQueueFromGrid(grid) {
+  let q = [];
+  for (let y = 0; y < grid.length; y++) {
+    for (let x = 0; x < grid[y].length; x++) {
+      q.push(grid[y][x]);
+    }
+  }
+  return q;
+}

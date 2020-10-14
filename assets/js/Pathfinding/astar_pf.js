@@ -35,7 +35,7 @@ class AStar {
       // the current node is the target node
       // -> highlight path and break
       if (curr.row == end.y && curr.col == end.x) {
-        this.makePath(grid, end);
+        makePath(grid, end);
         break;
       }
 
@@ -121,28 +121,5 @@ class AStar {
     // remove closest node from the openSet
     q.splice(ind, 1);
     return closest;
-  }
-
-  /**
-   * Reads predecessors starting from the target node and colors the path.
-   * @param {Object[][]} grid - 2d array of nodes representing the grid
-   * @param {Object} end - Row and column of the target node
-   */
-  async makePath(grid, end) {
-    await timeout(500);
-    var list = [];
-    var v = grid[end.y][end.x];
-    list.unshift(v);
-    // step through the predecessors until we hit the start node.
-    // color every node on the way and save the path in a list.
-    while (v.predecessor != undefined) {
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
-      v = grid[v.predecessor.row][v.predecessor.col];
-      list.unshift(v);
-    }
-
-    list.unshift(v);
-    // animate the stick figure
-    makeHimRun(list);
   }
 }

@@ -9,17 +9,10 @@ class Dijkstras {
    * @param {Object} end - Row and column of the target node
    */
   async run(grid, start, end) {
-    var q = [];
+    var q = makeQueueFromGrid(grid);
     // reset grid in case this isn't the first run
     this.resetGrid(grid);
     grid[start.y][start.x].dist = 0;
-
-    // push every node to the queue
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
-        q.push(grid[y][x]);
-      }
-    }
 
     // run as long as there are unvisited nodes
     while (!q.length == 0) {
@@ -28,7 +21,7 @@ class Dijkstras {
       // current node is the target node
       // -> print path and break
       if (v.col == end.x && v.row == end.y) {
-        this.makePath(grid, end, start);
+        makePath(grid, end, start);
         return;
       }
 
@@ -94,39 +87,6 @@ class Dijkstras {
   }
 
   /**
-   * Gets all nodes adjacent to the current node.
-   * @param {Object[][]} grid - 2d array of nodes
-   * @param {Object} v - The current node
-   * @returns {Object[]} - A list of nodes adjacent to v
-   */
-  getNeighbours(grid, v) {
-    var nbs = [];
-
-    if (v.col - 1 >= 0 && grid[v.row][v.col - 1]) {
-      if (grid[v.row][v.col - 1].type != "wall")
-        // node left of v
-        nbs.push(grid[v.row][v.col - 1]);
-    }
-    if (v.col + 1 < grid[0].length && grid[v.row][v.col + 1]) {
-      if (grid[v.row][v.col + 1].type != "wall")
-        // node right of v
-        nbs.push(grid[v.row][v.col + 1]);
-    }
-    if (v.row - 1 >= 0 && grid[v.row - 1][v.col]) {
-      if (grid[v.row - 1][v.col].type != "wall")
-        // node above v
-        nbs.push(grid[v.row - 1][v.col]);
-    }
-    if (v.row + 1 < grid.length && grid[v.row + 1][v.col]) {
-      if (grid[v.row + 1][v.col].type != "wall")
-        // node below v
-        nbs.push(grid[v.row + 1][v.col]);
-    }
-
-    return nbs;
-  }
-
-  /**
    * Finds the node with the lowest total distance, removes it from the list
    * and returns it.
    * @param {Object[]} q - List of all unvisited nodes
@@ -150,29 +110,5 @@ class Dijkstras {
     // and return it
     q.splice(ind, 1);
     return closest;
-  }
-
-  /**
-   * Reads predecessors starting from the target node and colors the path.
-   * @param {Object[][]} grid - 2d array of nodes representing the grid
-   * @param {Object} end - Row and column of the target node
-   */
-  async makePath(grid, end) {
-    await timeout(500);
-    var list = [];
-    var v = grid[end.y][end.x];
-    list.unshift(v);
-    // step through predecessors until hitting the
-    // source node, whose predecessor is undefined
-    while (v.predecessor != undefined) {
-      // color path red and add nodes to path list
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
-      v = grid[v.predecessor.row][v.predecessor.col];
-      list.unshift(v);
-    }
-    // add source node to the path list
-    // and animate the stick figure
-    list.unshift(v);
-    makeHimRun(list);
   }
 }

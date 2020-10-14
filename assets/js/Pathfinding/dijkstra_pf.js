@@ -33,7 +33,7 @@ class Dijkstras {
       }
 
       // get adjacent nodes
-      var neighbours = this.getNeighbours(grid, v);
+      var neighbours = getNeighbours(grid, v);
 
       for (const n in neighbours) {
         // get index of neighbour in queue
@@ -173,29 +173,6 @@ class Dijkstras {
     // add source node to the path list
     // and animate the stick figure
     list.unshift(v);
-    this.makeHimRun(list);
-  }
-
-  /**
-   * Animates the stick figure to move from start to target.
-   * @param {Object[]} list - List of nodes in the path
-   */
-  async makeHimRun(list) {
-    // update x and y coordinates of the stick figure
-    // to the coordinates of every node in the path
-    for (let i in list) {
-      d3.select("#start")
-        .transition()
-        .duration(50)
-        .attr("x", list[i].x)
-        .attr("y", list[i].y);
-      await timeout(50);
-    }
-
-    // teleport stick figure back to the source node
-    await timeout(200);
-    var x = gridData[startPos.y][startPos.x].x;
-    var y = gridData[startPos.y][startPos.x].y;
-    d3.select("#start").attr("x", x).attr("y", y);
+    makeHimRun(list);
   }
 }

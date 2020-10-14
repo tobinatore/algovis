@@ -3,29 +3,6 @@ class DFS {
   constructor() {}
 
   /**
-   * Resets the grid and every node.
-   * @param {Object[][]} grid - 2d array of objects representing the grid
-   */
-  resetGrid(grid) {
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
-        // reset distances, fScores, predecessors and visited status of every node
-        grid[y][x].dist = Infinity;
-        grid[y][x].fScore = Infinity;
-        grid[y][x].predecessor = undefined;
-        grid[y][x].visited = false;
-
-        // color cell white if it's a floor tile or grey if it's a weight
-        if (grid[y][x].type != "wall" && grid[y][x].type != "weight") {
-          d3.select("#node-" + y + "-" + x).attr("fill", "#FFF");
-        } else if (grid[y][x].type == "weight") {
-          d3.select("#node-" + y + "-" + x).attr("fill", "#B0B0B0");
-        }
-      }
-    }
-  }
-
-  /**
    * Run the algorithm with the provided values.
    * @param {Object[][]} grid - A 2d array representing the grid the algorithm runs on
    * @param {Object} start - Row and column of the source node
@@ -33,7 +10,7 @@ class DFS {
    */
   async run(grid, start, end) {
     // resetting the grid before every run
-    this.resetGrid(grid);
+    resetGrid(grid);
     var node = grid[start.y][start.x];
     // calling the recursive dfs function and awaiting
     // the last node of the path
@@ -142,28 +119,6 @@ class DFS {
     }
     list.unshift(v);
     // animate the stick figure
-    this.makeHimRun(list);
-  }
-
-  /**
-   * Animates the stick figure to move from start to target.
-   * @param {Object[]} list - List of nodes in the path
-   */
-  async makeHimRun(list) {
-    // loop over the path list
-    // and adjust the position of the stick figure
-    for (let i in list) {
-      d3.select("#start")
-        .transition()
-        .duration(50)
-        .attr("x", list[i].x)
-        .attr("y", list[i].y);
-      await timeout(50);
-    }
-    await timeout(200);
-    // teleport the stick figure back to the start
-    var x = gridData[startPos.y][startPos.x].x;
-    var y = gridData[startPos.y][startPos.x].y;
-    d3.select("#start").attr("x", x).attr("y", y);
+    makeHimRun(list);
   }
 }

@@ -34,7 +34,7 @@ class BFS {
         return;
       }
 
-      var neighbours = this.getNeighbours(grid, v);
+      var neighbours = getNeighbours(grid, v);
 
       // examine every neighbour of the current cell
       for (const n in neighbours) {
@@ -90,39 +90,6 @@ class BFS {
   }
 
   /**
-   * Gets all nodes bordering the current node.
-   * @param {Object[][]} grid - 2d array of nodes
-   * @param {Object} v - The current node
-   * @returns {Object[]} - A list of nodes adjacent to v
-   */
-  getNeighbours(grid, v) {
-    var nbs = [];
-
-    if (v.col - 1 >= 0 && grid[v.row][v.col - 1]) {
-      if (grid[v.row][v.col - 1].type != "wall")
-        // push left neighbour
-        nbs.push(grid[v.row][v.col - 1]);
-    }
-    if (v.col + 1 < grid[0].length && grid[v.row][v.col + 1]) {
-      if (grid[v.row][v.col + 1].type != "wall")
-        // push right neighbour
-        nbs.push(grid[v.row][v.col + 1]);
-    }
-    if (v.row - 1 >= 0 && grid[v.row - 1][v.col]) {
-      if (grid[v.row - 1][v.col].type != "wall")
-        // push upper neighbour
-        nbs.push(grid[v.row - 1][v.col]);
-    }
-    if (v.row + 1 < grid.length && grid[v.row + 1][v.col]) {
-      if (grid[v.row + 1][v.col].type != "wall")
-        // push lower neighbour
-        nbs.push(grid[v.row + 1][v.col]);
-    }
-
-    return nbs;
-  }
-
-  /**
    * Finds the node with the lowest total distance, removes it from the list
    * and returns it.
    * @param {Object[]} q - List of all unvisited nodes
@@ -162,28 +129,6 @@ class BFS {
     }
     list.unshift(v);
     // animate the stick figure
-    this.makeHimRun(list);
-  }
-
-  /**
-   * Animates the stick figure to move from start to target.
-   * @param {Object[]} list - List of nodes in the path
-   */
-  async makeHimRun(list) {
-    // loop over the list and adjust the position of the
-    // stick figure
-    for (let i in list) {
-      d3.select("#start")
-        .transition()
-        .duration(50)
-        .attr("x", list[i].x)
-        .attr("y", list[i].y);
-      await timeout(50);
-    }
-    await timeout(200);
-    // teleport it back to the starting point
-    var x = gridData[startPos.y][startPos.x].x;
-    var y = gridData[startPos.y][startPos.x].y;
-    d3.select("#start").attr("x", x).attr("y", y);
+    makeHimRun(list);
   }
 }

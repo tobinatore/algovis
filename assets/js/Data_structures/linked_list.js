@@ -78,7 +78,7 @@ class LinkedList {
           await newArrow(
             { x: (pos - 1) * 150 + 50, y: 50 },
             { x: pos * 150 + 50, y: 50 },
-            pos - 1
+            false
           );
           this.length++;
           break;

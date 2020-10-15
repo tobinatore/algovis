@@ -215,3 +215,95 @@ async function deleteNode(pos) {
   await timeout(510);
   d3.select("#g" + pos).remove();
 }
+
+/**
+ * Function for resetting the colors of all linked list elements
+ * after visualization has ended.
+ */
+async function resetColors() {
+  return new Promise((resolve) => {
+    // color paths black
+    d3.selectAll("path").transition().duration(100).attr("stroke", "#171717");
+
+    let circle = d3.selectAll("circle");
+    let text = d3.selectAll("text");
+
+    // color circles black and fill them white
+    circle
+      .transition()
+      .duration(100)
+      .attr("fill", "#FFF")
+      .attr("stroke", "#171717");
+
+    // color text black
+    text.transition().duration(100).attr("fill", "#000");
+    setTimeout(() => {
+      resolve();
+    }, 100);
+  });
+}
+
+/**
+ * Function for creating a new arrow connecting two nodes.
+ * @param {Object} startCoords - Coordinates of the first node.
+ * @param {Object} endCoords - Coordinates of the second node.
+ * @param {boolean} opp - Whether an arrow facing the opposite direction should be created.
+ */
+async function newArrow(startCoords, endCoords, opp) {
+  return new Promise((resolve) => {
+    // calculating start and end point
+    let xy0 = {
+      x: Math.round(xScale.invert(startCoords.x)),
+      y: Math.round(yScale.invert(startCoords.y)),
+    };
+
+    let xy1 = {
+      x: Math.round(xScale.invert(endCoords.x)),
+      y: Math.round(yScale.invert(endCoords.y)),
+    };
+
+    var line = d3
+      .line()
+      .x(function (d) {
+        return d.x;
+      })
+      .y(function (d) {
+        return d.y;
+      })
+      .curve(d3.curveLinear);
+    // creating line with arrow
+    svg
+      .select("#g-paths")
+      .append("path")
+      .transition()
+      .duration(100)
+      .attr("d", line([xy0, xy1]))
+      .attr("stroke", "#171717")
+      .attr("stroke-width", 4)
+      .attr("marker-end", "url(#triangle)")
+      .attr("fill", "none")
+      .attr("id", function () {
+        return "path" + (data_nodes.length - 2);
+      });
+
+    if (opp) {
+      svg
+        .select("#g-paths")
+        .append("path")
+        .transition()
+        .duration(100)
+        .attr("d", line([xy1, xy0]))
+        .attr("stroke", "#171717")
+        .attr("stroke-width", 4)
+        .attr("marker-end", "url(#triangle)")
+        .attr("fill", "none")
+        .attr("id", function () {
+          return "path" + (data_nodes.length - 2) + "-2";
+        });
+    }
+
+    setTimeout(() => {
+      resolve();
+    }, 100);
+  });
+}

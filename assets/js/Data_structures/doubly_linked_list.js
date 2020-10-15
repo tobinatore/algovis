@@ -83,7 +83,7 @@ class DoublyLinkedList {
           await newArrow(
             { x: (pos - 1) * 150 + 50, y: 50 },
             { x: pos * 150 + 50, y: 50 },
-            pos - 1
+            true
           );
           this.length++;
           break;

@@ -134,54 +134,6 @@ async function pullNodes(pos) {
 }
 
 /**
- * Function for creating a new arrow connecting two nodes.
- * @param {Object} startCoords - Coordinates of the first node.
- * @param {Object} endCoords - Coordinates of the second node.
- * @param {number} pos - The 'index' of the arrow.
- */
-async function newArrow(startCoords, endCoords, pos) {
-  return new Promise((resolve) => {
-    // calculating start and end point
-    let xy0 = {
-      x: Math.round(xScale.invert(startCoords.x)),
-      y: Math.round(yScale.invert(startCoords.y)),
-    };
-
-    let xy1 = {
-      x: Math.round(xScale.invert(endCoords.x)),
-      y: Math.round(yScale.invert(endCoords.y)),
-    };
-
-    var line = d3
-      .line()
-      .x(function (d) {
-        return d.x;
-      })
-      .y(function (d) {
-        return d.y;
-      })
-      .curve(d3.curveLinear);
-    // creating line with arrow
-    svg
-      .select("#g-paths")
-      .append("path")
-      .transition()
-      .duration(100)
-      .attr("d", line([xy0, xy1]))
-      .attr("stroke", "#171717")
-      .attr("stroke-width", 4)
-      .attr("marker-end", "url(#triangle)")
-      .attr("fill", "none")
-      .attr("id", function () {
-        return "path" + (data_nodes.length - 2);
-      });
-    setTimeout(() => {
-      resolve();
-    }, 100);
-  });
-}
-
-/**
  * Function to remove an arrow from the SVG canvas.
  * @param {Object} pos - The index of the arrow.
  */
@@ -230,33 +182,6 @@ async function highlight(index, color, onlyNode) {
 }
 
 /**
- * Function for resetting the colors of all elements
- * after visualization has ended.
- */
-async function resetColors() {
-  return new Promise((resolve) => {
-    // color paths black
-    d3.selectAll("path").transition().duration(100).attr("stroke", "#171717");
-
-    let circle = d3.selectAll("circle");
-    let text = d3.selectAll("text");
-
-    // color circles black and fill them white
-    circle
-      .transition()
-      .duration(100)
-      .attr("fill", "#FFF")
-      .attr("stroke", "#171717");
-
-    // color text black
-    text.transition().duration(100).attr("fill", "#000");
-    setTimeout(() => {
-      resolve();
-    }, 100);
-  });
-}
-
-/**
  * Function for animating a new head getting added to the list.
  * @param {number} data - The data the new node contains.
  */
@@ -266,7 +191,7 @@ async function animateNewHead(data) {
   // create node
   await newNode(coords, data, 0);
   // create arrow pointing to successor
-  await newArrow({ x: 50, y: 150 }, { x: 50, y: 50 }, 0);
+  await newArrow({ x: 50, y: 150 }, { x: 50, y: 50 }, false);
   // move succeeding nodes and arrows to the right
   // and current node into position
   await pushNodes(0);
@@ -288,7 +213,7 @@ async function newMidNode(pos, data) {
   await newArrow(
     { x: pos * 150 + 50, y: 150 },
     { x: pos * 150 + 50, y: 50 },
-    pos
+    false
   );
   // new coordinates for the arrow coming from the nodes predecessor
   let arrowStart = [(pos - 1) * 150 + 50, 50];

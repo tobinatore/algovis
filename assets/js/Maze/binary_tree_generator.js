@@ -5,27 +5,12 @@ class BinaryTreeGenerator {
   constructor() {}
 
   /**
-   * Fills the grid with walls as preparation for the algorithm.
-   */
-  fillGrid() {
-    for (let y = 0; y < gridData.length; y++) {
-      for (let x = 0; x < gridData[y].length; x++) {
-        gridData[y][x].type = "wall";
-        d3.select("#node-" + y + "-" + x)
-          .transition()
-          .duration(500)
-          .attr("fill", "#171717");
-      }
-    }
-  }
-
-  /**
    * Function for running the binary tree generator.
    * Loops over the whole grid and generates the maze row by row.
    */
   async startMaze() {
     // fill the grid so the algorithm can carve the paths
-    this.fillGrid();
+    fillGrid();
 
     for (let y = 1; y < gridData.length - 1; y += 2) {
       for (let x = 1; x < gridData[y].length - 1; x += 2) {

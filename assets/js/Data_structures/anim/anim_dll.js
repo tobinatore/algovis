@@ -59,27 +59,13 @@ async function pushNodes(pos) {
 
   // calculating start and end point of the arrow
   // connecting the new node to the next node
-  let xy0 = {
-    x: Math.round(xScale.invert(pos * 150 + 50)),
-    y: Math.round(yScale.invert(50)),
-  };
+  let xyVals = calcXYVals(pos);
 
-  let xy1 = {
-    x: Math.round(xScale.invert((pos + 1) * 150 + 50)),
-    y: Math.round(yScale.invert(50)),
-  };
-
-  var line = d3
-    .line()
-    .x(function (d) {
-      return d.x;
-    })
-    .y(function (d) {
-      return d.y;
-    })
-    .curve(d3.curveLinear);
+  let xy0 = xyVals[0];
+  let xy1 = xyVals[1];
 
   // animating the arrow
+  // "line()" on line 80 is defined in anim_helpers.js
   d3.select("#path" + (list.length - 1))
     .filter(function () {
       return !this.classList.contains("moved");

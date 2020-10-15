@@ -1,4 +1,14 @@
 /** @module DSAnimationHelperFunctions */
+var line = d3
+  .line()
+  .x(function (d) {
+    return d.x;
+  })
+  .y(function (d) {
+    return d.y;
+  })
+  .curve(d3.curveLinear);
+
 /**
  * Function for creating a new node in the linked list.
  * @param {number[]} coords - The coordinates where the new node will be created
@@ -92,16 +102,6 @@ async function rerouteArrow(id, start, end) {
     y: Math.round(yScale.invert(end[1])),
   };
 
-  var line = d3
-    .line()
-    .x(function (d) {
-      return d.x;
-    })
-    .y(function (d) {
-      return d.y;
-    })
-    .curve(d3.curveLinear);
-
   // animating the line
   d3.select(id)
     .attr("transform", "translate(0,0)")
@@ -173,16 +173,6 @@ async function slideArrow(id, start, end) {
     x: Math.round(xScale.invert(end[0])),
     y: Math.round(yScale.invert(end[1])),
   };
-
-  var line = d3
-    .line()
-    .x(function (d) {
-      return d.x;
-    })
-    .y(function (d) {
-      return d.y;
-    })
-    .curve(d3.curveLinear);
 
   // animating the arrow
   d3.select(id)
@@ -262,15 +252,6 @@ async function newArrow(startCoords, endCoords, opp) {
       y: Math.round(yScale.invert(endCoords.y)),
     };
 
-    var line = d3
-      .line()
-      .x(function (d) {
-        return d.x;
-      })
-      .y(function (d) {
-        return d.y;
-      })
-      .curve(d3.curveLinear);
     // creating line with arrow
     svg
       .select("#g-paths")
@@ -306,4 +287,23 @@ async function newArrow(startCoords, endCoords, opp) {
       resolve();
     }, 100);
   });
+}
+
+/**
+ * Function for calculating the X and Y coordinates
+ * between which a line will be drawn.
+ * @param {number} pos - The "index" of the line
+ */
+function calcXYVals(pos) {
+  let xy0 = {
+    x: Math.round(xScale.invert(pos * 150 + 50)),
+    y: Math.round(yScale.invert(50)),
+  };
+
+  let xy1 = {
+    x: Math.round(xScale.invert((pos + 1) * 150 + 50)),
+    y: Math.round(yScale.invert(50)),
+  };
+
+  return [xy0, xy1];
 }

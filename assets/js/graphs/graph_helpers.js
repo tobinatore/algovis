@@ -1,4 +1,4 @@
-/** @module DSAnimationHelperFunctions */
+/** @module GraphHelperFunctions */
 
 /**
  * Function for calculating the lenght of an edge.

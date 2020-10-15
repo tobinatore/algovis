@@ -18,10 +18,7 @@ var line = d3
  */
 async function newNode(coords, data, pos) {
   return new Promise((resolve) => {
-    var newData = {
-      x: Math.round(xScale.invert(coords[0])),
-      y: Math.round(yScale.invert(coords[1])),
-    };
+    var newData = calculatePosition(coords);
 
     // Pushing coordinates to the array
     data_nodes.push(newData);
@@ -88,20 +85,14 @@ async function newNode(coords, data, pos) {
  */
 async function rerouteArrow(id, start, end) {
   // calculating positions
-  let xy0 = {
-    x: Math.round(xScale.invert(start[0])),
-    y: Math.round(yScale.invert(start[1])),
-  };
+  let xy0 = calculatePosition(start);
 
   let xy1 = {
     x: Math.round(xScale.invert(start[0] + 20)),
     y: Math.round(yScale.invert(start[1])),
   };
 
-  let xy2 = {
-    x: Math.round(xScale.invert(end[0])),
-    y: Math.round(yScale.invert(end[1])),
-  };
+  let xy2 = calculatePosition(end);
 
   // animating the line
   d3.select(id)
@@ -330,4 +321,11 @@ function buildSelection(pos, doubly) {
   }
 
   return selection;
+}
+
+function calculatePosition(coords) {
+  return {
+    x: Math.round(xScale.invert(coords[0])),
+    y: Math.round(yScale.invert(coords[1])),
+  };
 }

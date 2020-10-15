@@ -23,9 +23,7 @@ class WeightedUndirectedGraph {
     if (!this.edgeExists(v, w)) {
       // calculate length of edge based on
       // the positions of the two vertices­
-      var length = Math.round(
-        Math.sqrt(Math.pow(v.x - w.x, 2) + Math.pow(v.y - w.y, 2))
-      );
+      var length = calculateEdgeLength(v, w);
 
       // add the edges to the adjacency list
       this.adjList.get(v.id).push({ id: w.id, len: length });

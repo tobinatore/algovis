@@ -9,10 +9,7 @@ async function newStackElement(coords, data) {
   return new Promise((resolve) => {
     let pos = stack.size;
 
-    var newData = {
-      x: Math.round(xScale.invert(coords[0])),
-      y: Math.round(yScale.invert(coords[1])),
-    };
+    var newData = calculatePosition(coords);
 
     // Pushing coordinates to the array
     data_nodes.push(newData);

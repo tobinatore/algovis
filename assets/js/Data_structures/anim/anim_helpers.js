@@ -1,4 +1,5 @@
 /** @module DSAnimationHelperFunctions */
+
 var line = d3
   .line()
   .x(function (d) {
@@ -306,4 +307,27 @@ function calcXYVals(pos) {
   };
 
   return [xy0, xy1];
+}
+
+/**
+ * Function for creating a selection string,
+ * used to select nodes and arrows for pushing / pulling.
+ * @param {number} pos - The position after which nodes / arrows are affected
+ * @param {boolean} doubly - Signifies whether it's a doubly linked list
+ * @returns {Stirng} - The selection string
+ */
+function buildSelection(pos, doubly) {
+  let selection = "none";
+  for (let i = pos; i < list.length; i++) {
+    selection += ", #g" + i;
+
+    if (i < list.length - 1) {
+      selection += ", #path" + i;
+      if (doubly) {
+        selection += ", #path" + i + "-2";
+      }
+    }
+  }
+
+  return selection;
 }

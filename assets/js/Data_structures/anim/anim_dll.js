@@ -6,16 +6,8 @@
  * @param {number} pos - The index where the new node will be inserted
  */
 async function pushNodes(pos) {
-  let selection = "none";
   // building a selection string for d3.js
-  for (let i = pos; i < list.length; i++) {
-    selection += ", #g" + i;
-
-    if (i < list.length - 1) {
-      selection += ", #path" + i;
-      selection += ", #path" + i + "-2";
-    }
-  }
+  let selection = buildSelection(pos, true);
 
   // moving the whole selection to the right
   // and updating the id's to reflect the change in position
@@ -105,17 +97,7 @@ async function pushNodes(pos) {
  * @param {number} pos - The index where the new node will be after the deleted node
  */
 async function pullNodes(pos) {
-  let selection = "none";
-  // building a selection string for d3.js
-  for (let i = pos; i < list.length; i++) {
-    selection += ", #g" + i;
-
-    if (i < list.length - 1) {
-      selection += ", #path" + i;
-      selection += ", #path" + i + "-2";
-    }
-  }
-
+  let selection = buildSelection(pos, true);
   d3.selectAll(selection)
     .transition()
     .duration(500)

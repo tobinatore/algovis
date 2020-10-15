@@ -6,15 +6,8 @@
  * @param {number} pos - The index where the new node will be inserted
  */
 async function pushNodes(pos) {
-  let selection = "none";
   // building a selection string for d3.js
-  for (let i = pos; i < list.length; i++) {
-    selection += ", #g" + i;
-
-    if (i < list.length - 1) {
-      selection += ", #path" + i;
-    }
-  }
+  let selection = buildSelection(pos, false);
 
   // moving the whole selection to the right
   // and updating the id's to reflect the change in position
@@ -88,15 +81,7 @@ async function pushNodes(pos) {
  * @param {number} pos - The index where the new node will be after the deleted node
  */
 async function pullNodes(pos) {
-  let selection = "none";
-  // building a selection string for d3.js
-  for (let i = pos; i < list.length; i++) {
-    selection += ", #g" + i;
-
-    if (i < list.length - 1) {
-      selection += ", #path" + i;
-    }
-  }
+  let selection = buildSelection(pos, false);
 
   d3.selectAll(selection)
     .transition()
@@ -184,7 +169,7 @@ async function animateNewHead(data) {
 }
 
 /**
- * Function for animating a new ode getting added somewhere in the list.
+ * Function for animating a new node getting added somewhere in the list.
  * @param {number} pos - Position in the list.
  * @param {number} data - Data the node contains.
  */

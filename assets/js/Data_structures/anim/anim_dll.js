@@ -192,3 +192,27 @@ async function newMidNode(pos, data) {
   await slideArrow("#path" + (pos - 1), arrowStart, arrowEnd);
   await slideArrow("#path" + (pos - 1) + "-2", arrowEnd, arrowStart);
 }
+
+async function remakeArrows(pos) {
+  data_nodes.splice(pos, 1);
+  // removing outgoing arrow from target node
+  await removeArrows(pos);
+
+  // calculating coordinates of predecessor
+  // and successor of target node
+  let start = [(pos - 1) * 150 + 50, 50];
+  let end = [(pos + 1) * 150 + 50, 50];
+  // rerouting predecessor's arrow to successor
+  await rerouteArrow("#path" + (pos - 1), start, end);
+  // deleting target nodes
+  await deleteNode(pos);
+  // moving succeeding nodes & arrows 1 position to the left
+  await pullNodes(pos + 1);
+
+  // calculating new end coordinates
+  // for previously rerouted arrow
+  end = [pos * 150 + 50, 50];
+
+  // smoothly scaling that arrow to new length
+  await slideArrow("#path" + (pos - 1), start, end);
+}

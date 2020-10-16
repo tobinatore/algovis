@@ -1,46 +1,6 @@
 /** @module HashTableAnimation */
 
-/**
- * Initializes a visual representation of the hashtable.
- * @param {number} size -  How many buckets the hashtable has.
- */
-async function initializeAnim(size) {
-  let data = [];
-  let startPos = w / size;
-  let barPadding = 7;
-
-  for (let i = 0; i < size; i++) {
-    data.push(0);
-  }
-
-  var bars = svg
-    .selectAll("rect")
-    .data(data)
-    .enter()
-    .append("g")
-    .attr("id", function (d, i) {
-      return "g" + i;
-    })
-    .attr("transform", function (d, i) {
-      return "translate(" + startPos * i + ",0)";
-    })
-    .attr("width", w / size - barPadding)
-    .attr("y", "25");
-
-  // generate representation of the buckets
-  bars
-    .append("rect")
-    .attr("width", w / size - barPadding)
-    .attr("height", 30)
-    .attr("y", "25")
-    .attr("fill", "none")
-    .attr("stroke", "#171717")
-    .attr("stroke-width", "2px")
-    .attr("id", function (d, i) {
-      return "rect" + i;
-    });
-
-  // add the text component which will display the data stored in the bucket
+function labelBuckets(bars, size, barPadding) {
   bars
     .append("text")
     .text("")
@@ -72,6 +32,56 @@ async function initializeAnim(size) {
     .attr("font-size", "18px")
     .attr("fill", "black")
     .attr("text-anchor", "middle");
+}
+
+function buildBucketsSVG(data, startPos, barPadding, size) {
+  var bars = svg
+    .selectAll("rect")
+    .data(data)
+    .enter()
+    .append("g")
+    .attr("id", function (d, i) {
+      return "g" + i;
+    })
+    .attr("transform", function (d, i) {
+      return "translate(" + startPos * i + ",0)";
+    })
+    .attr("width", w / size - barPadding)
+    .attr("y", "25");
+
+  // generate representation of the buckets
+  bars
+    .append("rect")
+    .attr("width", w / size - barPadding)
+    .attr("height", 30)
+    .attr("y", "25")
+    .attr("fill", "none")
+    .attr("stroke", "#171717")
+    .attr("stroke-width", "2px")
+    .attr("id", function (d, i) {
+      return "rect" + i;
+    });
+
+  return bars;
+}
+
+/**
+ * Initializes a visual representation of the hashtable.
+ * @param {number} size -  How many buckets the hashtable has.
+ */
+async function initializeAnim(size) {
+  let data = [];
+  let startPos = w / size;
+  let barPadding = 7;
+
+  for (let i = 0; i < size; i++) {
+    data.push(0);
+  }
+
+  var bars = buildBucketsSVG(data, startPos, barPadding, size);
+
+  // add the text component which will display the data stored in the bucket
+  labelBuckets(bars, size, barPadding);
 }
 
 /**

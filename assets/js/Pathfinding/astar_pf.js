@@ -10,7 +10,7 @@ class AStar {
    */
   async run(grid, start, end) {
     // reset the grid so previous runs don't affect this one
-    this.resetGrid(grid);
+    resetGrid(grid);
     // initialize the list containing the unvisited nodes and the
     // starting point
     var openSet = [];
@@ -35,11 +35,11 @@ class AStar {
       // the current node is the target node
       // -> highlight path and break
       if (curr.row == end.y && curr.col == end.x) {
-        this.makePath(grid, end);
+        makePath(grid, end);
         break;
       }
 
-      var nbs = this.getNeighbours(grid, curr);
+      var nbs = getNeighbours(grid, curr);
 
       //examine every neighbour of the current node
       for (const nb in nbs) {
@@ -92,62 +92,6 @@ class AStar {
   }
 
   /**
-   * Resets the grid and every node to their initial state.
-   * @param {Object[][]} grid - 2d array of objects representing the grid
-   */
-  resetGrid(grid) {
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
-        // reset distances, fScores, predecessors and visited status of every node
-        grid[y][x].dist = Infinity;
-        grid[y][x].fScore = Infinity;
-        grid[y][x].predecessor = undefined;
-        grid[y][x].visited = false;
-
-        // color cell white if it's a floor tile or grey if it's a weight
-        if (grid[y][x].type != "wall" && grid[y][x].type != "weight") {
-          d3.select("#node-" + y + "-" + x).attr("fill", "#FFF");
-        } else if (grid[y][x].type == "weight") {
-          d3.select("#node-" + y + "-" + x).attr("fill", "#B0B0B0");
-        }
-      }
-    }
-  }
-
-  /**
-   * Gets all nodes bordering the current node.
-   * @param {Object[][]} grid - 2d array of nodes
-   * @param {Object} v - The current node
-   * @returns {Object[]} - A list of nodes adjacent to the current node
-   */
-  getNeighbours(grid, v) {
-    var nbs = [];
-
-    if (v.col - 1 >= 0 && grid[v.row][v.col - 1]) {
-      if (grid[v.row][v.col - 1].type != "wall")
-        // push left neighbour
-        nbs.push(grid[v.row][v.col - 1]);
-    }
-    if (v.col + 1 < grid[0].length && grid[v.row][v.col + 1]) {
-      if (grid[v.row][v.col + 1].type != "wall")
-        // push right neighbour
-        nbs.push(grid[v.row][v.col + 1]);
-    }
-    if (v.row - 1 >= 0 && grid[v.row - 1][v.col]) {
-      if (grid[v.row - 1][v.col].type != "wall")
-        // push upper neighbour
-        nbs.push(grid[v.row - 1][v.col]);
-    }
-    if (v.row + 1 < grid.length && grid[v.row + 1][v.col]) {
-      if (grid[v.row + 1][v.col].type != "wall")
-        // push lower neighbour
-        nbs.push(grid[v.row + 1][v.col]);
-    }
-
-    return nbs;
-  }
-
-  /**
    * Finds the node with the lowest fScore, removes it from the list
    * and returns it.
    * Takes into consideration raw heuristic distance should there be
@@ -177,51 +121,5 @@ class AStar {
     // remove closest node from the openSet
     q.splice(ind, 1);
     return closest;
-  }
-
-  /**
-   * Reads predecessors starting from the target node and colors the path.
-   * @param {Object[][]} grid - 2d array of nodes representing the grid
-   * @param {Object} end - Row and column of the target node
-   */
-  async makePath(grid, end) {
-    await timeout(500);
-    var list = [];
-    var v = grid[end.y][end.x];
-    list.unshift(v);
-    // step through the predecessors until we hit the start node.
-    // color every node on the way and save the path in a list.
-    while (v.predecessor != undefined) {
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
-      v = grid[v.predecessor.row][v.predecessor.col];
-      list.unshift(v);
-    }
-
-    list.unshift(v);
-    // animate the stick figure
-    this.makeHimRun(list);
-  }
-
-  /**
-   * Animates the stick figure to move from start to target.
-   * @param {Object[]} list - List of nodes in the path
-   */
-  async makeHimRun(list) {
-    // loop over the list and adjust the position of the
-    // stick figure
-    for (let i in list) {
-      d3.select("#start")
-        .transition()
-        .duration(50)
-        .attr("x", list[i].x)
-        .attr("y", list[i].y);
-      await timeout(50);
-    }
-
-    await timeout(200);
-    // teleport the stick figure back to the starting point
-    var x = gridData[startPos.y][startPos.x].x;
-    var y = gridData[startPos.y][startPos.x].y;
-    d3.select("#start").attr("x", x).attr("y", y);
   }
 }

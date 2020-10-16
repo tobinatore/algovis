@@ -22,9 +22,7 @@ class WeightedDirectedGraph {
     if (!this.edgeExists(v, w)) {
       // calculating length of the edge using the
       // distance formula d=√((x_2-x_1)²+(y_2-y_1)²)
-      var length = Math.round(
-        Math.sqrt(Math.pow(v.x - w.x, 2) + Math.pow(v.y - w.y, 2))
-      );
+      var length = calculateEdgeLenght(v, w);
       this.adjList.get(v.id).push({ id: w.id, len: length });
     }
   }
@@ -39,14 +37,7 @@ class WeightedDirectedGraph {
     var array = this.adjList.get(v);
 
     if (!array) return false;
-
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === w) {
-        return true;
-      }
-    }
-
-    return false;
+    return checkEdge(array, w);
   }
 
   /**
@@ -78,10 +69,6 @@ class WeightedDirectedGraph {
    */
   getEdgeLength(v1, v2) {
     var array = this.adjList.get(v1);
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === v2) {
-        return array[i].len;
-      }
-    }
+    return findEdgeLength(array, v2);
   }
 }

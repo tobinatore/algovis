@@ -23,9 +23,7 @@ class WeightedUndirectedGraph {
     if (!this.edgeExists(v, w)) {
       // calculate length of edge based on
       // the positions of the two vertices­
-      var length = Math.round(
-        Math.sqrt(Math.pow(v.x - w.x, 2) + Math.pow(v.y - w.y, 2))
-      );
+      var length = calculateEdgeLength(v, w);
 
       // add the edges to the adjacency list
       this.adjList.get(v.id).push({ id: w.id, len: length });
@@ -44,14 +42,7 @@ class WeightedUndirectedGraph {
     // vertex 1 does not exist
     // -> edge can't exist
     if (!array) return false;
-
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === w) {
-        return true;
-      }
-    }
-
-    return false;
+    return checkEdge(array, w);
   }
 
   /**
@@ -101,11 +92,6 @@ class WeightedUndirectedGraph {
    */
   getEdgeLength(v1, v2) {
     var array = this.adjList.get(v1);
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === v2) {
-        return array[i].len;
-      }
-    }
-    return -1;
+    return findEdgelLength(array, v2);
   }
 }

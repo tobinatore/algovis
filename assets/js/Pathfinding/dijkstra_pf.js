@@ -9,17 +9,10 @@ class Dijkstras {
    * @param {Object} end - Row and column of the target node
    */
   async run(grid, start, end) {
-    var q = [];
+    var q = makeQueueFromGrid(grid);
     // reset grid in case this isn't the first run
     this.resetGrid(grid);
     grid[start.y][start.x].dist = 0;
-
-    // push every node to the queue
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
-        q.push(grid[y][x]);
-      }
-    }
 
     // run as long as there are unvisited nodes
     while (!q.length == 0) {
@@ -28,19 +21,17 @@ class Dijkstras {
       // current node is the target node
       // -> print path and break
       if (v.col == end.x && v.row == end.y) {
-        this.makePath(grid, end, start);
+        makePath(grid, end, start);
         return;
       }
 
       // get adjacent nodes
-      var neighbours = this.getNeighbours(grid, v);
+      var neighbours = getNeighbours(grid, v);
 
       for (const n in neighbours) {
         // get index of neighbour in queue
         // or -1 if it is not an element of q
-        var indInQ = q.findIndex(
-          (elem) => elem.x == neighbours[n].x && elem.y == neighbours[n].y
-        );
+        var indInQ = findIndex(q, neighbours, n);
 
         // check if node has not been visited and is not a wall
         if (indInQ != -1 && neighbours[n].type != "wall") {
@@ -51,19 +42,12 @@ class Dijkstras {
           // only color the node pink if it isn't a weight
           // so the grey color of the weights is preserved
           if (neighbours[n].type != "weight") {
-            await colorBlock(
-              "#node-" + neighbours[n].row + "-" + neighbours[n].col,
-              "#FF8B84",
-              500,
-              30,
-              "fill"
-            );
+            await colorVisited(neighbours[n]);
           }
 
           // update distance and predecessor if new path is shorter
           if (alt < neighbours[n].dist) {
-            neighbours[n].dist = alt;
-            neighbours[n].predecessor = { row: v.row, col: v.col };
+            updateNode(neighbours[n], v, alt);
           }
         }
       }
@@ -94,39 +78,6 @@ class Dijkstras {
   }
 
   /**
-   * Gets all nodes adjacent to the current node.
-   * @param {Object[][]} grid - 2d array of nodes
-   * @param {Object} v - The current node
-   * @returns {Object[]} - A list of nodes adjacent to v
-   */
-  getNeighbours(grid, v) {
-    var nbs = [];
-
-    if (v.col - 1 >= 0 && grid[v.row][v.col - 1]) {
-      if (grid[v.row][v.col - 1].type != "wall")
-        // node left of v
-        nbs.push(grid[v.row][v.col - 1]);
-    }
-    if (v.col + 1 < grid[0].length && grid[v.row][v.col + 1]) {
-      if (grid[v.row][v.col + 1].type != "wall")
-        // node right of v
-        nbs.push(grid[v.row][v.col + 1]);
-    }
-    if (v.row - 1 >= 0 && grid[v.row - 1][v.col]) {
-      if (grid[v.row - 1][v.col].type != "wall")
-        // node above v
-        nbs.push(grid[v.row - 1][v.col]);
-    }
-    if (v.row + 1 < grid.length && grid[v.row + 1][v.col]) {
-      if (grid[v.row + 1][v.col].type != "wall")
-        // node below v
-        nbs.push(grid[v.row + 1][v.col]);
-    }
-
-    return nbs;
-  }
-
-  /**
    * Finds the node with the lowest total distance, removes it from the list
    * and returns it.
    * @param {Object[]} q - List of all unvisited nodes
@@ -137,65 +88,6 @@ class Dijkstras {
     var closest = { dist: Infinity };
     var ind = 0;
 
-    // gradually find node with lowest distance
-    // by looping through q and updating 'closest'
-    // when needed
-    for (let i = 0; i < q.length; i++) {
-      if (closest.dist > q[i].dist) {
-        closest = q[i];
-        ind = i;
-      }
-    }
-    // remove the closest node from q
-    // and return it
-    q.splice(ind, 1);
-    return closest;
-  }
-
-  /**
-   * Reads predecessors starting from the target node and colors the path.
-   * @param {Object[][]} grid - 2d array of nodes representing the grid
-   * @param {Object} end - Row and column of the target node
-   */
-  async makePath(grid, end) {
-    await timeout(500);
-    var list = [];
-    var v = grid[end.y][end.x];
-    list.unshift(v);
-    // step through predecessors until hitting the
-    // source node, whose predecessor is undefined
-    while (v.predecessor != undefined) {
-      // color path red and add nodes to path list
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
-      v = grid[v.predecessor.row][v.predecessor.col];
-      list.unshift(v);
-    }
-    // add source node to the path list
-    // and animate the stick figure
-    list.unshift(v);
-    this.makeHimRun(list);
-  }
-
-  /**
-   * Animates the stick figure to move from start to target.
-   * @param {Object[]} list - List of nodes in the path
-   */
-  async makeHimRun(list) {
-    // update x and y coordinates of the stick figure
-    // to the coordinates of every node in the path
-    for (let i in list) {
-      d3.select("#start")
-        .transition()
-        .duration(50)
-        .attr("x", list[i].x)
-        .attr("y", list[i].y);
-      await timeout(50);
-    }
-
-    // teleport stick figure back to the source node
-    await timeout(200);
-    var x = gridData[startPos.y][startPos.x].x;
-    var y = gridData[startPos.y][startPos.x].y;
-    d3.select("#start").attr("x", x).attr("y", y);
+    return getClosestNode(q, closest, ind);
   }
 }

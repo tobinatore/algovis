@@ -8,7 +8,7 @@ class GrowingTree {
    */
   async startMaze(cell) {
     // filling the grid so the algorithm can carve out ways
-    this.fillGrid();
+    fillGrid();
 
     // declaring a list of unvisited cells
     // and a list of possible directions
@@ -28,7 +28,7 @@ class GrowingTree {
     // running as long as there are unvisited cells left
     while (cells.length != 0) {
       // shuffling the list of directions
-      dirs = this.shuffle(dirs);
+      dirs = shuffle(dirs);
 
       let index = Math.round(Math.random() * (cells.length - 1));
 
@@ -86,36 +86,5 @@ class GrowingTree {
         cells.splice(index, 1);
       }
     }
-  }
-
-  /**
-   * Fills the grid with walls as preparation for the algorithm.
-   */
-  fillGrid() {
-    for (let y = 0; y < gridData.length; y++) {
-      for (let x = 0; x < gridData[y].length; x++) {
-        gridData[y][x].type = "wall";
-        d3.select("#node-" + y + "-" + x)
-          .transition()
-          .duration(500)
-          .attr("fill", "#171717");
-      }
-    }
-  }
-
-  /**
-   * Fisher-Yates shuffle for shuffling the list of neighbouring cells.
-   * @param {Object[]} array - The list of neighbouring cells
-   * @returns {Object[]} - The shuffled list
-   */
-  shuffle(array) {
-    var j, x, i;
-    for (i = array.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = array[i];
-      array[i] = array[j];
-      array[j] = x;
-    }
-    return array;
   }
 }

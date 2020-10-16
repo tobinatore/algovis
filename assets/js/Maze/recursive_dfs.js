@@ -8,7 +8,7 @@ class RecursiveDFS {
    * @param {Object} cell - X and Y coordinates of the randomly chosen starting cell
    */
   async startMaze(cell) {
-    this.fillGrid();
+    fillGrid();
     await this.generateMaze(cell);
   }
 
@@ -26,7 +26,7 @@ class RecursiveDFS {
     await colorBlock("#node-" + y + "-" + x, "#FFF", 100, 10);
 
     // getting the neighbouring cells in random order
-    var neighbours = this.shuffle(this.getNeighbours(cell));
+    var neighbours = shuffle(this.getNeighbours(cell));
 
     // looping through the list of neighbours and recursively calling
     // this function to build a path through the grid
@@ -96,22 +96,6 @@ class RecursiveDFS {
   }
 
   /**
-   * Fisher-Yates shuffle for shuffling the list of neighbouring cells.
-   * @param {Object[]} array - The list of neighbouring cells
-   * @returns {Object[]} - The shuffled list
-   */
-  shuffle(array) {
-    var j, x, i;
-    for (i = array.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = array[i];
-      array[i] = array[j];
-      array[j] = x;
-    }
-    return array;
-  }
-
-  /**
    * Returns all cells adjacent to the currently examined cell.
    * @param {Object} cell - The node for which we want the neighbours
    * @returns {Object[]} -The list of adjacent cells
@@ -144,20 +128,5 @@ class RecursiveDFS {
     }
 
     return nbs;
-  }
-
-  /**
-   * Fills the grid with walls as preparation for the recursive DFS.
-   */
-  fillGrid() {
-    for (let y = 0; y < gridData.length; y++) {
-      for (let x = 0; x < gridData[y].length; x++) {
-        gridData[y][x].type = "wall";
-        d3.select("#node-" + y + "-" + x)
-          .transition()
-          .duration(500)
-          .attr("fill", "#171717");
-      }
-    }
   }
 }

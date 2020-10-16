@@ -78,7 +78,7 @@ class LinkedList {
           await newArrow(
             { x: (pos - 1) * 150 + 50, y: 50 },
             { x: pos * 150 + 50, y: 50 },
-            pos - 1
+            false
           );
           this.length++;
           break;
@@ -93,12 +93,8 @@ class LinkedList {
           let index = 0;
           await highlightCode(10);
           await timeout(200);
-          while (index != pos - 1) {
-            current = current.next;
-            await highlightCode(11);
-            await highlight(index, "#CC1616", false);
-            index++;
-          }
+          await highlight(index, "#CC1616", false);
+          [index, current] = await getIndexAndCurrent(index, pos - 1, current);
           await highlight(index, "#CC1616", false);
           await newMidNode(pos, data);
           node.next = current.next;
@@ -237,14 +233,9 @@ class LinkedList {
         await highlightCode(15);
         await timeout(200);
         // looping through the list until preceding node is found
-        while (i + 1 != pos) {
-          await highlightCode(16);
-          curr = curr.next;
-          await highlight(i, "#CC1616", false);
-          await highlightCode(17);
-          await timeout(200);
-          i++;
-        }
+        await highlight(i, "#CC1616", false);
+        [i, curr] = await getIndexAndCurrent(i + 1, pos, curr);
+
         data_set.delete(curr.next.data);
         let nextNext = curr.next.next;
         curr.next = nextNext;

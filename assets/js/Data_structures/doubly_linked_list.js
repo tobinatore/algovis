@@ -83,7 +83,7 @@ class DoublyLinkedList {
           await newArrow(
             { x: (pos - 1) * 150 + 50, y: 50 },
             { x: pos * 150 + 50, y: 50 },
-            pos - 1
+            true
           );
           this.length++;
           break;
@@ -105,14 +105,12 @@ class DoublyLinkedList {
           if (this.length / pos >= 2) {
             await highlightCode(14);
             await timeout(200);
-            while (index != pos - 1) {
-              current = current.next;
-              await highlightCode(15);
-              await highlight(index, "#CC1616", false);
-              await highlightCode(16);
-              await timeout(200);
-              index++;
-            }
+            await highlight(index, "#CC1616", false);
+            [index, current] = await getIndexAndCurrent(
+              index,
+              pos - 1,
+              current
+            );
           } else {
             await highlightCode(17);
             await timeout(200);
@@ -270,14 +268,9 @@ class DoublyLinkedList {
           // looping through the list until preceding node is found
           await highlightCode(12);
           await timeout(200);
-          while (i + 1 != pos) {
-            await highlightCode(13);
-            curr = curr.next;
-            await highlight(i, "#CC1616", false);
-            await highlightCode(14);
-            await timeout(200);
-            i++;
-          }
+          await highlight(i, "#CC1616", false);
+          [i, curr] = await getIndexAndCurrent(i + 1, pos, curr);
+
           // highlighting predecessor
           await highlight(i, "#CC1616", false);
           data_set.delete(curr.next.data);

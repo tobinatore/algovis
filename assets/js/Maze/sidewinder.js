@@ -3,21 +3,6 @@ class Sidewinder {
   constructor() {}
 
   /**
-   * Fills the grid with walls as preparation for the sidewinder algorithm.
-   */
-  fillGrid() {
-    for (let y = 0; y < gridData.length; y++) {
-      for (let x = 0; x < gridData[y].length; x++) {
-        gridData[y][x].type = "wall";
-        d3.select("#node-" + y + "-" + x)
-          .transition()
-          .duration(500)
-          .attr("fill", "#171717");
-      }
-    }
-  }
-
-  /**
    * Function for running the sidewinder algorithm to generate a maze.
    * Works similiar to the binary tree generator but has the advantage
    * that only one side is a complete straight passage.
@@ -25,7 +10,7 @@ class Sidewinder {
   async startMaze() {
     var runStart = 0;
     // fill the grid with walls, so the algorithm can carve a way
-    this.fillGrid();
+    fillGrid();
 
     var height = gridData.length;
     var width = gridData[0].length;

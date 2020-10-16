@@ -31,29 +31,6 @@ class DFS {
   constructor() {}
 
   /**
-   * Resets the grid and every node.
-   * @param {Object[][]} grid - 2d array of objects representing the grid
-   */
-  resetGrid(grid) {
-    for (let y = 0; y &lt; grid.length; y++) {
-      for (let x = 0; x &lt; grid[y].length; x++) {
-        // reset distances, fScores, predecessors and visited status of every node
-        grid[y][x].dist = Infinity;
-        grid[y][x].fScore = Infinity;
-        grid[y][x].predecessor = undefined;
-        grid[y][x].visited = false;
-
-        // color cell white if it's a floor tile or grey if it's a weight
-        if (grid[y][x].type != "wall" &amp;&amp; grid[y][x].type != "weight") {
-          d3.select("#node-" + y + "-" + x).attr("fill", "#FFF");
-        } else if (grid[y][x].type == "weight") {
-          d3.select("#node-" + y + "-" + x).attr("fill", "#B0B0B0");
-        }
-      }
-    }
-  }
-
-  /**
    * Run the algorithm with the provided values.
    * @param {Object[][]} grid - A 2d array representing the grid the algorithm runs on
    * @param {Object} start - Row and column of the source node
@@ -61,7 +38,7 @@ class DFS {
    */
   async run(grid, start, end) {
     // resetting the grid before every run
-    this.resetGrid(grid);
+    resetGrid(grid);
     var node = grid[start.y][start.x];
     // calling the recursive dfs function and awaiting
     // the last node of the path
@@ -74,7 +51,7 @@ class DFS {
    * on the provided grid.
    * @param {Object[][]} grid - A 2d array representing the grid the algorithm runs on
    * @param {Object} end - Row and column of the target node
-   * @param {bject[]} stack - Stack of unvisited nodes
+   * @param {Object[]} stack - Stack of unvisited nodes
    * @returns {Object} - The target node
    */
   async dfs(grid, end, stack) {
@@ -90,13 +67,7 @@ class DFS {
 
         node.visited = true;
         // mark visited nodes in light red on the grid
-        await colorBlock(
-          "#node-" + node.row + "-" + node.col,
-          "#FF8B84",
-          500,
-          30,
-          "fill"
-        );
+        await colorVisited(node);
 
         // push other nodes to be considerated onto the stack
         if (
@@ -170,29 +141,7 @@ class DFS {
     }
     list.unshift(v);
     // animate the stick figure
-    this.makeHimRun(list);
-  }
-
-  /**
-   * Animates the stick figure to move from start to target.
-   * @param {Object[]} list - List of nodes in the path
-   */
-  async makeHimRun(list) {
-    // loop over the path list
-    // and adjust the position of the stick figure
-    for (let i in list) {
-      d3.select("#start")
-        .transition()
-        .duration(50)
-        .attr("x", list[i].x)
-        .attr("y", list[i].y);
-      await timeout(50);
-    }
-    await timeout(200);
-    // teleport the stick figure back to the start
-    var x = gridData[startPos.y][startPos.x].x;
-    var y = gridData[startPos.y][startPos.x].y;
-    d3.select("#start").attr("x", x).attr("y", y);
+    makeHimRun(list);
   }
 }
 </code></pre>
@@ -205,13 +154,13 @@ class DFS {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataStructuresHelperFunctions.html">DataStructuresHelperFunctions</a></li><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-DSAnimationHelperFunctions.html">DSAnimationHelperFunctions</a></li><li><a href="module-GraphHelperFunctions.html">GraphHelperFunctions</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-MazeGenerationHelperFunctions.html">MazeGenerationHelperFunctions</a></li><li><a href="module-PathfindingHelperFunctions.html">PathfindingHelperFunctions</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:13 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Oct 16 2020 21:52:31 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

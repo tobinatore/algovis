@@ -68,6 +68,12 @@ class AStar {
     }
   }
 
+  /**
+   * Checks whether a given cell is in the open set.
+   * @param {Object[]} openSet - The open set
+   * @param {Object} neighbour - The cell to check
+   * @returns {boolean} - True if cell is in openSet, false else.
+   */
   isInOpenset(openSet, neighbour) {
     return openSet.findIndex(
       (elem) => elem.x == neighbour.x && elem.y == neighbour.y

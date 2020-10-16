@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: graphs/unweighted_undirected.js</title>
+    <title>JSDoc: Source: Data_structures/ds_helpers.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: graphs/unweighted_undirected.js</h1>
+    <h1 class="page-title">Source: Data_structures/ds_helpers.js</h1>
 
     
 
@@ -26,79 +26,27 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** Implementation of an unweighted undirected graph */
-class UnweightedUndirectedGraph {
-  /**
-   * Initializes the adjacency list of the graph.
-   */
-  constructor() {
-    this.adjList = new Map();
-  }
+            <pre class="prettyprint source linenums"><code>/** @module DataStructuresHelperFunctions */
 
-  /**
-   * Adds a given vertex v to the adjacency list of the graph.
-   * @param {number} v - The vertex which should be added
-   */
-  addVertex(v) {
-    this.adjList.set(v, []);
+/**
+ * Function which determines the index and node of a
+ * (doubly) linked list which will either be the successor
+ * of a new node or deleted.
+ * @param {number} index - The index where to start
+ * @param {number} pos - The target index
+ * @param {Object} node - The node where the algorithm starts
+ * @returns - The final index and list node
+ */
+async function getIndexAndCurrent(index, pos, node) {
+  while (index != pos) {
+    node = node.next;
+    await highlightCode(15);
+    await highlight(index, "#CC1616", false);
+    await highlightCode(16);
+    await timeout(200);
+    index++;
   }
-
-  /**
-   * Adds an undirected edge between two given vertices
-   * @param {number} v - First vertex
-   * @param {number} w - Second vertex
-   */
-  addEdge(v, w) {
-    // check whether edge already exists
-    // only add it if this isn't the case.
-    if (!this.edgeExists(v, w)) {
-      this.adjList.get(v).push(w);
-      this.adjList.get(w).push(v);
-    }
-  }
-
-  /**
-   * Checks if an edge exists between the two vertices.
-   * @param {number} v - The first vertex
-   * @param {number} w - The second vertex
-   * @returns {boolean} - True if the edge exists, else false.
-   */
-  edgeExists(v, w) {
-    var array = this.adjList.get(v);
-    // There can't be and edge,
-    // if the first vertex doesn't exist
-    if (!array) return false;
-    // else check whether the index of the second
-    // vertex in the list of neighbours is -1
-    // return true if it isn't -1, else return false.
-    return array.indexOf(w) != -1 ? true : false;
-  }
-
-  /**
-   * Returns the number of vertices in the graph.
-   * @returns {number} - Number of vertices in the graph
-   */
-  getNoOfVertices() {
-    return this.adjList.size;
-  }
-
-  /**
-   * Returns the number of edges in the graph.
-   * @returns {number} - The number of edges
-   */
-  getNoOfEdges() {
-    var numEdges = 0;
-    // count the length of every entry in the
-    // adjacency list
-    for (let i in this.adjList) {
-      numEdges += this.adjList.get(i).length;
-    }
-
-    // divide that number by 2
-    // -> graph is undirected,
-    // so every edge appears twice
-    return numEdges / 2;
-  }
+  return [index, node];
 }
 </code></pre>
         </article>

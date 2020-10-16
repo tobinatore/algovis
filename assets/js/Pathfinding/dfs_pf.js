@@ -23,7 +23,7 @@ class DFS {
    * on the provided grid.
    * @param {Object[][]} grid - A 2d array representing the grid the algorithm runs on
    * @param {Object} end - Row and column of the target node
-   * @param {bject[]} stack - Stack of unvisited nodes
+   * @param {Object[]} stack - Stack of unvisited nodes
    * @returns {Object} - The target node
    */
   async dfs(grid, end, stack) {
@@ -39,13 +39,7 @@ class DFS {
 
         node.visited = true;
         // mark visited nodes in light red on the grid
-        await colorBlock(
-          "#node-" + node.row + "-" + node.col,
-          "#FF8B84",
-          500,
-          30,
-          "fill"
-        );
+        await colorVisited(node);
 
         // push other nodes to be considerated onto the stack
         if (

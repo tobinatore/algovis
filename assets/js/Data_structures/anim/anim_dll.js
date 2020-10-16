@@ -9,6 +9,66 @@ async function pushNodes(pos) {
   // building a selection string for d3.js
   let selection = buildSelection(pos, true);
 
+  await moveRight(selection);
+
+  // updating the y-Coordinate of the newly created node,
+  // so it is in line with the other nodes. Also updating the id
+  d3.select("#g" + list.length)
+    .filter(function () {
+      return !this.classList.contains("moved");
+    })
+    .transition()
+    .duration(500)
+    .attr("transform", "translate(0,-100)")
+    .attr("id", "g" + pos);
+
+  // calculating start and end point of the arrow
+  // connecting the new node to the next node
+  let xyVals = calcXYVals(pos);
+
+  let xy0 = xyVals[0];
+  let xy1 = xyVals[1];
+
+  await animateArrows(xy0, xy1, pos);
+
+  // if the new node is not the head...
+  if (pos != 0) {
+    // ...animate the arrow connecting the
+    // previous node to the new node
+    let start = [(pos - 1) * 150 + 50, 50];
+    let end = [pos * 150 + 50, 50];
+    await slideArrow("#path" + (pos - 1), start, end);
+    await slideArrow("#path" + (pos - 1) + "-2", end, start);
+  }
+
+  await timeout(510);
+  // remove the temporary classes used for filtering
+  svg.selectAll("*").attr("class", null);
+}
+
+async function animateArrows(xy0, xy1, pos) {
+  // animating the arrow
+  // "line()" on line 80 is defined in anim_helpers.js
+  d3.select("#path" + (list.length - 1))
+    .filter(function () {
+      return !this.classList.contains("moved");
+    })
+    .transition()
+    .duration(500)
+    .attr("d", line([xy0, xy1]))
+    .attr("id", "path" + pos);
+
+  d3.select("#path" + (list.length - 1) + "-2")
+    .filter(function () {
+      return !this.classList.contains("moved");
+    })
+    .transition()
+    .duration(500)
+    .attr("d", line([xy1, xy0]))
+    .attr("id", "path" + pos + "-2");
+}
+
+async function moveRight(selection) {
   // moving the whole selection to the right
   // and updating the id's to reflect the change in position
   d3.selectAll(selection)
@@ -37,58 +97,6 @@ async function pushNodes(pos) {
       return test;
     })
     .attr("class", "moved");
-
-  // updating the y-Coordinate of the newly created node,
-  // so it is in line with the other nodes. Also updating the id
-  d3.select("#g" + list.length)
-    .filter(function () {
-      return !this.classList.contains("moved");
-    })
-    .transition()
-    .duration(500)
-    .attr("transform", "translate(0,-100)")
-    .attr("id", "g" + pos);
-
-  // calculating start and end point of the arrow
-  // connecting the new node to the next node
-  let xyVals = calcXYVals(pos);
-
-  let xy0 = xyVals[0];
-  let xy1 = xyVals[1];
-
-  // animating the arrow
-  // "line()" on line 80 is defined in anim_helpers.js
-  d3.select("#path" + (list.length - 1))
-    .filter(function () {
-      return !this.classList.contains("moved");
-    })
-    .transition()
-    .duration(500)
-    .attr("d", line([xy0, xy1]))
-    .attr("id", "path" + pos);
-
-  d3.select("#path" + (list.length - 1) + "-2")
-    .filter(function () {
-      return !this.classList.contains("moved");
-    })
-    .transition()
-    .duration(500)
-    .attr("d", line([xy1, xy0]))
-    .attr("id", "path" + pos + "-2");
-
-  // if the new node is not the head...
-  if (pos != 0) {
-    // ...animate the arrow connecting the
-    // previous node to the new node
-    let start = [(pos - 1) * 150 + 50, 50];
-    let end = [pos * 150 + 50, 50];
-    await slideArrow("#path" + (pos - 1), start, end);
-    await slideArrow("#path" + (pos - 1) + "-2", end, start);
-  }
-
-  await timeout(510);
-  // remove the temporary classes used for filtering
-  svg.selectAll("*").attr("class", null);
 }
 
 /**

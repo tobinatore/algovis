@@ -24,13 +24,7 @@ class AStar {
       var curr = this.findLowestFScore(openSet, end);
       curr.visited = true;
 
-      await colorBlock(
-        "#node-" + curr.row + "-" + curr.col,
-        "#FF8B84",
-        500,
-        30,
-        "fill"
-      );
+      await colorVisited(curr);
 
       // the current node is the target node
       // -> highlight path and break

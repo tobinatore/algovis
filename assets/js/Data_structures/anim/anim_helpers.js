@@ -11,6 +11,43 @@ var line = d3
   .curve(d3.curveLinear);
 
 /**
+ * Creates the SVG representation of a new node
+ *  for a (doubly) linked list.
+ * @param {number} pos - The "index" of the new node
+ * @returns {Object} - The group of SVG elements
+ */
+function createSVGElems(pos) {
+  var groups = svg
+    .selectAll("circle")
+    .data(data_nodes)
+    .enter()
+    .append("g")
+    .attr("id", function (d, i) {
+      return "g" + i;
+    });
+  // creating new circle
+  groups
+    .append("circle")
+    .attr("cx", function (d) {
+      return xScale(d.x);
+    })
+    .attr("cy", function (d) {
+      return yScale(d.y);
+    })
+    .transition()
+    .duration(500)
+    .attr("r", radius)
+    .attr("fill", "white")
+    .attr("stroke", "#171717")
+    .attr("stroke-width", strokeWidth)
+    .attr("id", function (d, i) {
+      return "circle" + pos;
+    });
+
+  return groups;
+}
+
+/**
  * Function for creating a new node in the linked list.
  * @param {number[]} coords - The coordinates where the new node will be created
  * @param {number} data - The data the node contains
@@ -24,32 +61,7 @@ async function newNode(coords, data, pos) {
     data_nodes.push(newData);
 
     // creating a new group to contain circle and text of the node
-    var groups = svg
-      .selectAll("circle")
-      .data(data_nodes)
-      .enter()
-      .append("g")
-      .attr("id", function (d, i) {
-        return "g" + i;
-      });
-    // creating new circle
-    groups
-      .append("circle")
-      .attr("cx", function (d) {
-        return xScale(d.x);
-      })
-      .attr("cy", function (d) {
-        return yScale(d.y);
-      })
-      .transition()
-      .duration(500)
-      .attr("r", radius)
-      .attr("fill", "white")
-      .attr("stroke", "#171717")
-      .attr("stroke-width", strokeWidth)
-      .attr("id", function (d, i) {
-        return "circle" + pos;
-      });
+    let groups = createSVGElems(pos);
 
     // timeout, so the text appears when the circle is nearly finished
     setTimeout(() => {

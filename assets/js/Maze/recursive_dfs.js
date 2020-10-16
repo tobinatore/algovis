@@ -43,14 +43,14 @@ class RecursiveDFS {
    * @returns {number} - Number of cells with type 'floor' adjacent to current cell
    */
   adjacentRooms(cell) {
-    var adj = 0;
     var x = cell.x;
     var y = cell.y;
 
-    if (x - 1 >= 0 && gridData[y][x - 1].type == "floor") {
-      // left
-      adj++;
-    }
+    return this.adjacentDiagonal(x, y) + this.adjacentPerpendicular(x, y);
+  }
+
+  adjacentDiagonal(x, y) {
+    let adj = 0;
     if (x - 1 >= 0 && y - 1 >= 0 && gridData[y - 1][x - 1].type == "floor") {
       // top-left
       adj++;
@@ -79,6 +79,17 @@ class RecursiveDFS {
       // bottom-right
       adj++;
     }
+
+    return adj;
+  }
+
+  adjacentPerpendicular(x, y) {
+    let adj = 0;
+    if (x - 1 >= 0 && gridData[y][x - 1].type == "floor") {
+      // left
+      adj++;
+    }
+
     if (x + 1 < gridData[0].length && gridData[y][x + 1].type == "floor") {
       // right
       adj++;
@@ -91,7 +102,6 @@ class RecursiveDFS {
       //bottom
       adj++;
     }
-
     return adj;
   }
 

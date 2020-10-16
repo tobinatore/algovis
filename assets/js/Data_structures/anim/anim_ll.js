@@ -1,14 +1,6 @@
 /** @module LinkedListAnimation */
 
-/**
- * Function that pushes all nodes and arrows with indexes bigger than the
- * specified index one position to the right.
- * @param {number} pos - The index where the new node will be inserted
- */
-async function pushNodes(pos) {
-  // building a selection string for d3.js
-  let selection = buildSelection(pos, false);
-
+function pushAnimation(selection, pos) {
   // moving the whole selection to the right
   // and updating the id's to reflect the change in position
   d3.selectAll(selection)
@@ -42,7 +34,17 @@ async function pushNodes(pos) {
     .duration(500)
     .attr("transform", "translate(0,-100)")
     .attr("id", "g" + pos);
+}
 
+/**
+ * Function that pushes all nodes and arrows with indexes bigger than the
+ * specified index one position to the right.
+ * @param {number} pos - The index where the new node will be inserted
+ */
+async function pushNodes(pos) {
+  // building a selection string for d3.js
+  let selection = buildSelection(pos, false);
+  pushAnimation(selection, pos);
   // calculating start and end point of the arrow
   // connecting the new node to the next node
   let xyVals = calcXYVals(pos);

@@ -24,13 +24,7 @@ class AStar {
       var curr = this.findLowestFScore(openSet, end);
       curr.visited = true;
 
-      await colorBlock(
-        "#node-" + curr.row + "-" + curr.col,
-        "#FF8B84",
-        500,
-        30,
-        "fill"
-      );
+      await colorVisited(curr);
 
       // the current node is the target node
       // -> highlight path and break
@@ -47,12 +41,7 @@ class AStar {
 
         // conditional operator evaluating to 'true' if neighbour is already in
         // openSet, or 'false' if it isn't
-        var inOpenSet =
-          openSet.findIndex(
-            (elem) => elem.x == neighbour.x && elem.y == neighbour.y
-          ) == -1
-            ? false
-            : true;
+        var inOpenSet = this.isInOpenset(openSet, neighbour);
 
         // skip all following steps if neighbour has been visited
         if (neighbour.visited) {
@@ -77,6 +66,14 @@ class AStar {
         }
       }
     }
+  }
+
+  isInOpenset(openSet, neighbour) {
+    return openSet.findIndex(
+      (elem) => elem.x == neighbour.x && elem.y == neighbour.y
+    ) == -1
+      ? false
+      : true;
   }
 
   /**

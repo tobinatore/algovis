@@ -719,9 +719,10 @@
         .attr("font-size", "25px")
         .attr("font-weight", "bold");
 
-      function highlightCode(elementClass) {
+      async function highlightCode(elementClass, delay = 0) {
         $(".code-highlight").removeClass("code-highlight");
         $(`.${elementClass}`).addClass("code-highlight");
+        await timeout(delay);
       }
 
       async function timeout(delay) {

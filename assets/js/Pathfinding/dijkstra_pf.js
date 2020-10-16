@@ -42,13 +42,7 @@ class Dijkstras {
           // only color the node pink if it isn't a weight
           // so the grey color of the weights is preserved
           if (neighbours[n].type != "weight") {
-            await colorBlock(
-              "#node-" + neighbours[n].row + "-" + neighbours[n].col,
-              "#FF8B84",
-              500,
-              30,
-              "fill"
-            );
+            await colorVisited(neighbours[n]);
           }
 
           // update distance and predecessor if new path is shorter
@@ -94,18 +88,6 @@ class Dijkstras {
     var closest = { dist: Infinity };
     var ind = 0;
 
-    // gradually find node with lowest distance
-    // by looping through q and updating 'closest'
-    // when needed
-    for (let i = 0; i < q.length; i++) {
-      if (closest.dist > q[i].dist) {
-        closest = q[i];
-        ind = i;
-      }
-    }
-    // remove the closest node from q
-    // and return it
-    q.splice(ind, 1);
-    return closest;
+    return getClosestNode(q, closest, ind);
   }
 }

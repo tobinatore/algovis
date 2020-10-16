@@ -41,13 +41,7 @@ class BFS {
           // weight nodes do not get special treatment, however
           // they shouldn't be colored in either.
           if (neighbours[n].type != "weight") {
-            await colorBlock(
-              "#node-" + neighbours[n].row + "-" + neighbours[n].col,
-              "#FF8B84",
-              500,
-              30,
-              "fill"
-            );
+            await colorVisited(neighbours[n]);
           }
           // current path to that node is shorter than the one pre-
           // viously found -> update node
@@ -70,13 +64,7 @@ class BFS {
     var ind = 0;
     // step through the list of unvisited nodes and continually
     // update closest with the values of the closest node
-    for (let i = 0; i < q.length; i++) {
-      if (closest.dist > q[i].dist) {
-        closest = q[i];
-        ind = i;
-      }
-    }
-    q.splice(ind, 1);
-    return closest;
+
+    return getClosestNode(q, closest, ind);
   }
 }

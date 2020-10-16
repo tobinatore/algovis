@@ -139,3 +139,40 @@ function updateNode(node, v, newDist) {
   node.dist = newDist;
   node.predecessor = { row: v.row, col: v.col };
 }
+
+/**
+ * Finds the node with the lowest distance value.
+ * @param {Object[]} q - Queue of all unvisited nodes
+ * @param {Object} closest - Node with currently has the lowest distance value
+ * @param {number} ind - Index of closest within q
+ * @returns {Object} - The node with the lowest distance value
+ */
+function getClosestNode(q, closest, ind) {
+  // gradually find node with lowest distance
+  // by looping through q and updating 'closest'
+  // when needed
+  for (let i = 0; i < q.length; i++) {
+    if (closest.dist > q[i].dist) {
+      closest = q[i];
+      ind = i;
+    }
+  }
+  // remove the closest node from q
+  // and return it
+  q.splice(ind, 1);
+  return closest;
+}
+
+/**
+ * Colors visited nodes a light red.
+ * @param {Object} node - The node which should be colored.
+ */
+async function colorVisited(node) {
+  await colorBlock(
+    "#node-" + node.row + "-" + node.col,
+    "#FF8B84",
+    500,
+    30,
+    "fill"
+  );
+}

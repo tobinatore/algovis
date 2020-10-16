@@ -31,9 +31,7 @@ class Dijkstras {
       for (const n in neighbours) {
         // get index of neighbour in queue
         // or -1 if it is not an element of q
-        var indInQ = q.findIndex(
-          (elem) => elem.x == neighbours[n].x && elem.y == neighbours[n].y
-        );
+        var indInQ = findIndex(q, neighbours, n);
 
         // check if node has not been visited and is not a wall
         if (indInQ != -1 && neighbours[n].type != "wall") {
@@ -55,8 +53,7 @@ class Dijkstras {
 
           // update distance and predecessor if new path is shorter
           if (alt < neighbours[n].dist) {
-            neighbours[n].dist = alt;
-            neighbours[n].predecessor = { row: v.row, col: v.col };
+            updateNode(neighbours[n], v, alt);
           }
         }
       }

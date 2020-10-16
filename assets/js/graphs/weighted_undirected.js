@@ -42,14 +42,7 @@ class WeightedUndirectedGraph {
     // vertex 1 does not exist
     // -> edge can't exist
     if (!array) return false;
-
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === w) {
-        return true;
-      }
-    }
-
-    return false;
+    return checkEdge(array, w);
   }
 
   /**
@@ -99,11 +92,6 @@ class WeightedUndirectedGraph {
    */
   getEdgeLength(v1, v2) {
     var array = this.adjList.get(v1);
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === v2) {
-        return array[i].len;
-      }
-    }
-    return -1;
+    return findEdgelLength(array, v2);
   }
 }

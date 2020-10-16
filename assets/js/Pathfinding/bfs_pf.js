@@ -32,9 +32,7 @@ class BFS {
 
       // examine every neighbour of the current cell
       for (const n in neighbours) {
-        var indInQ = q.findIndex(
-          (elem) => elem.x == neighbours[n].x && elem.y == neighbours[n].y
-        );
+        var indInQ = findIndex(q, neighbours, n);
 
         // if the currently considered neighbour has not been
         // visited and it isn't a wall
@@ -54,8 +52,7 @@ class BFS {
           // current path to that node is shorter than the one pre-
           // viously found -> update node
           if (alt < neighbours[n].dist) {
-            neighbours[n].dist = alt;
-            neighbours[n].predecessor = { row: v.row, col: v.col };
+            updateNode(neighbours[n], v, alt);
           }
         }
       }

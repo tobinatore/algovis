@@ -115,3 +115,27 @@ function makeQueueFromGrid(grid) {
   }
   return q;
 }
+
+/**
+ * Function for finding the index of a given node in the queue.
+ * @param {Object[]} q - List of unvisited nodes
+ * @param {Object[]} neighbours - List of neighbours of the current node
+ * @param {number} n - The index of the currently selected neighbouring node
+ * @returns {number} - The index of the currently selected neighbouring node in the queue
+ */
+function findIndex(q, neighbours, n) {
+  return q.findIndex(
+    (elem) => elem.x == neighbours[n].x && elem.y == neighbours[n].y
+  );
+}
+
+/**
+ * Updates the minimum distance and predecessor of the given node.
+ * @param {Object} node - The node which should be updated
+ * @param {Object} v - The new predecessor
+ * @param {Object} newDist - The new minimum distance
+ */
+function updateNode(node, v, newDist) {
+  node.dist = newDist;
+  node.predecessor = { row: v.row, col: v.col };
+}

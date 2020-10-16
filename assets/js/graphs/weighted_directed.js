@@ -37,14 +37,7 @@ class WeightedDirectedGraph {
     var array = this.adjList.get(v);
 
     if (!array) return false;
-
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === w) {
-        return true;
-      }
-    }
-
-    return false;
+    return checkEdge(array, w);
   }
 
   /**
@@ -76,10 +69,6 @@ class WeightedDirectedGraph {
    */
   getEdgeLength(v1, v2) {
     var array = this.adjList.get(v1);
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].id === v2) {
-        return array[i].len;
-      }
-    }
+    return findEdgeLength(array, v2);
   }
 }

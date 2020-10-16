@@ -29,6 +29,82 @@
             <pre class="prettyprint source linenums"><code>/** @module StackAnimation */
 
 /**
+ * Creates the visual representation of a single
+ * stack element.
+ * @param {number} pos - The index of the element on the stack
+ * @returns {Object} - The finished groups of SVG elements
+ */
+function createStackSVG(pos) {
+  // creating a new group to contain rect and text of the node
+  var groups = svg
+    .selectAll("rect")
+    .data(data_nodes)
+    .enter()
+    .append("g")
+    .attr("id", function (d, i) {
+      return "g" + i;
+    });
+  // creating new rect
+  groups
+    .append("rect")
+    .attr("x", function (d) {
+      return xScale(d.x);
+    })
+    .attr("y", function (d) {
+      return yScale(d.y);
+    })
+    .transition()
+    .duration(500)
+    .attr("width", "120px")
+    .attr("height", "50px")
+    .attr("fill", "white")
+    .attr("stroke", "#171717")
+    .attr("stroke-width", strokeWidth)
+    .attr("id", function (d, i) {
+      return "rect" + pos;
+    });
+
+  return groups;
+}
+
+/**
+ * Adds the text with the data to a single stack element.
+ * @param {Object} groups - The group of SVG elements
+ *                          representing that part of the stack
+ * @param {number} data - The data which the label displays
+ * @param {number} pos - The index of the element on the stack
+ */
+function labelStackElement(groups, data, pos) {
+  // creating the text
+  groups
+    .append("text")
+    .text(data)
+    .attr("id", function (d, i) {
+      return "node-text" + pos;
+    })
+    .attr("x", function (d) {
+      console.log();
+      switch (String(data).length) {
+        case 1:
+          return xScale(d.x) + 57;
+        case 2:
+          return xScale(d.x) + 54;
+        case 3:
+          return xScale(d.x) + 51;
+
+        default:
+          return xScale(d.x) + 51;
+      }
+    })
+    .attr("y", function (d) {
+      return yScale(d.y) + 35;
+    })
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("font-weight", "bold");
+}
+
+/**
  * Function for creating a new element on the stack.
  * @param {number[]} coords - The coordinates where the new element will be created
  * @param {number} data - The data the element contains
@@ -37,72 +113,14 @@ async function newStackElement(coords, data) {
   return new Promise((resolve) => {
     let pos = stack.size;
 
-    var newData = {
-      x: Math.round(xScale.invert(coords[0])),
-      y: Math.round(yScale.invert(coords[1])),
-    };
+    var newData = calculatePosition(coords);
 
     // Pushing coordinates to the array
     data_nodes.push(newData);
-
-    // creating a new group to contain rect and text of the node
-    var groups = svg
-      .selectAll("rect")
-      .data(data_nodes)
-      .enter()
-      .append("g")
-      .attr("id", function (d, i) {
-        return "g" + i;
-      });
-    // creating new rect
-    groups
-      .append("rect")
-      .attr("x", function (d) {
-        return xScale(d.x);
-      })
-      .attr("y", function (d) {
-        return yScale(d.y);
-      })
-      .transition()
-      .duration(500)
-      .attr("width", "120px")
-      .attr("height", "50px")
-      .attr("fill", "white")
-      .attr("stroke", "#171717")
-      .attr("stroke-width", strokeWidth)
-      .attr("id", function (d, i) {
-        return "rect" + pos;
-      });
-
+    let groups = createStackSVG(pos);
     // timeout, so the text appears when the rect is nearly finished
     setTimeout(() => {
-      // creating the text
-      groups
-        .append("text")
-        .text(data)
-        .attr("id", function (d, i) {
-          return "node-text" + pos;
-        })
-        .attr("x", function (d) {
-          console.log();
-          switch (String(data).length) {
-            case 1:
-              return xScale(d.x) + 57;
-            case 2:
-              return xScale(d.x) + 54;
-            case 3:
-              return xScale(d.x) + 51;
-
-            default:
-              return xScale(d.x) + 51;
-          }
-        })
-        .attr("y", function (d) {
-          return yScale(d.y) + 35;
-        })
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "18px")
-        .attr("font-weight", "bold");
+      labelStackElement(groups, data, pos);
     }, 300);
 
     setTimeout(() => {
@@ -165,13 +183,13 @@ async function peekStack() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataStructuresHelperFunctions.html">DataStructuresHelperFunctions</a></li><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-DSAnimationHelperFunctions.html">DSAnimationHelperFunctions</a></li><li><a href="module-GraphHelperFunctions.html">GraphHelperFunctions</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-MazeGenerationHelperFunctions.html">MazeGenerationHelperFunctions</a></li><li><a href="module-PathfindingHelperFunctions.html">PathfindingHelperFunctions</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:13 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Oct 16 2020 21:52:31 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

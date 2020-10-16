@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ListNode</title>
+    <title>JSDoc: Module: GraphHelperFunctions</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ListNode</h1>
+    <h1 class="page-title">Module: GraphHelperFunctions</h1>
 
     
 
@@ -28,9 +28,6 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ListNode<span class="signature">(data)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">A single node of a doubly linked list. Contains dataand a reference to the next node.</div>
         
     
 </header>
@@ -40,12 +37,34 @@
     
         
 
+        
     
-    <h2>Constructor</h2>
+    </div>
+
     
 
     
-    <h4 class="name" id="ListNode"><span class="type-signature"></span>new ListNode<span class="signature">(data)</span><span class="type-signature"></span></h4>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~calculateEdgeLength"><span class="type-signature">(inner) </span>calculateEdgeLength<span class="signature">(v, w)</span><span class="type-signature"> &rarr; {number}</span></h4>
     
 
     
@@ -53,7 +72,7 @@
 
 
 <div class="description">
-    Creates a new node containing the given data.The next node is set to undefined and gets updatedby the DoublyLinkedList class.
+    Function for calculating the lenght of an edge.
 </div>
 
 
@@ -89,13 +108,13 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>v</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Object</span>
 
 
             
@@ -105,7 +124,30 @@
 
             
 
-            <td class="description last">The data stored by this node.</td>
+            <td class="description last">First vertex</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Second vertex</td>
         </tr>
 
     
@@ -146,7 +188,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Data_structures_doubly_linked_list.js.html">Data_structures/doubly_linked_list.js</a>, <a href="Data_structures_doubly_linked_list.js.html#line11">line 11</a>
+        <a href="graphs_graph_helpers.js.html">graphs/graph_helpers.js</a>, <a href="graphs_graph_helpers.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -171,65 +213,40 @@
 
 
 
+<h5>Returns:</h5>
 
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2><span class="attribs"><span class="type-signature"></span></span>ListNode<span class="signature">(data)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">A single node of a linked list. Contains dataand a reference to the next node.</div>
+<div class="param-desc">
+    - Lenght of the edge
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-    
-</header>
+<span class="param-type">number</span>
 
-<article>
-    <div class="container-overview">
+
+    </dd>
+</dl>
+
     
+
+
+
+
+
         
+            
 
     
-    <h2>Constructor</h2>
-    
 
     
-    <h4 class="name" id="ListNode"><span class="type-signature"></span>new ListNode<span class="signature">(data)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~checkEdge"><span class="type-signature">(inner) </span>checkEdge<span class="signature">(array, w)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -237,7 +254,7 @@
 
 
 <div class="description">
-    Creates a new node containing the given data.The next node is set to undefined and gets updatedby the LinkedList class.
+    Checks whether an edge exists between two vertices.
 </div>
 
 
@@ -273,13 +290,13 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>array</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Array.&lt;Object></span>
 
 
             
@@ -289,7 +306,30 @@
 
             
 
-            <td class="description last">The data stored by this node.</td>
+            <td class="description last">List of neighbours of first vertex</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Second vertex</td>
         </tr>
 
     
@@ -330,7 +370,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Data_structures_linked_list.js.html">Data_structures/linked_list.js</a>, <a href="Data_structures_linked_list.js.html#line11">line 11</a>
+        <a href="graphs_graph_helpers.js.html">graphs/graph_helpers.js</a>, <a href="graphs_graph_helpers.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -355,13 +395,135 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - True if edge exists, false if not
+</div>
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
 
+
+    </dd>
+</dl>
 
     
-    </div>
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~findEdgelLength"><span class="type-signature">(inner) </span>findEdgelLength<span class="signature">(array, v2)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Function for retrieving the length of the edgebetween two vertices.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">List of nodes connected to the first vertex</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>v2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The second vertex</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
 
     
 
@@ -377,6 +539,72 @@
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="graphs_graph_helpers.js.html">graphs/graph_helpers.js</a>, <a href="graphs_graph_helpers.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - The length of the edge or -1 if it doesn't exist
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     

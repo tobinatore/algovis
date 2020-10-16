@@ -106,7 +106,7 @@ class DoublyLinkedList {
    * @param {number} index - Starting point
    * @param {Object} current - Currently evaluated node
    * @param {number} pos - The target index.
-   * @returns {[number, Object]} - The index and found node
+   * @returns  - The index and found node
    */
   async getNodeFromLeft(index, current, pos) {
     await highlightCode(14, 200);
@@ -121,7 +121,7 @@ class DoublyLinkedList {
    * @param {number} index - Starting point
    * @param {Object} current - Currently evaluated node
    * @param {number} pos - The target index.
-   * @returns {[number, Object]} - The index and found node
+   * @returns - The index and found node
    */
   async getNodeFromRight(index, current, pos) {
     await highlightCode(17, 200);

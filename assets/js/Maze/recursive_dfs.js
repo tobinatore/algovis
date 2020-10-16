@@ -49,6 +49,11 @@ class RecursiveDFS {
     return this.adjacentDiagonal(x, y) + this.adjacentPerpendicular(x, y);
   }
 
+  /**
+   * Counts the number of diagonally adjacent cells of type "floor".
+   * @param {number} x - X-Coordinate of the cell
+   * @param {number} y - Y-Coordinate of the cell
+   */
   adjacentDiagonal(x, y) {
     let adj = 0;
     if (x - 1 >= 0 && y - 1 >= 0 && gridData[y - 1][x - 1].type == "floor") {
@@ -83,6 +88,11 @@ class RecursiveDFS {
     return adj;
   }
 
+  /**
+   * Counts the number of perpendicular adjacent cells of type "floor".
+   * @param {number} x - X-Coordinate of the cell
+   * @param {number} y - Y-Coordinate of the cell
+   */
   adjacentPerpendicular(x, y) {
     let adj = 0;
     if (x - 1 >= 0 && gridData[y][x - 1].type == "floor") {

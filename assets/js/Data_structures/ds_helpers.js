@@ -7,7 +7,7 @@
  * @param {number} index - The index where to start
  * @param {number} pos - The target index
  * @param {Object} node - The node where the algorithm starts
- * @returns {[number, Object]} - The final index and list node
+ * @returns - The final index and list node
  */
 async function getIndexAndCurrent(index, pos, node) {
   while (index != pos) {

@@ -149,7 +149,7 @@
     
 
     
-    <h4 class="name" id="fillGrid"><span class="type-signature"></span>fillGrid<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="cellValid"><span class="type-signature"></span>cellValid<span class="signature">(nx, ny, width, height)</span><span class="type-signature"></span></h4>
     
 
     
@@ -157,95 +157,7 @@
 
 
 <div class="description">
-    Fills the grid with walls as preparation for the algorithm.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line94">line 94</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="shuffle"><span class="type-signature"></span>shuffle<span class="signature">(array)</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Fisher-Yates shuffle for shuffling the list of neighbouring cells.
+    Checks whether a cell can become a floor tile.
 </div>
 
 
@@ -281,13 +193,13 @@
 
         <tr>
             
-                <td class="name"><code>array</code></td>
+                <td class="name"><code>nx</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type">number</span>
 
 
             
@@ -297,7 +209,76 @@
 
             
 
-            <td class="description last">The list of neighbouring cells</td>
+            <td class="description last">X-Coordinate of the cell</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ny</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Y-Coordinate of the cell</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Width of the grid</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Height of the grid</td>
         </tr>
 
     
@@ -338,7 +319,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line111">line 111</a>
+        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -363,28 +344,94 @@
 
 
 
-<h5>Returns:</h5>
+
+
+
+
 
         
-<div class="param-desc">
-    - The shuffled list
+            
+
+    
+
+    
+    <h4 class="name" id="populateDirections"><span class="type-signature"></span>populateDirections<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Builds the direction array.
 </div>
 
 
 
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;Object></span>
 
 
-    </dd>
-</dl>
+
+
+
+
+
+
+
+
+<dl class="details">
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line109">line 109</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -528,6 +575,258 @@
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="updateCell"><span class="type-signature">(async) </span>updateCell<span class="signature">(ny, nx, dy, dx, y, x)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Sets the type of a cell to 'floor' and updatesits color on the grid.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ny</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Y-Coordinate of the cell</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">X-Coordinate of the cell</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Y-offset of the currently evaluated direction</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Xoffset of the currently evaluated direction</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Y-Coordinate of the previously checked cell</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">X-Coordinate of the previously checked cell</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Maze_growing_tree.js.html">Maze/growing_tree.js</a>, <a href="Maze_growing_tree.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
@@ -543,13 +842,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataStructuresHelperFunctions.html">DataStructuresHelperFunctions</a></li><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-DSAnimationHelperFunctions.html">DSAnimationHelperFunctions</a></li><li><a href="module-GraphHelperFunctions.html">GraphHelperFunctions</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-MazeGenerationHelperFunctions.html">MazeGenerationHelperFunctions</a></li><li><a href="module-PathfindingHelperFunctions.html">PathfindingHelperFunctions</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:13 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Oct 16 2020 21:52:31 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

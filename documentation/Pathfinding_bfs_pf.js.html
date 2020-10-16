@@ -37,18 +37,12 @@ class BFS {
    * @param {Object} end - Row and column of the target node
    */
   async run(grid, start, end) {
-    this.resetGrid(grid);
+    resetGrid(grid);
 
     // declare "queue" for holding all unvisited nodes
     // and set distance of starting point to 0
-    var q = [];
+    var q = makeQueueFromGrid(grid);
     grid[start.y][start.x].dist = 0;
-
-    for (let y = 0; y &lt; grid.length; y++) {
-      for (let x = 0; x &lt; grid[y].length; x++) {
-        q.push(grid[y][x]);
-      }
-    }
 
     // run as long as there are nodes in the queue
     // or until target has been found
@@ -58,17 +52,15 @@ class BFS {
       // current node is target node, highlight path
       // and break
       if (v.col == end.x &amp;&amp; v.row == end.y) {
-        this.makePath(grid, end, start);
+        makePath(grid, end, start);
         return;
       }
 
-      var neighbours = this.getNeighbours(grid, v);
+      var neighbours = getNeighbours(grid, v);
 
       // examine every neighbour of the current cell
       for (const n in neighbours) {
-        var indInQ = q.findIndex(
-          (elem) => elem.x == neighbours[n].x &amp;&amp; elem.y == neighbours[n].y
-        );
+        var indInQ = findIndex(q, neighbours, n);
 
         // if the currently considered neighbour has not been
         // visited and it isn't a wall
@@ -77,77 +69,16 @@ class BFS {
           // weight nodes do not get special treatment, however
           // they shouldn't be colored in either.
           if (neighbours[n].type != "weight") {
-            await colorBlock(
-              "#node-" + neighbours[n].row + "-" + neighbours[n].col,
-              "#FF8B84",
-              500,
-              30,
-              "fill"
-            );
+            await colorVisited(neighbours[n]);
           }
           // current path to that node is shorter than the one pre-
           // viously found -> update node
           if (alt &lt; neighbours[n].dist) {
-            neighbours[n].dist = alt;
-            neighbours[n].predecessor = { row: v.row, col: v.col };
+            updateNode(neighbours[n], v, alt);
           }
         }
       }
     }
-  }
-
-  /**
-   * Resets the grid and every node to their initial state.
-   * @param {Object[][]} grid - 2d array of objects representing the grid
-   */
-  resetGrid(grid) {
-    for (let y = 0; y &lt; grid.length; y++) {
-      for (let x = 0; x &lt; grid[y].length; x++) {
-        // reset distances, fScores and predecessors
-        grid[y][x].dist = Infinity;
-        grid[y][x].fScore = Infinity;
-        grid[y][x].predecessor = undefined;
-        // Reset the colors of floor and weight tiles
-        if (grid[y][x].type != "wall" &amp;&amp; grid[y][x].type != "weight") {
-          d3.select("#node-" + y + "-" + x).attr("fill", "#FFF");
-        } else if (grid[y][x].type == "weight") {
-          d3.select("#node-" + y + "-" + x).attr("fill", "#B0B0B0");
-        }
-      }
-    }
-  }
-
-  /**
-   * Gets all nodes bordering the current node.
-   * @param {Object[][]} grid - 2d array of nodes
-   * @param {Object} v - The current node
-   * @returns {Object[]} - A list of nodes adjacent to v
-   */
-  getNeighbours(grid, v) {
-    var nbs = [];
-
-    if (v.col - 1 >= 0 &amp;&amp; grid[v.row][v.col - 1]) {
-      if (grid[v.row][v.col - 1].type != "wall")
-        // push left neighbour
-        nbs.push(grid[v.row][v.col - 1]);
-    }
-    if (v.col + 1 &lt; grid[0].length &amp;&amp; grid[v.row][v.col + 1]) {
-      if (grid[v.row][v.col + 1].type != "wall")
-        // push right neighbour
-        nbs.push(grid[v.row][v.col + 1]);
-    }
-    if (v.row - 1 >= 0 &amp;&amp; grid[v.row - 1][v.col]) {
-      if (grid[v.row - 1][v.col].type != "wall")
-        // push upper neighbour
-        nbs.push(grid[v.row - 1][v.col]);
-    }
-    if (v.row + 1 &lt; grid.length &amp;&amp; grid[v.row + 1][v.col]) {
-      if (grid[v.row + 1][v.col].type != "wall")
-        // push lower neighbour
-        nbs.push(grid[v.row + 1][v.col]);
-    }
-
-    return nbs;
   }
 
   /**
@@ -161,58 +92,8 @@ class BFS {
     var ind = 0;
     // step through the list of unvisited nodes and continually
     // update closest with the values of the closest node
-    for (let i = 0; i &lt; q.length; i++) {
-      if (closest.dist > q[i].dist) {
-        closest = q[i];
-        ind = i;
-      }
-    }
-    q.splice(ind, 1);
-    return closest;
-  }
 
-  /**
-   * Reads predecessors starting from the target node and colors the path.
-   * @param {Object[][]} grid - 2d array of nodes representing the grid
-   * @param {Object} end - Row and column of the target node
-   */
-  async makePath(grid, end) {
-    await timeout(500);
-    var list = [];
-    var v = grid[end.y][end.x];
-    list.unshift(v);
-    // step through the predecessors until we hit the start node.
-    // color every node on the way and save the path in a list.
-    while (v.predecessor != undefined) {
-      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
-      v = grid[v.predecessor.row][v.predecessor.col];
-      list.unshift(v);
-    }
-    list.unshift(v);
-    // animate the stick figure
-    this.makeHimRun(list);
-  }
-
-  /**
-   * Animates the stick figure to move from start to target.
-   * @param {Object[]} list - List of nodes in the path
-   */
-  async makeHimRun(list) {
-    // loop over the list and adjust the position of the
-    // stick figure
-    for (let i in list) {
-      d3.select("#start")
-        .transition()
-        .duration(50)
-        .attr("x", list[i].x)
-        .attr("y", list[i].y);
-      await timeout(50);
-    }
-    await timeout(200);
-    // teleport it back to the starting point
-    var x = gridData[startPos.y][startPos.x].x;
-    var y = gridData[startPos.y][startPos.x].y;
-    d3.select("#start").attr("x", x).attr("y", y);
+    return getClosestNode(q, closest, ind);
   }
 }
 </code></pre>
@@ -225,13 +106,13 @@ class BFS {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataStructuresHelperFunctions.html">DataStructuresHelperFunctions</a></li><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-DSAnimationHelperFunctions.html">DSAnimationHelperFunctions</a></li><li><a href="module-GraphHelperFunctions.html">GraphHelperFunctions</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-MazeGenerationHelperFunctions.html">MazeGenerationHelperFunctions</a></li><li><a href="module-PathfindingHelperFunctions.html">PathfindingHelperFunctions</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:13 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Oct 16 2020 21:52:31 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

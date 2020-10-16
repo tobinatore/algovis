@@ -36,17 +36,12 @@ class GrowingTree {
    */
   async startMaze(cell) {
     // filling the grid so the algorithm can carve out ways
-    this.fillGrid();
+    fillGrid();
 
     // declaring a list of unvisited cells
     // and a list of possible directions
     let cells = [];
-    let dirs = [
-      { dy: 0, dx: 2 },
-      { dy: 2, dx: 0 },
-      { dy: -2, dx: 0 },
-      { dy: 0, dx: -2 },
-    ];
+    let dirs = this.populateDirections();
 
     let width = gridData[0].length;
     let height = gridData.length;
@@ -56,7 +51,7 @@ class GrowingTree {
     // running as long as there are unvisited cells left
     while (cells.length != 0) {
       // shuffling the list of directions
-      dirs = this.shuffle(dirs);
+      dirs = shuffle(dirs);
 
       let index = Math.round(Math.random() * (cells.length - 1));
 
@@ -76,32 +71,8 @@ class GrowingTree {
 
         // check if the cell in the current direction
         // is within bounds and unvisited
-        if (
-          nx > 0 &amp;&amp;
-          ny > 0 &amp;&amp;
-          nx &lt; width &amp;&amp;
-          ny &lt; height &amp;&amp;
-          gridData[ny][nx].type == "wall"
-        ) {
-          // set the cell to type "floor"
-          // color it and add it to the list
-          // of cells to check
-          gridData[ny][nx].type = "floor";
-          await colorBlock("#node-" + ny + "-" + nx, "#fff", 10, 0);
-
-          // updating the cell between the other cells
-          if (dx != 0) {
-            gridData[y][x + dx / 2].type = "floor";
-            await colorBlock(
-              "#node-" + y + "-" + (x + dx / 2),
-              "#fff",
-              100,
-              10
-            );
-          } else {
-            gridData[y + dy / 2][x].type = "floor";
-            await colorBlock("#node-" + (y + dy / 2) + "-" + x, "#fff", 10, 0);
-          }
+        if (this.cellValid(nx, ny, width, height)) {
+          await this.updateCell(ny, nx, dy, dx, y, x);
 
           cells.push({ x: nx, y: ny });
           index = undefined;
@@ -117,34 +88,59 @@ class GrowingTree {
   }
 
   /**
-   * Fills the grid with walls as preparation for the algorithm.
+   * Checks whether a cell can become a floor tile.
+   * @param {number} nx - X-Coordinate of the cell
+   * @param {number} ny - Y-Coordinate of the cell
+   * @param {number} width - Width of the grid
+   * @param {number} height - Height of the grid
    */
-  fillGrid() {
-    for (let y = 0; y &lt; gridData.length; y++) {
-      for (let x = 0; x &lt; gridData[y].length; x++) {
-        gridData[y][x].type = "wall";
-        d3.select("#node-" + y + "-" + x)
-          .transition()
-          .duration(500)
-          .attr("fill", "#171717");
-      }
+  cellValid(nx, ny, width, height) {
+    return (
+      nx > 0 &amp;&amp;
+      ny > 0 &amp;&amp;
+      nx &lt; width &amp;&amp;
+      ny &lt; height &amp;&amp;
+      gridData[ny][nx].type == "wall"
+    );
+  }
+
+  /**
+   * Sets the type of a cell to 'floor' and updates
+   * its color on the grid.
+   * @param {number} ny - Y-Coordinate of the cell
+   * @param {number} nx - X-Coordinate of the cell
+   * @param {number} dy - Y-offset of the currently evaluated direction
+   * @param {number} dx - Xoffset of the currently evaluated direction
+   * @param {number} y - Y-Coordinate of the previously checked cell
+   * @param {number} x - X-Coordinate of the previously checked cell
+   */
+  async updateCell(ny, nx, dy, dx, y, x) {
+    // set the cell to type "floor"
+    // color it and add it to the list
+    // of cells to check
+    gridData[ny][nx].type = "floor";
+    await colorBlock("#node-" + ny + "-" + nx, "#fff", 10, 0);
+
+    // updating the cell between the other cells
+    if (dx != 0) {
+      gridData[y][x + dx / 2].type = "floor";
+      await colorBlock("#node-" + y + "-" + (x + dx / 2), "#fff", 100, 10);
+    } else {
+      gridData[y + dy / 2][x].type = "floor";
+      await colorBlock("#node-" + (y + dy / 2) + "-" + x, "#fff", 10, 0);
     }
   }
 
   /**
-   * Fisher-Yates shuffle for shuffling the list of neighbouring cells.
-   * @param {Object[]} array - The list of neighbouring cells
-   * @returns {Object[]} - The shuffled list
+   * Builds the direction array.
    */
-  shuffle(array) {
-    var j, x, i;
-    for (i = array.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = array[i];
-      array[i] = array[j];
-      array[j] = x;
-    }
-    return array;
+  populateDirections() {
+    return [
+      { dy: 0, dx: 2 },
+      { dy: 2, dx: 0 },
+      { dy: -2, dx: 0 },
+      { dy: 0, dx: -2 },
+    ];
   }
 }
 </code></pre>
@@ -157,13 +153,13 @@ class GrowingTree {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataStructuresHelperFunctions.html">DataStructuresHelperFunctions</a></li><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-DSAnimationHelperFunctions.html">DSAnimationHelperFunctions</a></li><li><a href="module-GraphHelperFunctions.html">GraphHelperFunctions</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-MazeGenerationHelperFunctions.html">MazeGenerationHelperFunctions</a></li><li><a href="module-PathfindingHelperFunctions.html">PathfindingHelperFunctions</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Tue Sep 22 2020 20:24:13 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Oct 16 2020 21:52:31 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

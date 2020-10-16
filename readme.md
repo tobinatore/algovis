@@ -3,7 +3,7 @@
 AlgoVis<span>.</span>io
 </h1>
 <h4 align="center">AlgoVis is a passion project aimed at helping everybody understand algorithms a little better by using easy to understand visualizations, concise explanations and dynamic code highlighting showing exactly what's happening.</h4>
-<p align="center"><img src="https://img.shields.io/website?down_color=%23CC1616&down_message=offline&up_message=live&url=https%3A%2F%2Ftobinatore.github.io%2Falgovis%2F"> <img src="https://img.shields.io/github/v/release/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/github/last-commit/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/github/repo-size/tobinatore/algovis?color=%23CC1616"> </p>
+<p align="center"><img src="https://img.shields.io/website?down_color=%23CC1616&down_message=offline&up_message=live&url=https%3A%2F%2Ftobinatore.github.io%2Falgovis%2F"> <img src="https://img.shields.io/github/v/release/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/github/last-commit/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/github/repo-size/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/github/last-commit/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/codeclimate/maintainability/tobinatore/algovis"> </p>
 
 ## :bookmark_tabs: Table of Contents <!-- omit in toc -->
 

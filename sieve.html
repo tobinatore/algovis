@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Sieve of Eratosthenes - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div
+      id="topbar"
+      class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
+    >
+      <div class="container-fluid d-flex">
+        <div class="contact-info mr-auto"></div>
+        <div class="social-links">
+          <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+            ><i class="icofont-twitter"></i
+          ></a>
+          <a href="https://github.com/tobinatore" class="github"
+            ><i class="icofont-github"></i
+          ></a>
+          <a
+            href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+            class="xing"
+            ><i class="icofont-xing"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/tobias-noethlich/"
+            class="linkedin"
+            ><i class="icofont-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="maths.html"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container-fluid">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="maths.html">Maths</a></li>
+            <li>Sieve of Eratosthenes</li>
+          </ol>
+          <h2>Sieve of Eratosthenes visualization</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page pt-4">
+        <div class="container-fluid px-0 mt-2">
+          <div class="data-container-big px-1 mb-0 mt-0 w-100">
+            <svg id="visu"></svg>
+          </div>
+          <div class="w-100 row mx-auto my-0 py-0">
+            <p id="nodes" class="my-0 py-0"></p>
+          </div>
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span> check = 2 </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                  <span>
+                    <span class="op">while </span> check * check <= num
+                  </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  <span>&emsp;&emsp;add = check * check </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  <span>
+                    &emsp;&emsp;<span class="op">while</span>(add <= num)
+                  </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  <span>
+                    &emsp;&emsp;&emsp;&emsp;marked.<span class="op">add</span
+                    >(add)
+                  </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  <span>&emsp;&emsp;&emsp;&emsp;add += num</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  <span
+                    >&emsp;&emsp;<span class="op">for</span>(i = check + 1 to
+                    num)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 8">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!marked. <span class="op">has</span>(i)</span>)</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 9">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;check = i</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 10">
+                  <span
+                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="var">break</span></span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">---------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">| SHORT EXPLANATION | </span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment">---------------------</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >1. Create a list of consecutive integers from 2 to n (2, 3, 4, …, n).</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >2. Initially, let check equal 2, which is the first prime number.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >3. Starting from check², count up in increments of check and mark each of these numbers.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >- In other words, compute: check * (check + 1), check * (check + 2), ... until the result is bigger than num.</span
+                  >
+                </div>
+                
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >4. Find the first number greater than check in the list that is not marked. If there is no such number, or the number squared is bigger than num, stop.</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1">
+                  <span class="comment"
+                    >5. Repeat steps 3 and 4 until you hit the stop condition.</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr data-content="Settings" class="hr-text mb-3 mt-4" />
+          <div class="row mx-auto">
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    The sieve of Eratosthenes is a simple and ancient algorithm used to find the prime numbers up to any given limit. It is one of the most efficient ways to find small prime numbers.
+                    <br/><br/>
+                    For a given upper limit n the algorithm works by iteratively marking the multiples of primes as composite, starting from 2. Once all multiples of 2 have been marked composite, the muliples of next prime, ie 3 are marked composite. 
+                    This process continues until p² > n after which only primes remain unmarked.
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <form>
+                <div class="form-group row">
+                  <div class="col-sm-5">Speed:</div>
+                  <div class="col-sm-7">
+                    <span>Slow&emsp;</span>
+                    <input
+                      id="speedslider"
+                      data-slider-id="speedSlider"
+                      type="text"
+                      data-slider-min="10"
+                      data-slider-max="1000"
+                      data-slider-step="10"
+                      data-slider-value="500"
+                    />
+                    <span>&emsp;Fast</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-5">Start:</div>
+                  <div class="col-sm-7">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="data-input"
+                      placeholder="0"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row mx-auto">
+            <div class="col-lg-6"></div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <button
+                id="start-button"
+                type="button"
+                onclick="sieve()"
+                class="btn btn-danger red w-100"
+              >
+                Start
+              </button>
+            </div>
+            <div class="col-4"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <h3>AlgoVis.io</h3>
+                <strong>Feel free to hit me up on social media:</strong><br />
+                <div class="social-links mt-3">
+                  <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+                    ><i class="icofont-twitter"></i
+                  ></a>
+                  <a href="https://github.com/tobinatore" class="github"
+                    ><i class="icofont-github"></i
+                  ></a>
+                  <a
+                    href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+                    class="xing"
+                    ><i class="icofont-xing"></i
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/tobias-noethlich/"
+                    class="linkedin"
+                    ><i class="icofont-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 footer-links"></div>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#about">About us</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#categories">Categories</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Terms of service</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="privacypolicy.html">Privacy policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>AlgoVis.io</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/Maths/math_algorithms.js"></script>
+    <script src="assets/js/Maths/modules/sieve_of_eratosthenes.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        d3.select("#visu")
+          .attr("width", "100%")
+          .attr("height", "570")
+          .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 570");
+
+        $("#data-input").on("input", function (e) {
+          ownData(this.value);
+        });
+
+        $("#own-data").change(function () {
+          if (this.checked) {
+            slider.disable();
+            $("#data-input").prop("disabled", false);
+          } else {
+            slider.enable();
+            $("#data-input").prop("disabled", true);
+          }
+        });
+
+        var speedSlider = new Slider("#speedslider", {
+          reversed: true,
+          tooltip: "none",
+          handle: "square",
+        });
+
+        speedSlider.on("slide", function (slideEvt) {
+          setDelay(slideEvt);
+        });
+
+        if (globalThis.screen.availWidth <= 360) {
+          slider.setAttribute("max", "20");
+          slider.setAttribute("value", "15");
+          $("#max").html("&emsp;20");
+        }
+      });
+    </script>
+
+    <script>
+      const container = document.querySelector(".data-container");
+      var FLAG = false;
+      var DELAY = 200;
+      var w = globalThis.screen.availWidth;
+      var h = 570;
+      var barPadding = 5;
+      var data = 0;
+      var x;
+      var svg = d3.select("#visu");
+
+      function setDelay(delay) {
+        DELAY = delay;
+      }
+
+      function clamp(number, min, max) {
+        return Math.max(min, Math.min(number, max));
+      }
+
+      function stop() {
+        FLAG = true;
+      }
+
+      function ownData(d = "15") {
+        data = d;
+        if (data > 15) {
+          data = clamp(data, 0, 286);
+        }
+
+        clearAll();
+        generateBlocks(data);
+      }
+
+      function clearAll() {
+        svg.selectAll("*").remove();
+      }
+
+      function generateBlocks(data) {
+        x = d3.scaleLinear().domain([0, 9]).range([0, w]);
+        var startPos = w / 19;
+
+        let arr = [...Array(data - 1)];
+        var bars = svg
+          .selectAll("rect")
+          .data(arr)
+          .enter()
+          .append("g")
+          .attr("id", function (d, i) {
+            return "g" + i;
+          })
+          .attr("transform", function (d, i) {
+            return "translate(" + startPos * (i % 19) + ",0)";
+          })
+          .attr("width", w / 20 - barPadding)
+          .attr("y", function (d, i) {
+            return 25 * Math.ceil(i / 19);
+          });
+
+        bars
+          .append("rect")
+          .attr("width", w / 20 - barPadding)
+          .attr("height", 30)
+          .attr("y", function (d, i) {
+            return 35 * Math.ceil((i + 1) / 19);
+          })
+          .attr("fill", "none")
+          .attr("stroke", "#171717")
+          .attr("stroke-width", "2px")
+          .attr("id", function (d, i) {
+            return "rect" + (i + 2);
+          });
+
+        for (let i = 2; i <= arr.length + 1; i++) {
+          let num = i;
+
+          d3.select("#g" + (i - 2))
+            .append("text")
+            .text(function (d) {
+              return num;
+            })
+            .attr("y", function (d) {
+              return 55 + 35 * Math.floor((i - 2) / 19);
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "18px")
+            .attr("fill", "black")
+            .attr("transform", function () {
+              return "translate(" + (w / 20 - barPadding) / 2 + ",0)";
+            }) //((startPos*i)+((w/data.length)/2)-4)
+            .attr("text-anchor", "middle")
+            .attr("class", function (d, i) {
+              return "num-text" + num;
+            });
+        }
+      }
+
+      async function highlightCode(elementClass, delay) {
+        $(".code-highlight").removeClass("code-highlight");
+        $(`.${elementClass}`).addClass("code-highlight");
+        await timeout(delay);
+      }
+
+      async function timeout(delay) {
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve();
+          }, delay)
+        );
+      }
+
+      async function sieve() {
+        $("#start-button, #data-input").prop("disabled", true);
+        $(".disableSlider").prop("hidden", true);
+        let math = new MathAlgorithms();
+        await math.sieveOfEratosthenes(data);
+        $("#start-button, #slider, #data-input").prop("disabled", false);
+        $(".disableSlider").prop("hidden", false);
+        highlightCode("0");
+      }
+      //generateBlocks(286);
+    </script>
+  </body>
+</html>

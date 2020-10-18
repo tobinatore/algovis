@@ -22,7 +22,6 @@ async function findPrimeFactors(n) {
   await checkLastNum(n, top, primes, orig);
 
   data = root;
-  console.log(data);
   clearAll();
   await buildTree(data);
 }
@@ -161,7 +160,7 @@ async function buildTree(data) {
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   // adds the links between the nodes
-  var link = makeLinks(g, nodes);
+  makeLinks(g, nodes);
 
   // adds each node as a group
   var node = getNodes(g, nodes);
@@ -177,7 +176,7 @@ async function buildTree(data) {
  * @param {Object[]} nodes - Hierarchy of the tree nodes
  */
 function makeLinks(g, nodes) {
-  return g
+  let path = g
     .selectAll(".link")
     .data(nodes.descendants().slice(1))
     .enter()
@@ -185,11 +184,28 @@ function makeLinks(g, nodes) {
     .attr("class", "link")
     .attr("d", function (d) {
       return (
-        "M" + d.x + "," + (d.y - 5) + "L" + d.parent.x + "," + (d.parent.y + 35)
+        "M" + d.parent.x + "," + (d.parent.y + 35) + "L" + d.x + "," + (d.y - 5)
       );
     })
     .attr("fill", "none")
     .attr("stroke", "black");
+
+  var totalLength = path.node().getTotalLength();
+
+  path
+    .filter(function (d, i) {
+      if (path.size() % 2 == 0) {
+        return i == path.size() - 1 || i == path.size() - 2 ? this : null;
+      } else {
+        return i == path.size() - 1 ? this : null;
+      }
+    })
+    .attr("stroke-dasharray", totalLength + " " + totalLength)
+    .attr("stroke-dashoffset", totalLength)
+    .transition()
+    .duration(500)
+    .ease(d3.easeLinear)
+    .attr("stroke-dashoffset", 0);
 }
 
 /**
@@ -217,7 +233,38 @@ function getNodes(g, nodes) {
  */
 function addText(node) {
   node
+    .filter(function (d, i) {
+      if (node.size() % 2 != 0) {
+        return i == node.size() - 1 || i == node.size() - 2 ? null : this;
+      } else {
+        return i == node.size() - 1 ? null : this;
+      }
+    })
     .append("text")
+    .attr("dy", ".35em")
+    .attr("y", function (d) {
+      return d.children ? 20 : 20;
+    })
+    .style("text-anchor", "middle")
+    .attr("font-size", "24px")
+    .attr("font-weight", function (d) {
+      return d.children ? "" : "bold";
+    })
+    .text(function (d) {
+      return d.data.name;
+    });
+
+  node
+    .filter(function (d, i) {
+      if (node.size() % 2 != 0) {
+        return i == node.size() - 1 || i == node.size() - 2 ? this : null;
+      } else {
+        return i == node.size() - 1 ? this : null;
+      }
+    })
+    .append("text")
+    .transition()
+    .delay(500)
     .attr("dy", ".35em")
     .attr("y", function (d) {
       return d.children ? 20 : 20;

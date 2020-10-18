@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>Sieve of Eratosthenes - AlgoVis.io</title>
+    <title>Prime Factorization - AlgoVis.io</title>
     <meta
       content="AlgoVis is an online algorithm visualization tool."
       name="description"
@@ -100,9 +100,9 @@
           <ol>
             <li><a href="index.html">Home</a></li>
             <li><a href="maths.html">Maths</a></li>
-            <li>Sieve of Eratosthenes</li>
+            <li>Prime factorization</li>
           </ol>
-          <h2>Sieve of Eratosthenes visualization</h2>
+          <h2>Prime factorization visualization</h2>
         </div>
       </section>
       <!-- End Breadcrumbs -->
@@ -119,55 +119,50 @@
             <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
               <div class="ide w-100">
                 <div class="row ml-auto mr-auto 1">
-                  <span> check = 2 </span>
+                  <span><span class="op">while</span>(n % 2 == 0)</span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 2">
-                  <span>
-                    <span class="op">while </span>(check * check <= num)
-                  </span>
+                  <span> &emsp;&emsp;n = n/2 </span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 3">
-                  <span>&emsp;&emsp;add = check * check </span>
+                  <span
+                    >&emsp;&emsp;primes.<span class="var">push</span>(2)</span
+                  >
                 </div>
                 <div class="row ml-auto mr-auto mt-1 4">
                   <span>
-                    &emsp;&emsp;<span class="op">while</span>(add <= num)
+                    <span class="op">for</span>(i = 3 to sqrt(n), i += 2)
                   </span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 5">
                   <span>
-                    &emsp;&emsp;&emsp;&emsp;marked.<span class="op">add</span
-                    >(add)
+                    &emsp;&emsp;<span class="op">while</span>(n % i == 0)
                   </span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 6">
-                  <span>&emsp;&emsp;&emsp;&emsp;add += num</span>
+                  <span>&emsp;&emsp;&emsp;&emsp;n = n/i</span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 7">
                   <span
-                    >&emsp;&emsp;<span class="op">for</span>(i = check + 1 to
-                    num)</span
+                    >&emsp;&emsp;&emsp;&emsp;primes.<span class="var">push</span
+                    >(i)</span
                   >
                 </div>
                 <div class="row ml-auto mr-auto mt-1 8">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;<span class="op">if</span>(!marked. <span class="op">has</span>(i)</span>)</span
-                  >
+                  <span><span class="op">if</span>(n > 2)</span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1 9">
                   <span
-                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;check = i</span
-                  >
-                </div>
-                <div class="row ml-auto mr-auto mt-1 10">
-                  <span
-                    >&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="var">break</span></span
+                    >&emsp;&emsp;primes.<span class="var">push</span>(n)</span
                   >
                 </div>
               </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
               <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto mt">
+                  <span class="comment">&emsp;</span>
+                </div>
                 <div class="row ml-auto mr-auto mt-1">
                   <span class="comment">---------------------</span>
                 </div>
@@ -179,34 +174,25 @@
                 </div>
                 <div class="row ml-auto mr-auto mt-1">
                   <span class="comment"
-                    >1. Create a list of consecutive integers from 2 to n (2, 3, 4, …, n).</span
+                    >1. Divide n by 2 as long as n mod 2 = 0.</span
                   >
                 </div>
                 <div class="row ml-auto mr-auto mt-1">
                   <span class="comment"
-                    >2. Initially, let check equal 2, which is the first prime number.</span
+                    >2. Starting at i = 3 divide n by i as long as n mod i = 0,
+                    increase i by 2 if n mod i =/= 0.</span
                   >
                 </div>
                 <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >3. Starting from check², count up in increments of check and mark each of these numbers.</span
-                  >
+                  <span class="comment">3. Repeat step 2 until i > √n.</span>
                 </div>
                 <div class="row ml-auto mr-auto mt-1">
                   <span class="comment"
-                    >- In other words, compute: check * (check + 1), check * (check + 2), ... until the result is bigger than num.</span
-                  >
-                </div>
-                
-                <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >4. Find the first number greater than check in the list that is not marked. If there is no such number, or the number squared is bigger than num, stop.</span
+                    >4. If n > 2 it's a prime factor as well.</span
                   >
                 </div>
                 <div class="row ml-auto mr-auto mt-1">
-                  <span class="comment"
-                    >5. Repeat steps 3 and 4 until you hit the stop condition.</span
-                  >
+                  <span class="comment">&emsp;</span>
                 </div>
               </div>
             </div>
@@ -217,10 +203,16 @@
               <form>
                 <div class="row">
                   <div class="col-12">
-                    The sieve of Eratosthenes is a simple and ancient algorithm used to find the prime numbers up to any given limit. It is one of the most efficient ways to find small prime numbers.
-                    <br/><br/>
-                    For a given upper limit n the algorithm works by iteratively marking the multiples of primes as composite, starting from 2. Once all multiples of 2 have been marked composite, the muliples of next prime, ie 3 are marked composite. 
-                    This process continues until p² > n after which only primes remain unmarked.
+                    The Fundamental Theorem of Arithmetic states that every
+                    natural number greater than 1 can be written as a product of
+                    prime numbers , and that up to rearrangement of the factors,
+                    this product is unique . This is called the prime
+                    factorization of the number.
+                    <br />
+                    For a prime number such as 13 or 11 , the prime
+                    factorization is simply itself. Any composite number (that
+                    is, a whole number with more than two factors) has a
+                    non-trivial prime factorization.
                   </div>
                 </div>
               </form>
@@ -235,10 +227,10 @@
                       id="speedslider"
                       data-slider-id="speedSlider"
                       type="text"
-                      data-slider-min="10"
-                      data-slider-max="1000"
-                      data-slider-step="10"
-                      data-slider-value="500"
+                      data-slider-min="1000"
+                      data-slider-max="5000"
+                      data-slider-step="100"
+                      data-slider-value="2000"
                     />
                     <span>&emsp;Fast</span>
                   </div>
@@ -263,7 +255,7 @@
               <button
                 id="start-button"
                 type="button"
-                onclick="sieve()"
+                onclick="findFactors()"
                 class="btn btn-danger red w-100"
               >
                 Start
@@ -367,7 +359,7 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/Maths/math_algorithms.js"></script>
-    <script src="assets/js/Maths/modules/sieve_of_eratosthenes.js"></script>
+    <script src="assets/js/Maths/modules/prime_factors.js"></script>
 
     <script>
       $(document).ready(function () {
@@ -411,7 +403,7 @@
     <script>
       const container = document.querySelector(".data-container");
       var FLAG = false;
-      var DELAY = 200;
+      var DELAY = 2000;
       var w = globalThis.screen.availWidth;
       var h = 570;
       var barPadding = 5;
@@ -433,10 +425,6 @@
 
       function ownData(d = "15") {
         data = d;
-        if (data > 15) {
-          data = clamp(data, 0, 286);
-        }
-
         clearAll();
         generateBlocks(data);
       }
@@ -446,62 +434,9 @@
       }
 
       function generateBlocks(data) {
-        x = d3.scaleLinear().domain([0, 9]).range([0, w]);
-        var startPos = w / 19;
-
-        let arr = [...Array(data - 1)];
-        var bars = svg
-          .selectAll("rect")
-          .data(arr)
-          .enter()
-          .append("g")
-          .attr("id", function (d, i) {
-            return "g" + i;
-          })
-          .attr("transform", function (d, i) {
-            return "translate(" + startPos * (i % 19) + ",0)";
-          })
-          .attr("width", w / 20 - barPadding)
-          .attr("y", function (d, i) {
-            return 25 * Math.ceil(i / 19);
-          });
-
-        bars
-          .append("rect")
-          .attr("width", w / 20 - barPadding)
-          .attr("height", 30)
-          .attr("y", function (d, i) {
-            return 35 * Math.ceil((i + 1) / 19);
-          })
-          .attr("fill", "none")
-          .attr("stroke", "#171717")
-          .attr("stroke-width", "2px")
-          .attr("id", function (d, i) {
-            return "rect" + (i + 2);
-          });
-
-        for (let i = 2; i <= arr.length + 1; i++) {
-          let num = i;
-
-          d3.select("#g" + (i - 2))
-            .append("text")
-            .text(function (d) {
-              return num;
-            })
-            .attr("y", function (d) {
-              return 55 + 35 * Math.floor((i - 2) / 19);
-            })
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "18px")
-            .attr("fill", "black")
-            .attr("transform", function () {
-              return "translate(" + (w / 20 - barPadding) / 2 + ",0)";
-            }) //((startPos*i)+((w/data.length)/2)-4)
-            .attr("text-anchor", "middle")
-            .attr("class", function (d, i) {
-              return "num-text" + num;
-            });
-        }
+        var startPos = w / 2;
+        let treeData = { name: data, parent: null, children: [] };
+        buildTree(treeData);
       }
 
       async function highlightCode(elementClass, delay = 0) {
@@ -518,16 +453,15 @@
         );
       }
 
-      async function sieve() {
+      async function findFactors() {
         $("#start-button, #data-input").prop("disabled", true);
         $(".disableSlider").prop("hidden", true);
         let math = new MathAlgorithms();
-        await math.sieveOfEratosthenes(data);
+        await math.primeFactors(data);
         $("#start-button, #slider, #data-input").prop("disabled", false);
         $(".disableSlider").prop("hidden", false);
         highlightCode("0");
       }
-      //generateBlocks(286);
     </script>
   </body>
 </html>

@@ -190,22 +190,24 @@ function makeLinks(g, nodes) {
     .attr("fill", "none")
     .attr("stroke", "black");
 
-  var totalLength = path.node().getTotalLength();
+  if (path.size() > 1) {
+    var totalLength = path.node().getTotalLength();
 
-  path
-    .filter(function (d, i) {
-      if (path.size() % 2 == 0) {
-        return i == path.size() - 1 || i == path.size() - 2 ? this : null;
-      } else {
-        return i == path.size() - 1 ? this : null;
-      }
-    })
-    .attr("stroke-dasharray", totalLength + " " + totalLength)
-    .attr("stroke-dashoffset", totalLength)
-    .transition()
-    .duration(500)
-    .ease(d3.easeLinear)
-    .attr("stroke-dashoffset", 0);
+    path
+      .filter(function (d, i) {
+        if (path.size() % 2 == 0) {
+          return i == path.size() - 1 || i == path.size() - 2 ? this : null;
+        } else {
+          return i == path.size() - 1 ? this : null;
+        }
+      })
+      .attr("stroke-dasharray", totalLength + " " + totalLength)
+      .attr("stroke-dashoffset", totalLength)
+      .transition()
+      .duration(500)
+      .ease(d3.easeLinear)
+      .attr("stroke-dashoffset", 0);
+  }
 }
 
 /**
@@ -234,6 +236,9 @@ function getNodes(g, nodes) {
 function addText(node) {
   node
     .filter(function (d, i) {
+      if ((node.size() == 3 && i == 0) || node.size() == 1) {
+        return this;
+      }
       if (node.size() % 2 != 0) {
         return i == node.size() - 1 || i == node.size() - 2 ? null : this;
       } else {

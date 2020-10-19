@@ -19,4 +19,15 @@ class MathAlgorithms {
   async primeFactors(n) {
     await findPrimeFactors(n);
   }
+
+  /**
+   * Wrapper function for visualizing the
+   * Euclidean algorithm for finding the
+   * greatest common divisor of two numbers.
+   * @param {number} n - First number
+   * @param {number} m - Second number
+   */
+  async euclideanGCD(n, m) {
+    await runEuclidean(n, m);
+  }
 }

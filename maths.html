@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Mathematics - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <div
+      id="topbar"
+      class="d-none d-lg-flex align-items-center fixed-top header-inner-pages"
+    >
+      <div class="container-fluid d-flex">
+        <div class="contact-info mr-auto"></div>
+        <div class="social-links">
+          <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+            ><i class="icofont-twitter"></i
+          ></a>
+          <a href="https://github.com/tobinatore" class="github"
+            ><i class="icofont-github"></i
+          ></a>
+          <a
+            href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+            class="xing"
+            ><i class="icofont-xing"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/tobias-noethlich/"
+            class="linkedin"
+            ><i class="icofont-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="index.html#categories"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#prime">Prime numbers</a></li>
+            <li><a href="#modulo-arithmetic">Modulo arithmetic</a></li>
+            <!--<li><a href="#matrices">Matrices</a></li>-->
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container-fluid">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Mathematics</li>
+          </ol>
+          <h2>Mathematical algorithms</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page">
+        <section id="overview" class="pt-0">
+          <div class="container">
+            <h3 class="highlighted-text">Overview</h3>
+            <div class="mb-4 explanation ml-2 mr-2" style="font-size: large">
+              An algorithm in mathematics is a procedure, a description of a set
+              of steps that can be used to solve a mathematical computation.
+              <br /><br />
+              A baseline algorithm for multiplication, for example, might be
+              simply adding the same number over and over again.
+              <br />
+              So, 3,546 times 5 could be described in four steps:
+              <br /><br />How much is 3546 plus 3546? 7092 <br /><br />How much
+              is 7092 plus 3546? 10638 <br /><br />How much is 10638 plus 3546?
+              14184 <br /><br />How much is 14184 plus 3546? 17730
+              <br /><br />Five times 3,546 is 17,730. <br />But 3,546 multiplied
+              by 654 would take 653 steps. Who wants to keep adding a number
+              over and over again? There are a set of multiplication algorithms
+              for that; the one you choose would depend on how large your number
+              is.<br />
+              An algorithm is usually (not always) the most efficient way to do
+              the math.
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="row mt-5 highlighted-text">
+              <div class="col-sm-12 text-center"><h2>Search</h2></div>
+            </div>
+            <div class="row justify-content-center mt-2">
+              <div class="col-sm-12 col-md-10 col-lg-8">
+                <form class="card card-sm border-red">
+                  <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                      <i class="bx bx-search h4 text-body"></i>
+                    </div>
+                    <!--end of col-->
+                    <div class="col">
+                      <input
+                        id="search"
+                        class="form-control form-control-borderless"
+                        type="search"
+                        placeholder="Search names or keywords"
+                      />
+                    </div>
+                    <div class="anchor w-100" id="comparison"></div>
+                    <!--end of col-->
+                    <!--end of col-->
+                  </div>
+                </form>
+              </div>
+              <!--end of col-->
+            </div>
+          </div>
+        </section>
+
+        <!-- COMPARISON SORTS -->
+        <section id="prime" class="pt-0">
+          <div class="container-fluid w-100">
+            <!-- Gradient divider -->
+            <hr data-content="Prime numbers" class="hr-text mb-2 cd-hide" />
+            <div class="w-100 p-2 row mt-3 mb-3 cd-hide">
+              <div class="col-sm-1 col-md-1 col-lg-3"></div>
+              <div class="explanation col-sm-10 col-md-10 col-lg-6">
+                A prime number (or a prime) is a natural number greater than 1
+                is not a product of two smaller natural numbers. A natural
+                number greater than 1 that is not prime is called a composite
+                number.
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-3"></div>
+            </div>
+            <div class="card-deck mb-4 cd-hide">
+              <div
+                id="sieve-of-eratosthenes"
+                class="algorithm shadow-highlight card"
+              >
+                <a href="sieve.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Sieve of Eratosthenes</h5>
+                    <h6 class="card-subtitle">Prime numbers</h6>
+                    <p class="card-text">
+                      In mathematics, the sieve of Eratosthenes is an ancient
+                      algorithm for finding all prime numbers up to any given
+                      limit. It does so by iteratively marking as composite
+                      (i.e., not prime) the multiples of each prime, starting
+                      with the first prime number, 2. This leads to the prime
+                      numbers up to the limit remaining unmarked.
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div
+                id="prime-factorization"
+                class="algorithm shadow-highlight card"
+              >
+                <a href="primefactors.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Prime factorization</h5>
+                    <h6 class="card-subtitle">Prime numbers</h6>
+                    <p class="card-text">
+                      Writing a number as a product of prime numbers is called a
+                      prime factorization of the number.The central importance
+                      of prime numbers to number theory and mathematics in
+                      general stems from the fundamental theorem of arithmetic.
+                      This theorem states that every integer larger than 1 can
+                      be written as a product of one or more primes.
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div id="results"></div>
+        </section>
+
+        <!-- NON-COMPARISON-SORTS -->
+        <section id="modulo-arithmetic" class="pt-0">
+          <div class="container-fluid w-100">
+            <!-- Gradient divider -->
+            <hr data-content="Modulo arithmetic" class="hr-text cd-hide" />
+            <div
+              class="w-50 p-2 rounded explanation row ml-auto mr-auto mt-2 mb-3 cd-hide"
+            >
+              <div class="col-sm-12">
+                In mathematics, modular arithmetic is a system of arithmetic for
+                integers, where numbers "wrap around" when reaching a certain
+                value, called the modulus. A familiar use of modular arithmetic
+                is in the 12-hour clock, in which the day is divided into two
+                12-hour periods.
+              </div>
+            </div>
+            <div class="card-deck mb-4 cd-hide">
+              <div id="euclidean-gcd" class="algorithm shadow-highlight card">
+                <a href="euclideangcd.html" class="unstyled-link">
+                  <div class="card-body">
+                    <h5 class="card-title">Euclidean algorithm</h5>
+                    <h6 class="card-subtitle">Modulo arithmetic</h6>
+                    <p class="card-text">
+                      In mathematics, the Euclidean algorithm, or Euclid's
+                      algorithm, is an efficient method for computing the
+                      greatest common divisor (GCD) of two integers (numbers),
+                      the largest number that divides them both without a
+                      remainder.
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info">
+                <h3>AlgoVis.io</h3>
+                <strong>Feel free to hit me up on social media:</strong><br />
+                <div class="social-links mt-3">
+                  <a href="https://twitter.com/tobiasnoethlich" class="twitter"
+                    ><i class="icofont-twitter"></i
+                  ></a>
+                  <a href="https://github.com/tobinatore" class="github"
+                    ><i class="icofont-github"></i
+                  ></a>
+                  <a
+                    href="https://www.xing.com/profile/Tobias_Noethlich/cv"
+                    class="xing"
+                    ><i class="icofont-xing"></i
+                  ></a>
+                  <a
+                    href="https://www.linkedin.com/in/tobias-noethlich/"
+                    class="linkedin"
+                    ><i class="icofont-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-6 footer-links"></div>
+            <div class="col-lg-2 col-md-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#about">About us</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="index.html#categories">Categories</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="#">Terms of service</a>
+                </li>
+                <li>
+                  <i class="bx bx-chevron-right"></i>
+                  <a href="privacypolicy.html">Privacy policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>AlgoVis.io</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/day-multipurpose-html-template-for-free/ -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script>
+      const $body = $("body");
+      const $header = $(".page-header");
+      const $navCollapse = $(".navbar-collapse");
+      const scrollClass = "scroll";
+      $(".card-subtitle").hide();
+
+      $(window).on("scroll", () => {
+        // Color background of navbar a solid red on scroll
+        if (this.matchMedia("(min-width: 992px)").matches) {
+          const scrollY = $(this).scrollTop();
+          scrollY > 0
+            ? $body.addClass(scrollClass)
+            : $body.removeClass(scrollClass);
+        } else {
+          $body.removeClass(scrollClass);
+        }
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        // when clicking a link in the navbar scroll smoothly to the anchor
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      function showRelevant(name = "") {
+        /*************************************************************/
+        /* This function selects the algorithms fitting to the users */
+        /* search terms and displays them.                           */
+        /*                                                           */
+        /* Input: name (string) - the input of the search field      */
+        /*************************************************************/
+
+        if (name == "") {
+          // search bar is empty -> show every algorithm and clear results <div>
+          $(".cd-hide").show();
+          $(".card-subtitle").hide();
+          $("#results").empty();
+        } else {
+          // Since I'm updating the results on every letter the user enters,
+          // it's important to clear the results <div>, so therea are no duplicates
+          // or no longer relevant algorithms displayed.
+          $("#results").empty();
+          $(".card-subtitle").show();
+          $(".cd-hide").hide();
+          let algoList = $('.algorithm[id*="' + name.toLowerCase() + '"]');
+          let deckString = '<div class="card-deck mb-4">';
+          let lastFilled = algoList.length % 4;
+          if (algoList.length != 0) {
+            // Due to each card-deck being a different a different entity I can't
+            // simply hide the algorithms which aren't needed, as this causes
+            // a linebreak betwenn algorithms with different parent elements.
+            // ------------------------------------------------------------------
+            // A solution for this is to grab the algorithms needed and append
+            // them all to a new <div>.
+
+            // Loop over the list of elements and build the content of the new <div>
+            for (let i = 0; i < algoList.length; i++) {
+              // 4 algorithms on every row --> close the current card-deck after
+              // 4 algorithms are processed and open a new one.
+              if ((i + 1) % 4 == 0) {
+                deckString +=
+                  algoList[i].outerHTML + '</div><div class="card-deck mb-4">';
+              } else {
+                deckString += algoList[i].outerHTML;
+              }
+            }
+
+            // if the last row is not completely filled,
+            // fill it with hidden elements so the visible
+            // cards are the right size
+            if (lastFilled != 0) {
+              for (let j = 0; j < 4 - lastFilled; j++) {
+                element = algoList[0].cloneNode(true);
+                element.style.visibility = "hidden";
+                deckString += element.outerHTML;
+              }
+            }
+            // Closing the last card-deck and filling the <div> with the results
+            // of the users search term.
+            deckString += "</div>";
+            $("#results").append(deckString);
+          } else {
+            $("#results").append(`No results matching ${name}.`);
+          }
+        }
+      }
+
+      $("#search").on("input", function (e) {
+        showRelevant(this.value);
+      });
+    </script>
+  </body>
+</html>

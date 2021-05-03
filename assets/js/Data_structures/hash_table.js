@@ -1,16 +1,16 @@
 /** Implementation of the hash table data structure. */
 class HashTable {
-  #hashlist;
+  hashlist;
 
   /**
    * Creates a new HashTable with 'size' buckets.
    * @param {number} size - The number of buckets the hash table has
    */
   constructor(size) {
-    this.#hashlist = [];
+    this.hashlist = [];
 
     for (let i = 0; i < size; i++) {
-      this.#hashlist.push(undefined);
+      this.hashlist.push(undefined);
     }
 
     // Setting the method of collision resolution
@@ -38,9 +38,9 @@ class HashTable {
    */
   hash(data, quadratic, step) {
     if (!quadratic) {
-      return data % this.#hashlist.length;
+      return data % this.hashlist.length;
     } else {
-      return (data + step * step) % this.#hashlist.length;
+      return (data + step * step) % this.hashlist.length;
     }
   }
 
@@ -75,9 +75,9 @@ class HashTable {
       await timeout(300);
 
       // if the bucket is already occupied, walk through the list to find the first free bucket
-      while (this.#hashlist[key] != undefined) {
+      while (this.hashlist[key] != undefined) {
         await highlightCode(6);
-        key = (key + 1) % this.#hashlist.length;
+        key = (key + 1) % this.hashlist.length;
 
         await highlightBucket(key);
         $("#results-text").html("Checking index " + key);
@@ -101,7 +101,7 @@ class HashTable {
       await highlightCode(9);
       await timeout(300);
       // add the data
-      this.#hashlist[key] = data;
+      this.hashlist[key] = data;
       this.items++;
 
       await highlightBucket(key);
@@ -128,7 +128,7 @@ class HashTable {
       await timeout(300);
 
       // if the bucket is already occupied, try to find free bucket
-      while (this.#hashlist[key] != undefined) {
+      while (this.hashlist[key] != undefined) {
         await highlightCode(14);
         await timeout(300);
 
@@ -145,12 +145,12 @@ class HashTable {
         await timeout(300);
         // tried every possible bucket but none were free
         // -> return
-        if (step == this.#hashlist.length) {
+        if (step == this.hashlist.length) {
           $("#results-text").html(
             "Could not insert " +
               data +
               " into the hash table. (Failed to insert after " +
-              this.#hashlist.length +
+              this.hashlist.length +
               " steps.)"
           );
           await highlightCode(17);
@@ -163,7 +163,7 @@ class HashTable {
       await timeout(300);
 
       // add the data
-      this.#hashlist[key] = data;
+      this.hashlist[key] = data;
       this.items++;
       data_set.add(data);
 
@@ -216,7 +216,7 @@ class HashTable {
 
       // Index where the data would be stored is empty
       // -> data is not in hashtable
-      if (this.#hashlist[key] == undefined) {
+      if (this.hashlist[key] == undefined) {
         $("#results-text").html(
           "Could not find " +
             data +
@@ -238,12 +238,12 @@ class HashTable {
         await timeout(300);
       }
       // walk through list to try and find the data
-      while (this.#hashlist[key] != data) {
+      while (this.hashlist[key] != data) {
         if (highlight) {
           await highlightCode(8);
         }
 
-        key = (key + 1) % this.#hashlist.length;
+        key = (key + 1) % this.hashlist.length;
 
         await highlightBucket(key);
         $("#results-text").html("Checking index " + key);
@@ -265,7 +265,7 @@ class HashTable {
 
           return -1;
         } // index where data would be stored is empty -> data is not in HT
-        else if (this.#hashlist[key] == undefined) {
+        else if (this.hashlist[key] == undefined) {
           $("#results-text").html(
             "Could not find " +
               data +
@@ -316,7 +316,7 @@ class HashTable {
 
       // Index where the data would be stored is empty
       // -> data is not in hashtable
-      if (this.#hashlist[key] == undefined) {
+      if (this.hashlist[key] == undefined) {
         $("#results-text").html(
           "Could not find " +
             data +
@@ -338,7 +338,7 @@ class HashTable {
       }
 
       // if the bucket is already occupied, try to find the data
-      while (this.#hashlist[key] != data) {
+      while (this.hashlist[key] != data) {
         if (highlight) {
           await highlightCode(18);
           await timeout(300);
@@ -361,7 +361,7 @@ class HashTable {
         }
 
         // checked all possible buckets -> data is not in hashtable
-        if (step == this.#hashlist.length) {
+        if (step == this.hashlist.length) {
           $("#results-text").html(
             "Could not find " +
               data +
@@ -375,7 +375,7 @@ class HashTable {
 
           return -1;
         } // possible location of data is empty -> data is not in hashtable
-        else if (this.#hashlist[key] == undefined) {
+        else if (this.hashlist[key] == undefined) {
           $("#results-text").html(
             "Could not find " +
               data +
@@ -427,7 +427,7 @@ class HashTable {
       await timeout(300);
 
       // ...delete it
-      this.#hashlist[index] = undefined;
+      this.hashlist[index] = undefined;
       data_set.delete(data);
       await updateText(index, "");
       $("#results-text").html(

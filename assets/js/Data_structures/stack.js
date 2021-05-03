@@ -2,14 +2,14 @@
  * Class simulating a stack using the inbuilt js arrays.
  */
 class Stack {
-  #stack;
+  stack;
 
   /**
    * Initializung the stack as empty array
    * and setting the size to 0.
    */
   constructor() {
-    this.#stack = [];
+    this.stack = [];
     this.size = 0;
   }
 
@@ -18,7 +18,7 @@ class Stack {
    * @param {number} data - The data that gets added to the stack.
    */
   async push(data) {
-    this.#stack.push(data);
+    this.stack.push(data);
     let coords = [w / 2 - 160, h - 100 - this.size * 50 - this.size * 10 - 100];
     await newStackElement(coords, data);
     await slideIntoPositionStack(this.size);
@@ -33,7 +33,7 @@ class Stack {
    */
   async peek() {
     await peekStack();
-    return this.#stack[this.size - 1];
+    return this.stack[this.size - 1];
   }
 
   /**
@@ -45,7 +45,7 @@ class Stack {
     if (this.size > 0) {
       await deleteStackNode();
       this.size--;
-      return this.#stack.pop();
+      return this.stack.pop();
     }
   }
 }
